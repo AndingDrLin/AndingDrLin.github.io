@@ -1,0 +1,18 @@
+---
+import { GITHUB_URL, SITE_TITLE } from '../consts';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="shell footer-inner">
+    <p>
+      <span>{SITE_TITLE}</span>
+      <span class="footer-separator">·</span>
+      <a href="/rss.xml">RSS</a>
+      <span class="footer-separator">·</span>
+      <a href={GITHUB_URL}>GitHub</a>
+    </p>
+    <p>© {year}</p>
+  </div>
+</footer>

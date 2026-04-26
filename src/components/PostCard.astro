@@ -1,0 +1,33 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import TagList from './TagList.astro';
+import { formatDate } from '../utils/content';
+
+interface Props {
+  entry: CollectionEntry<'blog'> | CollectionEntry<'notes'>;
+  showKind?: boolean;
+}
+
+const { entry, showKind = false } = Astro.props;
+const href = `/${entry.collection}/${entry.id}/`;
+const kindLabel = entry.collection === 'blog' ? 'Blog' : 'Note';
+---
+
+<article class="post-card">
+  <div class="post-card-meta">
+    <span>{formatDate(entry.data.date)}</span>
+    <span>·</span>
+    <span>{entry.data.category}</span>
+    {showKind && (
+      <>
+        <span>·</span>
+        <span>{kindLabel}</span>
+      </>
+    )}
+  </div>
+  <h2 class="post-card-title">
+    <a href={href}>{entry.data.title}</a>
+  </h2>
+  <p class="post-card-description">{entry.data.description}</p>
+  <TagList tags={entry.data.tags} />
+</article>

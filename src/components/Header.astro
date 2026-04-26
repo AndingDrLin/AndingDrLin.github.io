@@ -1,0 +1,29 @@
+---
+import { NAV_LINKS, SITE_TITLE } from '../consts';
+import ThemeToggle from './ThemeToggle.astro';
+
+const pathname = Astro.url.pathname;
+
+function isActive(href: string) {
+  if (href === '/') return pathname === '/';
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+---
+
+<header class="site-header">
+  <div class="shell header-inner">
+    <a class="brand" href="/">{SITE_TITLE}</a>
+    <nav aria-label="Primary navigation">
+      <ul class="nav-list">
+        {NAV_LINKS.map((link) => (
+          <li>
+            <a href={link.href} data-active={isActive(link.href) ? 'true' : undefined}>
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+    <ThemeToggle />
+  </div>
+</header>

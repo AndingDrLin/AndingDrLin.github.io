@@ -1,0 +1,34 @@
+<button
+  class="theme-toggle"
+  type="button"
+  data-theme-toggle
+  aria-pressed="false"
+  aria-label="Switch to dark mode"
+>
+  <span data-theme-label>Dark</span>
+</button>
+
+<script>
+  const root = document.documentElement;
+  const button = document.querySelector('[data-theme-toggle]');
+  const label = button?.querySelector('[data-theme-label]');
+
+  function syncThemeButton() {
+    if (!(button instanceof HTMLButtonElement) || !(label instanceof HTMLSpanElement)) return;
+    const isDark = root.dataset.theme === 'dark';
+    button.setAttribute('aria-pressed', String(isDark));
+    button.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+    label.textContent = isDark ? 'Light' : 'Dark';
+  }
+
+  syncThemeButton();
+
+  if (button instanceof HTMLButtonElement) {
+    button.addEventListener('click', () => {
+      const nextTheme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+      root.dataset.theme = nextTheme;
+      localStorage.setItem('theme', nextTheme);
+      syncThemeButton();
+    });
+  }
+</script>

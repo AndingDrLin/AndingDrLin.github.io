@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="About" description="About Latent Notes." path="/about/">
+  <section class="page-grid">
+    <div class="page-intro">
+      <p class="eyebrow">About</p>
+      <h1>Latent Notes is a quiet place for technical work in progress.</h1>
+    </div>
+
+    <div class="about-copy prose">
+      <p>
+        This site collects writing about AI, 3D computer vision, tools, agents, research reproduction, and the small practical details that decide whether ideas survive contact with implementation.
+      </p>
+      <p>
+        The tone is intentionally informal but technically serious. Some posts will be careful walkthroughs. Others will be shorter notes, partial experiments, or records of what was confusing before something finally worked.
+      </p>
+      <p>
+        The site itself is built to stay easy to maintain: static, content-first, and simple enough that future changes can mostly happen through Markdown or MDX.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

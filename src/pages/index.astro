@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostCard from '../components/PostCard.astro';
+import { SITE_DESCRIPTION, SITE_TITLE, TOPIC_CHIPS } from '../consts';
+import { getLatestEntries } from '../utils/content';
+
+const [latestPosts, latestNotes] = await Promise.all([
+  getLatestEntries('blog', 3),
+  getLatestEntries('notes', 3)
+]);
+---
+
+<BaseLayout>
+  <section class="hero">
+    <p class="eyebrow">Independent technical notebook</p>
+    <h1>{SITE_TITLE}</h1>
+    <p>{SITE_DESCRIPTION}</p>
+    <ul class="topic-chips" aria-label="Topics">
+      {TOPIC_CHIPS.map((topic) => (
+        <li>{topic}</li>
+      ))}
+    </ul>
+  </section>
+
+  <div class="home-sections">
+    <section class="section-block">
+      <div class="section-heading">
+        <h2>Latest blog posts</h2>
+        <a class="section-link" href="/blog">See all posts</a>
+      </div>
+      <div class="post-list">
+        {latestPosts.map((entry) => (
+          <PostCard entry={entry} />
+        ))}
+      </div>
+    </section>
+
+    <section class="section-block">
+      <div class="section-heading">
+        <h2>Latest notes</h2>
+        <a class="section-link" href="/notes">See all notes</a>
+      </div>
+      <div class="post-list">
+        {latestNotes.map((entry) => (
+          <PostCard entry={entry} />
+        ))}
+      </div>
+    </section>
+  </div>
+</BaseLayout>

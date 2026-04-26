@@ -1,0 +1,64 @@
+---
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import SEO from '../components/SEO.astro';
+import { SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from '../consts';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  path?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  publishedTime?: string;
+  modifiedTime?: string;
+}
+
+const {
+  title = SITE_TITLE,
+  description = SITE_DESCRIPTION,
+  path = Astro.url.pathname,
+  image = '/social-card.svg',
+  type = 'website',
+  publishedTime,
+  modifiedTime
+} = Astro.props;
+
+const pageTitle = title === SITE_TITLE ? SITE_TITLE : `${title} · ${SITE_TITLE}`;
+const baseUrl = Astro.site ?? new URL(SITE_URL);
+const canonical = new URL(path, baseUrl).toString();
+const imageUrl = new URL(image, baseUrl).toString();
+---
+
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate" type="application/rss+xml" title={SITE_TITLE} href="/rss.xml" />
+    <script is:inline>
+      const storedTheme = localStorage.getItem('theme');
+      if (storedTheme === 'light' || storedTheme === 'dark') {
+        document.documentElement.dataset.theme = storedTheme;
+      }
+    </script>
+    <SEO
+      title={pageTitle}
+      description={description}
+      canonical={canonical}
+      image={imageUrl}
+      type={type}
+      publishedTime={publishedTime}
+      modifiedTime={modifiedTime}
+    />
+  </head>
+  <body>
+    <Header />
+    <main class="shell page-shell">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,71 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import TagList from '../components/TagList.astro';
+import TOC from '../components/TOC.astro';
+import { formatDate } from '../utils/content';
+
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  date: Date;
+  updated?: Date;
+  tags: string[];
+  category: string;
+  readingTime: string;
+  headings: Heading[];
+  path: string;
+  kind: 'Blog' | 'Note';
+  source?: string;
+}
+
+const { title, description, date, updated, tags, category, readingTime, headings, path, kind, source } = Astro.props;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  path={path}
+  type="article"
+  publishedTime={date.toISOString()}
+  modifiedTime={updated?.toISOString()}
+>
+  <article class="article-layout">
+    <div class="article-main">
+      <header class="article-header">
+        <p class="eyebrow">{kind}</p>
+        <h1>{title}</h1>
+        <p class="article-description">{description}</p>
+        <div class="article-meta">
+          <span>{formatDate(date)}</span>
+          <span>·</span>
+          <span>{readingTime}</span>
+          <span>·</span>
+          <span>{category}</span>
+          {updated && (
+            <>
+              <span>·</span>
+              <span>Updated {formatDate(updated)}</span>
+            </>
+          )}
+          {source && (
+            <>
+              <span>·</span>
+              <a href={source}>Source</a>
+            </>
+          )}
+        </div>
+        <TagList tags={tags} />
+      </header>
+      <div class="prose">
+        <slot />
+      </div>
+    </div>
+    <TOC headings={headings} />
+  </article>
+</BaseLayout>

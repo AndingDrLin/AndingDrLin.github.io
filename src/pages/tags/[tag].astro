@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getAllPublishedEntries } from '../../utils/content';
+import { collectTags, slugifyTag } from '../../utils/tags';
+
+export async function getStaticPaths() {
+  const entries = await getAllPublishedEntries();
+  const tags = collectTags(entries);
+
+  return tags.map((tag) => ({
+    params: { tag: tag.slug },
+    props: { slug: tag.slug, label: tag.label }
+  }));
+}
+
+const { slug, label } = Astro.props;
+const entries = await getAllPublishedEntries();
+const matching = entries.filter(({ entry }) => entry.data.tags.some((tag: string) => slugifyTag(tag) === slug));
+---
+
+<BaseLayout title={`Tag: ${label}`} description={`Entries tagged ${label}.`} path={`/tags/${slug}/`}>
+  <section class="page-grid">
+    <div class="page-intro">
+      <p class="eyebrow">Tag archive</p>
+      <h1>#{label}</h1>
+      <p>{matching.length} {matching.length === 1 ? 'entry' : 'entries'} across blog posts and notes.</p>
+    </div>
+
+    <div class="post-list">
+      {matching.map(({ entry }) => (
+        <PostCard entry={entry} showKind />
+      ))}
+    </div>
+  </section>
+</BaseLayout>

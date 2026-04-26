@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getPublishedCollection } from '../../utils/content';
+
+const posts = await getPublishedCollection('blog');
+---
+
+<BaseLayout title="Blog" description="Longer posts on AI, 3D vision, agents, tools, and research notes." path="/blog/">
+  <section class="page-grid">
+    <div class="page-intro">
+      <p class="eyebrow">Blog</p>
+      <h1>Longer writing, experiments, and careful technical notes.</h1>
+      <p>Posts are where ideas get enough room to unfold, including research reproduction notes, tooling writeups, and essays that need more than a few paragraphs.</p>
+    </div>
+    <div class="post-list">
+      {posts.map((entry) => (
+        <PostCard entry={entry} />
+      ))}
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Latent Notes social card">
+  <rect width="1200" height="630" fill="#f5f3ee"/>
+  <rect x="72" y="72" width="1056" height="486" rx="28" fill="#fcfbf8" stroke="#d8d3c9"/>
+  <text x="120" y="248" fill="#161616" font-size="76" font-family="Georgia, 'Times New Roman', serif">Latent Notes</text>
+  <text x="120" y="320" fill="#5d5d63" font-size="32" font-family="Inter, Arial, sans-serif">Casual notes on AI, 3D vision, tools, agents,</text>
+  <text x="120" y="364" fill="#5d5d63" font-size="32" font-family="Inter, Arial, sans-serif">and the messy process of making things work.</text>
+  <line x1="120" y1="420" x2="280" y2="420" stroke="#5566c2" stroke-width="10" stroke-linecap="round"/>
+</svg>

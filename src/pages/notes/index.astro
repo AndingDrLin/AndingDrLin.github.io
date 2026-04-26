@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getPublishedCollection } from '../../utils/content';
+
+const notes = await getPublishedCollection('notes');
+---
+
+<BaseLayout title="Notes" description="Shorter notes on experiments, agents, research, and technical friction." path="/notes/">
+  <section class="page-grid">
+    <div class="page-intro">
+      <p class="eyebrow">Notes</p>
+      <h1>Shorter thoughts, partial conclusions, and field notes.</h1>
+      <p>Not everything deserves a full essay. Notes are for compressed observations, quick experiments, and ideas that are useful before they are polished.</p>
+    </div>
+    <div class="post-list">
+      {notes.map((entry) => (
+        <PostCard entry={entry} />
+      ))}
+    </div>
+  </section>
+</BaseLayout>

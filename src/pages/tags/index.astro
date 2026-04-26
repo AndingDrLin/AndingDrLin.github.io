@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getAllPublishedEntries } from '../../utils/content';
+import { collectTags } from '../../utils/tags';
+
+const entries = await getAllPublishedEntries();
+const tags = collectTags(entries);
+---
+
+<BaseLayout title="Tags" description="Browse all tags across blog posts and notes." path="/tags/">
+  <section class="page-grid tags-grid">
+    <div class="page-intro">
+      <p class="eyebrow">Tags</p>
+      <h1>Browse by theme instead of by format.</h1>
+      <p>Tags cut across longer posts and shorter notes, so they are often the fastest way to follow an idea through experiments and essays.</p>
+    </div>
+
+    {tags.length > 0 ? (
+      <ul class="tag-cloud">
+        {tags.map((tag) => (
+          <li>
+            <a href={`/tags/${tag.slug}/`}>
+              <span>#{tag.label}</span>
+              <span class="muted">{tag.count}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p class="empty-state">No tags yet.</p>
+    )}
+  </section>
+</BaseLayout>
