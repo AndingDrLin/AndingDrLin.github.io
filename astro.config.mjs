@@ -1,10 +1,10 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
+import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://yujialin-523.github.io',
+  site: 'https://andingdrlin.github.io',
   integrations: [mdx(), sitemap()],
   markdown: {
     shikiConfig: {
