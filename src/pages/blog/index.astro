@@ -6,12 +6,12 @@ import { getPublishedCollection } from '../../utils/content';
 const posts = await getPublishedCollection('blog');
 ---
 
-<BaseLayout title="Blog" description="Longer posts on AI, 3D vision, agents, tools, and research notes." path="/blog/">
+<BaseLayout title="博客" description="关于 AI、3D 视觉、智能体、工具和研究笔记的长文。" path="/blog/">
   <section class="page-grid">
     <div class="page-intro">
-      <p class="eyebrow">Blog</p>
-      <h1>Longer writing, experiments, and careful technical notes.</h1>
-      <p>Posts are where ideas get enough room to unfold, including research reproduction notes, tooling writeups, and essays that need more than a few paragraphs.</p>
+      <p class="eyebrow">博客</p>
+      <h1>较完整的技术文章、实验记录与研究笔记。</h1>
+      <p>博客用于记录需要展开说明的想法，包括论文复现、工具实践、技术总结，以及不适合压缩成短笔记的内容。</p>
     </div>
     <div class="post-list">
       {posts.map((entry) => (

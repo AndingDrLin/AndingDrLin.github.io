@@ -1,9 +1,9 @@
 import rss from '@astrojs/rss';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
-import { getAllPublishedEntries } from '../utils/content';
+import { getFeedEntries } from '../utils/content';
 
 export async function GET(context) {
-  const entries = await getAllPublishedEntries();
+  const entries = await getFeedEntries();
 
   return rss({
     title: SITE_TITLE,

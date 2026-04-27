@@ -24,4 +24,12 @@ const notes = defineCollection({
   schema: baseSchema
 });
 
-export const collections = { blog, notes };
+const docs = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/docs' }),
+  schema: baseSchema.extend({
+    docGroup: z.string().default('general'),
+    order: z.number().optional()
+  })
+});
+
+export const collections = { blog, notes, docs };

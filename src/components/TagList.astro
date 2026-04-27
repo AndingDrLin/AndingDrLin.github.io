@@ -9,7 +9,7 @@ const { tags } = Astro.props;
 ---
 
 {tags.length > 0 && (
-  <ul class="tag-list" aria-label="Tags">
+  <ul class="tag-list" aria-label="标签">
     {tags.map((tag) => (
       <li>
         <a href={`/tags/${slugifyTag(tag)}/`}>#{tag}</a>

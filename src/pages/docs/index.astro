@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getPublishedCollection } from '../../utils/content';
+
+const docs = await getPublishedCollection('docs');
+const groupLabels: Record<string, string> = {
+  'epmf-final-exam-revision-notes': '工程项目管理与财务复习笔记'
+};
+
+const groups = docs.reduce((acc, entry) => {
+  const group = entry.data.docGroup;
+  if (!acc.has(group)) acc.set(group, []);
+  acc.get(group)!.push(entry);
+  return acc;
+}, new Map<string, typeof docs>());
+---
+
+<BaseLayout title="文档" description="整理成体系的课程资料、技术笔记和长期维护的参考文档。" path="/docs/">
+  <section class="page-grid">
+    <div class="page-intro">
+      <p class="eyebrow">文档</p>
+      <h1>按主题整理的长期文档与课程资料。</h1>
+      <p>这里存放更成体系的资料，适合按目录顺序阅读，也方便之后继续扩展新的课程或专题。</p>
+    </div>
+
+    <div class="home-sections">
+      {Array.from(groups.entries()).map(([group, entries]) => (
+        <section class="section-block">
+          <div class="section-heading">
+            <h2>{groupLabels[group] ?? group}</h2>
+            <a class="section-link" href={`/docs/${group}/`}>查看目录</a>
+          </div>
+          <div class="post-list">
+            {entries.map((entry) => (
+              <PostCard entry={entry} />
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

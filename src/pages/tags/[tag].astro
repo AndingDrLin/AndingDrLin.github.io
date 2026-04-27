@@ -19,12 +19,12 @@ const entries = await getAllPublishedEntries();
 const matching = entries.filter(({ entry }) => entry.data.tags.some((tag: string) => slugifyTag(tag) === slug));
 ---
 
-<BaseLayout title={`Tag: ${label}`} description={`Entries tagged ${label}.`} path={`/tags/${slug}/`}>
+<BaseLayout title={`标签：${label}`} description={`标记为 ${label} 的内容。`} path={`/tags/${slug}/`}>
   <section class="page-grid">
     <div class="page-intro">
-      <p class="eyebrow">Tag archive</p>
+      <p class="eyebrow">标签归档</p>
       <h1>#{label}</h1>
-      <p>{matching.length} {matching.length === 1 ? 'entry' : 'entries'} across blog posts and notes.</p>
+      <p>共有 {matching.length} 篇相关内容，来自博客、笔记或文档。</p>
     </div>
 
     <div class="post-list">

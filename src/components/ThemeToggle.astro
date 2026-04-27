@@ -3,9 +3,9 @@
   type="button"
   data-theme-toggle
   aria-pressed="false"
-  aria-label="Switch to dark mode"
+  aria-label="切换到深色模式"
 >
-  <span data-theme-label>Dark</span>
+  <span data-theme-label>深色</span>
 </button>
 
 <script>
@@ -17,8 +17,8 @@
     if (!(button instanceof HTMLButtonElement) || !(label instanceof HTMLSpanElement)) return;
     const isDark = root.dataset.theme === 'dark';
     button.setAttribute('aria-pressed', String(isDark));
-    button.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
-    label.textContent = isDark ? 'Light' : 'Dark';
+    button.setAttribute('aria-label', isDark ? '切换到浅色模式' : '切换到深色模式');
+    label.textContent = isDark ? '浅色' : '深色';
   }
 
   syncThemeButton();

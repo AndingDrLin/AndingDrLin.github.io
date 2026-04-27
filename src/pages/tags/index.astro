@@ -7,12 +7,12 @@ const entries = await getAllPublishedEntries();
 const tags = collectTags(entries);
 ---
 
-<BaseLayout title="Tags" description="Browse all tags across blog posts and notes." path="/tags/">
+<BaseLayout title="标签" description="按标签浏览博客、笔记和文档。" path="/tags/">
   <section class="page-grid tags-grid">
     <div class="page-intro">
-      <p class="eyebrow">Tags</p>
-      <h1>Browse by theme instead of by format.</h1>
-      <p>Tags cut across longer posts and shorter notes, so they are often the fastest way to follow an idea through experiments and essays.</p>
+      <p class="eyebrow">标签</p>
+      <h1>按主题浏览，而不是按内容形式浏览。</h1>
+      <p>标签会同时覆盖博客、笔记和文档，适合沿着一个主题追踪相关内容。</p>
     </div>
 
     {tags.length > 0 ? (
@@ -27,7 +27,7 @@ const tags = collectTags(entries);
         ))}
       </ul>
     ) : (
-      <p class="empty-state">No tags yet.</p>
+      <p class="empty-state">还没有标签。</p>
     )}
   </section>
 </BaseLayout>

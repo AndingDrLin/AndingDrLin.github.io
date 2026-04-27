@@ -4,18 +4,19 @@ import PostCard from '../components/PostCard.astro';
 import { SITE_DESCRIPTION, SITE_TITLE, TOPIC_CHIPS } from '../consts';
 import { getLatestEntries } from '../utils/content';
 
-const [latestPosts, latestNotes] = await Promise.all([
+const [latestPosts, latestNotes, latestDocs] = await Promise.all([
   getLatestEntries('blog', 3),
-  getLatestEntries('notes', 3)
+  getLatestEntries('notes', 3),
+  getLatestEntries('docs', 3)
 ]);
 ---
 
 <BaseLayout>
   <section class="hero">
-    <p class="eyebrow">Independent technical notebook</p>
+    <p class="eyebrow">个人技术与学习笔记</p>
     <h1>{SITE_TITLE}</h1>
     <p>{SITE_DESCRIPTION}</p>
-    <ul class="topic-chips" aria-label="Topics">
+    <ul class="topic-chips" aria-label="主题">
       {TOPIC_CHIPS.map((topic) => (
         <li>{topic}</li>
       ))}
@@ -25,8 +26,8 @@ const [latestPosts, latestNotes] = await Promise.all([
   <div class="home-sections">
     <section class="section-block">
       <div class="section-heading">
-        <h2>Latest blog posts</h2>
-        <a class="section-link" href="/blog">See all posts</a>
+        <h2>最新博客</h2>
+        <a class="section-link" href="/blog">查看全部博客</a>
       </div>
       <div class="post-list">
         {latestPosts.map((entry) => (
@@ -37,11 +38,23 @@ const [latestPosts, latestNotes] = await Promise.all([
 
     <section class="section-block">
       <div class="section-heading">
-        <h2>Latest notes</h2>
-        <a class="section-link" href="/notes">See all notes</a>
+        <h2>最新笔记</h2>
+        <a class="section-link" href="/notes">查看全部笔记</a>
       </div>
       <div class="post-list">
         {latestNotes.map((entry) => (
+          <PostCard entry={entry} />
+        ))}
+      </div>
+    </section>
+
+    <section class="section-block">
+      <div class="section-heading">
+        <h2>文档资料</h2>
+        <a class="section-link" href="/docs">查看全部文档</a>
+      </div>
+      <div class="post-list">
+        {latestDocs.map((entry) => (
           <PostCard entry={entry} />
         ))}
       </div>

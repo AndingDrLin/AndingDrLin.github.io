@@ -20,7 +20,7 @@ interface Props {
   readingTime: string;
   headings: Heading[];
   path: string;
-  kind: 'Blog' | 'Note';
+  kind: string;
   source?: string;
 }
 
@@ -50,13 +50,13 @@ const { title, description, date, updated, tags, category, readingTime, headings
           {updated && (
             <>
               <span>·</span>
-              <span>Updated {formatDate(updated)}</span>
+              <span>更新于 {formatDate(updated)}</span>
             </>
           )}
           {source && (
             <>
               <span>·</span>
-              <a href={source}>Source</a>
+              <a href={source}>来源</a>
             </>
           )}
         </div>

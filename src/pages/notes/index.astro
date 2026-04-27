@@ -6,12 +6,12 @@ import { getPublishedCollection } from '../../utils/content';
 const notes = await getPublishedCollection('notes');
 ---
 
-<BaseLayout title="Notes" description="Shorter notes on experiments, agents, research, and technical friction." path="/notes/">
+<BaseLayout title="笔记" description="关于实验、智能体、研究和技术问题的短笔记。" path="/notes/">
   <section class="page-grid">
     <div class="page-intro">
-      <p class="eyebrow">Notes</p>
-      <h1>Shorter thoughts, partial conclusions, and field notes.</h1>
-      <p>Not everything deserves a full essay. Notes are for compressed observations, quick experiments, and ideas that are useful before they are polished.</p>
+      <p class="eyebrow">笔记</p>
+      <h1>短想法、阶段性结论和实践记录。</h1>
+      <p>不是所有内容都需要写成长文。笔记用于保存压缩后的观察、快速实验和还没完全打磨但已经有用的想法。</p>
     </div>
     <div class="post-list">
       {notes.map((entry) => (

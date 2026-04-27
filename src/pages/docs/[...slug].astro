@@ -4,15 +4,19 @@ import PostLayout from '../../layouts/PostLayout.astro';
 import { getReadingTime } from '../../utils/readingTime';
 
 export async function getStaticPaths() {
-  const notes = await getCollection('notes', ({ data }) => (import.meta.env.PROD ? !data.draft : true));
+  const docs = await getCollection('docs', ({ data }) => (import.meta.env.PROD ? !data.draft : true));
 
-  return notes.map((entry) => ({
-    params: { slug: entry.id },
-    props: { entry }
-  }));
+  return docs.map((entry) => {
+    const slug = /\/readme$/i.test(entry.id) ? entry.id.replace(/\/readme$/i, '') : entry.id;
+
+    return {
+      params: { slug },
+      props: { entry, slug }
+    };
+  });
 }
 
-const { entry } = Astro.props;
+const { entry, slug } = Astro.props;
 const { Content, headings, remarkPluginFrontmatter } = await render(entry);
 const readingTime = getReadingTime(String(remarkPluginFrontmatter?.readingTime ?? entry.body));
 ---
@@ -26,8 +30,8 @@ const readingTime = getReadingTime(String(remarkPluginFrontmatter?.readingTime ?
   category={entry.data.category}
   readingTime={readingTime.text}
   headings={headings}
-  path={`/notes/${entry.id}/`}
-  kind="笔记"
+  path={`/docs/${slug}/`}
+  kind="文档"
   source={entry.data.source}
 >
   <Content />

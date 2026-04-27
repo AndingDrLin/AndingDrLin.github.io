@@ -4,13 +4,20 @@ import TagList from './TagList.astro';
 import { formatDate } from '../utils/content';
 
 interface Props {
-  entry: CollectionEntry<'blog'> | CollectionEntry<'notes'>;
+  entry: CollectionEntry<'blog'> | CollectionEntry<'notes'> | CollectionEntry<'docs'>;
   showKind?: boolean;
 }
 
 const { entry, showKind = false } = Astro.props;
-const href = `/${entry.collection}/${entry.id}/`;
-const kindLabel = entry.collection === 'blog' ? 'Blog' : 'Note';
+const href = /\/readme$/i.test(entry.id)
+  ? `/${entry.collection}/${entry.id.replace(/\/readme$/i, '')}/`
+  : `/${entry.collection}/${entry.id}/`;
+const kindLabels = {
+  blog: '博客',
+  notes: '笔记',
+  docs: '文档'
+};
+const kindLabel = kindLabels[entry.collection];
 ---
 
 <article class="post-card">
