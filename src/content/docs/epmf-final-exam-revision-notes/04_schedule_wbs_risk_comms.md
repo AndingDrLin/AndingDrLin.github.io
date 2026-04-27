@@ -1,5 +1,5 @@
 ---
-title: "04 Schedule、WBS、Communication、Risk"
+title: "04 进度、WBS、沟通与风险"
 description: "WBS、CPM、communication channels、risk、SWOT 与 conflict 场景复习笔记。"
 date: 2026-04-27
 tags:

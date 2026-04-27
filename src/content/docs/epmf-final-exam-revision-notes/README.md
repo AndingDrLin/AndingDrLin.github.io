@@ -17,27 +17,27 @@ draft: false
 
 建议按下面顺序看：
 
-1. 先看 `00_exam_map.md`，知道样题在考什么。
-2. 再看 `00_question_to_topic_map.md`，按题号或样题套数反查到具体分册。
+1. 先看 [00 考试地图](/notes/engineering-project-management-and-finance/00_exam_map/)，知道样题在考什么。
+2. 再看 [00 题目索引](/notes/engineering-project-management-and-finance/00_question_to_topic_map/)，按题号或样题套数反查到具体分册。
 3. 再按模块学习：
-   - `01_dfm_sustainability.md`
-   - `02_quality_six_sigma.md`
-   - `03_project_management_core.md`
-   - `04_schedule_wbs_risk_comms.md`
-   - `05_finance_and_costing.md`
-4. 最后用 `06_formulas_and_answer_templates.md` 做冲刺。
+   - [01 DFM 与可持续设计](/notes/engineering-project-management-and-finance/01_dfm_sustainability/)
+   - [02 质量与 Six Sigma](/notes/engineering-project-management-and-finance/02_quality_six_sigma/)
+   - [03 项目管理基础](/notes/engineering-project-management-and-finance/03_project_management_core/)
+   - [04 进度、WBS、沟通与风险](/notes/engineering-project-management-and-finance/04_schedule_wbs_risk_comms/)
+   - [05 财务与成本](/notes/engineering-project-management-and-finance/05_finance_and_costing/)
+4. 最后用 [06 公式与答题模板](/notes/engineering-project-management-and-finance/06_formulas_and_answer_templates/) 做冲刺。
 
 ## 文件目录
 
-- [00_exam_map.md](/docs/epmf-final-exam-revision-notes/00_exam_map/) — 样题题型与知识块总览
-- [00_question_to_topic_map.md](/docs/epmf-final-exam-revision-notes/00_question_to_topic_map/) — 按 Sample Set / 题号反查到对应分册
-- [01_dfm_sustainability.md](/docs/epmf-final-exam-revision-notes/01_dfm_sustainability/) — DFM、sustainability、4Rs
-- [02_quality_six_sigma.md](/docs/epmf-final-exam-revision-notes/02_quality_six_sigma/) — QC/QA、7QC、control chart、Taguchi、Six Sigma、Cp/Cpk
-- [03_project_management_core.md](/docs/epmf-final-exam-revision-notes/03_project_management_core/) — project basics、组织结构、Talent Triangle、process groups
-- [04_schedule_wbs_risk_comms.md](/docs/epmf-final-exam-revision-notes/04_schedule_wbs_risk_comms/) — WBS、CPM、communication、risk、conflict
-- [05_finance_and_costing.md](/docs/epmf-final-exam-revision-notes/05_finance_and_costing/) — NPV/BCR/IRR、cash flow、break-even、make-or-buy、P&L
-- [06_formulas_and_answer_templates.md](/docs/epmf-final-exam-revision-notes/06_formulas_and_answer_templates/) — 公式速查与长题作答模板
-- [07_coverage_and_gaps.md](/docs/epmf-final-exam-revision-notes/07_coverage_and_gaps/) — 当前 slides 已覆盖与未完全覆盖的内容
+- [00 考试地图](/notes/engineering-project-management-and-finance/00_exam_map/) — 样题题型与知识块总览
+- [00 题目索引](/notes/engineering-project-management-and-finance/00_question_to_topic_map/) — 按 Sample Set / 题号反查到对应分册
+- [01 DFM 与可持续设计](/notes/engineering-project-management-and-finance/01_dfm_sustainability/) — DFM、sustainability、4Rs
+- [02 质量与 Six Sigma](/notes/engineering-project-management-and-finance/02_quality_six_sigma/) — QC/QA、7QC、control chart、Taguchi、Six Sigma、Cp/Cpk
+- [03 项目管理基础](/notes/engineering-project-management-and-finance/03_project_management_core/) — project basics、组织结构、Talent Triangle、process groups
+- [04 进度、WBS、沟通与风险](/notes/engineering-project-management-and-finance/04_schedule_wbs_risk_comms/) — WBS、CPM、communication、risk、conflict
+- [05 财务与成本](/notes/engineering-project-management-and-finance/05_finance_and_costing/) — NPV/BCR/IRR、cash flow、break-even、make-or-buy、P&L
+- [06 公式与答题模板](/notes/engineering-project-management-and-finance/06_formulas_and_answer_templates/) — 公式速查与长题作答模板
+- [07 覆盖范围与缺口](/notes/engineering-project-management-and-finance/07_coverage_and_gaps/) — 当前 slides 已覆盖与未完全覆盖的内容
 
 ## 说明
 

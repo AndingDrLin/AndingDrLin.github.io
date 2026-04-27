@@ -1,5 +1,5 @@
 ---
-title: "02 Quality、7QC、Robust Design 与 Six Sigma"
+title: "02 质量与 Six Sigma"
 description: "QC/QA、7QC、control chart、Taguchi、Six Sigma 与 Cp/Cpk 复习笔记。"
 date: 2026-04-27
 tags:

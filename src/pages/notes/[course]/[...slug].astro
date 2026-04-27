@@ -1,0 +1,44 @@
+---
+import { getCollection, render } from 'astro:content';
+import PostLayout from '../../../layouts/PostLayout.astro';
+import { NOTE_COURSES } from '../../../consts';
+import { getReadingTime } from '../../../utils/readingTime';
+
+export async function getStaticPaths() {
+  const docs = await getCollection('docs', ({ data }) => (import.meta.env.PROD ? !data.draft : true));
+
+  return docs.flatMap((entry) => {
+    const course = NOTE_COURSES[entry.data.docGroup as keyof typeof NOTE_COURSES];
+    if (!course || /\/readme$/i.test(entry.id)) return [];
+
+    return [{
+      params: {
+        course: course.slug,
+        slug: entry.id.replace(/^[^/]+\//, '')
+      },
+      props: { entry, course }
+    }];
+  });
+}
+
+const { entry, course } = Astro.props;
+const slug = entry.id.replace(/^[^/]+\//, '');
+const { Content, headings, remarkPluginFrontmatter } = await render(entry);
+const readingTime = getReadingTime(String(remarkPluginFrontmatter?.readingTime ?? entry.body));
+---
+
+<PostLayout
+  title={entry.data.title}
+  description={entry.data.description}
+  date={entry.data.date}
+  updated={entry.data.updated}
+  tags={entry.data.tags}
+  category={course.title}
+  readingTime={readingTime.text}
+  headings={headings}
+  path={`/notes/${course.slug}/${slug}/`}
+  kind="课程笔记"
+  source={entry.data.source}
+>
+  <Content />
+</PostLayout>

@@ -4,10 +4,9 @@ import PostCard from '../components/PostCard.astro';
 import { SITE_DESCRIPTION, SITE_TITLE, TOPIC_CHIPS } from '../consts';
 import { getLatestEntries } from '../utils/content';
 
-const [latestPosts, latestNotes, latestDocs] = await Promise.all([
+const [latestPosts, latestNotes] = await Promise.all([
   getLatestEntries('blog', 3),
-  getLatestEntries('notes', 3),
-  getLatestEntries('docs', 3)
+  getLatestEntries('notes', 3)
 ]);
 ---
 
@@ -48,16 +47,5 @@ const [latestPosts, latestNotes, latestDocs] = await Promise.all([
       </div>
     </section>
 
-    <section class="section-block">
-      <div class="section-heading">
-        <h2>文档资料</h2>
-        <a class="section-link" href="/docs">查看全部文档</a>
-      </div>
-      <div class="post-list">
-        {latestDocs.map((entry) => (
-          <PostCard entry={entry} />
-        ))}
-      </div>
-    </section>
   </div>
 </BaseLayout>

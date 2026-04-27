@@ -7,10 +7,17 @@ export const NAV_LINKS = [
   { href: '/', label: '首页' },
   { href: '/blog', label: '博客' },
   { href: '/notes', label: '笔记' },
-  { href: '/docs', label: '文档' },
   { href: '/tags', label: '标签' },
   { href: '/about', label: '关于' }
 ] as const;
+
+export const NOTE_COURSES = {
+  'epmf-final-exam-revision-notes': {
+    slug: 'engineering-project-management-and-finance',
+    title: '工程项目管理与财务',
+    description: '工程项目管理与财务课程的期末复习笔记，按考试主题整理。'
+  }
+} as const;
 
 export const TOPIC_CHIPS = ['AI 工具', '3D 视觉', '智能体', '研究笔记', '课程复习'] as const;
 

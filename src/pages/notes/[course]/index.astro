@@ -1,0 +1,36 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PostCard from '../../../components/PostCard.astro';
+import { NOTE_COURSES } from '../../../consts';
+import { getPublishedCollection } from '../../../utils/content';
+
+export async function getStaticPaths() {
+  return Object.values(NOTE_COURSES).map((course) => ({
+    params: { course: course.slug },
+    props: { course }
+  }));
+}
+
+const { course } = Astro.props;
+const docs = await getPublishedCollection('docs');
+const group = Object.entries(NOTE_COURSES).find(([, value]) => value.slug === course.slug)?.[0];
+const entries = docs.filter((entry) => entry.data.docGroup === group && !/\/readme$/i.test(entry.id));
+const readme = (await getCollection('docs')).find((entry) => entry.data.docGroup === group && /\/readme$/i.test(entry.id));
+---
+
+<BaseLayout title={course.title} description={course.description} path={`/notes/${course.slug}/`}>
+  <section class="page-grid">
+    <div class="page-intro">
+      <p class="eyebrow">课程笔记</p>
+      <h1>{course.title}</h1>
+      <p>{readme?.data.description ?? course.description}</p>
+    </div>
+
+    <div class="post-list">
+      {entries.map((entry) => (
+        <PostCard entry={entry} />
+      ))}
+    </div>
+  </section>
+</BaseLayout>

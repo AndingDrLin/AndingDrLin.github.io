@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import TagList from './TagList.astro';
+import { NOTE_COURSES } from '../consts';
 import { formatDate } from '../utils/content';
 
 interface Props {
@@ -9,13 +10,15 @@ interface Props {
 }
 
 const { entry, showKind = false } = Astro.props;
-const href = /\/readme$/i.test(entry.id)
-  ? `/${entry.collection}/${entry.id.replace(/\/readme$/i, '')}/`
+const course = entry.collection === 'docs' ? NOTE_COURSES[entry.data.docGroup as keyof typeof NOTE_COURSES] : undefined;
+const noteSlug = course ? entry.id.replace(/^[^/]+\//, '').replace(/\/readme$/i, '') : entry.id;
+const href = course
+  ? `/notes/${course.slug}/${noteSlug}/`
   : `/${entry.collection}/${entry.id}/`;
 const kindLabels = {
   blog: '博客',
   notes: '笔记',
-  docs: '文档'
+  docs: '课程笔记'
 };
 const kindLabel = kindLabels[entry.collection];
 ---

@@ -1,5 +1,5 @@
 ---
-title: "07 Coverage 与 Gaps"
+title: "07 覆盖范围与缺口"
 description: "当前 slides 支撑范围、partial coverage 与 exam-only signal 的复习边界说明。"
 date: 2026-04-27
 tags:

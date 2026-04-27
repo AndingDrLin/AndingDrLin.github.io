@@ -1,5 +1,5 @@
 ---
-title: "05 Finance 与 Costing"
+title: "05 财务与成本"
 description: "NPV、BCR、IRR、cash flow、break-even、make-or-buy、P&L 与 costing 复习笔记。"
 date: 2026-04-27
 tags:
