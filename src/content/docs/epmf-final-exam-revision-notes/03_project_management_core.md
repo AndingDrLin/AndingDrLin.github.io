@@ -1,5 +1,5 @@
 ---
-title: "03 项目管理基础"
+title: "第3章 项目管理基础"
 description: "Project fundamentals、process groups、组织结构、Talent Triangle 与冲突管理复习笔记。"
 date: 2026-04-27
 tags:

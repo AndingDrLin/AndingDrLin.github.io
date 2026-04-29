@@ -44,6 +44,15 @@ export async function getLatestEntries(type: ContentKind, count: number) {
   return entries.slice(0, count);
 }
 
+export async function getLatestCombinedNotes(count: number) {
+  const [notes, docs] = await Promise.all([
+    getPublishedCollection('notes'),
+    getPublishedCollection('docs')
+  ]);
+  const combined = [...notes, ...docs] as SiteEntry[];
+  return combined.sort((a, b) => b.data.date.getTime() - a.data.date.getTime()).slice(0, count);
+}
+
 export async function getAllPublishedEntries() {
   const [blog, notes, docs] = await Promise.all([
     getPublishedCollection('blog'),

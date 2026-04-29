@@ -10,7 +10,7 @@ const [notes, docs] = await Promise.all([
 ]);
 const courses = Object.entries(NOTE_COURSES).map(([group, course]) => ({
   ...course,
-  entries: docs.filter((entry) => entry.data.docGroup === group && !/\/readme$/i.test(entry.id))
+  count: docs.filter((entry) => entry.data.docGroup === group && !/\/readme$/i.test(entry.id)).length
 }));
 ---
 
@@ -19,26 +19,24 @@ const courses = Object.entries(NOTE_COURSES).map(([group, course]) => ({
     <div class="page-intro">
       <p class="eyebrow">笔记</p>
       <h1>课程笔记与阶段性记录。</h1>
-      <p>这里是笔记入口。课程资料会先按课程归档，再进入每一篇按序号整理的复习笔记。</p>
+      <p>这里是笔记入口。选择一门课程查看按章节整理的笔记。</p>
     </div>
 
     <div class="home-sections">
-      {courses.map((course) => (
-        <section class="section-block">
-          <div class="section-heading">
-            <div>
-              <h2>{course.title}</h2>
+      <section class="section-block">
+        <div class="section-heading">
+          <h2>课程笔记</h2>
+        </div>
+        <div class="course-grid">
+          {courses.map((course) => (
+            <a class="course-card" href={`/notes/${course.slug}/`}>
+              <h3>{course.title}</h3>
               <p>{course.description}</p>
-            </div>
-            <a class="section-link" href={`/notes/${course.slug}/`}>进入课程</a>
-          </div>
-          <div class="post-list">
-            {course.entries.map((entry) => (
-              <PostCard entry={entry} />
-            ))}
-          </div>
-        </section>
-      ))}
+              <span class="course-count">{course.count} 篇笔记</span>
+            </a>
+          ))}
+        </div>
+      </section>
 
       <section class="section-block">
         <div class="section-heading">

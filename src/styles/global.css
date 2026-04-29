@@ -224,6 +224,49 @@ pre {
   gap: 1rem;
 }
 
+.course-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.course-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.25rem 1.35rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s;
+}
+
+.course-card:hover {
+  border-color: var(--accent);
+}
+
+.course-card h3 {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+}
+
+.course-card p {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.course-count {
+  margin-top: auto;
+  font-size: 0.88rem;
+  color: var(--text-faint);
+}
+
 .post-card {
   padding: 1.25rem 1.35rem;
   background: var(--bg-elevated);

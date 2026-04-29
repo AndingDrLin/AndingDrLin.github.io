@@ -16,6 +16,16 @@ export const NOTE_COURSES = {
     slug: 'engineering-project-management-and-finance',
     title: '工程项目管理与财务',
     description: '工程项目管理与财务课程的期末复习笔记，按考试主题整理。'
+  },
+  'dsp-notes': {
+    slug: 'digital-signal-processing',
+    title: '数字信号处理',
+    description: '数字信号处理课程的章节自学笔记，涵盖信号基础、DFT、FFT 等。'
+  },
+  'emf-notes': {
+    slug: 'electromagnetics-and-fields',
+    title: '电磁场与波',
+    description: '电磁场与波课程的章节自学笔记，涵盖矢量分析、静电场、恒定电流等。'
   }
 } as const;
 

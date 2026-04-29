@@ -1,5 +1,5 @@
 ---
-title: "01 DFM 与可持续设计"
+title: "第1章 DFM 与可持续设计"
 description: "DFM、可持续设计、三大支柱、4Rs 与设计比较题复习笔记。"
 date: 2026-04-27
 tags:
