@@ -3,7 +3,7 @@ title: "第5章 恒定电流"
 description: "电磁场与波第5章：电流密度、欧姆定律、焦耳定律与稳恒电流场。"
 date: 2026-04-30
 tags: [electromagnetics, fields]
-category: "课程复习"
+category: "课程学习"
 docGroup: "emf-notes"
 order: 5
 draft: false

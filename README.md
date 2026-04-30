@@ -1,6 +1,6 @@
-# Latent Notes
+# Latent Note
 
-Latent Notes is a minimal Astro blog for technical writing about AI, 3D vision, tools, agents, research reproduction, and short technical essays.
+一处存放笔记、想法与未完成答案的隐空间。记录 AI、3D 视觉与工具背后，那些仍在生长的想法。
 
 ## Stack
 
@@ -43,8 +43,7 @@ npm run preview
 Content lives in Astro Content Collections:
 
 - `src/content/blog/` for longer posts
-- `src/content/notes/` for shorter notes
-- `src/content/docs/` for course documentation
+- `src/content/notes/` for course notes and shorter records
 
 ### Adding new content
 
@@ -82,7 +81,7 @@ source: https://example.com # optional
 ---
 ```
 
-Allowed categories: `AI Tools`, `3D Vision`, `Agents`, `Research Notes`, `Essays`, `Tutorials`, `课程复习`
+Allowed categories: `AI Tools`, `3D Vision`, `Agents`, `Research Notes`, `Essays`, `Tutorials`, `课程学习`
 
 Draft entries are hidden in production builds.
 
@@ -113,7 +112,7 @@ Search is built automatically during `npm run build`.
 
 This repository is a GitHub Pages **user site** repository, production URL:
 
-- `https://yujialin-523.github.io/`
+- `https://andingdrlin.github.io/`
 
 Deployment is handled by GitHub Actions using `.github/workflows/deploy.yml`.
 

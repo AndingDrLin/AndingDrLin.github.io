@@ -3,7 +3,7 @@ title: "电磁场与波自学笔记"
 description: "电磁场与波课程的章节自学笔记总目录。"
 date: 2026-04-30
 tags: [electromagnetics, fields]
-category: "课程复习"
+category: "课程学习"
 docGroup: "emf-notes"
 order: -1
 draft: false

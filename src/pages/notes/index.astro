@@ -4,14 +4,18 @@ import PostCard from '../../components/PostCard.astro';
 import { NOTE_COURSES, NOTES_PAGE } from '../../consts';
 import { getPublishedCollection } from '../../utils/content';
 
-const [notes, docs] = await Promise.all([
-  getPublishedCollection('notes'),
-  getPublishedCollection('docs')
-]);
+const allNotes = await getPublishedCollection('notes');
+
 const courses = Object.entries(NOTE_COURSES).map(([group, course]) => ({
   ...course,
-  count: docs.filter((entry) => entry.data.docGroup === group && !/\/readme$/i.test(entry.id)).length
+  count: allNotes.filter((entry) => entry.data.docGroup === group && !/\/readme$/i.test(entry.id)).length
 }));
+
+const otherNotes = allNotes.filter((entry) => {
+  const group = entry.data.docGroup;
+  if (group && group in NOTE_COURSES) return false;
+  return !/\/readme$/i.test(entry.id);
+});
 ---
 
 <BaseLayout title={NOTES_PAGE.title} description={NOTES_PAGE.description} path="/notes/">
@@ -38,16 +42,20 @@ const courses = Object.entries(NOTE_COURSES).map(([group, course]) => ({
         </div>
       </section>
 
-      <section class="section-block">
-        <div class="section-heading">
-          <h2>{NOTES_PAGE.otherNotesTitle}</h2>
-        </div>
-        <div class="post-list">
-          {notes.map((entry) => (
-            <PostCard entry={entry} />
-          ))}
-        </div>
-      </section>
+      {
+        otherNotes.length > 0 && (
+          <section class="section-block">
+            <div class="section-heading">
+              <h2>{NOTES_PAGE.otherNotesTitle}</h2>
+            </div>
+            <div class="post-list">
+              {otherNotes.map((entry) => (
+                <PostCard entry={entry} />
+              ))}
+            </div>
+          </section>
+        )
+      }
     </div>
   </section>
 </BaseLayout>

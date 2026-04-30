@@ -2,11 +2,11 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PostCard from '../components/PostCard.astro';
 import { SITE_DESCRIPTION, SITE_TITLE, TOPIC_CHIPS, HOME } from '../consts';
-import { getLatestEntries, getLatestCombinedNotes } from '../utils/content';
+import { getLatestEntries } from '../utils/content';
 
 const [latestPosts, latestNotes] = await Promise.all([
   getLatestEntries('blog', 3),
-  getLatestCombinedNotes(3)
+  getLatestEntries('notes', 3)
 ]);
 ---
 

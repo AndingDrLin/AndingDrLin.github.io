@@ -3,7 +3,7 @@ title: "第1章 信号与信号处理"
 description: "数字信号处理第1章：信号分类、连续/离散信号、模拟/数字信号、DSP与ASP对比。"
 date: 2026-04-30
 tags: [dsp, signal-processing]
-category: "课程复习"
+category: "课程学习"
 docGroup: "dsp-notes"
 order: 1
 draft: false

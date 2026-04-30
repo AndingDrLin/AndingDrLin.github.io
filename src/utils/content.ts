@@ -1,8 +1,8 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 
-export type ContentKind = 'blog' | 'notes' | 'docs';
+export type ContentKind = 'blog' | 'notes';
 
-export type SiteEntry = CollectionEntry<'blog'> | CollectionEntry<'notes'> | CollectionEntry<'docs'>;
+export type SiteEntry = CollectionEntry<'blog'> | CollectionEntry<'notes'>;
 
 export type EntryWithKind = {
   entry: SiteEntry;
@@ -17,7 +17,7 @@ function sortByDateDesc<T extends { data?: { date: Date }; entry?: { data: { dat
   return entries.sort((a, b) => getEntryDate(b)!.getTime() - getEntryDate(a)!.getTime());
 }
 
-function sortDocs<T extends CollectionEntry<'docs'>>(entries: T[]) {
+function sortNotes<T extends CollectionEntry<'notes'>>(entries: T[]) {
   return entries.sort((a, b) => {
     const orderA = a.data.order ?? Number.POSITIVE_INFINITY;
     const orderB = b.data.order ?? Number.POSITIVE_INFINITY;
@@ -33,10 +33,9 @@ function isPublished<T extends { data: { draft?: boolean } }>(entry: T) {
 
 export async function getPublishedCollection(type: 'blog'): Promise<CollectionEntry<'blog'>[]>;
 export async function getPublishedCollection(type: 'notes'): Promise<CollectionEntry<'notes'>[]>;
-export async function getPublishedCollection(type: 'docs'): Promise<CollectionEntry<'docs'>[]>;
 export async function getPublishedCollection(type: ContentKind) {
   const entries = await getCollection(type, isPublished);
-  return type === 'docs' ? sortDocs(entries as CollectionEntry<'docs'>[]) : sortByDateDesc(entries);
+  return type === 'notes' ? sortNotes(entries as CollectionEntry<'notes'>[]) : sortByDateDesc(entries);
 }
 
 export async function getLatestEntries(type: ContentKind, count: number) {
@@ -44,26 +43,15 @@ export async function getLatestEntries(type: ContentKind, count: number) {
   return entries.slice(0, count);
 }
 
-export async function getLatestCombinedNotes(count: number) {
-  const [notes, docs] = await Promise.all([
-    getPublishedCollection('notes'),
-    getPublishedCollection('docs')
-  ]);
-  const combined = [...notes, ...docs] as SiteEntry[];
-  return combined.sort((a, b) => b.data.date.getTime() - a.data.date.getTime()).slice(0, count);
-}
-
 export async function getAllPublishedEntries() {
-  const [blog, notes, docs] = await Promise.all([
+  const [blog, notes] = await Promise.all([
     getPublishedCollection('blog'),
-    getPublishedCollection('notes'),
-    getPublishedCollection('docs')
+    getPublishedCollection('notes')
   ]);
 
   return sortByDateDesc([
     ...blog.map((entry) => ({ entry, kind: 'blog' as const })),
-    ...notes.map((entry) => ({ entry, kind: 'notes' as const })),
-    ...docs.map((entry) => ({ entry, kind: 'docs' as const }))
+    ...notes.map((entry) => ({ entry, kind: 'notes' as const }))
   ]);
 }
 

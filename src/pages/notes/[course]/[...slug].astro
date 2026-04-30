@@ -5,9 +5,9 @@ import { NOTE_COURSES } from '../../../consts';
 import { getReadingTime } from '../../../utils/readingTime';
 
 export async function getStaticPaths() {
-  const docs = await getCollection('docs', ({ data }) => (import.meta.env.PROD ? !data.draft : true));
+  const notes = await getCollection('notes', ({ data }) => (import.meta.env.PROD ? !data.draft : true));
 
-  return docs.flatMap((entry) => {
+  return notes.flatMap((entry) => {
     const course = NOTE_COURSES[entry.data.docGroup as keyof typeof NOTE_COURSES];
     if (!course || /\/readme$/i.test(entry.id)) return [];
 

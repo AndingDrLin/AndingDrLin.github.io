@@ -95,7 +95,7 @@ import { SEARCH } from '../consts';
         const search = await pf.debouncedSearch(query);
 
         if (!search || !search.results || search.results.length === 0) {
-          if (resultsContainer) resultsContainer.innerHTML = '<p class="search-empty">没有找到相关内容</p>';
+          if (resultsContainer) resultsContainer.innerHTML = `<p class="search-empty">${SEARCH.noResults}</p>`;
           return;
         }
 
@@ -108,7 +108,7 @@ import { SEARCH } from '../consts';
             .map(
               (result) => `
               <a href="${result.url}" class="search-result">
-                <div class="search-result-title">${result.meta?.title || '无标题'}</div>
+                <div class="search-result-title">${result.meta?.title || SEARCH.untitled}</div>
                 <div class="search-result-excerpt">${result.excerpt}</div>
               </a>
             `
@@ -117,7 +117,7 @@ import { SEARCH } from '../consts';
         }
       } catch {
         // Pagefind not available in dev mode
-        if (resultsContainer) resultsContainer.innerHTML = '<p class="search-empty">搜索仅在构建后可用</p>';
+        if (resultsContainer) resultsContainer.innerHTML = `<p class="search-empty">${SEARCH.devModeHint}</p>`;
       }
     }, 300);
   });

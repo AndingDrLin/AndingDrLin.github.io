@@ -3,7 +3,7 @@ title: "第11章 快速傅里叶变换"
 description: "数字信号处理第11章：FFT算法原理、DIT与DIF实现。"
 date: 2026-04-30
 tags: [dsp, signal-processing]
-category: "课程复习"
+category: "课程学习"
 docGroup: "dsp-notes"
 order: 11
 draft: false

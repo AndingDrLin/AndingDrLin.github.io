@@ -5,7 +5,7 @@ date: 2026-04-27
 tags:
   - exam-revision
   - project-management
-category: "课程复习"
+category: "课程学习"
 docGroup: "epmf-final-exam-revision-notes"
 order: 4
 draft: false

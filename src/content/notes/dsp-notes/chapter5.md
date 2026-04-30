@@ -3,7 +3,7 @@ title: "第5章 离散傅里叶变换"
 description: "数字信号处理第5章：DFT定义、性质与频谱分析。"
 date: 2026-04-30
 tags: [dsp, signal-processing]
-category: "课程复习"
+category: "课程学习"
 docGroup: "dsp-notes"
 order: 5
 draft: false

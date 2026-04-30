@@ -3,7 +3,7 @@ title: "第4章 离散时间系统"
 description: "数字信号处理第4章：离散时间系统的性质、卷积与差分方程。"
 date: 2026-04-30
 tags: [dsp, signal-processing]
-category: "课程复习"
+category: "课程学习"
 docGroup: "dsp-notes"
 order: 4
 draft: false

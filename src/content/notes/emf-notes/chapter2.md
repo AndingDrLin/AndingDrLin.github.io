@@ -3,7 +3,7 @@ title: "第2章 矢量分析"
 description: "电磁场与波第2章：标量场与矢量场、坐标系、梯度散度旋度、散度定理与Stokes定理。"
 date: 2026-04-30
 tags: [electromagnetics, fields]
-category: "课程复习"
+category: "课程学习"
 docGroup: "emf-notes"
 order: 2
 draft: false

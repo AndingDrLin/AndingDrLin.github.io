@@ -3,7 +3,7 @@ title: "第2章 离散时间信号时域分析"
 description: "数字信号处理第2章：离散时间信号的时域表示与运算。"
 date: 2026-04-30
 tags: [dsp, signal-processing]
-category: "课程复习"
+category: "课程学习"
 docGroup: "dsp-notes"
 order: 2
 draft: false

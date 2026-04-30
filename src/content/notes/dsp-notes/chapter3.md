@@ -3,7 +3,7 @@ title: "第3章 离散时间信号频域分析"
 description: "数字信号处理第3章：离散时间信号的频域表示与变换。"
 date: 2026-04-30
 tags: [dsp, signal-processing]
-category: "课程复习"
+category: "课程学习"
 docGroup: "dsp-notes"
 order: 3
 draft: false

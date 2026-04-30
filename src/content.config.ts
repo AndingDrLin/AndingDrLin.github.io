@@ -21,15 +21,10 @@ const blog = defineCollection({
 
 const notes = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/notes' }),
-  schema: baseSchema
-});
-
-const docs = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/docs' }),
   schema: baseSchema.extend({
     docGroup: z.string().default('general'),
     order: z.number().optional()
   })
 });
 
-export const collections = { blog, notes, docs };
+export const collections = { blog, notes };

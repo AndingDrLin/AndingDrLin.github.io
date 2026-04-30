@@ -1,4 +1,6 @@
 ---
+import { SITE_TITLE } from '../consts';
+
 interface Props {
   title: string;
   description: string;
@@ -23,7 +25,7 @@ const {
 <title>{title}</title>
 <meta name="description" content={description} />
 <link rel="canonical" href={canonical} />
-<meta property="og:site_name" content="Latent Notes" />
+<meta property="og:site_name" content={SITE_TITLE} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:type" content={type} />

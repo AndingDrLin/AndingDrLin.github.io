@@ -6,7 +6,7 @@ tags:
   - exam-revision
   - project-management
   - finance
-category: "课程复习"
+category: "课程学习"
 docGroup: "epmf-final-exam-revision-notes"
 order: 0
 draft: false

@@ -13,10 +13,10 @@ export async function getStaticPaths() {
 }
 
 const { course } = Astro.props;
-const docs = await getPublishedCollection('docs');
+const allNotes = await getPublishedCollection('notes');
 const group = Object.entries(NOTE_COURSES).find(([, value]) => value.slug === course.slug)?.[0];
-const entries = docs.filter((entry) => entry.data.docGroup === group && !/\/readme$/i.test(entry.id));
-const readme = (await getCollection('docs')).find((entry) => entry.data.docGroup === group && /\/readme$/i.test(entry.id));
+const entries = allNotes.filter((entry) => entry.data.docGroup === group && !/\/readme$/i.test(entry.id));
+const readme = (await getCollection('notes')).find((entry) => entry.data.docGroup === group && /\/readme$/i.test(entry.id));
 ---
 
 <BaseLayout title={course.title} description={course.description} path={`/notes/${course.slug}/`}>

@@ -3,7 +3,7 @@ title: "第3章 静电场"
 description: "电磁场与波第3章：库仑定律、电场强度、电位、高斯定理与边界条件。"
 date: 2026-04-30
 tags: [electromagnetics, fields]
-category: "课程复习"
+category: "课程学习"
 docGroup: "emf-notes"
 order: 3
 draft: false

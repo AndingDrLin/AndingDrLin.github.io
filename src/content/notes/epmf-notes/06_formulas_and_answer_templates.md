@@ -6,7 +6,7 @@ tags:
   - exam-revision
   - formulas
   - answer-templates
-category: "课程复习"
+category: "课程学习"
 docGroup: "epmf-final-exam-revision-notes"
 order: 7
 draft: false

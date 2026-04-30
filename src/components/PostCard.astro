@@ -4,12 +4,12 @@ import { NOTE_COURSES, ARTICLE_META } from '../consts';
 import { formatDate } from '../utils/content';
 
 interface Props {
-  entry: CollectionEntry<'blog'> | CollectionEntry<'notes'> | CollectionEntry<'docs'>;
+  entry: CollectionEntry<'blog'> | CollectionEntry<'notes'>;
   showKind?: boolean;
 }
 
 const { entry, showKind = false } = Astro.props;
-const course = entry.collection === 'docs' ? NOTE_COURSES[entry.data.docGroup as keyof typeof NOTE_COURSES] : undefined;
+const course = entry.collection === 'notes' ? NOTE_COURSES[entry.data.docGroup as keyof typeof NOTE_COURSES] : undefined;
 const noteSlug = course ? entry.id.replace(/^[^/]+\//, '').replace(/\/readme$/i, '') : entry.id;
 const href = course
   ? `/notes/${course.slug}/${noteSlug}/`

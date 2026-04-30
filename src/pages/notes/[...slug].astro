@@ -1,15 +1,18 @@
 ---
 import { getCollection, render } from 'astro:content';
 import PostLayout from '../../layouts/PostLayout.astro';
+import { NOTE_COURSES } from '../../consts';
 import { getReadingTime } from '../../utils/readingTime';
 
 export async function getStaticPaths() {
   const notes = await getCollection('notes', ({ data }) => (import.meta.env.PROD ? !data.draft : true));
 
-  return notes.map((entry) => ({
-    params: { slug: entry.id },
-    props: { entry }
-  }));
+  return notes
+    .filter((entry) => !(entry.data.docGroup in NOTE_COURSES))
+    .map((entry) => ({
+      params: { slug: entry.id },
+      props: { entry }
+    }));
 }
 
 const { entry } = Astro.props;
