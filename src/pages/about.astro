@@ -1,24 +1,19 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { ABOUT } from '../consts';
 ---
 
-<BaseLayout title="关于" description="关于 Latent Notes。" path="/about/">
+<BaseLayout title={ABOUT.title} description={ABOUT.description} path="/about/">
   <section class="page-grid">
     <div class="page-intro">
-      <p class="eyebrow">关于</p>
-      <h1>Latent Notes 是一个记录技术实践与学习过程的地方。</h1>
+      <p class="eyebrow">{ABOUT.title}</p>
+      <h1>{ABOUT.heading}</h1>
     </div>
 
     <div class="about-copy prose">
-      <p>
-        这里收集关于 AI、3D 视觉、工具、智能体、研究复现和课程学习的内容，也记录那些决定想法能否真正落地的细节。
-      </p>
-      <p>
-        写作风格会尽量轻量，但保持技术上的认真。有些内容会是完整文章，有些则是短笔记、阶段性实验，或者把困惑解决前后的过程留下来。
-      </p>
-      <p>
-        这个站点本身也保持简单：静态、内容优先，并尽量让未来的更新主要通过 Markdown 或 MDX 完成。
-      </p>
+      {ABOUT.paragraphs.map((paragraph) => (
+        <p>{paragraph}</p>
+      ))}
     </div>
   </section>
 </BaseLayout>

@@ -1,5 +1,5 @@
 ---
-import { GITHUB_URL, SITE_TITLE } from '../consts';
+import { GITHUB_URL, SITE_TITLE, FOOTER } from '../consts';
 
 const year = new Date().getFullYear();
 ---
@@ -9,9 +9,9 @@ const year = new Date().getFullYear();
     <p>
       <span>{SITE_TITLE}</span>
       <span class="footer-separator">·</span>
-      <a href="/rss.xml">RSS</a>
+      <a href="/rss.xml">{FOOTER.rssLabel}</a>
       <span class="footer-separator">·</span>
-      <a href={GITHUB_URL}>GitHub</a>
+      <a href={GITHUB_URL}>{FOOTER.githubLabel}</a>
     </p>
     <p>© {year}</p>
   </div>

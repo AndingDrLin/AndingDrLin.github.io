@@ -1,17 +1,18 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PostCard from '../../components/PostCard.astro';
+import { BLOG_PAGE } from '../../consts';
 import { getPublishedCollection } from '../../utils/content';
 
 const posts = await getPublishedCollection('blog');
 ---
 
-<BaseLayout title="博客" description="关于 AI、3D 视觉、智能体、工具和研究笔记的长文。" path="/blog/">
+<BaseLayout title={BLOG_PAGE.title} description={BLOG_PAGE.description} path="/blog/">
   <section class="page-grid">
     <div class="page-intro">
-      <p class="eyebrow">博客</p>
-      <h1>较完整的技术文章、实验记录与研究笔记。</h1>
-      <p>博客用于记录需要展开说明的想法，包括论文复现、工具实践、技术总结，以及不适合压缩成短笔记的内容。</p>
+      <p class="eyebrow">{BLOG_PAGE.eyebrow}</p>
+      <h1>{BLOG_PAGE.heading}</h1>
+      <p>{BLOG_PAGE.intro}</p>
     </div>
     <div class="post-list">
       {posts.map((entry) => (

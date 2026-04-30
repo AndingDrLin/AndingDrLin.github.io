@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PostCard from '../../components/PostCard.astro';
-import { NOTE_COURSES } from '../../consts';
+import { NOTE_COURSES, NOTES_PAGE } from '../../consts';
 import { getPublishedCollection } from '../../utils/content';
 
 const [notes, docs] = await Promise.all([
@@ -14,18 +14,18 @@ const courses = Object.entries(NOTE_COURSES).map(([group, course]) => ({
 }));
 ---
 
-<BaseLayout title="笔记" description="课程笔记、短想法、阶段性结论和实践记录。" path="/notes/">
+<BaseLayout title={NOTES_PAGE.title} description={NOTES_PAGE.description} path="/notes/">
   <section class="page-grid">
     <div class="page-intro">
-      <p class="eyebrow">笔记</p>
-      <h1>课程笔记与阶段性记录。</h1>
-      <p>这里是笔记入口。选择一门课程查看按章节整理的笔记。</p>
+      <p class="eyebrow">{NOTES_PAGE.eyebrow}</p>
+      <h1>{NOTES_PAGE.heading}</h1>
+      <p>{NOTES_PAGE.intro}</p>
     </div>
 
     <div class="home-sections">
       <section class="section-block">
         <div class="section-heading">
-          <h2>课程笔记</h2>
+          <h2>{NOTES_PAGE.courseNotesTitle}</h2>
         </div>
         <div class="course-grid">
           {courses.map((course) => (
@@ -40,7 +40,7 @@ const courses = Object.entries(NOTE_COURSES).map(([group, course]) => ({
 
       <section class="section-block">
         <div class="section-heading">
-          <h2>其他笔记</h2>
+          <h2>{NOTES_PAGE.otherNotesTitle}</h2>
         </div>
         <div class="post-list">
           {notes.map((entry) => (

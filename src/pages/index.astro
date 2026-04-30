@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PostCard from '../components/PostCard.astro';
-import { SITE_DESCRIPTION, SITE_TITLE, TOPIC_CHIPS } from '../consts';
+import { SITE_DESCRIPTION, SITE_TITLE, TOPIC_CHIPS, HOME } from '../consts';
 import { getLatestEntries, getLatestCombinedNotes } from '../utils/content';
 
 const [latestPosts, latestNotes] = await Promise.all([
@@ -12,7 +12,7 @@ const [latestPosts, latestNotes] = await Promise.all([
 
 <BaseLayout>
   <section class="hero">
-    <p class="eyebrow">个人技术与学习笔记</p>
+    <p class="eyebrow">{HOME.eyebrow}</p>
     <h1>{SITE_TITLE}</h1>
     <p>{SITE_DESCRIPTION}</p>
     <ul class="topic-chips" aria-label="主题">
@@ -25,8 +25,8 @@ const [latestPosts, latestNotes] = await Promise.all([
   <div class="home-sections">
     <section class="section-block">
       <div class="section-heading">
-        <h2>最新博客</h2>
-        <a class="section-link" href="/blog">查看全部博客</a>
+        <h2>{HOME.blogSectionTitle}</h2>
+        <a class="section-link" href="/blog">{HOME.blogSectionLink}</a>
       </div>
       <div class="post-list">
         {latestPosts.map((entry) => (
@@ -37,8 +37,8 @@ const [latestPosts, latestNotes] = await Promise.all([
 
     <section class="section-block">
       <div class="section-heading">
-        <h2>最新笔记</h2>
-        <a class="section-link" href="/notes">查看全部笔记</a>
+        <h2>{HOME.notesSectionTitle}</h2>
+        <a class="section-link" href="/notes">{HOME.notesSectionLink}</a>
       </div>
       <div class="post-list">
         {latestNotes.map((entry) => (
@@ -46,6 +46,5 @@ const [latestPosts, latestNotes] = await Promise.all([
         ))}
       </div>
     </section>
-
   </div>
 </BaseLayout>

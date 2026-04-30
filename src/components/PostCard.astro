@@ -1,7 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import TagList from './TagList.astro';
-import { NOTE_COURSES } from '../consts';
+import { NOTE_COURSES, ARTICLE_META } from '../consts';
 import { formatDate } from '../utils/content';
 
 interface Props {
@@ -15,12 +14,7 @@ const noteSlug = course ? entry.id.replace(/^[^/]+\//, '').replace(/\/readme$/i,
 const href = course
   ? `/notes/${course.slug}/${noteSlug}/`
   : `/${entry.collection}/${entry.id}/`;
-const kindLabels = {
-  blog: '博客',
-  notes: '笔记',
-  docs: '课程笔记'
-};
-const kindLabel = kindLabels[entry.collection];
+const kindLabel = ARTICLE_META.kindLabels[entry.collection];
 ---
 
 <article class="post-card">
@@ -39,5 +33,4 @@ const kindLabel = kindLabels[entry.collection];
     <a href={href}>{entry.data.title}</a>
   </h2>
   <p class="post-card-description">{entry.data.description}</p>
-  <TagList tags={entry.data.tags} />
 </article>
