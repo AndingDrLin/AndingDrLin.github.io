@@ -1,7 +1,5 @@
 # 第一章自学文档：Signal & Signal Processing，Why DSP？
 
-> 来源：`Slides/chapter1.pptx`。本文根据 PPT 内容重新组织为中文自学文档。凡是 PPT 没有明确给出、但为了帮助理解而补充的内容，会标注为“补充理解”。
-
 ## 0. 本章学习目标
 
 学完本章后，你应该能够：

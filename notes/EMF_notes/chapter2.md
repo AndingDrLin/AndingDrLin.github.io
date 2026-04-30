@@ -1,10 +1,5 @@
 # 第2章：矢量分析
 
-> 自学笔记 | 基于课程 Slides Chapter 2  
-> Vector Analysis
-
-本章不是 DSP 内容，而是电磁场与波课程中的数学工具章。它的作用是：把电磁场里经常出现的“方向、通量、环流、源、旋涡”等概念，翻译成可以计算的矢量公式。
-
 ## 本章学习目标
 
 学完本章后，你应该能够：
@@ -104,7 +99,7 @@ $$
 $$
 \left.\frac{\partial u}{\partial l}\right|_{M_0}
 =\lim_{\Delta l\to0}\frac{\Delta u}{\Delta l}
-=\frac{\partial u}{\partial x}\cos\alpha+rac{\partial u}{\partial y}\cos\beta+rac{\partial u}{\partial z}\cos\gamma,
+=\frac{\partial u}{\partial x}\cos\alpha+rac{\partial u}{\partial y}\cos\beta+rac{\partial u}{\partial z}\cos\gamma,
 $$
 
 其中 $\cos\alpha,\cos\beta,\cos\gamma$ 是方向 $\vec l$ 与 $x,y,z$ 轴的方向余弦。
@@ -524,7 +519,7 @@ $$
 
 $$
 \nabla u\cdot\vec e_l
-=\frac{\partial u}{\partial x}\cos\alpha+rac{\partial u}{\partial y}\cos\beta+rac{\partial u}{\partial z}\cos\gamma
+=\frac{\partial u}{\partial x}\cos\alpha+rac{\partial u}{\partial y}\cos\beta+rac{\partial u}{\partial z}\cos\gamma
 =\frac{\partial u}{\partial l}.
 $$
 
@@ -541,17 +536,17 @@ $$
 圆柱坐标：
 
 $$
-\nabla\cdot\vec F=rac{1}{\rho}\frac{\partial(\rho F_\rho)}{\partial\rho}
-+rac{1}{\rho}\frac{\partial F_\phi}{\partial\phi}
-+rac{\partial F_z}{\partial z}.
+\nabla\cdot\vec F=rac{1}{\rho}\frac{\partial(\rho F_\rho)}{\partial\rho}
++rac{1}{\rho}\frac{\partial F_\phi}{\partial\phi}
++rac{\partial F_z}{\partial z}.
 $$
 
 球坐标：
 
 $$
-\nabla\cdot\vec F=rac{1}{r^2}\frac{\partial(r^2F_r)}{\partial r}
-+rac{1}{r\sin\theta}\frac{\partial(\sin\theta F_\theta)}{\partial\theta}
-+rac{1}{r\sin\theta}\frac{\partial F_\phi}{\partial\phi}.
+\nabla\cdot\vec F=rac{1}{r^2}\frac{\partial(r^2F_r)}{\partial r}
++rac{1}{r\sin\theta}\frac{\partial(\sin\theta F_\theta)}{\partial\theta}
++rac{1}{r\sin\theta}\frac{\partial F_\phi}{\partial\phi}.
 $$
 
 **直角坐标推导：** 在点 $P(x_0,y_0,z_0)$ 周围取小长方体 $\Delta x\Delta y\Delta z$。先看 $x$ 方向两面。
@@ -645,7 +640,7 @@ $$
 圆柱坐标：
 
 $$
-\nabla\times\vec F=rac{1}{\rho}
+\nabla\times\vec F=rac{1}{\rho}
 \begin{vmatrix}
 \vec e_\rho&\rho\vec e_\phi&\vec e_z\\
 \frac{\partial}{\partial\rho}&\frac{\partial}{\partial\phi}&\frac{\partial}{\partial z}\\
@@ -656,7 +651,7 @@ $$
 球坐标：
 
 $$
-\nabla\times\vec F=rac{1}{r^2\sin\theta}
+\nabla\times\vec F=rac{1}{r^2\sin\theta}
 \begin{vmatrix}
 \vec e_r&r\vec e_\theta&r\sin\theta\vec e_\phi\\
 \frac{\partial}{\partial r}&\frac{\partial}{\partial\theta}&\frac{\partial}{\partial\phi}\\
@@ -681,7 +676,7 @@ $$
 因此
 
 $$
-(\nabla\times\vec F)_x=rac{\partial F_z}{\partial y}-\frac{\partial F_y}{\partial z}.
+(\nabla\times\vec F)_x=rac{\partial F_z}{\partial y}-\frac{\partial F_y}{\partial z}.
 $$
 
 其他两个分量同理。
@@ -751,17 +746,17 @@ $$
 圆柱坐标：
 
 $$
-\nabla^2u=rac{1}{\rho}\frac{\partial}{\partial\rho}\left(\rho\frac{\partial u}{\partial\rho}\right)
-+rac{1}{\rho^2}\frac{\partial^2u}{\partial\phi^2}
+\nabla^2u=rac{1}{\rho}\frac{\partial}{\partial\rho}\left(\rho\frac{\partial u}{\partial\rho}\right)
++rac{1}{\rho^2}\frac{\partial^2u}{\partial\phi^2}
 +\frac{\partial^2u}{\partial z^2}.
 $$
 
 球坐标：
 
 $$
-\nabla^2u=rac{1}{r^2}\frac{\partial}{\partial r}\left(r^2\frac{\partial u}{\partial r}\right)
-+rac{1}{r^2\sin\theta}\frac{\partial}{\partial\theta}\left(\sin\theta\frac{\partial u}{\partial\theta}\right)
-+rac{1}{r^2\sin^2\theta}\frac{\partial^2u}{\partial\phi^2}.
+\nabla^2u=rac{1}{r^2}\frac{\partial}{\partial r}\left(r^2\frac{\partial u}{\partial r}\right)
++rac{1}{r^2\sin\theta}\frac{\partial}{\partial\theta}\left(\sin\theta\frac{\partial u}{\partial\theta}\right)
++rac{1}{r^2\sin^2\theta}\frac{\partial^2u}{\partial\phi^2}.
 $$
 
 ### 3.9 Helmholtz 定理
@@ -1158,7 +1153,7 @@ $$
 方向矢量为
 
 $$
-\vec e_l=\frac{1}{2}\vec e_x+\frac{\sqrt2}{2}\vec e_y+rac{1}{2}\vec e_z.
+\vec e_l=\frac{1}{2}\vec e_x+\frac{\sqrt2}{2}\vec e_y+rac{1}{2}\vec e_z.
 $$
 
 方向导数：
@@ -1166,7 +1161,7 @@ $$
 $$
 \left.\frac{\partial\varphi}{\partial l}\right|_P
 =\left.\nabla\varphi\right|_P\cdot\vec e_l
-=(2\vec e_x+2\vec e_y-\vec e_z)\cdot\left(\frac{1}{2}\vec e_x+\frac{\sqrt2}{2}\vec e_y+rac{1}{2}\vec e_z\right)
+=(2\vec e_x+2\vec e_y-\vec e_z)\cdot\left(\frac{1}{2}\vec e_x+\frac{\sqrt2}{2}\vec e_y+rac{1}{2}\vec e_z\right)
 $$
 
 $$
@@ -1296,7 +1291,7 @@ $$
 $$
 
 $$
-\vec e_A=\frac{3}{13}\vec e_x-\frac{4}{13}\vec e_y+rac{12}{13}\vec e_z.
+\vec e_A=\frac{3}{13}\vec e_x-\frac{4}{13}\vec e_y+rac{12}{13}\vec e_z.
 $$
 
 3. **公式：** $\vec A\cdot\vec B=A_xB_x+A_yB_y+A_zB_z$。代入：
@@ -1454,22 +1449,3 @@ $$
 4. Helmholtz 定理为 Maxwell 方程提供直觉：只要知道一个矢量场的散度、旋度以及必要边界条件，就能确定这个场。
 5. 具体下一章内容需以课程 `chap3.pdf` 为准；本笔记只确认本章为后续电磁场公式提供数学基础。
 
-## 附：Slides 中作业
-
-Slides 第64页列出的 Homework：
-
-$$
-2\text{-}1,
-2\text{-}2,
-2\text{-}5,
-2\text{-}9,
-2\text{-}17,
-2\text{-}20,
-2\text{-}23,
-2\text{-}26,
-2\text{-}29,
-2\text{-}32,
-2\text{-}34.
-$$
-
-题目原文未出现在 Chapter 2 slides 中，需要结合教材或作业册查看。
