@@ -1,0 +1,124 @@
+---
+import { SEARCH } from '../consts';
+---
+
+<div class="search-container">
+  <button class="search-trigger" aria-label={SEARCH.triggerLabel} data-search-trigger>
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"></circle>
+      <path d="m21 21-4.3-4.3"></path>
+    </svg>
+    <span>{SEARCH.triggerLabel}</span>
+    <kbd>⌘K</kbd>
+  </button>
+
+  <dialog class="search-dialog" data-search-dialog>
+    <div class="search-dialog-inner">
+      <div class="search-input-wrapper">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.3-4.3"></path>
+        </svg>
+        <input
+          type="text"
+          class="search-input"
+          placeholder={SEARCH.placeholder}
+          data-search-input
+          aria-label={SEARCH.triggerLabel}
+        />
+        <kbd class="search-close-hint">ESC</kbd>
+      </div>
+      <div class="search-results" data-search-results></div>
+    </div>
+  </dialog>
+</div>
+
+<script is:inline>
+  let pagefind;
+
+  async function initPagefind() {
+    if (!pagefind) {
+      pagefind = await import('/pagefind/pagefind.js');
+      pagefind.init();
+    }
+    return pagefind;
+  }
+
+  const dialog = document.querySelector('[data-search-dialog]');
+  const trigger = document.querySelector('[data-search-trigger]');
+  const input = document.querySelector('[data-search-input]');
+  const resultsContainer = document.querySelector('[data-search-results]');
+
+  function openSearch() {
+    if (dialog instanceof HTMLDialogElement) {
+      dialog.showModal();
+      if (input instanceof HTMLInputElement) input.focus();
+    }
+  }
+
+  function closeSearch() {
+    if (dialog instanceof HTMLDialogElement) {
+      dialog.close();
+      if (input instanceof HTMLInputElement) input.value = '';
+      if (resultsContainer) resultsContainer.innerHTML = '';
+    }
+  }
+
+  trigger?.addEventListener('click', openSearch);
+
+  document.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault();
+      openSearch();
+    }
+    if (e.key === 'Escape') closeSearch();
+  });
+
+  dialog?.addEventListener('click', (e) => {
+    if (e.target === dialog) closeSearch();
+  });
+
+  let searchTimeout;
+  input?.addEventListener('input', async (e) => {
+    const query = e.target.value;
+
+    clearTimeout(searchTimeout);
+
+    if (query.length < 2) {
+      if (resultsContainer) resultsContainer.innerHTML = '';
+      return;
+    }
+
+    searchTimeout = setTimeout(async () => {
+      try {
+        const pf = await initPagefind();
+        const search = await pf.debouncedSearch(query);
+
+        if (!search || !search.results || search.results.length === 0) {
+          if (resultsContainer) resultsContainer.innerHTML = '<p class="search-empty">没有找到相关内容</p>';
+          return;
+        }
+
+        const results = await Promise.all(
+          search.results.slice(0, 10).map(async (result) => await result.data())
+        );
+
+        if (resultsContainer) {
+          resultsContainer.innerHTML = results
+            .map(
+              (result) => `
+              <a href="${result.url}" class="search-result">
+                <div class="search-result-title">${result.meta?.title || '无标题'}</div>
+                <div class="search-result-excerpt">${result.excerpt}</div>
+              </a>
+            `
+            )
+            .join('');
+        }
+      } catch {
+        // Pagefind not available in dev mode
+        if (resultsContainer) resultsContainer.innerHTML = '<p class="search-empty">搜索仅在构建后可用</p>';
+      }
+    }, 300);
+  });
+</script>

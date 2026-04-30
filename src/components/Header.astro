@@ -1,6 +1,7 @@
 ---
 import { NAV_LINKS, SITE_TITLE } from '../consts';
 import ThemeToggle from './ThemeToggle.astro';
+import Search from './Search.astro';
 
 const pathname = Astro.url.pathname;
 
@@ -24,6 +25,9 @@ function isActive(href: string) {
         ))}
       </ul>
     </nav>
-    <ThemeToggle />
+    <div class="header-actions">
+      <Search />
+      <ThemeToggle />
+    </div>
   </div>
 </header>
