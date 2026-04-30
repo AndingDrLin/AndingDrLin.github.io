@@ -8,8 +8,6 @@ docGroup: "dsp-notes"
 order: 3
 draft: false
 ---
-# 第 3 章：离散时间信号的频域分析
-
 ## 0. 本章学习目标
 
 学完本章后，你应该能够：

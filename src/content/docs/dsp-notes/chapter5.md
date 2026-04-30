@@ -8,8 +8,6 @@ docGroup: "dsp-notes"
 order: 5
 draft: false
 ---
-# 第 5 章：离散傅里叶变换 (Discrete Fourier Transform, DFT)
-
 ## 0. 本章学习目标
 
 学完本章后，你应该能够：

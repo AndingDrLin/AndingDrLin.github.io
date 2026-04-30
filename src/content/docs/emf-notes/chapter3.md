@@ -8,11 +8,6 @@ docGroup: "emf-notes"
 order: 3
 draft: false
 ---
-# 第3章：静电场
-
-> 自学笔记 | 基于课程 Slides Chapter 3
-> Static Electric Fields
-
 ## 本章学习目标
 
 学完本章后，你应该能够：

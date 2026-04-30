@@ -8,8 +8,6 @@ docGroup: "dsp-notes"
 order: 11
 draft: false
 ---
-# 第11章 DSP算法实现：快速傅里叶变换（FFT）
-
 ## 1. 本章学习目标
 
 学完本章后，你应该能够：

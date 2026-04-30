@@ -8,8 +8,6 @@ docGroup: "dsp-notes"
 order: 4
 draft: false
 ---
-# 第 4 章：离散时间系统 (Discrete-time Systems)
-
 ## 0. 本章学习目标
 
 学完本章后，你应该能够：

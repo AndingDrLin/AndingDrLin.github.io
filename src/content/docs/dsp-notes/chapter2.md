@@ -8,13 +8,6 @@ docGroup: "dsp-notes"
 order: 2
 draft: false
 ---
-# 第二章 离散时间信号的时域分析
-
-> 自学笔记 | 基于课程 Slides Chapter 2
-> Discrete-Time Signals in the Time Domain
-
----
-
 ## 本章学习目标
 
 - 理解离散时间信号的时域表示方法

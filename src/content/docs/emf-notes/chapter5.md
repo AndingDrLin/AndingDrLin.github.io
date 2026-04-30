@@ -8,11 +8,6 @@ docGroup: "emf-notes"
 order: 5
 draft: false
 ---
-# 第5章：恒定电流
-
-> 自学笔记 | 基于课程 Slides Chapter 5
-> Steady Electric Currents
-
 ## 本章学习目标
 
 学完本章后，你应该能够：
