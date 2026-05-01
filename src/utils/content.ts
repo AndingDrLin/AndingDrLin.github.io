@@ -43,6 +43,12 @@ export async function getLatestEntries(type: ContentKind, count: number) {
   return entries.slice(0, count);
 }
 
+export async function getLatestNotes(count: number) {
+  const entries = await getCollection('notes', isPublished);
+
+  return sortByDateDesc(entries.filter((entry) => !/\/readme$/i.test(entry.id))).slice(0, count);
+}
+
 export async function getAllPublishedEntries() {
   const [blog, notes] = await Promise.all([
     getPublishedCollection('blog'),

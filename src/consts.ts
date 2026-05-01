@@ -1,5 +1,5 @@
 export const SITE_TITLE = 'Latent Note';
-export const SITE_DESCRIPTION = '一处存放笔记、想法与未完成答案的隐空间。';
+export const SITE_DESCRIPTION = '记录 AI、3D 视觉、Agent 工具与科研过程里那些还没完全收束的判断。';
 export const SITE_URL = 'https://andingdrlin.github.io/';
 export const GITHUB_URL = 'https://github.com/AndingDrLin';
 
@@ -28,7 +28,7 @@ export const NOTE_COURSES = {
   }
 } as const;
 
-export const TOPIC_CHIPS = ['AI 工具', '3D 视觉', '智能体', '科研随笔', '课程学习'] as const;
+export const TOPIC_CHIPS = ['AI Research', '3D Vision', 'Agents', 'AI Tools', 'Research Notes'] as const;
 
 export const CATEGORIES = [
   'AI Tools',
@@ -42,7 +42,15 @@ export const CATEGORIES = [
 
 /* ── 首页文字 ── */
 export const HOME = {
-  eyebrow: '记录那些仍在生长的想法',
+  eyebrow: 'AI / 3D Vision / Agents',
+  intro: '这里主要记录我在日常科研中遇到的具体问题：AI 工具怎么真正进入工作流，3D 视觉里的方法判断，Agent 系统的可用边界，以及一些还不够成熟但值得留下的科研感悟。',
+  startTitle: '如果你第一次来',
+  startLinks: [
+    { href: '/blog', label: '读完整文章', description: '较完整的技术文章、实验记录与阶段性判断。' },
+    { href: '/notes', label: '翻零散笔记', description: '课程笔记和技术片段都暂存在这里。' },
+    { href: '/about', label: '了解作者', description: '研究兴趣、当前关注和 GitHub profile 式介绍。' },
+    { href: GITHUB_URL, label: '看 GitHub', description: '代码、项目和公开活动记录。' }
+  ],
   blogSectionTitle: '最新博客',
   blogSectionLink: '全部博客',
   notesSectionTitle: '最新笔记',
@@ -52,14 +60,36 @@ export const HOME = {
 /* ── 关于页文字 ── */
 export const ABOUT = {
   title: '关于',
-  description: '关于这个隐空间。',
-  heading: '一个存放技术笔记、想法和未完成理解的地方。',
-  paragraphs: [
-    '这里记录关于 AI、3D 视觉、工具和智能体的学习过程，也保留那些还没有最终答案的阶段性理解。重要的不是呈现完美，而是让想法慢慢成形。',
-    '文章风格尽量轻量，但保持技术上的认真。有些内容很完整，有些只是困惑解决前后的过程记录——对我来说，这两类内容同样有价值。',
-    '这个站点本身也在持续生长：静态、安静、内容优先。每次更新，都只是多写了一点正在思考的东西。'
+  description: '关于作者、研究兴趣和这个站点。',
+  heading: 'Hi, I am AndingDrLin.'
+} as const;
+
+export const PROFILE = {
+  name: 'AndingDrLin',
+  role: 'AI / 3D Computer Vision / Agent Tools',
+  location: 'Research in progress',
+  bio: '我把这里当作一个公开的 research log：记录日常科研里遇到的具体问题、AI 工具进入工作流后的真实收益和限制、3D 视觉方向的阶段性判断，以及一些还没完全想清楚但值得留下的观察。',
+  currentWork: [
+    '关注 AI 与 3D Computer Vision 交叉方向中的方法选择和实验判断。',
+    '尝试把 Agent 和 AI 工具接入阅读、写作、代码与科研管理流程。',
+    '把不够成熟但有复盘价值的科研感悟写成可回看的记录。'
+  ],
+  interests: ['AI Research', '3D Vision', 'Agents', 'AI Tools', 'Research Workflow'],
+  links: [
+    { href: GITHUB_URL, label: 'GitHub' },
+    { href: '/blog', label: 'Blog' },
+    { href: '/notes', label: 'Notes' }
   ]
 } as const;
+
+export const CONTRIBUTORS = [
+  {
+    name: PROFILE.name,
+    role: PROFILE.role,
+    bio: '站点维护者。主要写 AI、3D 视觉、Agent 工具与科研过程中的阶段性判断。',
+    links: PROFILE.links
+  }
+] as const;
 
 /* ── 博客页文字 ── */
 export const BLOG_PAGE = {
@@ -105,8 +135,9 @@ export const ARTICLE_META = {
 /* ── 搜索文字 ── */
 export const SEARCH = {
   triggerLabel: '搜索',
-  placeholder: '搜索...',
-  noResults: '没有找到相关内容',
-  devModeHint: '搜索仅在构建后可用',
-  untitled: '无标题'
+  placeholder: '搜索 AI、3D Vision、Agent...',
+  noResults: '没有找到相关内容，可以试试 AI、3D Vision、Agent 或科研工具。',
+  devModeHint: '搜索仅在构建后可用，可以先从博客或笔记入口浏览。',
+  untitled: '无标题',
+  suggestions: ['AI', '3D Vision', 'Agent', '科研工具']
 } as const;

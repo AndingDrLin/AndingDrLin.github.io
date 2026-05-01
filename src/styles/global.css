@@ -188,6 +188,101 @@ pre {
   margin: 1rem 0 1.5rem;
 }
 
+.start-here,
+.home-sections {
+  display: grid;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.start-grid,
+.profile-grid,
+.contributors-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.start-card,
+.profile-card,
+.profile-panel,
+.contributor-card {
+  padding: 1.25rem 1.35rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.start-card {
+  display: grid;
+  gap: 0.45rem;
+  text-decoration: none;
+  transition: border-color 0.15s;
+}
+
+.start-card:hover {
+  border-color: var(--accent);
+}
+
+.start-card span,
+.profile-card h2,
+.profile-panel h2,
+.contributor-card h3 {
+  margin: 0;
+  font-family: var(--font-serif);
+}
+
+.start-card span {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.start-card p,
+.profile-card p,
+.profile-panel p,
+.contributor-card p {
+  margin: 0;
+  color: var(--text-soft);
+}
+
+.profile-card,
+.profile-panel,
+.contributor-card {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+}
+
+.profile-role {
+  color: var(--accent) !important;
+  font-weight: 600;
+}
+
+.profile-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.profile-links a {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg);
+  padding: 0.34rem 0.72rem;
+  text-decoration: none;
+}
+
+.profile-panel ul:not(.topic-chips) {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.contributors-section {
+  display: grid;
+  gap: 1rem;
+}
+
 .home-sections {
   display: grid;
   gap: 2rem;
@@ -576,6 +671,32 @@ pre {
   padding: 2rem;
   text-align: center;
   color: var(--text-faint);
+}
+
+.search-empty p {
+  margin: 0 0 0.8rem;
+}
+
+.search-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.search-suggestions button {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--text-soft);
+  padding: 0.35rem 0.7rem;
+  font: inherit;
+  cursor: pointer;
+}
+
+.search-suggestions button:hover {
+  border-color: var(--accent);
+  color: var(--text);
 }
 
 .footer-inner {

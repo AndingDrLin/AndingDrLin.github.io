@@ -2,11 +2,11 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PostCard from '../components/PostCard.astro';
 import { SITE_DESCRIPTION, SITE_TITLE, TOPIC_CHIPS, HOME } from '../consts';
-import { getLatestEntries } from '../utils/content';
+import { getLatestEntries, getLatestNotes } from '../utils/content';
 
 const [latestPosts, latestNotes] = await Promise.all([
   getLatestEntries('blog', 3),
-  getLatestEntries('notes', 3)
+  getLatestNotes(3)
 ]);
 ---
 
@@ -15,11 +15,26 @@ const [latestPosts, latestNotes] = await Promise.all([
     <p class="eyebrow">{HOME.eyebrow}</p>
     <h1>{SITE_TITLE}</h1>
     <p>{SITE_DESCRIPTION}</p>
+    <p>{HOME.intro}</p>
     <ul class="topic-chips" aria-label="主题">
       {TOPIC_CHIPS.map((topic) => (
         <li>{topic}</li>
       ))}
     </ul>
+  </section>
+
+  <section class="start-here" aria-labelledby="start-here-title">
+    <div class="section-heading">
+      <h2 id="start-here-title">{HOME.startTitle}</h2>
+    </div>
+    <div class="start-grid">
+      {HOME.startLinks.map((item) => (
+        <a class="start-card" href={item.href}>
+          <span>{item.label}</span>
+          <p>{item.description}</p>
+        </a>
+      ))}
+    </div>
   </section>
 
   <div class="home-sections">

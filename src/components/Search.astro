@@ -28,7 +28,14 @@ import { SEARCH } from '../consts';
         />
         <kbd class="search-close-hint">ESC</kbd>
       </div>
-      <div class="search-results" data-search-results></div>
+      <div
+        class="search-results"
+        data-search-results
+        data-no-results={SEARCH.noResults}
+        data-dev-mode-hint={SEARCH.devModeHint}
+        data-untitled={SEARCH.untitled}
+        data-suggestions={SEARCH.suggestions.join('|')}
+      ></div>
     </div>
   </dialog>
 </div>
@@ -48,10 +55,30 @@ import { SEARCH } from '../consts';
   const trigger = document.querySelector('[data-search-trigger]');
   const input = document.querySelector('[data-search-input]');
   const resultsContainer = document.querySelector('[data-search-results]');
+  const searchCopy = {
+    noResults: resultsContainer?.dataset.noResults ?? '没有找到相关内容',
+    devModeHint: resultsContainer?.dataset.devModeHint ?? '搜索仅在构建后可用',
+    untitled: resultsContainer?.dataset.untitled ?? '无标题',
+    suggestions: resultsContainer?.dataset.suggestions?.split('|') ?? []
+  };
+
+  function renderSuggestions() {
+    if (!resultsContainer) return;
+
+    resultsContainer.innerHTML = `
+      <div class="search-empty">
+        <p>可以试试这些关键词：</p>
+        <div class="search-suggestions">
+          ${searchCopy.suggestions.map((item) => `<button type="button" data-search-suggestion="${item}">${item}</button>`).join('')}
+        </div>
+      </div>
+    `;
+  }
 
   function openSearch() {
     if (dialog instanceof HTMLDialogElement) {
       dialog.showModal();
+      renderSuggestions();
       if (input instanceof HTMLInputElement) input.focus();
     }
   }
@@ -79,13 +106,24 @@ import { SEARCH } from '../consts';
   });
 
   let searchTimeout;
+  resultsContainer?.addEventListener('click', (e) => {
+    const target = e.target;
+    if (!(target instanceof HTMLButtonElement) || !(input instanceof HTMLInputElement)) return;
+
+    const suggestion = target.dataset.searchSuggestion;
+    if (!suggestion) return;
+
+    input.value = suggestion;
+    input.dispatchEvent(new Event('input'));
+  });
+
   input?.addEventListener('input', async (e) => {
     const query = e.target.value;
 
     clearTimeout(searchTimeout);
 
     if (query.length < 2) {
-      if (resultsContainer) resultsContainer.innerHTML = '';
+      renderSuggestions();
       return;
     }
 
@@ -95,7 +133,7 @@ import { SEARCH } from '../consts';
         const search = await pf.debouncedSearch(query);
 
         if (!search || !search.results || search.results.length === 0) {
-          if (resultsContainer) resultsContainer.innerHTML = `<p class="search-empty">${SEARCH.noResults}</p>`;
+          if (resultsContainer) resultsContainer.innerHTML = `<p class="search-empty">${searchCopy.noResults}</p>`;
           return;
         }
 
@@ -108,7 +146,7 @@ import { SEARCH } from '../consts';
             .map(
               (result) => `
               <a href="${result.url}" class="search-result">
-                <div class="search-result-title">${result.meta?.title || SEARCH.untitled}</div>
+                <div class="search-result-title">${result.meta?.title || searchCopy.untitled}</div>
                 <div class="search-result-excerpt">${result.excerpt}</div>
               </a>
             `
@@ -116,8 +154,7 @@ import { SEARCH } from '../consts';
             .join('');
         }
       } catch {
-        // Pagefind not available in dev mode
-        if (resultsContainer) resultsContainer.innerHTML = `<p class="search-empty">${SEARCH.devModeHint}</p>`;
+        if (resultsContainer) resultsContainer.innerHTML = `<p class="search-empty">${searchCopy.devModeHint}</p>`;
       }
     }, 300);
   });

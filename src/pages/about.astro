@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { ABOUT } from '../consts';
+import { ABOUT, CONTRIBUTORS, PROFILE } from '../consts';
 ---
 
 <BaseLayout title={ABOUT.title} description={ABOUT.description} path="/about/">
@@ -8,12 +8,61 @@ import { ABOUT } from '../consts';
     <div class="page-intro">
       <p class="eyebrow">{ABOUT.title}</p>
       <h1>{ABOUT.heading}</h1>
+      <p>{PROFILE.bio}</p>
     </div>
 
-    <div class="about-copy prose">
-      {ABOUT.paragraphs.map((paragraph) => (
-        <p>{paragraph}</p>
-      ))}
+    <div class="profile-grid">
+      <section class="profile-card" aria-labelledby="profile-name">
+        <div>
+          <p class="eyebrow">Profile</p>
+          <h2 id="profile-name">{PROFILE.name}</h2>
+          <p class="profile-role">{PROFILE.role}</p>
+          <p class="muted">{PROFILE.location}</p>
+        </div>
+        <div class="profile-links" aria-label="个人链接">
+          {PROFILE.links.map((link) => (
+            <a href={link.href}>{link.label}</a>
+          ))}
+        </div>
+      </section>
+
+      <section class="profile-panel" aria-labelledby="profile-focus">
+        <h2 id="profile-focus">Currently thinking about</h2>
+        <ul>
+          {PROFILE.currentWork.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </section>
     </div>
+
+    <section class="profile-panel" aria-labelledby="profile-interests">
+      <h2 id="profile-interests">Research tags</h2>
+      <ul class="topic-chips" aria-label="研究兴趣">
+        {PROFILE.interests.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="contributors-section" aria-labelledby="contributors-title">
+      <div class="section-heading">
+        <h2 id="contributors-title">Contributors</h2>
+      </div>
+      <div class="contributors-grid">
+        {CONTRIBUTORS.map((person) => (
+          <article class="contributor-card">
+            <h3>{person.name}</h3>
+            <p class="profile-role">{person.role}</p>
+            <p>{person.bio}</p>
+            <div class="profile-links" aria-label={`${person.name} links`}>
+              {person.links.map((link) => (
+                <a href={link.href}>{link.label}</a>
+              ))}
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
   </section>
 </BaseLayout>

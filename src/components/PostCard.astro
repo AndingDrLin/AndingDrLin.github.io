@@ -10,10 +10,13 @@ interface Props {
 
 const { entry, showKind = false } = Astro.props;
 const course = entry.collection === 'notes' ? NOTE_COURSES[entry.data.docGroup as keyof typeof NOTE_COURSES] : undefined;
-const noteSlug = course ? entry.id.replace(/^[^/]+\//, '').replace(/\/readme$/i, '') : entry.id;
-const href = course
-  ? `/notes/${course.slug}/${noteSlug}/`
-  : `/${entry.collection}/${entry.id}/`;
+const isCourseReadme = course && /\/readme$/i.test(entry.id);
+const noteSlug = course ? entry.id.replace(/^[^/]+\//, '') : entry.id;
+const href = isCourseReadme
+  ? `/notes/${course.slug}/`
+  : course
+    ? `/notes/${course.slug}/${noteSlug}/`
+    : `/${entry.collection}/${entry.id}/`;
 const kindLabel = ARTICLE_META.kindLabels[entry.collection];
 ---
 
