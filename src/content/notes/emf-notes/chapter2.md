@@ -115,8 +115,7 @@ $$\nabla u=\vec e_r\frac{\partial u}{\partial r}+\vec e_\theta\frac{1}{r}\frac{\
 **题目：** 求 $\varphi(x,y,z)=2x^2+y-5z^2$ 在点 $P(1,0,3)$ 处的梯度。
 
 **解：**
-$$\nabla\varphi=\vec e_x\frac{\partial\varphi}{\partial x}+\vec e_y\frac{\partial\varphi}{\partial y}+\vec e_z\frac{\partial\varphi}{\partial z}
-=\vec e_x(4x)+\vec e_y(1)+\vec e_z(-10z)$$
+$$\nabla\varphi=\vec e_x\frac{\partial\varphi}{\partial x}+\vec e_y\frac{\partial\varphi}{\partial y}+\vec e_z\frac{\partial\varphi}{\partial z}=\vec e_x(4x)+\vec e_y(1)+\vec e_z(-10z)$$
 
 代入 $P(1,0,3)$：
 $$\boxed{\left.\nabla\varphi\right|_P=4\vec e_x+\vec e_y-30\vec e_z}$$
