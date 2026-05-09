@@ -15,5 +15,6 @@ draft: false
 - [第2章 矢量分析](/notes/electromagnetics-and-fields/chapter2/) — 标量场与矢量场、坐标系、梯度散度旋度
 - [第3章 静电场](/notes/electromagnetics-and-fields/chapter3/) — 库仑定律、电场强度、电位、高斯定理
 - [第5章 恒定电流](/notes/electromagnetics-and-fields/chapter5/) — 电流密度、欧姆定律、焦耳定律
+- [EMT Midterm Mock Test 2（含参考答案）](/notes/electromagnetics-and-fields/emt-midterm-mock-test-2/) — 期中模拟试卷第二套，覆盖第2-5章
 
 > 第 1、4 章尚在编写中，后续补充。
