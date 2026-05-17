@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="360" viewBox="0 0 720 360" role="img" aria-label="Average and RMS waveform concept">
+  <style>
+    .axis{stroke:#222;stroke-width:2}.grid{stroke:#ddd;stroke-width:1}.wave{fill:none;stroke:#1565c0;stroke-width:3}.avg{stroke:#2e7d32;stroke-width:3;stroke-dasharray:8 6}.rms{stroke:#c62828;stroke-width:3;stroke-dasharray:4 5}.txt{font-family:Arial,Helvetica,sans-serif;font-size:18px;fill:#222}.small{font-size:15px}.shade{fill:#1565c0;opacity:.08}
+  </style>
+  <rect width="720" height="360" fill="white"/>
+  <line class="axis" x1="70" y1="270" x2="665" y2="270"/>
+  <line class="axis" x1="70" y1="55" x2="70" y2="300"/>
+  <line class="grid" x1="70" y1="170" x2="665" y2="170"/>
+  <line class="grid" x1="70" y1="110" x2="665" y2="110"/>
+  <path class="shade" d="M70,270 C120,120 170,120 220,270 C270,420 320,420 370,270 C420,120 470,120 520,270 C570,420 620,420 665,270 L665,270 L70,270 Z"/>
+  <path class="wave" d="M70,270 C120,120 170,120 220,270 C270,420 320,420 370,270 C420,120 470,120 520,270 C570,420 620,420 665,270"/>
+  <line class="avg" x1="70" y1="220" x2="665" y2="220"/>
+  <line class="rms" x1="70" y1="150" x2="665" y2="150"/>
+  <text class="txt" x="598" y="295">t</text>
+  <text class="txt" x="25" y="70">x(t)</text>
+  <text class="txt small" x="510" y="214" fill="#2e7d32">average</text>
+  <text class="txt small" x="510" y="143" fill="#c62828">RMS level</text>
+  <text class="txt small" x="95" y="330">Average: area / T</text>
+  <text class="txt small" x="330" y="330">RMS: sqrt(mean square)</text>
+</svg>

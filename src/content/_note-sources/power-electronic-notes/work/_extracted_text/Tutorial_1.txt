@@ -1,0 +1,27 @@
+Tutorial 1 – Questions.
+1. Derive expressions for the average and RMS values for the waveforms shown in
+terms of their maximum values and duty cycle. For duty cycle φ =10%, what is the
+form factor for each?
+
+
+ Current                                     Current
+
+
+
+              Period = T                                 Period = T
+                                      IMax     IMax
+
+
+      ton                                        ton
+                                     Time                                          Time
+
+2. Plot the current vs. time and energy vs. time graphs for an inductor of 500mH
+subject to a current of i (t ) = 1.2t ; 0 < t ≤ 10 seconds.
+3. Find the RMS value for a voltage defined as the following saw-tooth function
+over an interval [0, 2T]:
+
+
+
+
+if the peak value of this voltage is 200V, then what is the approximate RMS value.
+

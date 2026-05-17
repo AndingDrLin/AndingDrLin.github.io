@@ -1,0 +1,444 @@
+  Power Electronics
+ DC-AC Converters (Inverters)
+          逆变器
+                  Dr Atif Jafri
+          Atif.Jafri@glasgow.ac.uk
+
+
+Please read Chapter 8 in the textbook
+
+                                        1
+  Schemes of Inverters to study
+Phase        Bridge     Switching Schemes
+Output
+Single Phase Half       Square Wave
+                                                      • Operation in different
+                        Pules Width Modulation          switching schemes
+             Full       Square Wave                   • Output Waveform
+                                                      • Harmonics
+                        Pules Width Modulation        • Practical Circuit
+                        (Bipolar & Unipolar)          • Avoiding shoot through
+Three Phase 3-Leg       Square Wave
+                        Pules Width Modulation
+
+                      Half Bridge Studied in Last Lecture
+  Schemes of Inverters to study
+Phase        Bridge   Switching Schemes
+Output
+Single Phase Half     Square Wave
+                                                •   Ideal Circuit Diagram
+                      Pules Width Modulation    •   Operation
+             Full     Square Wave               •   Output Waveform
+                                                •   Harmonics
+                      Pules Width Modulation    •   Practical Circuit Diagram
+                        Bipolar      Unipolar         • Avoiding shoot through
+Three Phase 3-Leg     Square Wave
+                      Pules Width Modulation
+Inverter Types
+ - Full Bridge
+
+
+
+
+                                          Full Bridge Inverter with Flyback Diodes
+ Full Bridge Inverter (Ideal)
+
+            Figures used in the literature for Full Bridge Inverter
+Operation
+- Square Wave Switching
+   𝑻𝑨+                 𝑻𝑩+
+
+
+         𝑻𝑩−    𝑻𝑨−
+
+                                Full Bridge Inverter (Ideal)
+
+
+
+
+   𝑻𝑨+    𝑻𝑩+
+
+
+
+                 𝑻𝑨−      𝑻𝑩−
+Operation
+- Pulse Width Modulation (PWM) Switching - Bipolar
+  -   Is a type of switching technique.
+  -   Use two signals called
+      - 𝒗𝒕𝒓𝒊 (Triangular Signal)
+           - Has frequency 𝒇𝒔 (called switching frequency)
+      -     𝒗𝒄𝒐𝒏𝒕𝒓𝒐𝒍 (Control Signal)
+           - Has frequency 𝒇𝟏 (desired fundamental frequency)
+
+
+
+
+                   v   v
+
+
+                   v
+Operation
+ - Pulse Width Modulation (PWM) Switching - Bipolar
+        -     𝒗𝒕𝒓𝒊 (Triangular Signal) is compared with 𝒗𝒄𝒐𝒏𝒕𝒓𝒐𝒍 (Control Signal)
+        -     Based on comparison result different switches are made closed (ON)
+              and open (OFF)
+        -     Output voltage swings between positive and negative voltages
+
+
+
+
+𝒗𝑨𝒐 = + 𝑉𝑑𝑐                                                     𝑻𝑨+ 𝒂𝒏𝒅 𝑻𝑩− Closed
+Operation
+- Pulse Width Modulation (PWM) Switching - Bipolar
+      -       𝒗𝒕𝒓𝒊 (Triangular Signal) is compared with 𝒗𝒄𝒐𝒏𝒕𝒓𝒐𝒍 (Control Signal)
+      -       Based on comparison result different switches are made closed (ON)
+              and open (OFF)
+      -       Output voltage swings between positive and negative voltages
+
+
+
+
+                                                                𝑻𝑩+ 𝒂𝒏𝒅 𝑻𝑨− 𝑪𝒍𝒐𝒔𝒆𝒅
+
+
+
+
+𝒗𝑨𝒐 = - 𝑉𝑑𝑐
+ Operation
+- Pulse Width Modulation (PWM) Switching - Unipolar
+  -   Is a type of switching technique.
+  -   Use two signals called
+      - 𝒗𝒕𝒓𝒊 (Triangular Signal)
+           - Has frequency 𝒇𝒔 (called switching frequency)
+      -     𝒗𝒄𝒐𝒏𝒕𝒓𝒐𝒍 & −𝒗𝒄𝒐𝒏𝒕𝒓𝒐𝒍 (Control Signal)
+           - Has frequency 𝒇𝟏 (desired fundamental frequency)
+Operation
+- Pulse Width Modulation (PWM) Switching - Unipolar
+  -   𝒗𝒕𝒓𝒊 (Triangular Signal) is compared with 𝒗𝒄𝒐𝒏𝒕𝒓𝒐𝒍 & −𝒗𝒄𝒐𝒏𝒕𝒓𝒐𝒍
+  -   Based on comparison result different switches are made closed (ON)
+      and open (OFF)
+
+
+                                                             𝒗𝑨𝑵
+
+
+
+
+                                     𝑽𝒅𝒄                                   𝑽𝒅𝒄
+Operation
+-   Pulse Width Modulation (PWM) Switching - Unipolar
+    -   𝒗𝒕𝒓𝒊 (Triangular Signal) is compared with 𝒗𝒄𝒐𝒏𝒕𝒓𝒐𝒍 & −𝒗𝒄𝒐𝒏𝒕𝒓𝒐𝒍
+    -   Based on comparison result different switches are made closed (ON) and
+        open (OFF)
+
+
+
+                                                                                 𝒗𝑩𝑵
+
+
+
+
+                                        𝑽𝒅𝒄                                      𝑽𝒅𝒄
+
+
+
+
+                                         𝑽𝒅𝒄
+Operation
+                                𝑽𝒅𝒄
+
+
+                                            𝒗𝑨𝑵         𝒗𝑩𝑵
+
+
+
+                                𝑽𝒅𝒄
+
+
+
+
+            𝑽𝒅𝒄         𝑽𝒅𝒄
+                                      𝑻𝑨+   𝑻𝑩+
+                          𝑽𝒅𝒄
+            𝑽𝒅𝒄   𝑽𝒅𝒄                             𝑻𝑨−         𝑻𝑩−
+Harmonics
+- What are harmonics?
+  -   Pure Sinusoid is required.
+  -   The output is different both in square-wave and PWM switching
+  -   There is need to analyze the presence of other sinusoids having
+      frequencies multiple of desired sinusoid, called harmonics, available
+      in output.
+  Harmonics
+   - What are harmonics?
+             -   Pure Sinusoid is required.
+             -   The output is different both in square-wave and PWM switching
+             -   There is need to analyze the presence of other sinusoids having
+                 frequencies multiple of desired sinusoid, called harmonics, available
+                 in output.                          𝒗𝒐                            Actual
+                                                                                Desired
+                                                       𝑽𝒅𝒄
+
+
+
+                  𝒗𝑨𝑵             𝒗𝑩𝑵
+                                                      −𝑽𝒅𝒄
+
+                                                             Output (PWM Switching - Bipolar)
+                                                            𝒗𝒐
+                                                      𝑽𝒅𝒄                        Actual
+       𝒗𝒐
+                        Desired              Actual
+
+                                                                                 Desired
+𝑽𝒅𝒄
+
+
+
+                                                      −𝑽𝒅𝒄
+−𝑽𝒅𝒄
+            Output (Square Wave Switching)                       Output (PWM Switching - Unipolar)
+Harmonics
+- Harmonics in Square Wave Switching
+  -   There is need to analyze the presence of other sinusoids having frequencies
+      multiple of desired sinusoid, called harmonics, available in output.
+                                            𝒗𝒐
+
+                                           𝑽𝒅𝒄
+
+
+
+                                         −𝑽𝒅𝒄
+
+        𝒗𝑨𝑵         𝒗𝑩𝑵
+Harmonics
+- Harmonics in Square Wave Switching
+  -   There is need to analyze the presence of other sinusoids having frequencies
+      multiple of desired sinusoid, called harmonics, available in output.
+
+
+
+
+                                                Fourier Series Analysis
+
+                                          𝑽𝒅𝒄
+
+                                                             𝑽𝒅𝒄 = 𝟏. 𝟐𝟑𝟕 𝑽𝒅𝒄
+Harmonics
+- Harmonics in PWM Switching
+  -   To analyze “harmonics” for PWM switching we need to understand two new terms:
+      -    Amplitude Modulation Ratio and Frequency Modulation Ratio.
+
+
+
+               Amplitude Modulation Ratio     v v
+
+                                              v
+       Peak Value of Control Signal
+
+
+       Peak Value of Triangular Signal
+
+
+
+
+             Frequency Modulation Ratio
+
+       Frequency of triangular signal
+       also called switching frequency
+
+       Frequency of control signal also
+       called desired fundamental frequency
+Harmonics
+- Harmonics in PWM Switching (Bipolar)
+
+
+
+
+        𝑽𝒅𝒄
+                                         𝒇𝒉 = (𝒋𝒎𝒇 ± 𝒌)𝒇𝟏
+               𝒎𝒂 𝑽𝒅𝒄
+
+                                          𝒉 = 𝒋 𝒎𝒇 ± 𝒌
+In the full-bridge converter circuit, 𝑉𝑑 = 300 V, 𝑚𝑎 = 0.8, 𝑚𝑓 = 39, and the fundamental
+frequency is 47 Hz. Calculate the rms values of the fundamental-frequency voltage and
+some of the dominant harmonics in the output voltage v, if a PWM bipolar voltage-
+switching scheme is used.
+
+
+
+
+                                                          𝑉𝑝𝑒𝑎𝑘       300
+                                                 𝑉𝑟𝑚𝑠 =           =         = 212.13
+                                                             2         2
+                                       𝑽𝒐𝟏 = 𝑽𝒓𝒎𝒔 × 𝒎𝒂 = 𝟐𝟏𝟐. 𝟏𝟑 × 𝟎. 𝟖 = 𝟏𝟔𝟗. 𝟕 𝑽 @𝟒𝟕𝑯𝒛
+Harmonics
+- Harmonics in PWM Switching (Unipolar)
+                                  𝒗𝒐
+                            𝑽𝒅𝒄                        Actual
+
+
+
+                                                       Desired
+
+
+
+
+                            −𝑽𝒅𝒄
+
+                                       Output (PWM Switching - Unipolar)
+
+
+
+               𝒎𝒂 𝑽𝒅𝒄
+In the full-bridge converter circuit, 𝑉𝑑 = 300 V, 𝑚𝑎 = 0.8, 𝑚𝑓 = 38, and the fundamental
+frequency is 47 Hz. Calculate the rms values of the fundamental-frequency voltage and
+some of the dominant harmonics in the output voltage v, if a PWM bipolar voltage-
+switching scheme is used.
+
+
+
+
+                                                          𝑉𝑝𝑒𝑎𝑘       300
+                                                 𝑉𝑟𝑚𝑠 =           =         = 212.13
+                                                            2          2
+                                       𝑽𝒐𝟏 = 𝑽𝒓𝒎𝒔 × 𝒎𝒂 = 𝟐𝟏𝟐. 𝟏𝟑 × 𝟎. 𝟖 = 𝟏𝟔𝟗. 𝟕 𝑽 @𝟒𝟕𝑯𝒛
+Harmonics - Comparing Harmonics
+                               𝑽𝒅𝒄                  Harmonics
+          Harmonics                            (PWM Bipolar Switching)
+    (Square Wave Switching)
+
+
+
+
+                                 Harmonics
+                           (PWM Unipolar Switching)
+
+
+
+
+• The Unipolar scheme has the advantage of “effectively” doubling the switching
+  frequency as far as the output harmonics are concerned, compared to the bipolar
+  voltage-switching scheme.
+• The advantage of “effectively” doubling the switching frequency appears in the
+  harmonic spectrum of the output voltage waveform, where the lowest harmonics
+  appear as sidebands of twice the switching frequency.
+Practical Full Bridge Inverter
+- Made through real components
+      -   Square Wave Switching
+
+
+
+
+                                                     All switches on
+                                                     Shoot Through
+𝑻𝑨+                                            𝑻𝑨+
+
+𝑻𝑩−                                            𝑻𝑩−
+
+
+𝑻𝑩+                                           𝑻𝑩+
+
+𝑻𝑨−                                           𝑻 𝑨−
+                                    Avoiding
+                                  Shoot through
+Practical Full Bridge Inverter
+- Made through real components
+  -      PWM Switching - Bipolar
+
+
+
+
+   v v
+
+
+   v
+Practical Full Bridge Inverter
+- Made through real components
+  - Avoiding shoot through in PWM – Bipolar Switching
+𝑻+
+
+                        Causing Shoot Through
+
+𝑻−
+
+
+𝑻+
+
+                        Additional of blanking time to avoid shoot through
+𝑻−
+
+
+
+
+      Blanking Time
+Avoiding Shoot through
+      -      Avoiding shoot through in PWM – Bipolar Switching
+          𝒗𝒄𝒐𝒏𝒕𝒓𝒐𝒍
+                                                𝒗𝒕𝒓𝒊+
+
+
+
+
+                                 𝒗𝒕𝒓𝒊
+                                        𝒗𝒕𝒓𝒊−
+
+
+
+
+Blanking Time
+Practical Full Bridge Inverter
+- Made through real components
+  -   PWM Switching - Unipolar
+  To avoid shoot through in
+Unipolar two circuits made for
+    Bipolar shall be used
+Comparison of different Schemes
+                                     Half Bridge ~ Full Bridge
+                        With the same dc input voltage, the maximum
+  Output Power          output voltage of the half-bridge inverter is half
+Square Wave Switching   that of the full-bridge inverter. Hence, in case of
+                        low power applications we can use the half-
+                        bridge inverters and save one-leg of full bridge
+                        inverter.
+  Comparison of different Schemes
+                Square Wave Switching                      PWM Switching
+             The abrupt switching in          PWM uses a more sophisticated
+             square waves generates a         approach. It generates a pulse train with
+Harmonics significant       number       of   a constant frequency (carrier frequency)
+in           harmonics. Harmonics are         but varies the width of each pulse (duty
+Half or Full multiples of the fundamental     cycle). By carefully controlling the duty
+Bridge       frequency (the desired AC        cycle, PWM can effectively synthesize a
+Inverter     output frequency) that distort   sinusoidal output voltage. This approach
+             the waveform and can cause       "spreads out" the harmonics to higher
+             problems     for   connected     frequencies, making them easier to filter.
+             equipment.
+             To mitigate these harmonics      As a result of this harmonic shaping,
+             and achieve a cleaner output     PWM inverters require smaller and more
+             waveform,    square      wave    efficient filters to achieve the same level
+             inverters need bulky and         of output quality compared to square
+             expensive            filtering   wave inverters.
+             components.
+Comparison of different Schemes
+                              Bipolar ~ Unipolar
+                In unipolar scheme, the advantage of
+  Harmonics     “effectively” doubling the switching frequency
+PWM Switching   appears in the harmonic spectrum of the output
+                voltage waveform, where the lowest harmonics
+                appear as sidebands of twice the switching
+                frequency.
+Summary
+• Full Bridge DC-AC Converter studied with following
+  switching option:
+   • Square Wave Switching
+   • PWM Bipolar Switching
+   • PWM Unipolar switching
+• following aspects were studied for each switching:
+   • Ideal Circuit Diagram
+   • Operation
+   • Output Voltage (Waveform)
+   • Harmonics
+   • Practical Circuit Diagram
+   • Avoiding shoot through
+• A comparison is made in different single-phase
+  inverters.
+

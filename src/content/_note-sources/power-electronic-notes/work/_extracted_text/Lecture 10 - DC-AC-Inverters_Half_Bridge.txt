@@ -1,0 +1,337 @@
+  Power Electronics
+ DC-AC Converters (Inverters)
+          逆变器
+                  Dr Atif Jafri
+          Atif.Jafri@glasgow.ac.uk
+
+
+Please read Chapter 8 in the textbook
+
+                                        1
+Scheme of Study
+ • Fundamental
+ • Types of Inverters
+ • Half-bridge Inverter
+    • Ideal Circuit Diagram
+    • Operation
+    • Output Waveform
+    • Harmonics
+    • Practical Circuit Diagram
+    • Avoiding shoot through
+Fundamentals
+• DC-AC Converters are known as inverters
+• Role is to convert a DC signal to AC
+• Ideally, output should be sinusoidal.
+• In reality, these are non-sinusoidal and contain
+  harmonics
+• This is fine for low and medium power applications
+• Divided into two main types
+   • Single Phase
+   • Three Phase
+• Semiconductor devices typically used
+• The basic building block is the ‘Bridge’ circuit
+                                            https://www.youtube.com/watch?v=qVeERT4nyz8
+Inverter Types
+ - Half and Full Bridge
+
+
+
+
+ Half Bridge Inverter (Ideal)   Full Bridge Inverter (Ideal)
+Inverter Types
+ 3-Leg (For 3-phase inverter)
+
+
+               𝑻𝑨+      𝑻B+       𝑻C+
+
+
+
+
+               𝑻𝑨−      𝑻B−       𝑻C−
+
+
+
+
+                3-Leg Inverter (Ideal)
+  Schemes of Inverters to study
+Phase        Bridge   Switching Schemes
+Output
+Single Phase Half     Square Wave
+                                               •   Ideal Circuit Diagram
+                      Pules Width Modulation   •   Operation
+             Full     Square Wave              •   Output Waveform
+                                               •   Harmonics
+                      Pules Width Modulation   •   Practical Circuit Diagram
+                      (Bipolar & Unipolar)           • Avoiding shoot through
+Three Phase 3-Leg     Square Wave
+                      Pules Width Modulation
+  Schemes of Inverters to study
+Phase        Bridge   Switching Schemes
+Output
+Single Phase Half     Square Wave
+                                               • Operation in different
+                      Pules Width Modulation     switching schemes
+             Full     Square Wave              • Output Waveform
+                                               • Harmonics
+                      Pules Width Modulation   • Practical Circuit
+                      (Bipolar & Unipolar)     • Avoiding shoot through
+Three Phase 3-Leg     Square Wave
+                      Pules Width Modulation
+Operation
+ - Square Wave Switching
+               Half Bridge Inverter (Ideal)
+
+
+                Closed                        Open
+
+
+
+
+                 Open                         Closed
+Operation
+- Pulse Width Modulation (PWM) Switching
+  -   Is a type of switching technique.
+  -   Use two signals called
+      - 𝒗𝒕𝒓𝒊 (Triangular Signal)
+           - Has frequency 𝒇𝒔 (called switching frequency)
+      -     𝒗𝒄𝒐𝒏𝒕𝒓𝒐𝒍 (Control Signal)
+           - Has frequency 𝒇𝟏 (desired fundamental frequency)
+
+
+
+
+                  v   v
+
+
+                  v
+Operation
+ - Pulse Width Modulation (PWM) Switching
+        -     𝒗𝒕𝒓𝒊 (Triangular Signal) is compared with 𝒗𝒄𝒐𝒏𝒕𝒓𝒐𝒍 (Control Signal)
+        -     Based on comparison result different switches are made closed (ON)
+              and open (OFF)
+        -     Output voltage swings between positive and negative voltages
+
+
+
+                                                                            𝑻𝑨+
+
+
+                                                         𝒐              𝑨
+       𝑉
+𝒗𝑨𝒐 = + 2𝑑𝑐
+
+                                                                            𝑻𝑨−
+Operation
+- Pulse Width Modulation (PWM) Switching
+      -       𝒗𝒕𝒓𝒊 (Triangular Signal) is compared with 𝒗𝒄𝒐𝒏𝒕𝒓𝒐𝒍 (Control Signal)
+      -       Based on comparison result different switches are made closed (ON)
+              and open (OFF)
+      -       Output voltage swings between positive and negative voltages
+
+
+
+                                                                            𝑻𝑨+
+
+
+                                                         𝒐              𝑨
+
+
+
+                                                                            𝑻𝑨−
+
+       𝑉
+𝒗𝑨𝒐 = - 2𝑑𝑐
+Harmonics
+- What are harmonics?
+  -   Pure Sinusoid is required.
+  -   The output is different both in square-wave and PWM switching
+  -   There is need to analyze the presence of other sinusoids having
+      frequencies multiple of desired sinusoid, called harmonics, available
+      in output.
+
+                                                  Desired               Actual
+
+
+
+                       𝑻𝑨+
+
+                                       Output (Square Wave Switching)
+      𝒐            𝑨
+                                                                   Actual
+                                                      Desired
+
+
+                       𝑻𝑨−
+
+
+
+                                          Output (PWM Switching)
+Harmonics
+- Harmonics in Square Wave Switching
+  -   There is need to analyze the presence of other sinusoids having frequencies
+      multiple of desired sinusoid, called harmonics, available in output.
+
+
+                        𝑻𝑨+
+
+
+      𝒐             𝑨
+
+
+
+                        𝑻𝑨−
+Harmonics
+- Harmonics in Square Wave Switching
+  -   There is need to analyze the presence of other sinusoids having frequencies
+      multiple of desired sinusoid, called harmonics, available in output.
+
+
+                   𝑻𝑨+
+
+                                          -
+  𝒐            𝑨
+
+
+
+                   𝑻𝑨−
+Harmonics
+- Harmonics in Square Wave Switching
+  -   There is need to analyze the presence of other sinusoids having frequencies
+      multiple of desired sinusoid, called harmonics, available in output.
+
+
+                   𝑻𝑨+
+
+
+  𝒐            𝑨                        -
+
+
+                   𝑻𝑨−
+                                                Fourier Series
+Harmonics
+- Harmonics in PWM Switching
+  -   To analyze “harmonics” for PWM switching we need to understand two new terms:
+      -    Amplitude Modulation Ratio and Frequency Modulation Ratio.
+
+
+
+               Amplitude Modulation Ratio     v v
+
+                                              v
+       Peak Value of Control Signal
+
+
+       Peak Value of Triangular Signal
+
+
+
+
+             Frequency Modulation Ratio
+
+       Frequency of triangular signal
+       also called switching frequency
+
+       Frequency of control signal also
+       called desired fundamental frequency
+Harmonics
+- Harmonics in PWM Switching
+Harmonics
+- Harmonics in PWM Switching
+
+
+
+
+ 1. The peak amplitude of the fundamental-frequency component         is
+ 𝑚𝑎 times 𝑉𝑑 .
+           2
+2. The amplitude of the fundamental-frequency component of the output
+voltage varies linearly with 𝑚𝑎 (provided 𝑚𝑎 ≤ 1).
+3. The harmonics in the inverter output voltage waveform appear as sidebands,
+centred around the switching frequency and its multiples, that is, around
+harmonics 𝑚𝑓 2 𝑚𝑓 , 3 𝑚𝑓 , and so on.
+Harmonics
+- Harmonics in PWM Switching
+
+
+
+
+4. Theoretically, the frequencies at which voltage harmonics occur can be
+indicated as:
+                               𝑓ℎ = (𝑗𝑚𝑓 ± 𝑘)𝑓1
+5. the harmonic order ℎ corresponds to the 𝑘 𝑡ℎ sideband of 𝑗 times the frequency
+modulation ratio 𝑚𝑓
+                                ℎ = 𝑗 𝑚𝑓 ± 𝑘
+Harmonics
+- Harmonics in PWM Switching
+
+
+
+
+6. For odd values of 𝑗, the harmonics exist only for even values of 𝑘. For even
+values of 𝑗, the harmonics exist only for odd values of 𝑘. 𝑓ℎ = (𝑗𝑚𝑓 ± 𝑘)𝑓1
+Practical Half Bridge Inverter
+- Made through real components
+  -   Square Wave Switching
+
+
+
+
+                                              Both switches on
+                                               Shoot Through
+
+
+
+
+                                Avoiding
+                              Shoot through
+Practical Half Bridge Inverter
+- Made through real components
+  -      PWM Switching
+
+
+
+
+                                 Both switches on
+                                  Shoot Through
+
+
+
+
+   v v
+
+
+   v
+Practical Half Bridge Inverter
+- Made through real components
+  - Avoiding shoot through in PWM Switching
+𝑻+
+
+                       Causing Shoot Through
+
+𝑻−
+
+
+𝑻+
+
+                       Additional of blanking time to avoid shoot through
+𝑻−
+
+
+
+
+     Blanking Time
+Avoiding Shoot through
+       𝒗𝒄𝒐𝒏𝒕𝒓𝒐𝒍
+                                 𝒗𝒕𝒓𝒊+
+
+
+
+
+                  𝒗𝒕𝒓𝒊
+                         𝒗𝒕𝒓𝒊−
+
+
+
+
+Blanking Time
+

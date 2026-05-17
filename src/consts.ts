@@ -25,6 +25,11 @@ export const NOTE_COURSES = {
     slug: 'electromagnetics-and-fields',
     title: '电磁场与波',
     description: '各章节自学笔记，涵盖矢量分析、静电场、恒定电流等。'
+  },
+  'power-electronic-notes': {
+    slug: 'power-electronics',
+    title: '电力电子',
+    description: '按章节整理的电力电子课程复习笔记，覆盖整流、SCR、开关损耗、热设计、DC-DC、逆变与 PWM。'
   }
 } as const;
 

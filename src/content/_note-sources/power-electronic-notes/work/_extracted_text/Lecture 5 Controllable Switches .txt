@@ -1,0 +1,1252 @@
+Power Electronics
+           Lecture 5
+       Power Switches
+For Switching Power Conversion
+
+           Please read
+     pages 16-31 in Chapter 2
+   Pages 546-661 Chapter 21-26
+          of the textbook        1
+ Typical Controllable Power Switches.
+ There are several different electronic devices used for switching appreciable
+ amounts of electrical power. Those to be examined in the next two lectures are:
+ 1.Thyristors (Silicon Controlled Rectifiers; SCRs) 晶闸管 (half-controlled)
+ 2. GTOs (Gate turn-off Thyristors) 可关断晶闸管 (fully controlled)
+ 3. TRIACs (triode for alternating current) 双向晶闸管(half-controlled)
+ 4. MOSFETs (Metal Oxide Semiconductor Field Effect Transistors) (fully controlled)
+ 5. GTR (Giant Transistor)大功率晶体管 (fully controlled)
+ 6. IGBT (Insulated Gate Bipolar Transistors) 绝缘栅极双极性晶体管 (fully controlled)
+
+
+
+
+                                                              Power                2
+Pictures courtesy of International Rectifier
+➢ How much control do we have (or need)?
+   → Controllability
+➢ How much voltage will it drop when on?
+    → Conduction Resistance
+➢ How much voltage can it block 阻断 when off?
+    → Voltage Rating
+➢ How much current can it carry承受?
+   → Current Rating
+➢ How long does it take to turn on and off?
+   → Switching Frequency
+  The Thyristor (SCR – Silicon-Controlled-Rectifier) 晶闸管
+  If the anode voltage is higher than the cathode voltage, a brief pulse on the gate will
+  turn on the device. Once the device is conducting, it stays on (“Latches”闩锁) until
+  the current through it falls to zero. Once on, the gate looses all control.
+
+                          SCR          Anode
+                          Symbol       阳极
+                                                         J1
+                   Load
+                                                         J2
+   Supply                                                J3
+
+
+ Half-Controllable Switch
+                            Gate       Cathode
+        Control                        阴极
+
+➢ The gate needs a few volts and a few milliamps to
+  switch the device on.
+➢ The device can pass thousands of amps and block
+  thousands of volts.
+➢ When on, the forward voltage drop is low            式中α1和α2分别是晶体管TR1和TR2的共基极电流增
+  (Approximate 1V).                                   益；ICO1和ICO2分别是TR1 和TR2的共基极漏电流
+
+➢ Turn-on is slow, taking a few 10’s to a few 100’s of ➢ They are used in very high
+                                                                                 4
+  microseconds, depending on the size of the device.      power applications!!!
+5
+                                         Forward conducting mode
+Conduction & Blocking
+                 Reverse blocking mode
+                            反向阻断
+                                                     关断
+
+
+                Avalanche                Forward blocking mode
+                breakdown
+                 雪崩击穿
+            first breakdown
+
+Half-Controllable Switch 半控开关
+➢ The thyristor can be turned on by applying a pulse of
+  positive gate current iG for a short duration when the
+  device in its forward-blocking 前向阻断 state.
+➢ Once the device begins to conduct, it is latched on and IG
+  can be removed. It cannot be turned off by gate. It will turn
+  off until anode current iA go to zero.                           6
+                   VBO:Breakover voltage Trigger On
+                   IBO: Breakover current
+                                            ➢ Current to several kiloamps for
+                                              V(on) of about 1 volts.
+                                            ➢ Blocking        voltages       to    5-8
+                                              kilovolts.
+                                            ➢ Maximum              junction
+                                              temperature = 125 C
+Reverse blocking mode
+                                         ➢ Higher iG leads to shorter turn-
+                                           on time
+                                     ➢ High efficient for high voltage high
+                                       current applications (e.g. HVDC)
+1.Reverse blocking mode – Voltage is applied in the direction that would be blocked
+by a diode
+2.Forward blocking mode – Voltage is applied in the direction that would cause a
+diode to conduct, but the thyristor has not been triggered into conduction
+3.Forward conducting mode – The thyristor has been triggered into conduction and
+                                                                                   7
+will remain conducting until the forward current drops below a threshold value known as
+the "holding current“ I which corresponds the holding voltage V
+       Turn-on/off of Thyristor (SCR)
+  iA
+            Turn-on time        td+tr: 10’s to several 100’s s
+100%                                                                        ❑ After the reverse recovery
+ 90%                                                                          process     is     completed,
+                              Reverse                                         because        the    carrier
+                           Recovery Effect                                    recombination process is
+                                                                              relatively slow, it will take
+10%                                            Slow turn-on                   some time for the thyristor
+  0    td    tr                                                             t to recover its ability to
+u AK                                                                          block forward voltage. This
+                                                                              is called the forward
+                                      I RM                                    blocking recovery time
+                                                                              tgr.
+                                                                            ❑ If a forward voltage is
+                                                                              applied to the thyristor
+  O                                                                         t
+                                                                              again during the forward
+        Turn                                                                  blocking recovery time, the
+         on                                                                   thyristor will re-conduct,
+                                                                              instead    of   conducting
+                               t rr          U RRM t
+                                                       gr                     under gate current control.
+                                                                               tgr ：正向阻断恢复时间
+                                       Turn off             Slow turn-off
+                                                                                t rr   ：反向阻断恢复时间
+                  Turn-off time trr+tgr: several hundred s                                                   8
+Example application of SCRs in DC circuits
+The diagram below shows a power supply with an SCR used to prevent the output
+from exceeding a pre-defined value.
+
+     Fuse     Once SCR switches on, it stays on until the fuse blows.
+
+                                               R1=1KΩ               R3=1KΩ
+         SCR           Comparator +                                             Output
+                                               +ve            -ve               Voltage
+                                                                     Zener
+                                       -                                         (12V)
+                                                                     Diode
+                                               C=1μF
+                                  R2=1KΩ                            VREF=6.5V
+
+            This is called an over-voltage crowbar circuit.
+
+   Comparator truth table
+                                       ➢ If the comparator + input is more positive
+     +ve > -ve         Output ↑          than the – input, the output (VComp) is “on”.
+
+     +ve < -ve         Output ↓        ➢ If the comparator + input is more negative
+                                         than the – input, the output is “off”.
+                                                                                      9
+                                              ➢ The capacitor holds the voltage on the +ve
+Comparator input voltages.                      comparator input down whilst the supply
+   Circuit start-up                             voltages stabilise, preventing false triggering
+V
+                                    VOut        触发 of the SCR. This also provides noise
+                                                immunity when operating. T=RC=1 second.
+                                              ➢ R1 & R2 form a potential divider 分压电路
+                          V-=6.5V               holding the +ve input at half the output
+                                                voltage (6V).
+                          V+=6.0V             ➢ R3 quickly biases the zener diode 齐纳二极管
+                                                into the conduction region so that the –ve
+                                    VComp
+                                                input is held at 6.5V.
+
+      Over-voltage trip                                ➢ If the output voltage starts to rise,
+V                                           VOut         the potential divider also starts to
+                                                         rise but the zener voltage is fixed.
+                                                         When V+ is greater than V- the
+                                                         comparator output switches on,
+                                                         fires the SCR which then latches
+                                              V+         on. This presents a short circuit
+                                              V-         across the supply, protecting the
+                            SCR on
+                            Fuse blows                   load. The fuse then blows 熔断 to
+    Comparator                                           protect the transformer etc. After
+    output                                               the fuse blows the SCR resets
+                                      VOut
+                                                   t     itself.                        10
+Thyrisitor Switching
+➢ The previous showed how an SCR can be used as switch in a DC circuit to protect
+  the equipment connected to the output of a power supply. This took advantage of the
+  fact that once an SCR is on, it stays on until the current through it falls to zero. We
+  would also like to be able to use SCRs in AC circuits because of their huge power
+  control capacity.
+                                              Supply voltage
+
+
+
+
+                 Load                             Load current
+ Supply
+                                                             Does not conduct
+                                                             when reverse biased
+
+
+      Control
+
+
+                                          Control voltage (“On”)
+ ➢ Thyristor behaving as a half-wave rectifier. The SCR turns off (“commutates”换流)
+   automatically at the end of each positive half cycle.
+                                                                              11
+ ➢ SCRs are unsuitable for use in DC-DC conversion, because DC voltage cannot
+Phase control of SCRs
+➢ If we delay the firing pulse 触发脉冲 for the SCR relative to the zero-crossing
+  points, we can use the SCR as a means 手段 of regulating the power applied to
+  the load.
+
+
+                                                                         Delay
+                                  Load       Switch-off                  angle = 
+                                  current
+
+
+                                                Supply
+                                                voltage
+                                   Firing
+                                   pulses
+
+
+
+                             ➢ The period of time before the current flows
+                             in the SCR is called the delay angle, 
+                                                                             12
+Calculation of average and RMS voltages for half-wave SCR phase angle control
+
+
+                                                                       (            )
+                                                               
+        1 
+                     
+                                                 1               ˆ             
+                                                      0.dt +  V sin(t ) dt 
+                                                                            2
+VAVE =                   ˆ
+            0.dt +  V sin(t )dt    VRMS =
+                                            2
+
+       2  0                                    2  0                          
+                                                              
+
+                                                 Vˆ 2  1
+                                                     
+        Vˆ                                                                          
+                                                            (                )
+           − cos(t                          2   2
+      =                                        =             1 − cos( 2 t )  d  t 
+        2
+                                                                          
+        Vˆ                                       Vˆ 2                  
+           − cos( ) + cos( )
+                                                            1
+      =                                        =      t − sin( 2t )
+        2                                       4        2           
+        Vˆ                                       Vˆ 2                      
+      =    1 + cos( )                       =        −  +
+                                                               1
+                                                                 sin( 2  )
+        2                                       4          2            
+
+
+ Examples
+ For VMAX = 100V
+   = 45°: VAVE = 27.17V, VRMS = 47.67V
+   = 90°: VAVE = 15.92V, VRMS = 35.36V
+   = 135°: VAVE = 4.66V, VRMS = 15.07V
+
+                                                                                         13
+ Back to back SCRs for full wave control
+ ➢ If we want to be able to control both halves of the mains waveform with SCRs we
+   need to use a pair of SCRs.
+
+
+                                                                           Supply
+
+
+                   Load
+
+                                                                            ILoad
+
+ Supply                     B                              
+                 Control
+            A                            Pulse for B
+
+
+                                   Pulse for A
+
+
+
+
+➢ By varying  we can change the firing point and therefore vary the power in the load.
+                                                                                     14
+Calculation of average and RMS voltages for full-wave SCR phase angle control
+
+                                                                       (               )
+                                                                 
+                                                                                    
+       1              ˆ                          1                ˆ
+                                           VRMS =   0.dt +  V sin(t ) dt 
+                                             2                                    2
+ VAVE =   0.dt +  V sin(t )dt               0
+        0                                                                         
+                                                  Vˆ 2  1
+                                                        
+       Vˆ                                                                           
+                                                            (                )
+                                                      2
+      = − cos(t 
+                                               =            1 − cos( 2 t )  d  t 
+                                                       
+                                                                                
+          Vˆ                                        ˆ
+                                                   V 2
+                                                                             
+      =        − cos( ) + cos( )             =        t −
+                                                               1
+                                                                 sin( 2 t )
+                                                  2        2             
+                                                                                
+
+          Vˆ                                       Vˆ 2                          
+      =        1 + cos( ) ; 0             =         −  +
+                                                                   1
+                                                                     sin( 2    )
+                                                  2            2              
+
+
+
+
+                                                                                           15
+Thyristor Bridges
+➢ We can replace the diodes in a bridge rectifier with a pair of (or four) SCRs:
+
+
+
+
+            S4        S1                                        D2       S1
+
+Supply           Control                          Supply             Control
+            S3                                                  D1
+
+                      S2        Load                                     S2        Load
+
+
+
+
+            S4        S1                                        D2        S1
+
+Supply           Control                           Supply            Control
+            S3        S2                                        D1        S2
+
+                                Load                                                Load
+
+
+
+      ➢ Positive & negative half-cycle current flows through SCRs and diodes. 16
+➢ When we introduce phase control into the bridge, the average voltage is given by
+  the integral of the waveform from the delay angle to the end of the half-cycle.
+
+                                                               Vˆ
+                                                    VAVE =          1 + cos( ) ; 0    
+                                                               
+➢ The thyristor bridge allows us to vary the mean DC output voltage directly. The
+  following chart of delay angle vs mean DC voltage is for a resistive load only.
+
+
+                                                Variation of mean output voltage with delay angle
+                                                                    v = 100 sin( )
+                                      70
+                                               63.662 V
+                                      60
+
+
+
+
+                Mean output voltage
+                                      50
+
+                                      40
+
+                                      30
+
+                                      20
+
+                                      10
+
+                                      0
+                                           0       20     40         60       80       100        120   140   160   180
+                                                                          Delay angle (Degrees)                           17
+Device selection chart
+ Device          Symbol   Control   Power Rating Switch speed
+
+
+ SCR                      Partial   Very high    Slow
+
+
+
+ TRIAC &
+ SSR
+
+ MOSFET
+
+
+ IGBT
+
+
+ GTO
+
+
+
+                                                          18
+Example
+                                                                                       Load
+If VSupply = 415V RMS and the load is a resistor of
+value 25Ω, what power is dissipated in the load
+for delay angles of 30°, 90° and 150°? What is
+the maximum load power when the SCRs are
+permanently switched on?
+                                                                  Supply
+        Vˆ 2         1                                                                            B
+VRMS =
+   2
+              −  + sin(2 ) 
+         2          2                                                             Control
+Maximum power = V2/R = 4152 / 25 = 6.889KW.                                   A
+                       (415 2 ) 2       π 1           
+ For α = 30, V RMS =
+                2
+                                    π −  +  sin(60 )  = 167259.
+                          2π            6 2           
+     2
+   VRMS
+P=      = 6690 W
+    R
+                     (415 2 ) 2      π 1              
+For α = 90, V RMS =
+               2
+                                 π −   +   sin(180 )  = 86112.5
+                        2π           2   2            
+     2                                  This is exactly half the full power, which makes sense since
+   VRMS
+P=      = 3444.5W                       the SCRs are on for exactly half the time.
+    R
+                      (415 2 ) 2  5π 1               
+For α = 150, V RMS =
+                   2
+                                  π −  +  sin(300 )  = 4966
+                         2π           6 2            
+     2
+   VRMS                                                                                        19
+P=      = 198.6 W
+    R
+The TRIAC(triode for alternating current) 双向晶闸管
+➢ From a functional point of view the TRIAC is basically a pair of back to back 背靠背
+  SCRs sharing a common gate. As with the SCR, the TRIAC can be switched on by
+  a short pulse applied to the gate. Once on, the device is latched until the current
+  flowing through it falls to zero – usually the end of the AC half cycle.
+                          TRIAC      Main Terminal 2
+                          symbol
+
+                  Load
+Supply
+
+                                    Main Terminal 1
+                         Gate
+
+      Control
+
+
+
+
+➢ https://www.electronics-tutorials.ws/power/triac.html
+➢ TRIACs are bidirectional devices – they can pass current in either direction.
+  They do not have such high power ratings as the SCR. However, they are very
+                                                                             20
+  simple to use and find application in things like dimmer 调光 switches, heater
+  controls and the like.
+➢ The TRIAC can be turned on by either a positive or negative gate pulse,
+  irrespective of the polarity of the main terminal voltages. Turn-on times are of the
+  order of a few microseconds. The triggering modes are:
+
+ Mode I+ MT2 current+ Gate current +
+ Mode I- MT2 current+ Gate current –
+ Mode III+ MT2 current - Gate current +                                 Load
+                                                      Supply
+ Mode III- MT2 current - Gate current -
+
+
+            Switch-off             Voltage
+
+                                                            Control
+
+
+                         Current               dV/dt high @ commutation
+
+➢ When using a TRIAC to drive an inductive load such as a motor, at each half cycle
+  as the current falls to zero the line voltage can be quite high. The rate of change
+  of this commutation voltage can be fast enough to interact with parasitic
+  capacitances in the TRIAC and cause it to switch on again. This can lead to the
+  device being permanently locked on. To circumvent this problem a RC snubber 阻
+                                                                                 21
+  容缓冲电路 should be used across the device to limit dV/dt to about 1V/μS.
+Generating the firing pulse for phase control
+          斜坡发生器
+         Ramp generator   Synch’ed to mains
+
+
+
+                                      +                Load current
+
+
+               +VDC
+                                      -
+
+
+         MIN                           Supply
+                                       voltage
+         MAX
+
+
+               0V
+
+Ramp 斜坡
+Threshold 阈值
+Firing pulse 触发脉冲
+
+Load current
+
+
+                                                  = 60              22
+Device selection chart
+ Device          Symbol   Control   Power Rating Switch speed
+
+
+ SCR                      Partial   Very high    Slow
+
+
+
+ TRIAC                    Partial   Medium       Slow
+
+
+ MOSFET
+
+
+ IGBT
+
+
+ GTO
+
+
+
+                                                          24
+Gate turn-off Thyristors (GTOs)
+➢ GTOs are fully controllable SCRs. To switch on a GTO a positive pulse is applied
+  to the gate, as in th e case of the SCR. To turn off a GTO a negative pulse is
+  applied to the gate. The turn-on of a GTO is not as reliable as an SCR (the gate
+  sensitivity is approx 10X lower than a comparable SCR) and therefore it is usual
+  to keep a low positive current flowing into the gate to enure it stays on for the
+  intended duration. GTO turn-off requires an appreciable amount of current to flow
+  during the negative pulse and thus the drive circuitry for a GTO can be quite
+  complex.
+
+    GTO          Anode                    Current                  Supply
+    Symbol                                waveform
+
+
+
+
+      Gate
+                 Cathode
+                                             Gate drive
+                                                                              25
+➢ GTO turn-off is quite long, several hundred μS, and this limits the maximum
+  switching frequency to 1KHz or less. During turn-off the voltage must be kept low
+  to prevent over-heating and subsequent device failure. When on, the GTO has a
+  forward voltage drop of about 3V (3X an SCR 三倍于SCR) and this poses
+  additional challenges in keeping it cool.
+➢ Despite the difficulties in using a GTO, they are of particular value in high power
+  inverters and DC applications such as traction motor controllers where a
+  reverse voltage (and hence natural commutation) would never occur.
+
+
+
+
+                                                                                26
+   6000A / 6000V GTO (Toshiba)
+   Bipolar Junction Transistor (BJT or GTR)
+                                     Operation zone
+
+
+
+
+                                                                        IC
+                                                                   IB 
+                                                                        hFE
+
+
+
+
+➢ Now GTRs are replaced by MOSFETs, IGBTs             ➢ The      letter     F
+                                                        indicates that it is
+➢ On-State Voltage: 1~2V                                a forward transfer
+➢ Limited Voltage/Current Rating:                       characteristic, and
+                                                        the     letter      E
+   1400V/several hundred A                              indicates it is for a
+                                                        common emitter
+➢ Limited Switching Frequency: several kHz              configuration.        27
+
+➢ Complex current controlled drive circuit.
+                                       IC
+    Darlington Configuration GTR I B  h
+                                        FE
+
+
+
+
+➢ BJTs are current controlled (fully-controllable) devices,
+  base current iB must be supplied continuously to keep
+  them in the on state. To increase the dc current gain
+  hFE and reduce the gate current loss, BJTs usually
+  adopt Darlington configuration达林顿结构 at cost of
+  slightly higher VCE(sat) and slower switching speed.        28
+
+  Driver circuit is also complex.
+      GTR Safe Operation Area
+                       安全工作区
+                               ➢ For power semiconductor devices (such as BJT,
+                                 MOSFET, thyristor or IGBT), the safe operating
+                                 area (SOA) is defined as the voltage and current
+                                 conditions over which the device can be
+                                 expected to operate without self-damage.
+                                  ➢ Snubber Circuit 缓冲电路 is
+                                    needed for fully-controllable
+                                    devices to shape its
+                                    transient iC-VCE trajectory
+                                    during the switching On/Off
+                                    procedure.
+                                    ➢ Actually snubber is used to
+                                      limit dv/dt and di/dt during
+➢ Forward bias 前置 safe operating area
+                                      switching transition.
+             (FBSOA)                                                      29
+Device selection chart
+ Device          Symbol   Control   Power Rating Switch speed
+
+
+ SCR                      Partial   Very high    Slow
+
+
+
+ TRIAC & SSR              Partial   Medium       Slow
+
+
+ MOSFET
+
+
+ IGBT
+
+
+ GTO                      Full      High         Slow
+
+
+
+                                                          30
+The MOSFET
+➢ MOSFETs come in many varieties 型式 and sizes 尺寸. Some
+  of their advantages include:
+• Fast switching (10’s → 100’s nS).
+• Huge power gain (Very simple gate control).                DC           Load
+                                                            Supply
+• Easily paralleled for higher current handling.
+
+➢ Their three main disadvantages are:
+• Relatively low blocking voltage (1000V).          Drain       Control
+• Relatively low current handling (100A).
+• Power dissipation can be high.
+                                                               Current
+                                                               Flow
+                                            Gate
+
+                                                   Source
+                                                                                 31
+Metal Oxide Semiconductor Field-
+  Effect Transistor (MOSFET)
+            金属氧化物半导体场效应管
+                VGS − VGS ( th )  VDS
+
+
+               Operation
+                 zone
+
+                                                     VGS
+N-channel
+
+
+
+
+                                    cutoff
+              Voltage Controlled (Fully-Controllable) Device
+                                                           32
+➢ MOSFETs can be (and often are) used for linear amplification. However, for the
+  purposes of this course we will use them simply as switches. In operation, a few
+  volts (say 5V) applied to the gate will allow a current to flow between the drain and
+  the source. Unlike SCRs, MOSFETs can be turned on and off easily – removing
+  the gate signal causes the MOSFET to stop conducting. When on, the device
+  appears as a low resistance between the drain and source. Hence power
+  dissipation 功率损耗 varies as I 2.
+
+
+              Higher
+         D
+              voltage
+
+    G
+
+         S    Lower
+              voltage
+
+   Model – “Resistor”
+
+➢ The fast switching speed allows MOSFETs to be used at operating frequencies of
+  100’s of KHz to a few MHz. As the MOSFET gets hot the resistance rises. This
+  allows parallel operation because current is balanced amongst available devices
+  automatically. There can be a significant capacitance between Drain & Source.33
+       Characteristics of MOSFET
+➢ On-State Conduction Losses (Ohmic zone)
+                             Good for synchronous
+ pon = I r   2
+             d DS ( on )     rectification in low
+                             voltage applications.
+
+
+➢ rDS(on) is an approximated constant resistance
+• Large VGS minimizes accumulation
+  layer    resistance and channel
+  resistance
+• Positive temperature coefficient: rDS(on) ➢ MOSFETs can be paralleled very easily, because
+  increases as temperature increases. ofstate   the positive temperature coefficient of their on-
+                                                     resistance. For the same junction
+  leads to thermal stabilization effect.      temperature,  if R    of T exceeds that of T ,
+                                                                             DS(on)    2                     1
+                                                           then during the on state, T1 will have a higher
+                                                           current and thus higher power loss compared to
+• MOSFETs can be easily paralleled                         T2, since the same voltage appears across both
+                                                           transistors. Therefore, the junction temperature of
+  due to positive temperature coefficient                  T1 will increase along with its on-state resistance.
+                                                                                                       34
+  of rDS(on).                                              This will cause its share of current to decrease
+                                                           and, hence, there is a thermal stabilization effect
+➢ The ease with which MOSFETs can be turned on and off makes them particularly
+  useful in DC applications.
+
+     VDC
+                            VDC
+
+ DC        RL      Load
+Supply
+                           VGate
+                  IL                Not zero
+                       D   VDrain
+
+              G        S
+    Control                 ILoad
+
+
+
+  ➢ By changing the width of the gate pulse
+    in relation to the operating frequency we                            = 10%
+    can vary the width of the current pulses
+    in the load. This is called Pulse Width                               = 50%
+    Modulation.
+                              On time                                      = 90%
+  Definition : Duty Cycle  =
+                              Period                                       35
+➢ We can calculate the mean DC load voltage as a function
+  of the duty cycle:
+                                           V = VDC
+             T
+         1
+   VAVE =  v(t)dt
+         T0
+           1   TON          T  
+         =   VDC dt +  0dt 
+           T  0           TON 
+          VDC .TON                                       = 100%
+        =           =  .VDC           0
+             T
+
+➢ If we plot this relationship we have a straight line. In other
+  words, The average DC voltage is simply the supply voltage
+  VDC x the duty cycle  .
+                                                              36
+Example
+A heater for use with a 12V DC supply is to be designed. The heat output of the
+product is to be continually variable using PWM control. At 25% of the maximum
+setting the power output is 40W. What is the heater element resistance? (Assume a
+perfect switch and that there are no other power losses in the system.)
+Method 1. At 25%, P = 40W therefore at 100% P = 160W.
+Power = V2 / R => R = V2 / P = 144/160. So the resistance = 0.9Ω.
+
+
+Method 2. At 25%, the mean current is P/V = 40/12 = 3.333A.
+                                               I
+              T
+        1                                                            T
+ I AVE =  i (t )dt. Pick T = 1 second to make it easy :
+        T 0
+          1                 0.25         1
+ I AVE =  i (t )dt      =  i (t )dt +  i (t )dt
+          0                      0      0.25
+                      t = 0.25
+ = I AVE = I MAX .t t =0
+                                                                                    t
+ = I MAX = 4  I AVE = 13.33 A                           tON=25%
+      V   12
+ R=     =     = 0.9
+      I 13.33
+                                                                              37
+Proof of RMS being the heating value
+At 25%, the RMS value of the waveform is:
+                                            I
+                                                        T=1 Second
+                T
+           1
+ I RMS =     
+                      2                           IMAX=13.33A
+               i (t )   dt
+           T 0
+           0.25               1
+      =      MAX dt +  0.dt
+                2
+              I
+            0                0.25                                         t
+                                                tON=250mS
+      = I 2 MAX .t 0
+                      0.25
+
+
+
+                          178
+       = 0.25 I     2
+                     =
+                    MAX       = 6.66 A
+                           4
+ We also know P = I 2 R, R = 0.9, P = 40W.
+          P 40
+ = I = =
+      2
+                   = 44.4
+          R 0.9
+ = I RMS = 6.66 Amps                                               38
+➢ The MOSFET switching loss needs to be carefully considered: there are two
+  switching edges for each cycle of the periodic waveform.
+
+                                                                       Voltage
+➢ At switch-on, VDS falls to a low value
+  determined by ION and the equivalent
+  resistance RDS ON.
+                                                                       Current
+
+
+➢ When driving inductive loads, the current
+  through the switch will not usually be a
+  constant value during the cycle.                           Control
+
+
+
+                                    Turn on            Turn off
+                          Current   Voltage            Current
+   DC           Load      Flow
+  Supply
+                                              TON             TOFF
+                  Drain
+                                       Current             Voltage
+      Control      Source                                    Power
+                                          Power                             39
+Power dissipation in MOSFETs
+➢ There are two main power loss mechanisms in a MOSFET:
+                      Power loss = Conduction loss + Switching loss
+➢ The conduction loss is the I2R loss due to the load current flowing through the
+  equivalent resistance between the drain and source. This depends directly on
+  the duty cycle the switch is operating at.
+➢ Calculate the RMS load current to include the duty cycle. (See example in a few pages
+  time.)
+                               PConduction = I Load
+                                               2
+                                                    RMS RDS ON
+
+
+                       Drain
+                                                            Higher
+                                                        D
+                                                            voltage
+                               Current              G
+                               Flow
+               Gate                                     S   Lower
+                                                            voltage
+                  Source
+
+
+
+                                                                                   40
+        MOSFET is not suitable for high power applications !!!
+• In the low current flow range, the voltage drop across the MOSFET is
+  less than the almost constant voltage drop across diode/GTR/SCR, the
+  conduction power loss of MOSFET is less than that of Diode/SCR/….
+• Voltage and Current ratings are only up to 1kV and several hundred
+  Amperes.
+                                                                         41
+                                                                             Turn on
+➢ During turn-on, at switching event t0 the current through                                      Current
+  the FET starts to rise towards the “on” value. During this                 Voltage
+  period (A) the voltage across the FET (VDS (Off)) is
+  essentially constant. Once the current reaches the “on”
+  value, the voltage across the switch then starts to fall (B)                t0           TON
+  to the conduction value, determined by RDS ON. When this
+                                                                                      A          B
+  value is reached the FET is in the “on” state. The time for
+  this sequence of events to happen, TON, is specified in
+  the device’s data sheet. A typical value is 25nS.                                       Power
+
+
+➢ During ‘A’, VDS is constant at VDS (Off) and IAve = ½ ION => EA = ½IONVDS (Off)TA.
+➢ During ‘B’ ION is constant and VDS AVE = ½VDS (Off) => EB = ½IONVDS (Off)TB.
+
+
+➢ The energy during the switching event is thus EA + EB = ½ION VDS (Off)TON.
+➢ The total power per second for switch-on is given by:
+
+
+                                Total " on" power =
+                                                      1
+                                                      2
+                                                        (FSW .TON .I ON .VDS(Off) )
+
+                                                                                                     42
+                                                                   Turn off
+ ➢ During turn-off, at switching event t0 the voltage across
+   the FET starts to rise towards the “off” value VDS (Off). Current               Voltage
+   During this period (A) the current through the FET (IOFF)
+   is essentially constant at the value just before the turn-off
+   event started. Note this is unlikely to be the same as ION.       t0 T
+                                                                             OFF
+   Once the voltage reaches the “off” value, the current
+   through the switch then starts to fall (B) to zero. When             A        B
+   this value is reached the FET is in the “off” state. The
+   time for this sequence of events to happen, TOFF, is                  Power
+   specified in the device’s data sheet. A typical value is
+   30nS.
+➢ During ‘A’ IOFF is constant and VDS AVE = ½VDS (Off) => EA = ½IOFFVDS (Off)TA.
+➢ During ‘B’, VDS is constant at VDS (Off) and IAve = ½ IOFF => EB = ½IOFFVDS (Off)TB.
+
+
+➢ The energy during the switching event is thus EA + EB = ½IOFF VDS (Off)TOFF.
+➢ The total power per second for switch-off is given by:
+
+
+                               Total " off" power =
+                                                      1
+                                                      2
+                                                        (FSW .TOFF .I OFF .VDS(Off) )
+
+                                                                                         43
+➢ The total switching loss for the MOSFET is the sum of the ON and OFF losses:
+
+                             FSW .VDS(Off) 
+              PSwitching =                (TON .I ON + TOFF .I OFF )
+                                  2         
+➢ We can now calculate the total power loss in the MOSFET due to the conduction
+  and switching losses.
+                                     Remember PConduction = I Load RMS RDS ON
+                                                                2
+
+
+
+
+                                          FSW .VDS(Off) 
+       PTotal = I   2
+                    Load RMS   RDS ON +                (TON .I ON + TOFF .I OFF )
+                                               2         
+
+
+                                          From data sheet
+
+
+
+
+                                                                                        44
+Example
+Using the following data, determine the power loss in the MOSFET.
+ ION          8A
+ IOFF         12A
+ PWM Duty     60%                                                             Current
+ PWM Freq     50KHz                                   100V          Load      Flow
+ Supply       100V DC                                  DC
+ RON          50mΩ
+ TON          25nS                                                    Drain
+
+ TOFF         30nS
+                                                          Control      Source
+
+          I
+                                     IOFF=12A
+
+                                     ION=8A
+                                                       PWM period = 20μS
+                                                       On time = 12μS
+                                                       Off time = 8μS
+                                           t                                    45
+      Step 1 - Calculation of RMS current for the conduction loss.
+                                                               I
+                                           ( I OFF − I ON )t
+Current function:i(t ) = I ON +                              ;0  t  tON
+                                                  tON
+                                                                                      IOFF
+                       2 I ON ( I OFF − I ON )t ( I OFF − I ON ) t
+                                                                2 2
+(i (t )) 2 = I ON
+               2
+                  +                            +          2
+                                  tON                   t ON                          ION
+           1 ON  2 2 I ON ( I OFF − I ON )t ( I OFF − I ON ) 2 t 2 
+                t
+                                                                                                   T
+I   2
+    RMS   =   I ON +                      +          2             dt
+           T 0               tON                   t ON           
+                                                                                                            t
+                                                                                tON          tON
+            1 2         I ON ( I OFF − I ON )t 2 1 ( I OFF − I ON ) 2 t 3 
+           =  I ON .t +                         +           2            
+            T                     tON           3         t ON              0
+
+             t  2                                                                 
+                                            +  ( I 2OFF − 2 I OFF .I ON + I 2ON ) 
+                                             1
+           = ON  I ON + I OFF .I ON − I ON
+                                         2
+
+              T                             3                                     
+               
+           =      I 2OFF + I OFF .I ON + I 2ON 
+               3
+
+      For ION = 8A, IOFF = 12A and  = 60%, IRMS=7.8A
+
+      PConduction = I Load
+                      2
+                           RMS RDS ON
+                                                        => PConduction = 7.82 x 50mΩ = 3.042W
+                                                                                                       46
+Step 2 – calculation of switching loss.
+
+               FSW .VDS(Off) 
+PSwitching =                (TON .I ON + TOFF .I OFF )
+                    2         
+              50 KHz 100V 
+           =                     (25nS  8 A + 30nS 12 A)
+                      2          
+           = 1.4W
+
+Step 3 – calculate total power loss
+
+ Power loss = Conduction loss + Switching loss
+
+                    = 3.04W + 1.4W = 4.44W
+
+Step 4 – Calculate the average power consumption of the load
+
+          ( I on + I off )ton       (8 + 12) 12 20 12
+I ave =                         =               =        =6A
+                 2T                    2  20     2  20
+                                                               47
+  Pload=Iave×VDC=6×100=600 W
+Device selection chart
+ Device          Symbol   Control   Power Rating Switch speed
+
+
+ SCR                      Partial   Very high    Slow
+
+
+
+ TRIAC & SSR              Partial   Medium       Slow
+
+
+ MOSFET                   Full      Medium       Fast
+
+
+ IGBT
+
+
+ GTO                      Full      High         Slow
+
+
+
+                                                          50
+Insulated Gate Bipolar Transistor (IGBT)                                     Collector
+➢ IGBTs are medium to high power switches that can operate very quickly
+  with high current and a low “on” voltage. The latest devices (3rd generation)
+  are extremely robust and tolerant of overloads. The IGBT gate drive Gate
+  requirements are very similar to those of a MOSFET.
+➢ Rather conveniently the typical application reverse blocking voltage range Emitter
+  for the IGBT starts more or less where the MOSFET starts to struggle.
+➢ IGBTs are rarely used in application where the reverse voltage is less than 600V.
+➢ IGBTs can only conduct current in one direction. If current has to flow in the
+  opposite direction then an external diode must be used in inverse parallel with the
+  device. This is sometimes called a “flyback” 反激 diode or a “free-wheeling” diode
+  续流二极管 (from its first use in television sets).
+
+
+
+
+➢ The Toyota Prius hybrid electric car uses
+  IGBTs in its regenerative inverter drive.
+➢ [The car has been declared a hazard to the
+  visually impaired because it is so quiet.]                                       51
+                IGBT - Hybrid Switch
+                                                                      集电极
+
+                                    门极/
+                                    栅极
+
+                                                                      发射极
+           R2
+                                              N-channel IGBT
+
+                                                                       Body region
+                      R1
+                                                                       Drain drift region
+
+
+                                                            Buffer layer
+                                          Injecting layer
+
+
+N-channel IGBT Equivalent Circuit
+
+
+• Gate Voltage VGE Controlled Device like MOSFET
+                                                                                            52
+
+• Turn-on VCE like GTR: 2~3V
+       Internal structure of IGBT
+                                              Source
+
+
+
+
+                                                    J2
+
+
+
+                                                    J1
+                     Injection region
+
+                                            Drain
+                   Source
+
+
+
+
+                    Body region
+
+                     Drain drift region
+
+                      Buffer layer
+
+Injection region
+                                                                 53
+                    Drain            page 630 of the text book
+       Turn On/Off of IGBT
+             MOSFET
+  positive
+
+negative
+
+
+
+
+                      2~3V
+
+
+
+
+     Turn-on                       Turn-off
+                             GTR
+
+                                              54
+                SOA for IGBT
+                                  ➢ Voltage/current ratings
+                                    of IGBT, MOSFET and
+                                    BJT in SOA and
+                                    datasheets are peak
+                                    values, not average or
+                                    rms value
+                                  ➢ Snubber circuits are
+                                    needed to shape i-v
+                                    curve for IGBT during
+                                    switching transition.
+1 Forward Biased Safe operating area(FBSOA)-during turn on
+2. Reverse Biased Safe Operating Area(RBSOA)-during turn off
+ *Too large a value of dVCE/dt is during turn-off will   55
+
+ cause latchup the IGBT
+Device selection chart
+ Device     Symbol       Control   Power    Commutation   Supply   Switch
+                                   Rating                  Type    speed
+
+ SCR                     Partial    Very      Natural      AC       Slow
+                                    high
+
+
+ TRIAC &                 Partial   Medium     Natural      AC       Slow
+ SSR
+
+
+ MOSFET                   Full     Medium       Self       DC       Fast
+
+
+
+ IGBT                     Full      High        Self       DC      Medium
+
+
+
+ GTO                      Full      High        Self      AC/DC     Slow
+
+
+
+
+                                                                           56
+Commutation 换流
+➢ Often we want to specify in circuit schematics the operation of the
+  device, rather than the device itself. A good example is the self-
+  commutated 自换流 semiconductor switch. Devices which are fully
+  controlled by their control input (MOSFET, IGBT, GTO, etc.) fall into
+  this category. SCRs and TRIACs are naturally commutated 自然换
+  流– cannot be switched off under gate control – and therefore are
+  not self-commutated.
+➢ The symbol for a self-commutated switch is:
+                                                          C
+  The control signal (voltage or current drive)
+  is connected at ‘C’. The diode shows the direction
+  in which the current can flow.
+➢ Self-commutated switches are suitable for use with DC supplies
+  since they can be turned off independently of the polarity of the
+  source voltage, load voltage or the nature of the load (reactive or
+  resistive).
+                                                                   57
+
