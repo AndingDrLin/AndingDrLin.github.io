@@ -17,6 +17,10 @@ draft: false
 - [第3章 离散时间信号频域分析](/notes/digital-signal-processing/chapter3/) — 频域表示与变换
 - [第4章 离散时间系统](/notes/digital-signal-processing/chapter4/) — 系统性质、卷积与差分方程
 - [第5章 离散傅里叶变换](/notes/digital-signal-processing/chapter5/) — DFT 定义、性质与频谱分析
+- [第6章 Z 变换](/notes/digital-signal-processing/chapter6/) — Z 变换、ROC、极零图与系统函数
+- [第7章 变换域中的 LTI 离散时间系统](/notes/digital-signal-processing/chapter7/) — FIR/IIR、全通、最小相位与线性相位 FIR
+- [第8章 数字滤波器结构](/notes/digital-signal-processing/chapter8/) — 框图、无延时环、FIR/IIR 结构与多相实现
+- [第9章 IIR 数字滤波器设计](/notes/digital-signal-processing/chapter9/) — IIR 指标、模拟原型、双线性变换与 Butterworth 设计
 - [第11章 快速傅里叶变换](/notes/digital-signal-processing/chapter11/) — FFT 算法原理、DIT 与 DIF
 
-> 第 6-10 章尚在编写中，后续补充。
+> 第 10 章尚在编写中，后续补充。
