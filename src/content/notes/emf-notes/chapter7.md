@@ -5,7 +5,7 @@ date: 2026-05-18
 tags: [electromagnetics, fields]
 category: "课程学习"
 docGroup: "emf-notes"
-order: 7
+order: 9
 draft: false
 ---
 
