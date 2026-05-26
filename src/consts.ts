@@ -30,6 +30,11 @@ export const NOTE_COURSES = {
     slug: 'power-electronics',
     title: '电力电子',
     description: '按章节整理的电力电子课程复习笔记，覆盖整流、SCR、开关损耗、热设计、DC-DC、逆变与 PWM。'
+  },
+  'dc-notes': {
+    slug: 'dynamics-and-control',
+    title: '动力学与控制',
+    description: '各章节自学笔记，覆盖动态系统概述、控制系统分析基础、框图化简、稳定性分析与反馈控制性能等。'
   }
 } as const;
 
