@@ -129,3 +129,38 @@ $$
 - **2018 Q1(e)**：$10\sin(100\pi t)+10$ 的 RMS 与 form factor。
 - **2018 Q2**：full-wave rectifier、smoothing capacitance、half-wave SCR RMS / power。
 - **Exam feedback**：点名错误集中在 average 为零、form factor 分母、half-wave / full-wave 周期、PIV、SCR 延迟角。
+
+## 推荐复习顺序
+
+如果时间充裕，按章节顺序学；如果时间紧，按下面优先级：
+
+1. **第 1 章** 波形基础：average、RMS、form factor — 所有后续计算题的根基
+2. **第 2 章** Diodes 与 Rectifiers — half-wave、full-wave、bridge、smoothing、PIV
+3. **第 3 章** SCR Phase Control — firing angle、average/RMS/power
+4. **第 4+5 章** Power Switches + Thermal — loss → heat 是一条完整大题链
+5. **第 7 章** DC-DC Converters — volt-second balance、Buck/Boost/Buck-Boost
+6. **第 8 章** Inverter + PWM — 概念多但计算套路固定
+7. **第 9+10 章** Past Paper + Mistakes — 考前最后刷
+
+**只剩一天**：优先做第 1、2、3、7 章的 calculation 套路，再用第 10 章检查红线。
+
+## 历年题分值分布
+
+根据 final_2017 和 final_2018 拆解：
+
+| 模块 | 2017 分值 | 2018 分值 | 稳定程度 |
+|---|---|---|---|
+| Average / RMS / Form factor | ~10 | ~5 | 每年必考 |
+| Rectifier + Smoothing + PIV | ~10 | ~15 | 每年必考 |
+| SCR Phase Control | ~15 | ~10 | 每年必考 |
+| MOSFET Loss + Thermal | ~25 | ~25 | 每年大题 |
+| DC-DC Converter CCM | ~20 | ~16 | 每年必考 |
+| Inverter / PWM | ~10 | ~9 | 每年必考 |
+| Snubber / Switch Selection | ~10 | ~10 | 简答/选择 |
+
+核心结论：**MOSFET loss + thermal** 和 **DC-DC CCM** 是分值最大的两个模块，各约 20-25 分。
+
+## 来源说明
+
+- 本章公式和题型分析基于 `slides/Lecture 1–13`、`materials/final_2017.pdf`、`materials/final_2018.pdf`、`materials/feedback on final exam.docx`
+- 所有内容为 `Slides-backed` 或 `Past paper-backed`

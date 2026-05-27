@@ -212,3 +212,24 @@ $$
 - **2018 Q2 SCR(a)**：输入 $10\sin(100\pi t)$，$\alpha=30^\circ$，画 half-wave SCR 输出，必须标 $10\,\mathrm{V}$ peak 和 delay angle。
 - **2018 Q2 SCR(b)**：用 half-wave SCR RMS 算 load power，不能用 average voltage。
 - **Homework / feedback**：back-to-back SCR 用于 AC load phase control；每个半周都要延迟触发，不能只画一个普通开关。
+
+## 补充：SCR 公式适用条件
+
+| 拓扑 | 负载 | 平均输出 | 适用条件 |
+|---|---|---|---|
+| Half-wave SCR | R load | $V_{DC} = \frac{\hat V_m}{2\pi}(1+\cos\alpha)$ | 每半周从 $\alpha$ 到 $\pi$ 导通，积分周期 $2\pi$ |
+| Full-wave SCR (R load) | R load | $V_{DC} = \frac{\hat V_m}{\pi}(1+\cos\alpha)$ | 两个半周对称导通，输出整流成正脉冲 |
+| Fully controlled bridge | L load（电流连续） | $V_{DC} = \frac{2\hat V_m}{\pi}\cos\alpha$ | 电感足够大、电流近似连续；$\alpha > 90°$ 进入逆变区 |
+
+**考试陷阱**：Full-wave R load ≠ fully controlled bridge continuous current。前者分母有 $(1+\cos\alpha)$，后者是 $\cos\alpha$。如果题目说明 R load 且电流不连续，用前者。
+
+## 补充：Back-to-back SCR for AC load
+
+Feedback 高频扣分点：
+
+- Anti-parallel SCR pair 控制正负两个半周
+- 每个 SCR 负责一个半周
+- Firing delay 从每个 natural zero crossing 开始量
+- 必须标 $\alpha$、peak voltage、time axis
+
+画图最少要画：AC source → back-to-back SCR → resistive load，标两个 $\alpha$ 和导通区间。

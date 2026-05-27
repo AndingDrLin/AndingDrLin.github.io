@@ -108,6 +108,13 @@ $$
 
 这个公式用于 **full-bridge bipolar output voltage**。如果题图是 half-bridge，输出电压等级通常减半；如果题目问的是 switching waveform total RMS、fundamental peak、fundamental RMS 或 average output，要先确认目标量再代入。
 
+**注意**：$\hat V_{o1} = m_a V_d$ 只用于 **full-bridge bipolar output voltage**。如果是 half-bridge，输出幅值减半。
+
+考试先问自己三件事：
+1. 是 half-bridge 还是 full-bridge？
+2. 题目要 total RMS、fundamental peak、fundamental RMS，还是 average output？
+3. 是 square-wave、linear SPWM、overmodulation，还是 constant control？
+
 ### Bipolar PWM vs Unipolar PWM
 
 | 项目 | Bipolar PWM | Unipolar PWM |
@@ -206,32 +213,34 @@ $$
 +V_d,\quad 0,\quad -V_d
 $$
 
-### Six-step line voltage 算法
+### Six-step line voltage：确定算法
 
-不要背不完整表格。考试若给 switching sequence，按下面算法逐行算：
+不要背模糊表格，用下面算法逐步推导 line voltage：
 
-1. 先按题图定义 leg voltage。常见约定是 upper switch on 时该 leg voltage 为 $V_d$，lower switch on 时为 $0$。
-2. 列出该 $60^\circ$ 区间的 $v_A$、$v_B$、$v_C$。
-3. 用 $v_{AB}=v_A-v_B$、$v_{BC}=v_B-v_C$、$v_{CA}=v_C-v_A$。
-4. 把每个 $60^\circ$ 的结果连起来画 line-voltage waveform。
+#### 步骤
 
-小例子：若某区间 A high、B low、C high，且采用 upper on 为 $V_d$、lower on 为 $0$ 的约定：
+1. 根据 switching sequence 写每个 leg 的电压：
+   - 上管导通 → 该 leg voltage = $V_d$（或按题图定义）
+   - 下管导通 → 该 leg voltage = $0$
+2. 列 $v_A, v_B, v_C$
+3. 用 $v_{AB} = v_A - v_B$、$v_{BC} = v_B - v_C$、$v_{CA} = v_C - v_A$ 逐个相减
 
-$$
-v_A=V_d,\quad v_B=0,\quad v_C=V_d
-$$
+#### 完整 60° 区间例子
 
-所以：
+假设 switching state：A high、B low、C high
 
-$$
-v_{AB}=V_d,
-\quad
-v_{BC}=-V_d,
-\quad
-v_{CA}=0
-$$
+| 量 | 值 |
+|---|---|
+| $v_A$ | $V_d$ |
+| $v_B$ | $0$ |
+| $v_C$ | $V_d$ |
+| $v_{AB} = v_A - v_B$ | $+V_d$ |
+| $v_{BC} = v_B - v_C$ | $-V_d$ |
+| $v_{CA} = v_C - v_A$ | $0$ |
 
-若题图采用 $+V_d/2$ 与 $-V_d/2$ 作为 leg voltage，算法不变，只是先把 $v_A$、$v_B$、$v_C$ 换成题图的定义。
+每个 60° 区间按此方法算，得到完整的 six-step line voltage waveform。
+
+**考试要点**：画 line voltage 时标清每个 60° 区间的值（$+V_d, 0, -V_d$），不要跳步骤。
 
 ### Three-phase PWM 的 $m_f$ 选择
 
@@ -273,3 +282,14 @@ $$
 - **2017 Q5**：single-phase PWM inverter，给 $v_{control}=m_a\sin(2\pi ft)$，要求忽略高频谐波并解释 square-wave mode。
 - **2018 Q4(g-i)**：$V_d=100\,\mathrm{V}$，$m_a=0.5$ 求 low-frequency output；$m_a\gg1$ 解释 overmodulation/square-wave；constant $v_{control}=0.6\,\mathrm{V}$ 求 average output。
 - **Feedback Q4**：重点提醒 power circuit 与 control mechanism 不要画错，bipolar/unipolar switching 要分清。
+
+## 补充：Half-bridge vs Full-bridge 电压速查
+
+| 拓扑 | Square-wave output | SPWM fundamental peak | SPWM fundamental RMS |
+|---|---|---|---|
+| Half-bridge | $\pm V_d/2$ | $m_a V_d / 2$ | $m_a V_d / (2\sqrt{2})$ |
+| Full-bridge (bipolar) | $\pm V_d$ | $m_a V_d$ | $m_a V_d / \sqrt{2}$ |
+
+**Common error**：把 half-bridge 的电压当 full-bridge 用，结果偏大一倍。
+
+$m_a = \hat V_{\mathrm{control}} / \hat V_{\mathrm{tri}}$（peak 比 peak，不是 RMS，也不是 peak-to-peak）。

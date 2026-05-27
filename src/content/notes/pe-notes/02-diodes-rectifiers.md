@@ -222,3 +222,50 @@ PIV 三步判断小例子：
 - **2018 Q2(b)**：full-wave output RMS，理想 full-wave rectified sine 的 RMS 等于原 sine RMS。
 - **2018 Q2(e)**：限制 ripple 反求 $C$，用 $C\approx I_{load}\Delta t/\Delta V$。
 - **Exam feedback**：PIV、half-wave / full-wave 周期、peak conversion 是高频扣分点。
+
+## 补充：PIV 三步判断例子
+
+### Half-wave + smoothing capacitor
+
+1. 导通时：diode 正向导通，capacitor 充到 $\hat V_m$
+2. 关断时：source 反向到 $-\hat V_m$，capacitor 保持 $+\hat V_m$
+3. Diode 承受反向电压 ≈ $\hat V_m - (-\hat V_m) = 2\hat V_m$（最坏情况）
+
+**但**：若题目无 capacitor（纯 resistive load），PIV = $\hat V_m$ 即可。
+
+### Bridge rectifier
+
+每个 diode 关断时承受 ≈ $\hat V_m$。不要和 centre-tap 混淆。
+
+### Centre-tap
+
+未导通 diode 看到整个 secondary 两半绕组叠加，PIV ≈ $2\hat V_m$。
+
+**考试提醒**：表格里的 $\hat V_m$ 是哪一段绕组的 peak？centre-tap 的 $\hat V_m$ 是单边 secondary peak，不是整个 secondary。
+
+## 补充：Conduction angle 数字例子
+
+**Half-wave 50 Hz、$\theta_c = 30°$**：
+
+1. Ripple period $T_{ripple} = 20\,\mathrm{ms}$（half-wave 50 Hz）
+2. Charging time = $30/360 \times 20 = 1.67\,\mathrm{ms}$
+3. Discharge time ≈ $20 - 1.67 = 18.33\,\mathrm{ms}$
+
+**Full-wave 50 Hz、$\theta_c = 30°$**：
+
+1. Ripple period $T_{ripple} = 10\,\mathrm{ms}$（full-wave 100 Hz ripple）
+2. Charging time = $30/360 \times 10 = 0.83\,\mathrm{ms}$
+3. Discharge time ≈ $10 - 0.83 = 9.17\,\mathrm{ms}$
+
+**关键**：先选 ripple period（half-wave 20 ms / full-wave 10 ms），再按 conduction angle 比例算充电时间。此为 exam approximation；若题图给出 conduction interval 起止点，应按图直接读 discharge time。
+
+## 补充：Diode voltage waveform 画图清单
+
+画 diode voltage 时必须标：
+
+1. **导通期间**：$v_D \approx 0$（理想）或 $v_D = -V_F$（有压降）
+2. **关断期间**：$v_D$ 为负值，峰值按 PIV 判断
+3. **时间轴**：标 period、导通区间、peak 时间点
+4. **极性**：按题图 polarity 标正负
+
+参考：2017 Q2(b) 要求同时画 load voltage 和 diode voltage。

@@ -420,3 +420,77 @@ $$
 - MOSFET conduction loss 是否用了 RMS current。
 - Thermal sink 温升是否用了正确功率。
 - PWM 是否在线性区；若 overmodulation，是否停止使用线性公式。
+
+---
+
+## 补充：MOSFET loss 完整推导（2017 Q3 步骤拆解）
+
+2017 Q3 的 MOSFET current waveform 是 ramp + platform 型。从波形到最终温度的完整链条：
+
+```
+Waveform → D → I_avg → load power → I_rms → P_cond → P_sw → P_loss → thermal ladder → T_S, T_C, T_J
+```
+
+### 分段积分方法
+
+若 $i(t)$ 在 on-time 20 ms 内从 $I_1$ 线性到 $I_2$，off-time 20 ms 为零：
+
+$$
+I_{\mathrm{avg}} = \frac{1}{T}\int_0^T i(t)\,dt = \frac{1}{T} \cdot \frac{I_1 + I_2}{2} \cdot t_{\mathrm{on}}
+$$
+
+$$
+I_{\mathrm{rms}} = \sqrt{\frac{1}{T}\int_0^T i^2(t)\,dt} = \sqrt{\frac{t_{\mathrm{on}}}{3T}(I_1^2 + I_1 I_2 + I_2^2)}
+$$
+
+**2017 Q3 参考值**：$I_{\mathrm{avg}} = 8.75\,\mathrm{A}$，$I_{\mathrm{rms}} \approx 12.4\,\mathrm{A}$，$P_{\mathrm{load}} = 437.5\,\mathrm{W}$，$P_{\mathrm{cond}} \approx 7.688\,\mathrm{W}$，$P_{\mathrm{sw}} \approx 1.125\,\mathrm{W}$，总损耗 ≈ $8.813\,\mathrm{W}$。
+
+**注意**：这些数值来自特定波形参数，考试时数字会变，但方法不变。
+
+---
+
+## 补充：Rectifier Smoothing 例题模板
+
+### Half-wave + smoothing（2017 Q2(a) 套路）
+
+已知：$V_{AC} = 10\sin(100\pi t)$，$C = 20000\,\mu\mathrm{F}$，$R = 10\,\Omega$，$\theta_c = 30°$
+
+步骤：
+1. $\hat V_m = 10\,\mathrm{V}$，$V_{DC} \approx \hat V_m = 10\,\mathrm{V}$（大电容近似）
+2. $T_{ripple} = 20\,\mathrm{ms}$（half-wave 50 Hz）
+3. Charging time = $30/360 \times 20 = 1.67\,\mathrm{ms}$
+4. Discharge time ≈ $18.33\,\mathrm{ms}$
+5. $I_{load} \approx V_{DC}/R = 1\,\mathrm{A}$
+6. $\Delta V \approx I_{load} \times t_{\mathrm{discharge}} / C = 1 \times 0.01833 / 0.02 = 0.917\,\mathrm{V}$
+7. PIV：带电容时 ≈ $2\hat V_m = 20\,\mathrm{V}$（最坏情况）
+
+### Full-wave + smoothing（2018 Q2(a) 套路）
+
+已知：$V_{AC} = 60\sin(100\pi t)$，$\theta_c = 30°$，$R = 10\,\Omega$，$C = 15000\,\mu\mathrm{F}$
+
+步骤：
+1. $\hat V_m = 60\,\mathrm{V}$
+2. $T_{ripple} = 10\,\mathrm{ms}$（full-wave 100 Hz ripple）
+3. Charging time = $30/360 \times 10 = 0.83\,\mathrm{ms}$
+4. Discharge time ≈ $9.17\,\mathrm{ms}$
+5. 继续按 $\Delta V \approx I_{load} \times t_{\mathrm{discharge}} / C$ 计算
+
+---
+
+## 补充：SCR Phase Control 例题模板
+
+### Half-wave SCR（2017 Q2(c) / 2018 Q2 SCR 套路）
+
+已知：$V_{AC} = 10\sin(100\pi t)$，$\alpha = 30°$，$R = 10\,\Omega$
+
+步骤：
+1. $\hat V_m = 10\,\mathrm{V}$，$\alpha = 30° = \pi/6\,\mathrm{rad}$
+2. 导通区间：$\alpha$ 到 $\pi$（即 $30°$ 到 $180°$）
+3. $V_{DC} = \frac{\hat V_m}{2\pi}(1+\cos\alpha) = \frac{10}{2\pi}(1+\cos 30°) = \frac{10}{2\pi}(1+0.866) = 2.97\,\mathrm{V}$
+4. $V_{\mathrm{rms}} = \hat V_m\sqrt{\frac{1}{2\pi}\left(\frac{\pi-\alpha}{2}+\frac{\sin 2\alpha}{4}\right)}$
+5. $P = V_{\mathrm{rms}}^2 / R$
+
+**考试提醒**：
+- 积分周期是 $2\pi$（不是 $\pi$）
+- 必须标 $\alpha$、peak voltage、time axis
+- 电阻功率用 $V_{\mathrm{rms}}^2/R$，不要用 $V_{DC}^2/R$

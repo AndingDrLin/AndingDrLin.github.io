@@ -10,6 +10,13 @@ draft: false
 ---
 这套笔记按电力电子期末复习的知识链路整理：先处理波形平均值和 RMS，再进入整流、SCR、功率开关、热设计、DC-DC 和逆变/PWM。它不是完整教材，更像一份面向做题和复盘的课程笔记。
 
+## 最后 3 小时怎么用
+
+1. 翻 **第 0 章** 看考试总览和高频题型
+2. 按薄弱模块回对应章节查公式和做题步骤
+3. 用 **第 9 章** 的 worked examples 对照自己的做题过程
+4. 考前最后 10 分钟翻 **第 10 章** 的红线清单
+
 ## 章节目录
 
 - [第0章 考试总览与高分策略](/notes/power-electronics/00-exam-strategy/) — 高频题型、通用做题顺序和必背公式。
@@ -24,3 +31,10 @@ draft: false
 - [第9章 Past Paper Worked Examples](/notes/power-electronics/09-past-paper-worked-examples/) — 历年题中反复出现的计算模板。
 - [第10章 Common Mistakes Checklist](/notes/power-electronics/10-common-mistakes-checklist/) — 考前需要主动规避的公式、单位、符号和作答错误。
 
+## 来源说明
+
+- 所有内容基于 13 份 Lecture PDF slides、2 份 Past Final Exam（2017/2018）、homework、tutorial 和 exam feedback
+- 标注级别：
+  - `Slides-backed`：Lecture slides 有明确支撑
+  - `Past paper-backed`：历年题中直接出现
+  - `Exam-only signal`：feedback 或 Reviewer 报告中提到但 slides 无直接支撑

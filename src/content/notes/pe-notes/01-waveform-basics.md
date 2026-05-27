@@ -192,3 +192,21 @@ $$
 - **2018 Q1(e)**：$10\sin(100\pi t)+10$ 的 RMS 和 form factor。
 - **Homework Q1(a)**：average / RMS / form factor 是基础送分题，但反馈显示很多人错在 form factor。
 - **MOSFET loss 题**：所有 $I_{\mathrm{avg}}$、$I_{\mathrm{rms}}$ 计算都来自本章分段积分。
+
+## 补充：Symmetric sine 的 form factor
+
+对称正弦波 $x(t)=\hat V\sin(\omega t)$：
+- Average = 0（正负面积抵消）
+- Rectified average = $2\hat V/\pi \approx 0.637\hat V$
+- Form factor = RMS / rectified average = $(\hat V/\sqrt{2})/(2\hat V/\pi) = \pi/(2\sqrt{2}) \approx 1.11$
+
+**关键**：form factor 分母必须用 rectified average，不是 ordinary average（否则除以 0）。
+
+## 补充：Inductor voltage derivation（2017 Q1(d) 高频考点）
+
+由 current waveform 推 voltage waveform：
+- $i_L$ 斜率为正 → $v_L = L \cdot di/dt > 0$（正电压）
+- $i_L$ 斜率为负 → $v_L < 0$（负电压）
+- $i_L$ 平坦（constant）→ $v_L = 0$
+
+画 $v_L$ 时标清：正/负幅值、零 crossing、period。

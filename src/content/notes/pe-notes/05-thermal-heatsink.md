@@ -213,3 +213,16 @@ $$
 - **2017 Q3(g)**：MOSFET losses 算完后接 thermal ladder，重点是用 $P_{\mathrm{loss}}$ 而不是 $P_{\mathrm{load}}$。
 - **Exam feedback Q1**：thermal 画图和单位是常见扣分点；必须标完整 thermal path。
 - **高频组合题**：waveform calculation → loss → thermal，是最值得背模板的 25 marks 大题结构。
+
+## 补充：热流方向 vs 计算方向
+
+- **画热流方向**：$T_J \to T_C \to T_S \to T_A$（物理热流从结到环境）
+- **算温度**：从已知 $T_A$ 一步步加温升到 $T_J$
+
+$$
+T_S = T_A + P \cdot \theta_{SA} \\
+T_C = T_S + P \cdot \theta_{CS} \\
+T_J = T_C + P \cdot \theta_{JC}
+$$
+
+不要混淆两个方向：画图时热流从高到低，算温度时从已知环境温度往上加。

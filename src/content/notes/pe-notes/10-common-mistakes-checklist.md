@@ -192,3 +192,35 @@ $$
 - 所有 thermal resistance 是否带 $^\circ\mathrm{C/W}$。
 - 所有 inverter 输出是否注明 half-bridge 或 full-bridge。
 - 所有 buck-boost / flyback 是否说明 isolation 和 polarity。
+
+## 补充：发现错误后回查哪章
+
+| 错误类型 | 回查章节 |
+|---|---|
+| Average / RMS / Form factor 算错 | 第 1 章 波形基础 |
+| PIV 判断错 | 第 2 章 Diodes 与 Rectifiers |
+| Conduction angle 时间换算错 | 第 2 章 Diodes 与 Rectifiers |
+| SCR firing angle / 积分区间错 | 第 3 章 SCR Phase Control |
+| MOSFET current waveform 读错 | 第 4 章 Power Switches |
+| Switching loss 电流取值错 | 第 4 章 Power Switches（电流用途表） |
+| Thermal chain 串联顺序错 | 第 5 章 Thermal Management |
+| Snubber 类型画错 | 第 6 章 Snubber Circuits |
+| DC-DC conversion ratio 错 | 第 7 章 DC-DC Converters |
+| IL min/max 加减 ΔI/2 错 | 第 7 章 DC-DC Converters |
+| PWM half/full bridge 电压搞混 | 第 8 章 Inverter + PWM |
+| Three-phase line voltage 推错 | 第 8 章 Inverter + PWM（确定算法） |
+| Buck-Boost 输出极性忘记 | 第 7 章 DC-DC Converters |
+| Flyback vs Buck-Boost 混淆 | 第 6 章 Snubber + Flyback |
+
+## 补充：图题得分清单
+
+考试中图题（waveform、circuit、thermal chain）通常按以下要素给 working marks：
+
+- [ ] Axes 标注（电压/电流/时间，单位）
+- [ ] Peak / zero / period 标清
+- [ ] 导通区间（on-time / off-time / firing angle）标清
+- [ ] Polarity（正负方向）
+- [ ] Component labels（$R$, $C$, $L$, diode, switch）
+- [ ] 关键数值（$V_{DC}$, $V_{\mathrm{rms}}$, $\hat V_m$, $\alpha$, $D$）
+
+**2017/2018 高频图题**：diode voltage waveform、SCR waveform、thermal chain、converter waveforms、PWM comparator。

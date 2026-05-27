@@ -234,3 +234,25 @@ Output polarity: set by dot convention and diode direction
 - **2017 Q4 / 2018 Q4 相关 DC-DC 思路**：buck-boost 和 boost 计算常考；flyback 作为 buck-boost 的隔离版本，是 converter choice 简答题重点。
 - **Feedback Q3**：需要 isolation 时应选 flyback，不是 non-isolated buck-boost。
 - **Lecture 9**：flyback 与 snubber voltage stress 常联系在一起，尤其是 leakage inductance spike 需要 snubber/clamp。
+
+## 补充：Snubber 画图考试清单
+
+每种 snubber 考试画图最少要画：
+
+| Snubber 类型 | 必画元件 | 连接位置 | 限制什么 |
+|---|---|---|---|
+| Unpolarized RC (turn-off voltage) | R + C 串联 | Across switch 或 across diode | $dv/dt$、ringing |
+| Polarized RC (turn-off) | R + C 串联（有极性） | Across switch，C 靠阳极 | $dv/dt$ |
+| Polarized LR (turn-on current) | L + R 串联 | 与 switch 串联 | $di/dt$ |
+
+**关键**：RC snubber 是 series R-C branch，不是单独一个电容直接短路。画图时 R 和 C 必须串联。
+
+## 补充：Snubber 经验公式适用条件
+
+以下公式是 course/homework 近似设计规则，不是所有 RC snubber 的通用公式：
+
+- $R_{\mathrm{snub}} = \sqrt{L_{\mathrm{stray}} / C_{\mathrm{para}}}$：仅在题目给 stray inductance 和 parasitic capacitance 并要求该近似时使用
+- $C_{\mathrm{snub}} \approx 3 C_{\mathrm{para}}$：经验倍数，不同 damping criterion 可能用不同系数
+- $P_{\mathrm{snub}} \approx f_s C_{\mathrm{snub}} V^2$：snubber 损耗估算
+
+**考试提醒**：如果题目没有明确要求用这些近似，不要自行假设。

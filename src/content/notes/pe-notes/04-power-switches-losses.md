@@ -247,3 +247,34 @@ $$
 - **2017 Q1(a)**：画 fully-controllable switches 并比较 power rating 与 switching frequency；优先准备 MOSFET、IGBT、GTO 或 BJT。
 - **2017 Q3 / 2018 Q3**：MOSFET current waveform → $I_{\mathrm{avg}}$ → $I_{\mathrm{rms}}$ → load power → conduction loss → switching loss → thermal。
 - **Lecture 13 worked solution**：2017 Q3 的套路非常典型，考试换数字时保持同样 working layout。
+
+## 补充：MOSFET 电流用途表（高频大题提分点）
+
+| 电流类型 | 用于哪里 | 公式 |
+|---|---|---|
+| $I_{\mathrm{avg}}$（平均电流） | Load power = $V_{supply} \times I_{\mathrm{avg}}$ | $\frac{1}{T}\int i(t)dt$ |
+| $I_{\mathrm{rms}}$（RMS 电流） | Conduction loss = $I_{\mathrm{rms}}^2 R_{DS(on)}$ | $\sqrt{\frac{1}{T}\int i^2(t)dt}$ |
+| $I_{\mathrm{on}}, I_{\mathrm{off}}$（切换瞬间电流） | Switching loss = $\frac{1}{2}V_{DS}(I_{\mathrm{on}}t_r + I_{\mathrm{off}}t_f)f_s$ | 从波形读取切换时刻的电流值 |
+| $P_{\mathrm{loss}}$（总损耗） | Thermal ladder → $T_J$ | $P_{\mathrm{cond}} + P_{\mathrm{sw}}$ |
+
+**常见错误**：switching loss 中的 $I_D$ 不是 average 也不是 RMS，而是切换瞬间的电流。如果波形是斜坡，on 和 off 时刻电流可能不同，要分别读取。
+
+## 补充：Ramp waveform 分段积分模板（2017 Q3 第一步）
+
+考试常给斜坡或梯形 current waveform。积分方法：
+
+### 线性段（从 $I_1$ 到 $I_2$，持续 $\Delta t$）
+
+$$
+\int i\,dt = \frac{I_1 + I_2}{2} \cdot \Delta t \quad \text{(trapezoid area)}
+$$
+
+$$
+\int i^2\,dt = \frac{\Delta t}{3}(I_1^2 + I_1 I_2 + I_2^2) \quad \text{(exact for linear ramp)}
+$$
+
+### 常见波形：平台 + 斜坡 + 零
+
+若一个周期由若干段组成（如 on-time 平台 + 斜坡下降 + off-time 零），分段求 $\int i\,dt$ 和 $\int i^2\,dt$ 后相加，再除以 $T$。
+
+**2017 Q3 参考值**：$I_{\mathrm{avg}} = 8.75\,\mathrm{A}$，$I_{\mathrm{rms}} \approx 12.4\,\mathrm{A}$（来自 40 ms 周期、on-time 20 ms 的 ramp waveform 分段积分）。

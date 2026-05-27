@@ -302,3 +302,26 @@ $$
 - **2017 Q4 Buck-Boost**：重点练 $D$、$I_{in}$、$I_{L,\mathrm{avg}}$、$I_{L,\min/\max}$ 和三张波形。
 - **2018 Q4 Boost**：重点练 $D=1-V_{in}/V_o$、$I_{L,\mathrm{avg}}=I_{in}$、off-state $v_L=V_{in}-V_o$。
 - **Feedback Q3**：老师明确指出 buck 推导步骤不足、$\Delta i_L/2$ 用错、需要 isolation 时应选 Flyback。
+
+## 补充：DC-DC 公式默认条件
+
+以下公式全部默认：
+
+1. **Ideal converter**：忽略 switch/diode voltage drop 和导通电阻
+2. **CCM（Continuous Conduction Mode）**：$I_{L,\min} > 0$，电感电流不过零
+3. **稳态**：每个周期的 $v_L$ 和 $i_C$ 平均为零
+4. **忽略损耗**：$P_{in} = P_{out}$
+
+如果题目说明 DCM 或给非理想压降，不能直接套 conversion ratio。
+
+## 补充：每种 Converter 的 On/Off 导通状态
+
+| Converter | Switch ON 时 | Switch OFF 时 |
+|---|---|---|
+| **Buck** | 输入 → 电感 → 负载，电感储能（$v_L = V_{in} - V_o > 0$） | 电感 → 负载 + 续流二极管（$v_L = -V_o$） |
+| **Boost** | 输入 → 电感 → 开关，电感储能（$v_L = V_{in}$） | 电感 → 负载 + 二极管（$v_L = V_{in} - V_o < 0$） |
+| **Buck-Boost** | 输入 → 电感 → 开关，电感储能（$v_L = V_{in}$） | 电感 → 负载 + 二极管（$v_L = -\|V_o\|$） |
+
+**注意**：on/off 是 switch 状态，不是 diode 状态。Switch ON 时 diode 通常 OFF，Switch OFF 时 diode 续流导通。
+
+Buck-Boost 输出极性与输入相反：若题目给 $|V_o| = 12\,\mathrm{V}$，要看它要 magnitude 还是 signed voltage。
