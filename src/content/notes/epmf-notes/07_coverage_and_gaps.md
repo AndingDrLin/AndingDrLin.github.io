@@ -11,87 +11,60 @@ docGroup: "epmf-final-exam-revision-notes"
 order: 8
 draft: false
 ---
-这页专门说明：**哪些内容已经被当前 slides 明确支持，哪些更多是由样题强烈提示出来的考试范围。**
+
+> 本页用来判断某个知识点的来源可信度，决定复习时投入多少时间。
 
 ---
 
-## 1. Slide support confirmed
+## 来源等级说明
 
-这些部分在当前 slides 中有比较明确支撑：
-
-### DFM / Sustainability
-
-- DFM definition
-- DFM timing: early design matters most
-- DFM principles
-- sustainability as a design theme
-
-### Quality / Robust Design / Six Sigma
-
-- QC vs QA
-- 7QC tools
-- control chart
-- cost of quality
-- robust design
-- Taguchi loss idea
-- quality characteristic types
-- noise / control / signal style concepts
-- Six Sigma
-- DMAIC
-- process capability
-
-### Project Management
-
-- PM fundamentals
-- scope management process chain
-- WBS / decomposition
-- communication management process chain
-- communication channels
-- risk management process chain
+| 等级 | 含义 |
+|------|------|
+| `Slides-backed` | 当前 slides 有明确支撑，放心背 |
+| `Slides + Sample-backed` | slides 有基础，样题确认了考法 |
+| `Sample-backed` | 当前 slides 无直接支撑，但样题反复出现，按样题反推记忆 |
+| `Exam-only signal` | 样题出现过，来源不明，保守记忆即可 |
 
 ---
 
-## 2. Partial coverage
+## Lecture → 笔记对照表
 
-这些题在样题里很高频，当前 slides 也有一定关联，但直接支撑不如上面那些强：
-
-- 4Rs
-- detailed conflict management strategy comparisons
-- full CPM calculation families
-- detailed organization structure classification sets
-- some finance decision comparisons
-- payback / make-or-buy / break-even worked questions
-- Talent Triangle / leadership vs management
-
-复习建议：
-
-- 先记题型
-- 再记标准步骤
-- 遇到长题按通用框架答，不必硬背不存在于当前 slides 的细枝末节
+| Lecture PDF | 支撑主题 | 对应笔记 | 边界说明 |
+|-------------|---------|---------|---------|
+| Lecture 1 PM Part 1 | project definition, process groups, leadership vs management | 03_project_management_core.md | — |
+| Lecture 2 PM Part 2 | scope chain, WBS, PDM/CPM, three-point estimating | 04_schedule_wbs_risk_comms.md, 06_formulas_and_answer_templates.md | — |
+| Lecture 3 PM Part 3 | cost management, EVM (PV/EV/AC/SPI/CPI), resource/team/conflict | 03_project_management_core.md, 05_finance_and_costing.md | — |
+| Lecture 4 PM Part 4 | communication process, channels, communication model/methods, risk process, SWOT, risk responses | 04_schedule_wbs_risk_comms.md | — |
+| Lecture 5 DFM Part 1 | DFM definition/timing/benefits/principles, sustainability pillars, circular economy/4Rs, actionable sustainable design principles | 01_dfm_sustainability.md | — |
+| Lecture 6 DFM Part 2 | QC vs QA, 7QC tools, control chart, Cost of Quality | 02_quality_six_sigma.md | — |
+| Lecture 7 DFM Part 3 | robust design, Taguchi loss, signal/control/noise factors | 02_quality_six_sigma.md | — |
+| Lecture 8 DFM Part 4 | Six Sigma, DMAIC, CTQ, poka-yoke, Cp/Cpk | 02_quality_six_sigma.md | — |
 
 ---
 
-## 3. Exam-only signal
+## 缺口与弱区
 
-这些内容在样题中出现明显，但我目前不把它们说成“slides 已完整覆盖”：
-
-- EBITDA / EBITA exact treatment
-- present valuation of a company
-- defender strategic posture table
-- some business structure / company law distinctions
-- some EVM details (`SPI`, `CPI`)
-- standard vs regulation comparison
-
-复习建议：
-
-- 会做 MCQ 层面的概念辨析即可
-- 不要对这些点投入和 DFM / WBS / control chart 同等的时间
+| 主题 | 来源等级 | 备注 |
+|------|---------|------|
+| NPV/BCR/IRR/payback/break-even/make-or-buy/cross-over | Sample-backed | 当前 slides 未见独立 finance lecture |
+| Cash flow with 30-day terms / Overtrading | Sample-backed | 同上 |
+| P&L / Gross Profit / EBITDA / EBITA | Exam-only signal | 样题出现但无 slides 精确支撑 |
+| Company valuation / strategic posture | Exam-only signal | 保守记忆 |
+| Standard vs regulation | Exam-only signal | MCQ 层面辨析 |
+| Competence ladder | Sample-backed | Set 1 Q1.6 确认 |
+| Precautionary approach | Sample-backed | Set 1 Q1.8 确认 |
+| Opportunity risk strategies (Exploit/Share/Enhance) | Slides-backed | PM Part 4 slides 有列，但样题主要考 threat strategies |
+| EVM CPI/SPI | Slides + Sample-backed | Lecture 3 slides 确认，Set 6 高频 |
 
 ---
 
-## 4. 最建议优先冲刺的模块
+## Finance slides 缺失声明
 
-如果你离考试比较近，建议优先复习：
+> 当前 `slides/` 目录包含 8 份 lecture PDF（PM Part 1–4, DFM Part 1–4），未见独立 finance/accounting lecture。因此第5章（财务与成本）和第6章中的 finance 部分以 Sample Exam Questions 为主要证据来源，不是 slides confirmed。
+
+---
+
+## 优先冲刺顺序
 
 1. DFM + sustainability
 2. 7QC + control chart
@@ -99,16 +72,3 @@ draft: false
 4. WBS + CPM + communication channels
 5. risk + conflict
 6. NPV/BCR/IRR + break-even + make-or-buy
-
----
-
-## 5. 下一轮可以继续补什么
-
-如果后面你把缺失 PPT 再补上，我建议下一轮优先增强：
-
-- finance / costing 分册
-- organization / strategy / accounting definitions
-- EVM / CPI / SPI
-- more worked CPM examples
-
-这样整套复习资料会更完整。

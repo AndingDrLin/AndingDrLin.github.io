@@ -11,103 +11,63 @@ docGroup: "epmf-final-exam-revision-notes"
 order: 3
 draft: false
 ---
+
+## 考试要会什么
+
+- QC vs QA 区别
+- 7QC tools 识别（信号词 + 常见错法）
+- control chart 计算与稳定判断（sigma 处理规则）
+- Cost of Quality 四类划分
+- Taguchi loss function 计算
+- Six Sigma / DMAIC / CTQ 基本概念
+- Cp / Cpk 计算与判断
+
+## 一句话记忆
+
+QC 检测问题、QA 预防问题，7QC tools 负责识别工具、control chart 看过程是否受控、Cpk 看过程是否稳定满足规格。
+
 ---
 
-## 1. QC 与 QA 的区别
+## QC vs QA
 
-### Quality Control (QC)
+**QC (Quality Control)**：检查产品/过程输出，识别 defects，判断过程是否稳定。常见工具：7QC tools、control chart。
 
-**QC** 偏向：
-
-- 检查产品/过程输出
-- 识别 defects
-- 判断过程是否稳定
-- 常见工具：7QC tools、control chart
-
-### Quality Assurance (QA)
-
-**QA** 偏向：
-
-- 设计和保证过程本身
-- 通过流程与制度预防问题
-- 更强调预防而不是事后发现
-
-### 一句话对比
+**QA (Quality Assurance)**：设计和保证过程本身，通过流程与制度预防问题，强调预防而非事后发现。
 
 - **QC = detect and control defects**
 - **QA = prevent defects by managing the process**
 
 ---
 
-## 2. 7QC tools
+## 7QC tools 识别表
 
-样题里最常见的 7QC tools 包括：
-
-- **Flowchart**
-- **Check Sheet**
-- **Pareto Chart**
-- **Cause-and-Effect Diagram**
-- **Control Chart**
-- **Histogram**
-- **Scatter Diagram**
-
-### 必须会的识别题
-
-#### Cause-and-Effect Diagram
-
-也叫：
-
-- **Fishbone diagram**
-- **Ishikawa diagram**
-
-用途：
-
-> 逻辑化组织某个问题的可能原因，并展示因果关系。
-
-#### Pareto Chart
-
-用途：
-
-> 按重要性或频率从高到低排序，抓“vital few”。
-
-识别词：
-
-- descending bars
-- relative frequency
-- most important causes
-
-#### Control Chart
-
-用途：
-
-> 观察过程随时间变化，判断过程是否稳定、是否受控。
-
-识别词：
-
-- over time
-- stable / unstable
-- UCL / LCL
-- central line
+| Tool | 用途 | 信号词 | 常见错法 |
+|---|---|---|---|
+| Flowchart | 梳理流程步骤顺序 | steps, sequence, process flow | 当成因果图 |
+| Check Sheet | 系统记录发生频次 | frequency, tally, recording data | 当成 Pareto |
+| Pareto Chart | 按频率从高到低排序，抓 vital few | descending bars, most important causes, relative frequency | 忽略累积线，当成 histogram |
+| Cause-and-Effect Diagram | 逻辑化组织问题的可能原因 | fishbone, Ishikawa, root causes, multiple causes | 误以为只找出唯一原因 |
+| Control Chart | 观察过程随时间变化，判断是否稳定 | over time, stable / unstable, UCL / LCL, central line | 忘记判断 unstable 的非随机模式 |
+| Histogram | 看数据分布形状 | distribution, frequency distribution | 当成 Pareto（没有排序） |
+| Scatter Diagram | 看两个变量之间关系 | correlation, relationship between two variables | 当成 control chart |
 
 ---
 
-## 3. Cause-and-Effect Diagram 长题怎么答
+## Cause-and-Effect Diagram
 
-如果题目要你分析某种 defect 的 root causes，可以用下面框架：
+也叫 **Fishbone diagram** 或 **Ishikawa diagram**。
 
-### 常见主干 categories
+### 常见主干 categories（4M）
 
 - **Machines**
 - **Materials**
 - **Methods**
 - **Manpower**
 
-有时也可写成 6M 版本，但样题已经明确给出四类时，就按题干写。
-
 ### 答题方法
 
 1. 先写中心问题（effect）
-2. 再画主类别
+2. 再列主类别
 3. 每类下面列 2–3 个可能 cause
 4. 最后说明该图帮助团队系统定位 root causes
 
@@ -118,30 +78,21 @@ draft: false
 - Methods: unclear work instructions, improper parameter settings
 - Manpower: insufficient training, operator fatigue
 
+Reference: Set 1 Q1.3, Set 2 Q1.2 / Q2(e), Set 4 Q1.2
+
 ---
 
-## 4. Control Chart
+## Control Chart
 
 ### 基本结构
 
-- **Central Line (CL)**：通常是均值 `\bar{X}`
-- **Upper Control Limit (UCL)**
-- **Lower Control Limit (LCL)**
+- **Central Line (CL)**：均值 `\bar{X}`
+- **Upper Control Limit (UCL)**：`\bar{X} + k\sigma`
+- **Lower Control Limit (LCL)**：`\bar{X} - k\sigma`
 
-在样题风格里，常按 `2*Sigma` 或 `3*Sigma` 给限值。
-
-### 常用形式
-
-- `UCL = \bar{X} + k\sigma`
-- `LCL = \bar{X} - k\sigma`
-
-其中：
-- `k = 2` 或 `3`，按题目要求
-- `\sigma` 为标准差
+sigma 处理规则：**题目指定 2σ 就用 2σ，常规默认 3σ，不要混用。**
 
 ### 如何判断 unstable
-
-常见判断：
 
 - 有点超出 UCL / LCL
 - 出现异常趋势或明显非随机模式
@@ -149,249 +100,144 @@ draft: false
 
 ### Sample Set 1 控制图计算示例
 
-20 个 current 样本：
+20 个 current 样本：mean ≈ 502.85，sample standard deviation ≈ 6.05。
 
-- mean `\approx 502.85`
-- sample standard deviation `\approx 6.05`
+按 2σ：UCL ≈ 514.94，LCL ≈ 490.76。
 
-若按 `2\sigma`：
+考试里核心不是小数点最后一位，而是：会算均值与标准差 → 会给出 CL / UCL / LCL → 会根据图或数据判断是否稳定。
 
-- `UCL \approx 514.94`
-- `LCL \approx 490.76`
-
-如果采用总体标准差近似：
-
-- `UCL \approx 514.64`
-- `LCL \approx 491.06`
-
-考试里核心不是小数点最后一位，而是：
-
-1. 会算均值与标准差
-2. 会给出 CL/UCL/LCL
-3. 会根据图或数据判断是否稳定
+Reference: Set 1 Q2(b), Set 2 Q1.3, Set 4 Q3(m), Set 5 Q1.10
 
 ---
 
-## 5. Cost of Quality
+## Cost of Quality
 
-样题明确出现四类：
+四类 Cost of Quality，各有明确例子：
 
-- **Prevention Cost**
-- **Appraisal Cost**
-- **Internal Failure Cost**
-- **External Failure Cost**
+| 类别 | 含义 | 典型例子 |
+|---|---|---|
+| **Prevention Cost** | 预防问题发生 | training, process design, quality planning |
+| **Appraisal Cost** | 检查与评估 | inspection, testing, audits, calibration, acceptance sampling |
+| **Internal Failure Cost** | 出厂前发现的问题 | scrap, rework, re-inspection |
+| **External Failure Cost** | 客户侧发现的问题 | warranty repairs, recall, complaints handling, returns |
 
-### 记忆方式
-
-#### Prevention
-
-预防问题发生：
-- training
-- process design
-- quality planning
-
-#### Appraisal
-
-检查与评估：
-- inspection
-- testing
-- audits
-- calibration
-- acceptance sampling
-
-#### Internal Failure
-
-出厂前发现的问题：
-- scrap
-- rework
-- re-inspection
-
-#### External Failure
-
-客户侧发现的问题：
-- warranty repairs
-- recall
-- complaints handling
-- returns
-
-### 高频判断
-
-- training → Prevention
-- test/inspection → Appraisal
-- product recall / warranty repairs → External Failure
+高频判断速记：training → Prevention；test / inspection → Appraisal；product recall / warranty repairs → External Failure。
 
 ---
 
-## 6. Robust Design
+## Robust Design
 
-### 核心思想
+**Robust Design** 的目标：降低产品/过程对 noise factors 的敏感性，减少变异，使质量稳定。
 
-**Robust Design** 的目标不是只追求平均值达标，而是：
-
-> 降低产品/过程对 noise factors 的敏感性，减少变异，使质量稳定。
-
-### 高频表达
-
-- reduce variability
-- make performance less sensitive to noise
-- improve quality at low total loss
+高频表达：reduce variability / make performance less sensitive to noise / improve quality at low total loss。
 
 ---
 
-## 7. Taguchi loss function
+## Taguchi loss function
 
-### 核心公式
+对于 nominal-the-best：`L(y) = k(y - m)^2`
 
-对于 nominal-the-best：
+其中 `y` = observed value，`m` = target value，`k` = loss constant（若题目给 `A0` 和 `Δ0`，则 `k = A0 / (Δ0)^2`）。
 
-`L(y) = k(y - m)^2`
+核心含义：偏离目标越大，损失越大；损失是二次增长，不是线性增长；即使没超公差，只要偏离目标也可能已产生损失。
 
-其中：
-- `y` = observed value
-- `m` = target value
-- `k` = loss constant
+### 示例（Sample Set 1）
 
-如果题目给 `A0` 和 `\Delta 0`，则：
+目标 m = 8.5，k = 1，10 个观测值：
 
-`k = A0 / (\Delta 0)^2`
-
-### 含义
-
-- 偏离目标越大，损失越大
-- 损失是**二次增长**，不是线性增长
-- 即使没超公差，只要偏离目标，也可能已经产生损失
-
-### Sample Set 1 示例
-
-目标 `m = 8.5`，`k = 1`
-
-10 个观测值的 loss：
-
-- 8.10 → 0.1600
-- 8.90 → 0.1600
-- 8.45 → 0.0025
-- 9.25 → 0.5625
-- 8.86 → 0.1296
-- 8.35 → 0.0225
-- 8.25 → 0.0625
-- 8.68 → 0.0324
-- 8.90 → 0.1600
-- 9.05 → 0.3025
+`8.10 → 0.16  |  8.90 → 0.16  |  8.45 → 0.0025  |  9.25 → 0.5625  |  8.86 → 0.1296  |  8.35 → 0.0225  |  8.25 → 0.0625  |  8.68 → 0.0324  |  8.90 → 0.16  |  9.05 → 0.3025`
 
 **Total loss = 1.5945**
 
-### 常见 loss types
+常见 loss types：Nominal-the-best / Smaller-the-better / Larger-the-better。
 
-课程截图与样题可安全记住：
-
-- **Nominal-the-best**
-- **Smaller-the-better**
-- **Larger-the-better**
+Reference: Set 1 Q3(a)(iii), Set 3 Q3(r), Set 4 Q3(n)
 
 ---
 
-## 8. Noise factors / P-diagram
+## Noise factors / P-diagram
 
-截图显示 robust design 会把影响响应 `y` 的因素分类。
-
-你至少要会写：
+Robust design 会把影响响应 y 的因素分类：
 
 - **Noise factors**：引起波动、但通常难以控制的因素
 - **Control factors**：设计者可以主动设定或优化的因素
 - **Signal factors**：输入或功能相关信号
 
-如果题目问“写任意两类”，写其中两类即可。
+题目问"写任意两类"，写其中两类即可。
 
 ---
 
-## 9. Six Sigma
+## Six Sigma
 
 ### 定义
 
-**Six Sigma** 是一种以减少 defects、降低 variation、改进 process capability 为目标的方法体系。
+一种以减少 defects、降低 variation、改进 process capability 为目标的方法体系。
 
-### 高频考点：DMAIC
+### DMAIC
 
-- **Define**
-- **Measure**
-- **Analyze**
-- **Improve**
-- **Control**
+Define → Measure → Analyze → Improve → Control
 
-如果题目问“roadmap for Six Sigma”，答案通常就是 **DMAIC**。
+题目问 "roadmap for Six Sigma"，答案通常就是 DMAIC。
 
 ### CTQ
 
-**Critical-to-Quality (CTQ)**：
+**Critical-to-Quality (CTQ)**：对客户质量感知最关键、必须被满足的质量特性。
 
-> 对客户质量感知最关键、必须被满足的质量特性。
+### 其他高频小考点
+
+- **Poka-yoke (mistake-proofing)**：用简单机制防止人为错误
+- Six Sigma 组织角色：Champion（项目赞助）/ Black Belt（专职改进）/ Green Belt（兼职参与）
+
+Reference: Set 1 Q1.4, Set 3 Q3(s)
 
 ---
 
-## 10. Process capability
+## Process capability: Cp / Cpk
 
-### 两个核心指标
+**Cp** = `(USL - LSL) / 6σ`
 
-#### Cp
+只看过程"分布宽度"相对规格宽度够不够，不考虑过程中心是否偏移。
 
-`Cp = (USL - LSL) / 6\sigma`
+**Cpk** = `min[(USL - μ)/(3σ), (μ - LSL)/(3σ)]`
 
-含义：
-- 只看过程“分布宽度”相对规格宽度够不够
-- 不考虑过程中心是否偏移
+既看离散程度，也看均值是否偏心。
 
-#### Cpk
+### Cpk 判断表
 
-`Cpk = min[(USL - \mu)/(3\sigma), (\mu - LSL)/(3\sigma)]`
+| Cpk 值 | 含义 |
+|---|---|
+| Cpk ≥ 1.33 | 过程能力足够 |
+| 1.0 ≤ Cpk < 1.33 | 边界，需关注 |
+| Cpk < 1.0 | 过程能力不足，无法稳定满足规格 |
 
-含义：
-- 既看离散程度，也看均值是否偏心
-
-### 判断逻辑
-
-- `Cp` 高但 `Cpk` 低：说明过程潜力可以，但中心偏了
-- `Cp`、`Cpk` 都低：说明过程本身能力不足
-- `Cpk < 1`：通常说明过程难以稳定满足规格
+**Cp 高但 Cpk 低** → 过程潜力可以但中心偏了；**Cp、Cpk 都低** → 过程本身能力不足。
 
 ### Sample Set 1 例子
 
-规格：`500 ± 5`，即：
-- `USL = 505`
-- `LSL = 495`
+规格：500 ± 5（USL = 505，LSL = 495），μ ≈ 502.85，σ ≈ 6.05。
 
-由样本近似计算：
-- `\mu \approx 502.85`
-- `\sigma \approx 6.05`
+Cp ≈ 0.276，Cpk ≈ 0.119 → 过程 capability 很差，波动大且中心偏向上侧规格，不足以稳定满足要求。
 
-得到：
-- `Cp \approx 0.276`
-- `Cpk \approx 0.119`
-
-结论：
-
-> 该过程 capability 很差，波动大且中心偏向上侧规格，不足以稳定满足要求。
+Reference: Set 1 Q2(c), Set 3 Q3(s), Set 4 Q3(o), Set 5 Q1.11, Set 6 Q3(t)(ii)
 
 ---
 
-## 11. MCQ 速记
+## 高频判断速记
 
 ### 一看就该选的
 
-- fishbone / Ishikawa → cause-effect diagram
-- process over time → control chart
-- descending bars → Pareto chart
-- Six Sigma roadmap → DMAIC
-- meets specifications consistently → process capability
+- fishbone / Ishikawa → cause-effect diagram (Set 1 Q1.3, Set 2 Q1.2)
+- process over time → control chart (Set 1 Q2(b), Set 2 Q1.3)
+- descending bars → Pareto chart (Set 4 Q1.2)
+- Six Sigma roadmap → DMAIC (Set 1 Q1.4, Set 3 Q3(s))
+- meets specifications consistently → process capability / Cpk (Set 1 Q2(c), Set 5 Q1.11)
+- training → Prevention cost (Set 1 Q3(a)(iii))
+- recall / warranty → External Failure cost (Set 4 Q3(n))
 
 ### 一看就该警惕的错项
 
-- process capability measures only worker skill
-- control chart judges profitability
-- QC = only prevention system
-- cause-effect diagram identifies only one sole cause
-
----
-
-## 12. Coverage 提示
-
-本册整体支撑较强，适合优先复习；更细的覆盖边界统一看 `07_coverage_and_gaps.md`。
+- process capability measures only worker skill → 错
+- control chart judges profitability → 错
+- QC = only prevention system → 错（QC 是 detect，QA 才是 prevent）
+- cause-effect diagram identifies only one sole cause → 错（fishbone 是多原因框架）
+- Cp 高就代表过程满足规格 → 错（需同时看 Cpk 是否偏心）

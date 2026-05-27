@@ -11,20 +11,19 @@ docGroup: "epmf-final-exam-revision-notes"
 order: -1
 draft: false
 ---
-这套复习资料按**考试主题**拆成多个 Markdown 文件，而不是做成一个超长文档，便于分块学习与反复刷题。
 
-## 使用方式
+这套复习资料按考试主题拆成独立 Markdown，目标是最后几天突击用。不是完整教材，是按 Sample Exam + slides 整理的 sprint notes。
 
-建议按下面顺序看：
+---
 
-1. 先看 [第0章 考试地图与题目索引](/notes/engineering-project-management-and-finance/00_exam_and_question_map/)，知道样题在考什么，以及按题号反查到具体分册。
-2. 再按模块学习：
-   - [第1章 DFM 与可持续设计](/notes/engineering-project-management-and-finance/01_dfm_sustainability/)
-   - [第2章 质量与 Six Sigma](/notes/engineering-project-management-and-finance/02_quality_six_sigma/)
-   - [第3章 项目管理基础](/notes/engineering-project-management-and-finance/03_project_management_core/)
-   - [第4章 进度、WBS、沟通与风险](/notes/engineering-project-management-and-finance/04_schedule_wbs_risk_comms/)
-   - [第5章 财务与成本](/notes/engineering-project-management-and-finance/05_finance_and_costing/)
-3. 最后用 [第6章 公式与答题模板](/notes/engineering-project-management-and-finance/06_formulas_and_answer_templates/) 做冲刺。
+## 最后 3 小时怎么用
+
+1. 先看 [第0章 考试地图](/notes/engineering-project-management-and-finance/00_exam_and_question_map/) — 定位样题考什么、哪些是必做题
+2. 翻 [第6章 公式与答题模板](/notes/engineering-project-management-and-finance/06_formulas_and_answer_templates/) — 背公式和答题步骤
+3. 根据薄弱模块回到 [第1–5章](#文件目录) 查概念
+4. 如果涉及 finance / valuation / business law，看 [第7章 覆盖范围与缺口](/notes/engineering-project-management-and-finance/07_coverage_and_gaps/) 确认来源可信度
+
+---
 
 ## 文件目录
 
@@ -37,17 +36,19 @@ draft: false
 - [第6章 公式与答题模板](/notes/engineering-project-management-and-finance/06_formulas_and_answer_templates/) — 公式速查与长题作答模板
 - [第7章 覆盖范围与缺口](/notes/engineering-project-management-and-finance/07_coverage_and_gaps/) — 当前 slides 已覆盖与未完全覆盖的内容
 
-## 说明
+---
 
-- 正文以中文为主，保留英文术语。
-- 本版本**只依据当前仓库已有 slides + Sample Exam Questions** 编写。
-- 对于样题中出现、但在当前已读 slides 中支撑不足的内容，我会明确标记为：
-  - `Slide support confirmed`
-  - `Partial coverage`
-  - `Exam-only signal`
+## 来源标记说明
 
-## 适合的复习节奏
+- `Slides-backed`：slides 有明确支撑
+- `Slides + Sample-backed`：slides 有基础 + 样题确认考法
+- `Sample-backed`：样题反复出现，无直接 slides 支撑
+- `Exam-only signal`：来源不明，保守记忆
 
-- 第 1 轮：按文件顺序通读。
-- 第 2 轮：只看每份文件里的“高频判断点 / 易错点 / 模板”。
-- 第 3 轮：拿样题对应题目自己口述答案，再回来查模板。
+---
+
+## 三轮复习节奏
+
+- 第 1 轮：按章节通读，建立框架
+- 第 2 轮：只刷"高频判断速记 + 答题模板 + 易错点"
+- 第 3 轮：拿样题口述答案，回来查模板

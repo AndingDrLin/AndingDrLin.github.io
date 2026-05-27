@@ -10,259 +10,157 @@ docGroup: "epmf-final-exam-revision-notes"
 order: 4
 draft: false
 ---
----
 
-## 1. 什么是 project
+## 考试要会什么
 
-在项目管理语境里，**project** 是：
+- 区分 project vs operations：哪些是 project，哪些不是（MCQ 反复考）
+- 判断 5 个 process groups 各自对应什么场景
+- 早期阶段的四个 "highest" 特征，尤其知道 cost 并不是
+- 三种组织结构的图形识别
+- Conflict management 五种策略的胜负逻辑
 
-> 为了创造一个独特的产品、服务或成果而进行的临时性工作。
+## 一句话记忆
 
-### 判断 not a project 的方法
+Project 是临时+独特；operations 是持续+重复——这道分界线贯穿整章所有题。
 
-如果题目描述的是：
+## Project definition
 
-- routine updates
-- repetitive operations
-- ongoing maintenance
-- day-to-day business work
+PMI 定义：为了创造一个独特的产品、服务或成果而进行的**临时性工作**。两个关键词：**unique** + **temporary**。
 
-通常**不是** project。
+### 判断 not a project
 
-如果描述的是：
+| 题目描述 | 判断 |
+|---|---|
+| routine updates, repetitive operations, ongoing maintenance, day-to-day business | **不是** project |
+| prototype development, new system implementation, new PCB design, one-off change initiative | **是** project |
 
-- prototype development
-- new system implementation
-- new PCB design/build
-- one-off change initiative
+> Set 2 Q1.4 — "which is not a project" 高频出题点
+> Set 3 Q1.1, Set 4 Q1.4-1.5 — 同一考法变体
 
-通常是 project。
+## 项目早期阶段
 
----
+四个关键判断（题目问 "initial phase"）：
 
-## 2. 为什么 companies use project management
+- uncertainty **highest** — 什么都还没定
+- stakeholder influence **highest** — 越早介入影响越大
+- initial scope defined，initial financial resources committed
+- cost at the beginning **NOT highest** — 这是经典陷阱项
 
-样题反复暗示的正确逻辑包括：
+> Set 4 Q1.5 — "initial stage 哪项不对" → 选 cost 最高那个
 
-- define the project and align with customer
-- estimate cost / plan work
-- assess risks and prepare backup plans
-- allocate resources at the right time
-- manage schedule, not just create schedule once
+## Process groups 场景判断
 
-### 高频陷阱
+读题先抓信号词，对应到 process group：
 
-“只在计划完成后跟踪进度”这种说法通常是错的，因为项目管理强调持续 monitoring and control。
+| Process group | 信号词 |
+|---|---|
+| **Initiating** | clarify purpose, define high-level scope, identify stakeholders, authorise project |
+| **Planning** | develop strategy, identify risks, define how to execute and control, create WBS |
+| **Executing** | carry out planned work, coordinate people and resources, manage deliverables |
+| **Monitoring & Controlling** | compare actual vs plan, manage changes, ensure only approved changes implemented |
+| **Closing** | formally complete, obtain acceptance, archive documents, lessons learned |
 
----
+核心逻辑：Initiating 问"做什么"，Planning 问"怎么做"，Executing 问"正在做"，M&C 问"做得对不对"，Closing 问"做完了怎么收"。
 
-## 3. 项目早期阶段的特征
+> Set 6 Q2(c) — 场景判断是大题考点
 
-高频判断点：
+## Validate Scope
 
-- uncertainty highest
-- stakeholder influence highest
-- initial scope is defined
-- initial financial resources are committed
-- cost at the beginning is **not** highest
+典型场景：把成果展示给 steering committee / sponsor → 回答问题 → 获取正式确认。
 
-### 结论
+答案永远是 **Validate Scope**。
 
-题目若问“initial phase 哪项不对”，常见错误项是：
+不要被 "Accept Deliverables" 带偏——课程术语统一用 Validate Scope。
 
-> the cost associated at the beginning of the project is highest
+> Set 2 Q1.6
 
----
+## Talent Triangle
 
-## 4. PMI 5 个 process groups
+PM 需要三类能力，最安全写法：
 
-- **Initiating**
-- **Planning**
-- **Executing**
-- **Monitoring and Controlling**
-- **Closing**
+- **Technical project management** — 方法、工具、计划、进度、成本、风险
+- **Leadership** — 激励团队、沟通协调、解决冲突、建立共同目标
+- **Strategic and business management** — 理解组织目标、商业环境、项目价值，让项目与战略一致
 
-### 题目描述到哪一组
+## Leadership vs Management
 
-#### Initiating
+三组核心对比（记住就够写）：
 
-- clarify purpose
-- define high-level scope
-- identify stakeholders
+- **Leadership**: vision & inspiration → **Management**: planning & control
+- **Leadership**: drives change → **Management**: maintains order & consistency
+- **Leadership**: influences people → **Management**: organizes processes & resources
 
-#### Planning
+两者不同，不是同义词——高频陷阱。
 
-- develop strategies and tactics
-- identify risks
-- define how to execute and control the project
+> Set 6 Q2(d)
 
-#### Executing
+## Organization structures
 
-- carry out planned work
-- coordinate people and resources
+样题高频出现三种：Divisional、Matrix、Start-up。
 
-#### Monitoring and Controlling
+| 看图怎么看 | 判断 |
+|---|---|
+| top management 下分多个 division，每个 division 自带职能单元 | **Divisional** |
+| 既有 functional lines 又有 project team lines，成员多方向汇报 | **Matrix** |
+| 层级极少，entrepreneur 居中，span of control 很宽 | **Start-up** |
 
-- compare actual vs plan
-- manage changes
-- ensure only approved changes are implemented
+### Start-up 特征（真命题 vs 常见错误项）
 
-#### Closing
+- ✅ few layers, limited middle-line managerial levels, wide span of control
+- ❌ maximum standardisation and formalisation（这是 formal org 的特征）
+- ❌ decentralised and indirect supervision
 
-- formally complete project/phase
-- obtain acceptance
-- archive and update documents
+### 演化逻辑（图形题不用死记）
 
----
+Start-up（最简单、中心化）→ Expansion → Growth → Formal Organisation（层级最清晰、最制度化）
 
-## 5. Validate Scope
+> Set 1 Q1.9, Set 2 Q1.7/Q1.9, Set 3 Q1.3, Set 4 Q1.7-1.8, Set 5 Q1.2-1.3, Set 6 Q1.8
 
-样题把一个典型情景写得很清楚：
+## Competence ladder
 
-- 把成果展示给 steering committee / sponsor
-- 回答问题
-- 获取正式确认成果满足期望
+四阶段意识能力模型（Sample-backed only）：
 
-这对应：
+| 阶段 | 英文 | 含义 |
+|---|---|---|
+| 1 | Unconscious incompetent | 不知道自己不会（无知无觉） |
+| 2 | Conscious incompetent | 知道自己不会（有觉无知） |
+| 3 | Conscious competent | 会做但必须集中注意力（有觉有知） |
+| 4 | Unconscious competent | 本能就会，不需要刻意想（无知有知） |
 
-> **Validate Scope**
+考试出法：给一个场景描述某人学新技能，判断处于哪个阶段。
 
-不要被 “Accept Deliverables” 这种近似表达带偏；课程术语通常用 **Validate Scope**。
+> Set 1 Q1.6
 
----
+## Conflict management
 
-## 6. Talent Triangle / project manager skill sets
+五种策略 + 胜负逻辑：
 
-样题提到项目经理需要三类核心能力。
+| 策略 | 胜负结果 | 关键词 |
+|---|---|---|
+| **Collaborate / Problem Solve** | win-win | 最理想，但最耗时 |
+| **Compromise / Reconcile** | partial win / partial loss | 双方各让一步 |
+| **Smooth / Accommodate** | one loses, one wins | 为了关系让步 |
+| **Force / Compete** | one wins, one loses | 需要快速决策时用 |
+| **Withdraw / Avoid** | neither gains | 问题被推迟 |
 
-最安全写法：
+题目套路：问"哪种方式对团队长期最好" → Collaborate；问"最快解决" → Force/Compete。
 
-- **Technical project management**
-- **Leadership**
-- **Strategic and business management**
+> Set 2 Q2(g), Set 6 Q3(u)(viii)
 
-### 如果题目让解释任意两项
+## 高频判断速记
 
-#### Technical project management
+### 必记正确项
 
-掌握方法、工具、计划、进度、成本、风险等项目管理技术。
+- routine software updates → **not a project**（Set 2 Q1.4, Set 4 Q1.4）
+- stakeholder influence highest at the beginning（Set 4 Q1.5）
+- validating deliverables with sponsor → **Validate Scope**（Set 2 Q1.6）
+- matrix chart with multiple reporting lines → **Matrix Structure**（Set 4 Q1.7）
+- start-up structure → few layers + wide span of control（Set 1 Q1.9, Set 5 Q1.2）
+- early stage uncertainty highest, cost **not** highest（Set 4 Q1.5）
 
-#### Leadership
+### 必记错误项（看到就排除）
 
-激励团队、沟通协调、解决冲突、建立共同目标。
-
-#### Strategic and business management
-
-理解组织目标、商业环境和项目价值，让项目与战略一致。
-
----
-
-## 7. Leadership vs Management
-
-样题可能要求比较两者差异。
-
-### 可写三组对比
-
-- **Leadership** focuses on vision and inspiration; **Management** focuses on planning and control.
-- **Leadership** drives change; **Management** maintains order and consistency.
-- **Leadership** influences people; **Management** organizes processes and resources.
-
----
-
-## 8. 组织结构 organization structures
-
-样题中高频出现：
-
-- **Divisional structure**
-- **Matrix structure**
-- **Start-up / simple structure**
-- **Formal organisation**
-- 有时也出现 **team-based** 作为干扰项
-
-### Divisional structure
-
-如果图是：
-
-- top management 下分多个 division
-- 每个 division 下带自己的职能或业务单元
-
-通常是 **Divisional Structure**。
-
-### Matrix structure
-
-如果图里：
-
-- 既有 functional lines
-- 又有 product/project team lines
-- 成员同时受多个方向协调
-
-通常是 **Matrix Structure**。
-
-### Start-up structure 特征
-
-样题反复考的真命题：
-
-- few layers
-- limited middle-line managerial levels
-- wide span of control around entrepreneur
-
-通常不对的说法：
-
-- maximum standardisation and formalisation
-- decentralised and indirect supervision
-
----
-
-## 9. Formal organisation / growth / expansion / start-up 图像题
-
-你不必死记图形细节，记住演化逻辑即可：
-
-- **Start-up**：最简单、中心化、少层级
-- **Expansion**：开始围绕核心创业者外扩
-- **Growth**：规模更大、关系更复杂
-- **Formal Organisation**：层级结构最清晰、最制度化
-
----
-
-## 10. Conflict management 基本策略
-
-样题直接出现五类：
-
-- **Withdraw/Avoid**
-- **Smooth/Accommodate**
-- **Compromise/Reconcile**
-- **Force/Compete**
-- **Collaborate/Problem Solve**
-
-### 胜负逻辑
-
-- **Collaborate** → win-win
-- **Compromise** → partial win / partial loss for both
-- **Accommodate** → one loses, one wins，为了关系而让步
-- **Compete** → one wins, one loses
-- **Avoid** → neither side really gains; issue postponed
-
----
-
-## 11. MCQ 速记
-
-### 高频正确项
-
-- routine software updates → not a project
-- stakeholder influence highest at the beginning
-- validating deliverables with sponsor → Validate Scope
-- matrix chart with multiple reporting/coordination lines → Matrix Structure
-- start-up structure → few layers + wide span of control
-
-### 高频错误项
-
-- project management is only schedule tracking
-- initial stage has highest cost
-- start-up structure = maximum formalisation
-- management and leadership are identical
-
----
-
-## 12. Coverage 提示
-
-本册中 PM fundamentals 支撑较强；组织结构、Talent Triangle、leadership vs management 这类题建议同时参考 `07_coverage_and_gaps.md`。
+- "project management is only schedule tracking" — 错，强调持续 monitoring
+- "initial stage has highest cost" — 错，cost highest 在执行阶段
+- "start-up structure = maximum formalisation" — 错，那是 formal org
+- "management and leadership are identical" — 错，两者功能不同

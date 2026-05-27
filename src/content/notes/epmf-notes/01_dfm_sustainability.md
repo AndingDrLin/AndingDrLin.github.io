@@ -8,88 +8,66 @@ tags:
   - sustainability
 category: "课程学习"
 docGroup: "epmf-final-exam-revision-notes"
-order: 2
+order: 1
 draft: false
 ---
----
 
-## 1. Design for Manufacturing (DFM) 是什么
+## 考试要会什么
 
-**Design for Manufacturing (DFM)** 的核心思想：
+- DFM 定义、介入时机、核心原则
+- Design A vs Design B 比较（长题答题模板）
+- Sustainability 三大支柱及其高频错项
+- 4Rs 的记忆与题目匹配
+- Precautionary approach 的判断逻辑
 
-> 在产品开发早期就从制造角度进行设计，使产品**更容易制造、成本更低、质量更稳定、上市更快**。
+## 一句话记忆
 
-### 高频判断点
-
-- DFM 不是等到生产阶段才开始。
-- DFM 越早介入，影响越大，改动成本越低。
-- DFM 常常和下面目标绑定：
-  - reduce part count
-  - simplify assembly
-  - standardize components
-  - reduce manufacturing complexity
-  - reduce total production cost
-
-### 题目常见错误选项
-
-错误选项通常会说：
-
-- DFM 不能在初始设计阶段开始。
-- DFM 会增加制造复杂度。
-- DFM 主要在生产后期最有效。
-- DFM 的重点只是美观或产品独特性。
-
-这些通常都不对。
+DFM = 早期设计阶段考虑制造，sustainability = 三支柱平衡不损害后代，precautionary approach = 风险不确定但伤害大时主动预防。
 
 ---
 
-## 2. 为什么 early design 最重要
+## DFM definition
 
-样题多次重复一个核心逻辑：
+**Design for Manufacturing (DFM)**：
 
-> 在 **initial design / product development** 阶段，DFM 的影响最大，而改动成本最低。
+> 在产品开发早期就从制造角度进行设计，使产品更容易制造、成本更低、质量更稳定、上市更快。
 
-### 你要记住的标准表述
+核心时序逻辑：
 
-- 在产品开发初期，设计决策决定了后续大部分成本、质量和制造时间。
-- 进入 fabrication / production 后，修改会更贵、更慢、影响更大。
+- initial / early design 阶段介入，影响最大，改动成本最低
+- 进入 fabrication / production 后，修改会更贵、更慢、影响更大
 
-### 可直接用于作答的句子
+高频错项陷阱：
+
+- "DFM 不能在初始设计阶段开始" → 错
+- "DFM 主要在生产后期最有效" → 错
+
+直接可用于作答的句子：
 
 > DFM is most effective in the initial design stage because design decisions made early determine a large proportion of product cost, quality, and manufacturability, while the cost of change is still low.
 
+Reference: Set 1 Q1.1, Set 2 Q1.1, Set 3 Q1.10, Set 4 Q1.1, Set 5 Q1.8-1.9, Set 6 Q1.1-1.2
+
 ---
 
-## 3. DFM 常考原则
+## DFM principles
 
-样题与截图中能稳定支持的 DFM principles 包括：
+样题与截图中能稳定支持的 DFM principles：
 
 - **Simplicity**：结构简单化
-- **Standardization**：标准化、减少非标件
-- **Tolerance**：合理公差，不要过度精密
-- **Material Selection**：材料选择兼顾制造与成本
+- **Standardization**：标准化，减少非标件
+- **Tolerance**：合理公差，不追求过度精密
+- **Material Selection**：兼顾制造与成本
 - **Automation**：有利于自动化生产
 - **Process Integration**：减少不必要工序与装配环节
 
-### 一句话理解
-
-- fewer parts
-- easier assembly
-- fewer process steps
-- lower complexity
-- lower cost
-- more consistent quality
+一句话理解：fewer parts → easier assembly → fewer process steps → lower cost → more consistent quality。
 
 ---
 
-## 4. DFM 长题：比较 Design A vs Design B 怎么写
+## Design A vs B 比较模板
 
-样题常见设定：
-
-- **Design A**：多个零件，需要装配
-- **Design B**：集成为单一 molded component
-
-### 作答结构
+样题常见设定：**Design A**（多零件，需装配）vs **Design B**（集成为单一 molded component）。
 
 #### Design A advantages
 
@@ -99,63 +77,48 @@ draft: false
 
 #### Design A disadvantages
 
-- more parts
-- more assembly operations
-- higher assembly time
-- more chances of assembly error
+- more parts, more assembly operations
+- higher assembly time, more chances of assembly error
 - higher inventory / handling complexity
 
 #### Design B advantages
 
-- part count reduced
-- assembly simplified
-- lower labour time
-- lower manufacturing complexity
-- often lower unit cost at scale
-- potentially better consistency
+- part count reduced, assembly simplified
+- lower labour time, lower manufacturing complexity
+- often lower unit cost at scale, potentially better consistency
 
 #### Design B disadvantages
 
-- tooling/mold cost may be higher initially
+- tooling / mold cost may be higher initially
 - maintenance or partial replacement may be harder
 - less modular / less reusable
 
-### 高分句型
+高分句型：
 
 > From a DFM perspective, Design B is generally preferred because it reduces part count and simplifies assembly, which lowers manufacturing complexity, assembly time, and the probability of defects.
 
 ---
 
-## 5. Sustainability 是什么
-
-### 标准定义
+## Sustainability
 
 **Sustainability**：
 
 > 满足当代人的需要，而不损害后代人满足其需要的能力。
 
-### 三大支柱 three pillars
+**三大支柱 three pillars**：Economic / Environmental / Social。
 
-- **Economic**
-- **Environmental**
-- **Social**
+高频陷阱：
 
-### 高频陷阱
+- 错误选项只重经济增长、只重环保、或只重社会福祉
+- 只要失去"平衡三支柱 + 不损害未来代际需求"，通常就是错的
 
-错误选项常把三者写成：
-
-- 只重经济增长
-- 只重环保
-- 只重社会福祉
-- 不考虑未来 generations
-
-只要失去“平衡三支柱 + 不损害未来代际需求”，通常就是错的。
+Reference: Set 1 Q1.2, Set 2 Q1.8, Set 4 Q1.3, Set 6 Q1.1-1.2
 
 ---
 
-## 6. Actionable sustainable design principles
+## Actionable sustainable design principles
 
-样题里反复出现的可操作原则包括：
+样题里反复出现的可操作原则：
 
 - **Dematerialization**：减少材料使用
 - **Migration to product-service systems**
@@ -163,94 +126,79 @@ draft: false
 - **Invest in simulation**
 - resource efficiency
 - reduce embedded carbon / energy / water / waste / pollution
-- reuse / recycling / decommissioning / responsible disposal
 
-### 高频排错点
-
-如果题目问“以下哪项不是 sustainable design principle”，非常常见的错误项是：
-
-- **Design for a shorter period of usage**
-
-因为 sustainability 通常强调更长寿命、可维护、可复用，而不是故意缩短使用周期。
+高频错项："Design for a shorter period of usage" → sustainability 强调更长寿命、可维护、可复用，故意缩短使用周期是常见错误干扰项。
 
 ---
 
-## 7. 4Rs
+## 4Rs
 
-课程与样题明确把 **4Rs** 作为 circular economy 的重要工具。
-
-最安全的记法：
+课程截图确认的最安全记法：
 
 - **Reduce**
 - **Reuse**
 - **Recycle**
 - **Recover**
 
-有些课堂或教材会用 Repair/Remanufacture 等近似表达，但如果考试直接问“4Rs”，优先写课程最常规的 R 组合，并结合题干解释。
+题目匹配：
 
-### 题目怎么套
+- 减少材料用量 → Reduce
+- 零件可在其他设备继续使用 → Reuse
+- 材料能回收再处理 → Recycle
+- 废弃物/残余价值被回收 → Recover
 
-- 如果设计减少材料用量：偏向 **Reduce**
-- 如果零件可在其他设备继续使用：偏向 **Reuse**
-- 如果材料能回收再处理：偏向 **Recycle**
-- 如果废弃物/残余价值被回收：偏向 **Recover**
-
----
-
-## 8. DFM + sustainability 联合题怎么答
-
-这类题经常不是单独问 DFM，而是问：
-
-- 哪个设计更容易制造？
-- 哪个设计更 sustainable？
-- 它们分别对应哪些 4Rs？
-
-### 答题框架
-
-#### 第一步：先从 DFM 评价
-
-看：
-- part count
-- assembly complexity
-- manufacturing steps
-- standardization
-- cost/time/quality impact
-
-#### 第二步：再从 sustainability 评价
-
-看：
-- material use
-- product size / weight
-- energy / transport implications
-- reusability
-- end-of-life handling
-
-#### 第三步：最后挂到 4Rs
-
-例如：
-- one reusable part → Reuse
-- integrated smaller design → Reduce
+> 课程截图确认的 4R 组合，如考试给出其他 R 组合按题干判断。
 
 ---
 
-## 9. MCQ 速记
+## DFM + sustainability 联合题
 
-### 哪些表述通常是对的
+这类题经常把 DFM 与 sustainability 结合问，答题分三步：
 
-- DFM should begin in the early design stage.
-- DFM aims to reduce manufacturing complexity and total production cost.
-- Product development has the biggest impact on final price, quality, and manufacturing time.
-- Sustainability balances economic, environmental, and social pillars.
+**第一步：DFM 角度**
 
-### 哪些表述通常是错的
+看 part count、assembly complexity、manufacturing steps、standardization、cost / time / quality impact。
 
-- DFM is best applied after production starts.
-- Sustainability means focusing only on environmental care.
-- Designing for shorter usage is a good sustainability principle.
-- More parts and more complex shapes usually improve manufacturability.
+**第二步：sustainability 角度**
+
+看 material use、product size / weight、energy / transport implications、reusability、end-of-life handling。
+
+**第三步：挂到 4Rs**
+
+例如：one reusable part → Reuse；integrated smaller design → Reduce。
 
 ---
 
-## 10. Coverage 提示
+## Precautionary approach
 
-本册整体可作为高优先级复习内容使用；更细的覆盖边界统一看 `07_coverage_and_gaps.md`。
+核心逻辑：当产品潜在影响不确定、但可能造成严重伤害时，应采取预防措施。
+
+高频判断：
+
+- 看到 "uncertain risk" + "potential harm" → 选 precautionary / preventive action
+
+错项警惕：不能因为"没证据证明有害"就完全忽略风险。
+
+标记：Sample-backed only
+
+Reference: Set 1 Q1.8
+
+---
+
+## 高频判断速记
+
+### 一看就该选的
+
+- DFM should begin in the early design stage → 对 (Set 1 Q1.1, Set 2 Q1.1)
+- DFM aims to reduce manufacturing complexity and total production cost → 对 (Set 4 Q1.1)
+- Product development has the biggest impact on final price, quality, and manufacturing time → 对 (Set 5 Q1.8)
+- Sustainability balances economic, environmental, and social pillars → 对 (Set 1 Q1.2, Set 4 Q1.3)
+- uncertain risk + potential harm → precautionary approach → 对 (Set 1 Q1.8)
+
+### 一看就该警惕的错项
+
+- DFM is best applied after production starts → 错
+- DFM 会增加制造复杂度 → 错
+- Sustainability means focusing only on environmental care → 错
+- Designing for shorter usage is a good sustainability principle → 错
+- 没证据有害就可以完全忽略 → 错（precautionary approach 的核心）
