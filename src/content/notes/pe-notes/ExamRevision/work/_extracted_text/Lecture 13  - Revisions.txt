@@ -1,0 +1,160 @@
+ Power Electronics
+Revision of past exam questions
+
+
+              Dr Shuja Ansari
+        Shuja.Ansari@glasgow.ac.uk
+
+
+
+
+                                     1
+(c)
+(a)   D = 10 / 20 = 0.5
+                       é1´10                                          ù
+                                            -5
+
+
+(b)   I avg =
+                 1
+              2 ´10-5 êë ò0
+                     = ê     15 + ( 20 - 15 ) t /((1 ´ 10 -5
+                                                             ) dt + 0 ú = 8.75A
+                                                                      úû
+                                                                               )
+                                   1´10-5
+
+                                       ò (15 + 5 / (1´10 ) t ) dt
+(c)              1                                                    -5
+                                                                           2
+      I rms =
+              2 ´10-5                  0
+                                                                                                                                  TJ = Junction
+                             æ
+                        1´10-5                  2     ö                                                 (g)                        temperature
+              1              ç 225 + 150t + 25t       ÷ dt
+      =
+           2 ´10-5        ò0 ç      1´10-5 (1´10-5 )2 ÷
+                                                                                                                 Power
+                                                                                                                 Loss
+                                                                                                                                      1     q JC (° C/W)
+                             è                        ø
+           225 ´10-5 + 150 ´ (1´10-5 ) / 2 + 25 ´ (1´10 -5 ) / 3
+                                                                                                                                 TC = Case
+                                                                                                                                  temperature
+      =
+                                                     2 ´10-5
+                                                                                                                                      0.4
+                                                                                                                                            qCS (° C/W)
+                                                                                                                         HEAT
+      =    ( 225 + 75 + 25 / 3) / 2 = 12.4A
+                                                                                                                                 TS = Heatsink
+                  1
+                              1´10-5
+                                                         1        é
+                                                                  1´10-5       ù                                                  temperature
+(d)   Pavg =
+               2 ´10-5             ò vidt = 2 ´10 êê ò 50idt + 0úú
+                                                             -5                                                                        1.5 q
+                                                                                                                                               SA   (° C/W)
+                                   0                              ë 0          û
+           50 é               ù                                                                                                                     25 ° C
+                              -5
+                 1´10                                                                                                            TA = Ambient
+      =      -5 ê
+        2 ´10 êë 0 ò  idt + 0 ú = 50 I avg = 437.5W
+                              úû
+                                                                                                                                  temperature
+
+
+                                                                                                              Ploss = Pconduction + Pswitching = 1.125 + 7.668 = 8.813W
+                                                                                                              TS = 25 + 8.813 ´1.5 = 38.22
+                              R = (12.4 ) ´ 50 ´10 = 7.688W
+                                                     2
+      Pconduction = I   2                                             -3
+                                                                                                              TC = TS + 8.813 ´ 0.4 = 41.75
+(e)                     rms
+
+                                                                                                              TJ = TC + 8.813 ´1 = 50.56
+
+
+                                                 1    æ1                        1                       ö
+(f)   Pswitching = Pon + Poff =                    -6 ç
+                                                         ´ 50 ´ 15 ´ 20 ´ 10-9 + ´ 50 ´ 20 ´ 30 ´ 10 -9 ÷
+                                             20 ´10 è 2                         2                       ø
+              1
+                 -6 (
+      =               7500 ´10-9 + 15000 ´10-9 ) = 1.125W
+          20 ´10
+                              F               F
+       (a)          Vout =        VIn Þ 12 =      ´ 5 Þ F = 0.706
+                             1- F            1- F
+
+
+       (b)
+                                                    Vout
+                Vout I out = VIn I in Þ I in =           ´ I out Þ I in = 2.4 ´ 0.5 = 1.2A
+                                                    VIn
+
+
+
+(c) & (d)
+
+
+
+
+                     1                1
+ (e)         IL =        I out =           ´ 0.5 = 1.7
+                    1- F         1 - 0.706
+
+
+                         1æ                  1                    ö
+(f) I L max = I L + 2 ç 5 ´ 10 ´ 50000 ´ 0.706 ÷ = 1.7 + 0.353 = 2.053A
+                              4
+
+                             è                                    ø
+                     1æ            1           ö
+      I L min = I L - ç 5 ´104 ´       ´ 0.706 ÷ = 1.7 - 0.353 = 1.347A
+                     2è          50000         ø
+
+
+                                                                                                  (b)
+(g)                                                     ON
+                                                                                                     (b)
+                                                                 OFF
+                                                                         Switch waveform
+                                                        +VIN
+
+
+                                                                         Inductor voltage
+                                                               -VOUT
+
+                                             Possibly offset
+
+                                 I OFF =IL
+                                                                         Inductor current
+                                                               ION =IL
+
+                                                I OFF =ICAP              Switch/input
+                                                                           current
+
+
+
+
+                                                                         Current INTO capacitor
+(a) (b)
+
+
+
+
+     (d)
+     (e)
+(g)
+
+(h)
+
+
+(i)
+Best of Luck!
+  Thank you…
+

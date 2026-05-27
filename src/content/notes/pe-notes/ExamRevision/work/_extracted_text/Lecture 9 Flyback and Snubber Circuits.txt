@@ -1,0 +1,491 @@
+Power Electronics
+  Flyback Converter and
+ Snubber Circuit (缓冲电路)
+
+Please read section 10-4-2 of Chapter 10
+    And Chapter 27 in the textbook
+                                           1
+Flyback Converter
+
+
+
+
+                    2
+The buck-boost converter (VOUT <> VIN).
+
+In the last lecture we saw that the Buck-Boost converter is able to produce output
+voltages that are higher or lower than the input voltage depending upon the duty
+cycle.                                       𝐷
+                     Switch 𝑉𝑂𝑈𝑇 = −𝑉𝐼𝑁 1 − 𝐷
+
+
+                                                D
+                   Control
+          VIN                                                     RL     VOut
+                                                       C
+
+
+
+
+                   VIN                                 VOUT
+
+                                   Buck-boost
+                   0V                                  0V
+
+
+   In the circuit above, the input and output are not electrically isolated.
+   The question is, can we provide electrical isolation between input and
+   output?                                                                       3
+The Flyback Converter (VOUT <> VIN).
+Flyback converters are derived from the buck-boost converters.
+
+
+
+
+                                                                        𝐷
+                                                           𝑉𝑂𝑈𝑇 = −𝑉𝐼𝑁
+                                                                       1− 𝐷
+
+
+
+
+                                                                              4
+The Flyback Converter (VOUT <> VIN).
+
+
+
+
+• The basic operation of the flyback converter is similar to that of the buck-boost
+  converter.
+• By placing a second winding on the inductor, it is possible to achieve electrical
+  isolation. Hence, a transformer is placed with 𝑁1 turns with inductance (𝐿𝑝 ) on
+  primary winding and 𝑁2 turns with inductance (𝐿𝑠 ) are placed on secondary winding
+• When switch is closed, the current is increasing linearly in the physical primary
+  winding, and the inductor core flux increases linearly from its initial value. However,
+  due to the polarity of the secondary winding of transformer no current flows in
+  secondary winding.
+• As soon the switch is open, the voltage across inductor on primary side reverses,
+  and due to opposite polarity of winding in secondary, diodes turns on and current
+  flow due to stored energy in the core.
+                                                                               𝑁
+• Compared to buck-boost converter, apart from duty cycle (𝐷), turn ratio (𝑁2) is also
+                                                                               1
+  included in the relation between input and output.
+                                                                                    5
+Boost converter Input/Output Voltage Relation
+ The integral of inductor voltage is equal to the change in the inductor flux linkage.
+ The net change of flux linking the inductor over one time period of repetition is
+ zero, which is a necessary condition for steady-state operation.
+                            𝑇
+                          න 𝑉𝐿,𝑝𝑟𝑖𝑚𝑎𝑟𝑦 𝑑𝑡 = 0
+                           0
+             𝑡𝑜𝑛               𝑇
+                                     𝑁1
+         න         𝑉𝐼𝑁 𝑑𝑡 + න − 𝑉𝑂𝑈𝑇    𝑑𝑡 = 0
+          0                  𝑡𝑜𝑛     𝑁2
+                        𝑁1
+         𝑉𝐼𝑁 𝑡𝑜𝑛 − 𝑉𝑂𝑈𝑇    (𝑇 − 𝑡𝑜𝑛 ) = 0
+                        𝑁2
+
+                            𝑁1
+          𝑉𝐼𝑁 𝐷𝑇 = 𝑉𝑂𝑈𝑇        (𝑇 − 𝐷𝑇)
+                            𝑁2
+
+                     𝑁2
+               𝑉𝐼𝑁      𝐷 = 𝑉𝑂𝑈𝑇 (1 − 𝐷)
+                     𝑁1
+
+                            𝑫    𝑵𝟐
+          𝑽𝑶𝑼𝑻 = 𝑽𝑰𝑵           ×
+                          𝟏 − 𝑫 𝑵𝟏
+  Boost converter Inductor Current Change
+                                                                                                Inductor current
+                                                                                                (= supply current)
+
+
+                                                                                        Inductor current
+
+          Computing the change in current using following expression:
+
+                                               𝑑𝑖         𝑑𝑖     𝑣
+                                        𝑣𝐿 = 𝐿 𝑑𝑡𝐿   => 𝑑𝑡𝐿 = 𝐿𝐿
+
+
+           When switch is closed:
+
+  (∆𝑖𝐿 )𝑠𝑤𝑖𝑡𝑐ℎ 𝑐𝑙𝑜𝑠𝑒𝑑   𝑉𝐼𝑁                                          𝑉𝐼𝑁
+                      =                 ⇒    (∆𝑖𝐿 )𝑠𝑤𝑖𝑡𝑐ℎ 𝑐𝑙𝑜𝑠𝑒𝑑 =       × 𝑡𝑜𝑛
+          𝑡𝑜𝑛           𝐿𝑝                                           𝐿𝑝
+
+                                                                             𝑽𝑰𝑵
+                                               ⇒     (∆𝒊𝑳 )𝒔𝒘𝒊𝒕𝒄𝒉 𝒄𝒍𝒐𝒔𝒆𝒅 =       × 𝑫𝑻
+                                                                             𝑳𝒑
+
+        When switch is open:
+                                𝑁
+(∆𝑖𝐿 )𝑠𝑤𝑖𝑡𝑐ℎ 𝑜𝑝𝑒𝑛        𝑉𝑂𝑈𝑇 𝑁1                                                   𝑁 1
+                    =−              2
+                                                ⇒       (∆𝑖𝐿 )𝑠𝑤𝑖𝑡𝑐ℎ 𝑜𝑝𝑒𝑛 = −𝑉𝑂𝑈𝑇 𝑁1 𝐿 × (𝑇 − 𝑡𝑜𝑛 )
+    𝑇− 𝑡𝑜𝑛                 𝐿𝑝                                                       2 𝑝
+
+                                                                                    𝑵       𝟏
+                                                ⇒        (∆𝒊𝑳 )𝒔𝒘𝒊𝒕𝒄𝒉 𝒐𝒑𝒆𝒏 = −𝑽𝑶𝑼𝑻 𝑵𝟏 𝑳 × 𝑻(𝟏 − 𝑫)
+                                                                                        𝟐   𝒑
+Minimum and Maximum Inductor Current
+ Assuming lossless system
+                                                                                      𝑉𝑂𝑈𝑇
+  𝑃𝐼𝑁 = 𝑃𝑂𝑈𝑇     ⇒         𝑉𝐼𝑁 𝐼𝐼𝑁 = 𝑉𝑂𝑈𝑇 𝐼𝑂𝑈𝑇            ⇒      𝑉𝐼𝑁 𝐼𝐿𝑝,𝑎𝑣𝑔 𝐷 = 𝑉𝑂𝑈𝑇
+                                                                                       R
+                               𝑉𝑂𝑈𝑇 2                             (𝑉𝑂𝑈𝑇 )2 1
+               𝑉𝐼𝑁 𝐼𝐿𝑝,𝑎𝑣𝑔 𝐷 =                        ⇒ 𝐼𝐿𝑝,𝑎𝑣𝑔 =         ×
+                                 R                                 𝑉𝐼𝑁 𝐷    R
+
+                                                    𝐷 𝑁2 2        1
+                                 𝐼𝐿𝑝,𝑎𝑣𝑔 = (𝑉𝐼𝑁            ) ×
+                                                  1 − 𝐷 𝑁1     𝑉𝐼𝑁 𝐷R
+
+                                              𝑉𝐼𝑁 𝐷   𝑁2 2
+                                 𝐼𝐿𝑝,𝑎𝑣𝑔 =           ( )
+                                           (1 − 𝐷)2 𝑅 𝑁1
+                                            ∆𝑖𝐿𝑝 𝑠𝑤𝑖𝑡𝑐ℎ 𝑐𝑙𝑜𝑠𝑒𝑑
+                     𝐼𝐿𝑝,𝑚𝑎𝑥 = 𝐼𝐿𝑝,𝑎𝑣𝑔 +
+                                                      2
+                                           ∆𝑖𝐿𝑝 𝑠𝑤𝑖𝑡𝑐ℎ 𝑐𝑙𝑜𝑠𝑒𝑑
+                   𝐼𝐿𝑝,𝑚𝑖𝑛 = 𝐼𝐿𝑝,𝑎𝑣𝑔 −
+                                                  2
+Output Ripple (same as Buck-Boost Converter)
+                               ∆𝑉𝑂𝑈𝑇   𝐷𝑇
+                                     =
+                                𝑉𝑂𝑈𝑇   𝑅𝐶
+Snubber Circuit
+
+
+
+
+                  9
+  Protection of Switching Devices and Circuits
+• The function of a snubber circuit is to reduce the electrical stresses
+  placed on a device during switching by a power electronics
+  converter to levels that are within the electrical ratings of the
+  device.
+• It must be emphasized that snubbers are not a fundamental part
+  of a power electronic converter circuit. The snubber circuit is an
+  addition to the basic converter, which is added to reduce the
+  stresses on an electrical component, usually a power
+  semiconductor device.
+
+
+
+
+                                                                           10
+      Snubber Circuits for Hard-Switched Converters
+                                        From the circuit topology perspective,
+    Function of Snubber Circuit
+                                        there are three broad classes of snubber
+•   Limiting device voltages            circuits
+    during turn-off transients
+                                        Unpolarized series R-C snubbers:
+•   Limiting device currents during     • Used to protect diodes and thyristors
+    turn-on transients
+                                        •   Used to Mitigate Ringing
+•   Limiting the rate-of-rise (di/dt)
+                                        Polarized R-C snubbers:
+    of currents through the
+                                        • Used as turn-off snubbers to shape the
+    semiconductor device at
+                                           turn-off switching trajectory of controlled
+    device turn-on
+                                           switches. Limit dv/dt during device turn-
+•   Limiting the rate-of-rise (dv/dt)      off
+    of voltages across the              • Used as overvoltage snubbers to clamp
+    semiconductor device at                voltages applied to controlled switches to
+    device turn-off                        safe values;
+•   Shaping the switching               Polarized L-R snubbers
+    trajectory of the device as it      •   Used as turn-on snubbers to shape the
+    turns on/off                            turn-on switching trajectory of controlled
+                                            switches;
+                                        •   Limit di/dt during device turn-on     11
+Ringing Effect.
+Real electronic switches have a “parasitic” capacitance between their terminals, and
+circuit board tracks introduce stray inductance between components.
+
+
+
+
+           Ideal Flyback Converter
+
+
+                                                  Actual Flyback Converter
+At switching, this capacitance rings with the inductance at the undamped resonant
+frequency:                               1
+                                  𝑓𝑜 = 2𝜋 𝐿𝐶
+
+
+
+
+In these “parasitic” circuits there is usually very low resistance to dissipate
+the power in the oscillations and they can last for a considerable number of
+                                                                                    12
+cycles.
+Ringing in Flyback Converter and Series RC Snubber Circuit
+Snubbers are used extensively to prevent “ringing” when a circuit is switched on or
+off. Consider, the flyback converter shown below:
+
+
+
+
+ The RC snubber will, if properly designed, damp the ringing and limit the overshoot at
+ switching. Optimum performance is obtained when the snubber capacitance is 3X the
+ parasitic capacitance and the resistor value equals the characteristic impedance of the
+ un-modified resonant circuit.
+ The characteristic impedance is given by
+
+
+                                            𝐿𝑠𝑡𝑟𝑎𝑦
+                              𝑅𝑠𝑛𝑢𝑏 =
+                                            𝐶𝑝𝑎𝑟𝑎
+                                                                                           13
+Example.
+The switch in an SMPS has a parasitic capacitance of 330pF and the stray inductance
+due to circuit board layout is 770nH. What is the undamped ringing frequency? An RC
+snubber is to be used to reduce the power dissipation in the switch and to control the
+ringing. What are the optimum values for R & C?
+
+
+
+
+          1
+ 𝑓𝑜 = 2𝜋 𝐿𝐶
+                   1
+   =
+       2𝜋 770×10−9 ×330×10−12
+              𝐿𝑠𝑡𝑟𝑎𝑦       770×10−9
+𝑅𝑠𝑛𝑢𝑏 =                =
+              𝐶𝑝𝑎𝑟𝑎        330×10−12                          Damped response.
+
+𝐶𝑠𝑛𝑢𝑏 = 3 × 𝐶𝑝𝑎𝑟𝑎 = 990 𝑝𝐹 ⇒ 𝐶𝑇𝑜𝑡𝑎𝑙 = 1320𝑝𝐹
+             1
+𝑓𝑛𝑒𝑤 =                                                                           14
+         2𝜋 𝐿𝐶𝑇𝑜𝑡𝑎𝑙
+Example (contd)
+If the switching frequency is 100KHz and the maximum voltage across the snubber
+capacitor is 100V, estimate the power that is dissipated in the snubber resistor.
+                               1
+Energy in a capacitor is E = CV 2
+                               2
+When the switch is open, the capacitor charges to 100V via the resistor. When the
+switch closes, the capacitor is discharged via the resistor. Hence the energy
+                           1
+dissipated per cycle is 2× 2 CV 2 and the energy dissipated per second is f CV 2 (W).
+                      P = f CV 2 = 105 x 990pF x1002 = 0.990W
+
+
+
+                                                     Caveat: This works for
+                                                     Osc << TSwitch
+                                                     =RC => Osc = 47.5nS
+                                                     TSwitch = 1/F = 10μS, so OK.
+                     =770nH
+                                                   Note that the current from the
+                                                   snubber flows through the switch
+                                =48Ω               when the switch is closed.
+                                = 990pF
+                       =330pF
+                                                                                    15
+Polarized R-C snubber – Turn-off Snubber
+
+
+
+
+                            Diode
+                           OFF state
+             Transistor
+             ON state
+
+
+
+
+                                           16
+Polarized R-C snubber – Turn-off Snubber
+
+
+
+
+• Transistor turns off, the diode remains reverse-biased until the
+  transistor voltage 𝑣𝑄 increases to the source voltage 𝑉𝑠 .
+• After the transistor voltage reaches 𝑉𝑠 , and the transistor current
+   decreases to zero.
+• As a result, there is a point during turnoff when the transistor voltage
+   and current are high simultaneously, resulting in a triangularly
+   shaped instantaneous power waveform 𝑝 𝑡 .
+                                                                             17
+Polarized R-C snubber – Turn-off Snubber
+                       • The snubber provides another path for load
+                         current during turnoff.
+                       • As the transistor and the voltage across it is
+                         increasing, the snubber diode 𝐷𝑠 becomes
+                         forward biased and the capacitor begins to
+                         charge.
+                       • The rate of change of transistor voltage is
+                         reduced by the capacitor, delaying its
+                         voltage transition from low to high.
+                       • The capacitor charges to the final off-state
+                         voltage across the transistor and remains
+                         charged while the transistor is off.
+                       • When the transistor turns on, the capacitor
+                         discharges through the snubber resistor and
+                         transistor.
+
+
+
+           Turn-Off
+           Snubber
+                                                                   18
+Polarized R-C snubber – Turn-off Snubber
+
+
+
+
+                        • All the capacitor energy is dissipated in the
+                          resistor, which is easier to cool than the
+                          transistor.
+
+                        • No additional energy dissipation occurs in
+                          the transistor due to the turn-off snubber.
+
+                        • The peak current the transistor must
+                          conduct is not increased due to the turn-off
+                          snubber when it turns-on.
+
+
+
+
+           Turn-Off
+           Snubber
+                                                                    19
+Turn off Snubber - Problem Solving
+The converter and snubber in Fig. has Vs 100 V and IL 5 A. The switching
+frequency is 100 kHz with a duty ratio of 50 percent, and the transistor turns off in
+0.5µs. (a) Determine the turnoff losses without a snubber if the transistor voltage
+reaches Vs in 0.1µs. (b) Determine the transistor turnoff losses and the resistor
+power with the snubber added if 12.5 nF capacitor is used.
+
+
+
+
+                                     0.1µs 0.5µs
+                                                     Solution:    (a)
+                       Transistor voltage reaches 100 V while the current is still at 5 A,
+                       resulting in a peak instantaneous power of (100 V)(5 A) 500 W.
+
+
+                   The base of the power triangle is 0.6 µs, making the energy =
+                   0.5(500 W)(0.6 µs) 150 µJ.
+                                                                                   20
+Turn off Snubber - Problem Solving
+The converter and snubber has Vs 100 V and IL 5 A. The switching frequency is
+100 kHz with a duty ratio of 50 percent, and the transistor turns off in 0.5µs. (a)
+Determine the turnoff losses without a snubber if the transistor voltage reaches Vs
+in 0.1µs. (b) Determine the transistor turnoff losses and the resistor power with the
+snubber added if 12.5 nF capacitor is used.
+
+Solution:   (b)
+
+
+
+
+                                                                                  21
+Polarized R-L snubber – Turn-on Snubber
+
+
+                      • Turn-on snubbers protect the device
+                        from simultaneously high voltage and
+                        current during turn-on.
+                      • As with the turn-off snubber, the
+                        purpose of the turn-on snubber is to
+                        modify the voltage-current waveforms to
+                        reduce power loss.
+                      • An inductor in series with the transistor
+                        slows the rate of current rise and can
+                        reduce the overlap of high current and
+                        high voltage.
+                      • The snubber diode is off during turn-on.
+                        During turnoff, the energy stored in the
+                        snubber inductor is dissipated in the
+                        resistor.
+     Turn - ON
+     Snubber
+
+                                                                    22
+Example
+In the circuit shown, the switch operates at 100KHz. The
+supply voltage is 200V. If the peak current in the switch is
+2 amps, what power is dissipated in the resistor when             A
+switch is open?
+What is the rate of rise of current limited to if the voltage                =68Ω
+at A is 200V when the switch is closed?
+                                                                50μH
+                 1 2  1
+𝐼𝑛𝑑𝑢𝑐𝑡𝑜𝑟 𝐸𝑛𝑒𝑟𝑔𝑦 = 𝐿𝐼 = × 50µ𝐻 × 2 × 2 = 100µJ                          ISwitch=2A
+                 2    2
+                                                                       FSwitch=100KHz
+                 I
+𝑃𝑜𝑤𝑒𝑟 = 𝐼𝑛𝑑𝑢𝑐𝑡𝑜𝑟 𝐸𝑛𝑒𝑟𝑔𝑦 × 𝐹𝑠𝑤𝑖𝑡𝑐ℎ = 100µA × 100 𝐾𝐻𝑧
+                                  = 10 𝑊
+     𝑑𝑖   𝑉 𝑑𝑖   200
+ 𝑉=𝐿    ⇒  =   =     = 4𝐴/µsec
+     𝑑𝑡   𝐿 𝑑𝑡 50µ𝐻
+
+
+
+
+                                                                              23
+                                                                                    Vo
+Summary of Snubber Circuit
+
+
+
+
+                   Polarized R-L snubber
+
+
+
+
+                     Polarized R-C snubbers
+
+
+
+
+                                              24
+There are two key points to note about snubber circuit design:
+1. There is always a degree of experimentation needed to tune a snubber’s
+   operation. It is impossible to precisely design the circuit (although the desired
+   function can be predicted).
+2. The final circuit will probably be a compromise. A capacitive snubber that
+   controls a voltage spike at turn-off may cause a current spike at turn-on.
+   Similarly, controlling a current spike on one edge may cause a voltage spike on
+   the other.
+
+
+
+
+                          I
+                  C       When switch opens, capacitor charges up,
+                          limiting dV/dt. (Desired)
+
+                          When switch closes, capacitor is shorted,
+                          causing current spike. (Undesired)
+                                                                                   25
+           What we learned?
+• Snubber Circuits
+  – Why? -> functions
+  – Where? -> protection
+  – How? -> configurations
+• Classes of Snubber Circuits
+• Types of Snubber circuits
+  – Series RC to mitigate ringing
+  – Voltage snubbers (turn off)
+  – Current snubbers (turn on)
+
+                                    26
+

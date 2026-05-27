@@ -1,0 +1,278 @@
+                    UNIVERSITY OF GLASGOW
+                      Glasgow College UESTC
+
+
+                Degrees of MEng, BEng, MSc and BSc in Engineering
+
+
+
+
+            POWER ELECTRONICS (UETSC3022)
+
+                               Monday 19 December 2016
+
+                                       10:00–12:00
+
+
+
+                                Attempt all questions
+
+                                   Total 100 marks
+
+
+
+The numbers in square brackets in the right-hand margin indicate the marks allotted to the
+ part of the question against which the mark is shown. These marks are for guidance only.
+
+
+              DATA SHEET IS PROVIDED AT THE END OF PAPER
+
+
+
+
+An electronic calculator may be used provided that it does not have a facility for either
+                  textual storage or display, or for graphical display.
+
+
+  Unless otherwise stated, full credit will be given only where the solution contains
+ sufficient working with supporting explanation to justify the answer. Marks will be
+                             deducted for missing units.
+
+
+             A list of formulae is provided on the reverse of this title page.
+
+
+
+
+                                       Page 1 of 7
+                                              Power Electronics 2 Formulae List
+
+
+                               diL (t )              1                       1
+                                        , iL (t )   vL (t ) dt , EL (t )  L iL (t ) 
+                                                                                         2
+For an inductor: vL (t )  L
+                                 dt                  L                       2
+                             1                         dv (t )              1
+For a capacitor: vC (t )   iC (t ) dt , iC (t )  C C , EC (t )  C  vC (t ) 
+                                                                                         2
+
+                             C                           dt                 2
+                             T
+                           1
+Average value: Vave   v(t ) dt
+                           T 0
+                                          T
+                    1
+RMS value:Vrms    
+                    T 0
+                        v(t ) 2 dt
+
+                                       Ton      T
+Duty cycle: D                             on
+                                    Ton  Toff Tperiod
+Amplitude modulation index of SPWM :
+              Vˆ
+ma  control
+              Vˆ      carrier
+
+Frequency modulation index of SPWM:
+                      f carrier
+m f 
+                      f control
+Instantaneous power: 
+           v 2 (t ) 2
+ p (t )  i (t ) R  v (t )  i (t )  force  velocity  torque  angular velocity
+              R
+Average power:
+                T                 2
+                                Vrms
+P   v(t )i (t )dt        I rms
+                                         2
+                                             R
+              0
+                                 R
+reverse recovery power loss in a diode: 
+PRR  QRR  VR (blocking )  f switching
+MOSFET switching loss: 
+
+                                                      T I  T I 
+                             f switchingVDS ( off )
+Pswitching                                  on on   off   off
+                                      2
+Thermal circuit:
+                                                                         power  time
+T  Pdevice   XY  or T (°C) 
+                                                                     thermal capacitance
+Junction temperature of device:
+Tjunction  Tsink  Pdevice  juntion-case +case-sink 
+Calculus:
+cos 2  2 cos 2   1  1  2sin 2 
+                                   1                                1
+ cos  a d              sin   cos  a d   sin 
+                                   a                                a
+Q1   (a) Draw the symbols of any three typical fully-controllable power switches, clearly
+          labeling their names, and briefly compare their maximum power ratings and
+          switching frequency.                                                        [6]
+     (b)        List and briefly describe at least four advantages of power electronic conversion
+                over other power conversion ways (e.g. transformers)                          [4]
+     (c)        Draw an unpolarized voltage (i.e. turn-off) snubber circuit for the power
+                switches, and briefly describe how the circuit operates.              [4]
+     (d)        For an inductor load L=1mH, the steady-state inductor current waveform is
+                shown in Figure Q1,
+                 1) Calculate the average current and RMS current for the inductor.          [3]
+                 2) Derive and sketch the corresponding inductor voltage, labelling the axes
+                    clearly.                                                             [3]
+
+
+                         2
+
+
+            Inductor
+
+           current (A)
+
+                         0
+                             0     10          20          30         40          50
+
+                                               Time (ms)
+
+                                            Figure Q1
+Q2   For the half-wave diode rectifier circuit shown in Figure Q2, assuming the input
+     voltage at the secondary side of the transformer is VAC  10sin(100 t ) , the
+     capacitance Cs is 20000F, the load resistance RL is 10Ω.
+
+     (a)   If the conduction angle of diode D is 30, calculate the peak-to-peak ripple
+           voltage in the output voltage VR and the peak inverse voltage in the voltage drop
+           VD for the diode D. Assume the diode D is ideal for this question.            [4]
+
+     (b)   If the output filter capacitor Cs is removed, and the conduction voltage drop for
+           the diode D is VD ( on )  1 V, sketch and label the voltages across the load R and
+           the diode D separately, showing the time scale clearly. You should include the
+           voltage drop in the diode.                                                      [6]
+
+                                             VD
+                                                               IL
+                                                                               +
+                                             D
+                                     VAC                  CS             RL VR
+                                                                               -
+
+                                              Figure Q2
+
+
+     (c)   If the output filter capacitor Cs is removed, and the diode D in Figure Q2 is
+           replaced with an SCR (Thyristor) with delay angle =30o and assume the SCR
+           is ideal for this question.
+
+           1)   Briefly describe why SCRs are called half-controllable switches.          [2]
+
+           2)   Are SCRs unsuitable for use in systems that are purely DC? Why?           [3]
+
+           3)   Sketch the waveform for the output voltage VR, indicating the delay angle
+                 and the time scale clearly.                                         [4]
+
+            4) Derive and calculate the average value and RMS value for the output
+               voltage VR respectively.                                        [6]
+Q3   Figure Q3 shows a load whose current is switched periodically with a MOSFET. It
+     also shows a plot of the current iload (t) through the load for one cycle of period T. The
+     switch may be assumed to behave ideally.
+
+     (a) Calculate the value of the duty cycle D for this waveform.                          [1]
+
+     (b) Calculate the average value of the current through the load.                        [3]
+
+     (c) Calculate the RMS value of the current through the load.                            [6]
+
+     (d) Calculate the average power absorbed by the load.                                   [3]
+
+     (e) Calculate the average conduction loss in the MOSFET, taking the channel
+          resistance to be RDS(on) = 50m.                                   [3]
+
+     (f) Calculate the average switching loss in the MOSFET, taking both the switch-on
+           and switch-off times to be Ton = 20 ns and Toff = 30 ns respectively.   [3]
+
+     (g) Assume the MOSFET is bolted to a heatsink of thermal resistance θSA=1.5°C/W,
+         the thermal resistance θCS of the contact between the MOSFET case and the
+         heatsink is 0.4°C/W, the MOSFET’s junction-to-case thermal resistance θJC is
+         1°C/W and the MOSFET is operating in free air with an ambient temperature of
+         25°C, draw the thermal circuit diagram of the MOSFET and calculate the heatsink
+         temperature, case temperature and junction temperature.                    [6]
+
+
+                                      iload (t )               20
+
+                    +                                          15
+             DC                load
+            Supply 50V
+                                                   iload /A
+                                                               10
+
+                    -                                          5
+                                  Drain                                         T
+                                                               0
+                  Control         Source                            0   5    10    15   20
+                                                                            Time /s
+
+
+
+
+                                                          Figure Q3
+Q4   A switched-mode buck-boost converter is required to deliver 12.0V at 500mA from a
+     5.0V supply. It runs in continuous conduction mode at 50 kHz. The circuit is shown
+     in figure Q4 and has a 100 μH inductor. You may assume that all components are
+     ideal and that the input and output are smoothed so effectively that their voltages may
+     be treated as constant.
+
+     (a)    Calculate the duty cycle required for the converter.                                [1]
+
+     (b)    Calculate the average input current from the supply.                                [2]
+
+     (c)    What are the voltages across the inductor during charging and discharging? [2]
+
+     (d)    Calculate the values of diL/dt during charging and discharging.                     [2]
+
+     (e)    What is the value of the average current through the inductor?                      [3]
+
+     (f)    What are the minimum and maximum values of iL(t)                                    [4]
+
+     (g)   Sketch iL(t), iin(t), and vL(t). An accurate scale drawing is not required but you
+            must show the numerical values at all important points.                        [6]
+
+
+                        iin   Switch            iD
+
+                                           iL
+                                                            D                        -
+              +               Control
+                                                  vL            C            RL          vout
+                  vin
+                                                                     iC
+              -                                                                      +
+                                                                              iout
+
+                                                Figure Q4
+Q5   Figure Q5 shows a single-phase PWM inverter with its bipolar PWM drive circuit,
+     where the carrier frequency fcarrier is much higher than the control signal frequency f,
+     the control signal voltage vcontrol  ma sin  2 ft  , and the peak values of the triangle
+     carrier signal are 1 and -1.
+     (a)     If 0  ma  1 , determine the output voltage vo of the single-phase inverter. We
+             assume the high frequency harmonic components in the voltage vo are
+             neglected.                                                                    [6]
+     (b)     What is the ‘square-wave’ operation mode of the inverter? Indicating its
+             benefits and disadvantages.                                         [4]
+
+
+                 vcontrol                                      Control Signals
+                                                                to the Switch
+
+
+                                                                 TA+ and TB-
+
+                                                                 TA- and TB+
+
+
+
+
+                                                Figure Q5
+

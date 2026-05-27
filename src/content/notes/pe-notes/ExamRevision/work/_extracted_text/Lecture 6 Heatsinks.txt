@@ -1,0 +1,552 @@
+                        ENG2045
+                     Power Electronics
+                          Thermal Management
+
+
+              Conduction Power Loss
+
+
+
+
+                                                            fry eggs on it !!!
+               Switching Power Loss
+                                                           ton
+                                             Pon = Von I o     = Von I o f s ton
+Ps = Vd I o f s ( tc ( on ) + tc ( off ) )
+    1
+                                                           Ts
+    2
+                      Thermal Management.
+➢ No electronic device is 100% efficient and therefore every device
+  must loose some energy in the form of heat. For power electronic
+  devices this energy loss can be considerable. Most
+  semiconductors have a maximum operating temperature of
+  125°C and to prevent this temperature being exceeded, some form
+  of heatsink is needed.
+•Another reason to keep electronic components cool is to do with
+their reliability, The failure rate for semiconductor devices doubles
+for approximately every 10°C temperature rise.
+•In addition to the maximum temperature, semiconductors also have
+an absolute maximum power rating that cannot be exceeded
+without damaging the device, regardless of its temperature.
+• A heatsink(散热器）is usually made of a good thermal conductor
+  such as copper (expensive) or aluminium (not so expensive). The
+  device to be cooled is mechanically attached to the heatsink.
+                                                                   2
+Example Heatsinks
+
+
+
+
+Natural Air Cooled
+                             Device
+
+
+                                                     Fan
+
+
+Heatsink
+
+
+
+
+                                      Forced Air Cooled
+
+
+
+             Liquid Cooled                  Liquid         3
+➢ There are three heat transfer mechanisms: conduction, convection and radiation.
+• Conduction(传导): The primary mode of heat transfer for solids in contact with
+  one another.
+• Convection(对流): Heat energy is transferred between a solid and a fluid (air or
+  water).
+• Radiation(辐射) : Energy transfer is by electromagnetic radiation.
+➢ Two air convection mechanisms are commonly used:
+• Natural convection: Warm air around the heatsink rises and this natural
+  convection current carries the energy away. Heatsink performance is usually
+  quoted as “fins (鳍片)vertical in free air” – the orientation of the heatsink is optimal
+  for natural air flow to occur and there are no obstacles in the air’s path.
+• Forced convection: A fan is used to blow air over the heatsink surfaces, thereby
+  removing more energy. Turbulent flow(湍流) is more effective than laminar flow(层
+  流) and hence it is usual to blow air at a heatsink rather than pull air over it.
+
+
+
+
+                                                                                    4
+➢ The ability of a heatsink to dissipate energy, i.e., the rate of flow of power, is called
+  the heatsink’s thermal resistance, measured in °C/W. The Greek letter theta (θXX)
+  with two suffixes is used to denote the thermal resistance between two points in
+  the thermal circuit. For example, θJA denotes the thermal resistance between the
+  semiconductor junction and the ambient surroundings.
+➢ For power device heatsinks, typical thermal resistances
+  are:
+ Natural
+ convection
+                   1C/W → 0.1C/W
+ Forced Air        0.1C/W → 0.01C/W
+ Water             0.01C/W → 0.001C/W
+ cooled
+[A 300mm x 300mm x 3mm black aluminium plate ≈ 1°C/W]
+
+➢ The higher thermal resistance, the lower thermal
+  conductance, it is more difficult to dissipate energy
+➢ Heatsinks are often formed from aluminium extrusions, with the flow of air in the
+  extrusion direction. The extrusions do not have to be very thick because, for
+  natural convection, power loss is relatively low and hence the metal thermal
+  conductivity dominates. Black coating the heatsink improves the radiation
+  characteristics when ΔT > 50°C and reduces the free air thermal resistance by
+  about 15%. The most effective way to decrease the thermal resistance is by
+                                                                                 5
+  maximising the surface area since the predominant heat loss mechanism is by
+  convection.
+Use of computer simulations for heatsink design.
+➢ We can use numerical (e.g. Finite Element) analysis to examine the performance of
+  different heatsink shapes. For example, 4 fins（鳍） added to a flat plate: how does it
+  perform? The first step is to create the solid model of the part and then represent it by
+  a mesh of elements (tetrahedra（四面体）).
+
+
+
+
+                                                                                     6
+➢ The computer will solve the differential equations governing the flow of energy
+  through the material and take into account the energy lost through conduction etc. to
+  the surrounding air (or water). The induced air flow is also calculated and velocity
+➢ (for example) can be plotted around the solid. This is an example of the
+application of computational fluid dynamics (CFD).
+
+
+
+
+ 50mm x 50mm x 20mm
+ heatsink with P=15W
+
+
+
+
+                                  ➢ This type of analysis is particularly
+                                    good at allowing the designer to
+                                    visualise the way in which his/her
+                                    designs are performing compared to
+                                    expectations. Obviously the actual
+                                    thermal performance can also be              7
+                                    evaluated.
+Equivalent Thermal Model
+     Device case(外壳）                                   TJ = Junction
+      Semiconductor junction                           temperature
+        Contact surface                Power
+                                        Loss
+                                                         Device
+                                                         thermal
+                                                                  (C/W)
+                                                                    JC
+            Heatsink
+                                                         resistance
+                                                       TC = Case
+                                                       temperature
+
+                                               HEAT
+                                                         Contact
+                                                         thermal
+                                                                  (C/W)
+                                                                    CS
+                                                         resistance
+                                                       TS = Heatsink
+                                                       temperature
+                                                         Heatsink
+                                                         thermal
+                                                                  (C/W)
+                                                                    SA
+                                                         resistance
+                                                       TA = Ambient
+                                                       temperature
+
+
+   Ambient (“Free air”)                        Temp (C) = Power (W)    XX
+
+➢ The heatsink needs to have low thermal                                    8
+  resistance to the surrounding cooler air.
+ Steady-state thermal analysis.
+ ➢ From the previous figure, consider a power diode attached to a heatsink. There are
+   three thermal resistances between the power source (the semiconductor junction)
+   and the ambient surroundings:
+ • θJC = The thermal resistance between the junction and the case
+ • θCS = The thermal resistance between the case and the heatsink
+ • θSA = The thermal resistance between the heatsink and the surrounding air.
+ • This can be modelled as a set of resistors in series, with the temperature drop
+   across each being dependent on the power flowing through it.
+ • The temperature drop is given by ΔT (°C) = Power (W) x θXX (°C/W)
+
+                                                                    thermal interface
+                                                                    material (TIM)
+
+
+
+
+➢ Direct   bonded     copper     (DBC)   ➢ The DBC substrates also have excellent
+  substrates are commonly used             electrical insulation and good heat
+  in power modules, because of their                                          9
+                                           spreading characteristics
+  very good thermal conductivity
+                     Thermal Circuit Analysis
+    Thermal Resistance xx                          Thermal “Ohm’s Law”
+                      Power                                                       thermal “voltage”
+                  (Flow of Heat)                   thermal “current”
+     High                               Low
+                                                                  T T1 − T2                                                         v
+                      Thermal                                  P=     =      C / W                                             i=
+   Temperature       Resistance      Temperature                  12   12                                                          R
+       T1               12              T2                                           thermal resistance
+
+
+ ➢ It can be used to model the steady-state(稳定状态)
+   heat conduction (solids) and convection (liquids and gases)
+ Thermal “Kirchhoff’s Law”
+
+             Txx = 0 ,
+                                                                                           Joint 1
+                                                                                                       T1
+"KVL" :                            for any loop                                          temperature
+
+                                                                                                               T1
+            xx                                                                                   Heat
+
+                                                                                                             12
+             Pk = 0,
+                                                        Heat                                    Power
+                                                       Power               Heat                  P2
+" KCL" :                      for any node              P                 Power
+                                                                            P1           1A
+                                                                                                                          Joint 2
+                                                                                                               T2 temperature
+            k
+                                                                                                             23
+                                                                                           TA
+ Example:                                                              Power
+
+                        P = P1 + P2
+                                                                                                                          Joint 3
+
+                                            
+                                                                                          Ambient
+                                                                        Loss            temperature            T3 temperature
+                                                                                                             3A
+                                            
+                 T1A = T12 + T23 + T3 A 
+                                                                          Ambient
+                                                                 TA     temperature
+                                                                                                               TA
+                                                                                                              Ambient                10
+                                                                        Thermal Circuit                     temperature
+Example.
+A power diode has thermal resistances θJC of 0.1°C/W and θCA of 12°C/W. If the diode
+is operated in free air with an ambient temperature of 25°C, how much power can it
+dissipate without the junction temperature exceeding 125°C?
+
+The thermal equivalent circuit looks like:                         TJ = 125°C
+
+ ΔT = Power  Σθ                                   Power            Device
+            ΔT    100C                            Loss?             JC = 0.1C/W
+ = Power =     =       = 8.26W
+            Σθ 12.1C/W
+                                                                  TC = 124.2°C
+
+ TC = TA + Power  θ CA = 25 + 8.3 12 = 124.2C                    Case
+                                                           HEAT     CA = 12C/W
+
+                                                                  TA = 25°C
+
+
+
+
+                                                                                 11
+Example (contd).
+The diode is bolted to a heatsink of thermal resistance 0.15°C/W. The thermal
+resistance of the contact is 0.04°C/W. What is the heatsink temperature and
+junction temperature when the diode is dissipating 230W?
+TS = TA + P  θ SA
+   = 25 + 230  0.15 = 59.5C                               TJ =91.7°C
+TC = TA + P  (θSA + θ CS )
+                                                              Device  JC = 0.1C/W
+   = 25 + 230  0.19 = 68.7C                    230W
+TJ = TA + P  (θ SA + θ CS + θ JC )
+                                                            TC = 68.7°C
+   = 25 + 230  0.29 = 91.7C
+Temperature                                                   Contact  CS = 0.04C/W
+                                      Junction
+
+
+                                      Case
+                                                            TS = 59.5°C
+                                      Sink
+                                                              Heatsink  SA = 0.15C/W
+
+
+                                      Ambient               TA = 25°C
+                                                                                 12
+                                      Time
+Transient Thermal Circuit Analysis(Time-Varying Temperatures)
+➢ Large heatsinks are generally fairly massive aluminium blocks. As such, they
+   cannot change their temperature instantaneously and this thermal inertia can be
+   exploited to limit the temperature rise for short periods. This
+  can provide a more economical design or provide                  TJ = Junction
+  a safety margin in the event of a short overload.                temperature
+➢ The thermal mass can be added to our thermal       Power               Device
+                                                      Loss               thermal
+  equivalent model as a capacitor in parallel with
+                                                                         resistance
+  the heatsink thermal resistance.
+                                                                      TC = Case
+                                                                      temperature
+➢ Other elements also have a thermal
+                                                                         Contact
+  capacitance, but it is so small it can be                              thermal
+                                                             HEAT
+   usually ignored.                                                      resistance
+                                                                      TS = Heatsink
+                                                                      temperature
+➢ We want to be able to determine the rate    Heatsink                   Heatsink
+  at which the heatsink temperature rises     thermal                    thermal
+                                                                         resistance
+  as a function of its mass and the power     capacitance
+  being added to it.                                                  TA = Ambient
+                                                                      temperature
+
+
+                                                        = RC =  SA  CSA            13
+                                                                              
+➢ TSS is the steady-state temperature of the heatsink. The thermal time constant
+  is simply the product of the thermal resistance and the thermal capacitance.
+
+                                                         = RC =  SA  CSA
+
+                                                                                 −t
+                                                                                     
+➢ The actual temperature T at any given time t is given by:TActual = TFinal 1 − e 
+                                                                                 RC
+
+                                                                                    
+➢ If we plug some numbers into this equation, we see:
+                                                                  Exponential Temperature Rise
+t = 0.5 = 39%                                                    TSS
+t =  = 63%                                 100
+
+
+t = 2 = 86%
+                                            85
+t = 3 = 95%
+                                                      63%
+t = 4 = 98%
+
+                          Temperature (C)
+                                            70
+
+t = 5 = 99%
+                                            55
+                                                                        1 time constant = 63.1% final value.
+                                                                        During this period response is nearly linear.
+                                            40
+
+
+                                                      t=RC
+  linear curve                              25
+                                                  0          10          20         30          40         50           60
+                                                                                                                             14
+                                                                               Time (seconds)
+➢ The thermal capacitance is the product of the heat capacity of the material
+  multiplied by the mass of the material. (Aluminium = 913J/kg per °C)
+               CSA (Joules per C) = Heat Capacity (J per kg C)  Mass (kg)
+
+➢ If we approximate the temperature rise to be linear during the first part of the
+  curve and assume no heat is dissipated during the period of temperature rise:
+
+ = RC =  SA  CSA
+                                         During this period the rate of change of
+  𝜃𝑆𝐴 𝑃 = ∆T                             temperature is limited by heatsink’s mass.
+                                         For t   we can assume a linear slope.
+                                Temperature
+        Power  Time
+ΔT =                                                                           Junction
+     Thermal Capacitance
+                                                                               Case
+                                                                               Sink
+ Thermal inertia of case
+ and junction are tiny.
+                                                                               Ambient
+
+                                                                                      15
+                                                                               Time
+➢ Transient operation of the heatsink needs to be handled carefully. The cool-down
+  period of the heatsink will be much longer than the time to warm up when high
+  power is being dissipated. It is also important to ensure the junction temperature
+  is not exceeded.
+                                           Pulsed operation
+
+                       220
+
+
+                                                Power
+                       180
+
+
+
+                       140
+
+                Temp
+                       100
+
+
+
+                       60
+
+
+
+                       20
+                             0   25   50   75    100      125   150   175   200   225
+                                                   Time
+
+
+
+
+➢ In pulsed operation the device may be OK initially, but the slow cool-down of the
+  heatsink means the maximum junction temperature can quickly be exceeded.
+                                                                                        16
+Smart Cooling fans.
+➢ As electronic devices have become more embedded in domestic life, noise levels have become
+  a big issue. In the “old days” (2005), the noise a computer made didn’t really matter since they
+  were usually in an office environment (noisy). Fans had only 2 wires (‘+’ and ‘–’). High end PCs
+  and servers used a 3 wire fan: the third wire was a tacho output which gave 2 pulses
+  (usually) per revolution. In this way the computer could monitor the fan’s speed and create an
+  alert if a fan was stalled (and hence system cooling was compromised). Modern fans use 4
+  wires: the fourth wire is a Pulse Width Modulated (PWM) input. The duty cycle %age
+  controls the fan’s speed [and the tacho is there to provide feedback]. 0% = “off” and 100% = “full
+  speed”, with a usually linear variation in fan RPM between these limits.
+
+➢ Apart from the noise, the power drawn by the fan varies as the cube of the speed of rotation and
+  so halving the fan’s RPM drops the power drawn by a factor of 8. Thus the computer (for
+  example) can measure its internal temperature and need only provide sufficient cooling to keep
+  itself within the temperature specification.
+
+
+
+
+                                                                                            17
+ Example 1.
+ Two diodes and a transistor share a single heatsink. The thermal resistances are
+ given in the table below. What is the junction temperature for each device if the
+ ambient temperature is 45°C and the heatsink thermal resistance is 0.75°C/W?
+   Each Diode      Transistor
+   θJC=0.33°C/W    θJC=0.2°C/W
+   θCS=0.15°C/W    θCS=0.1°C/W
+                                                    Thermal circuit diagram for example
+   Power = 10W     Power = 50W
+
+
+First, calculate the heatsink temperature:
+Tsink = Tamb + Ptotal x θSA = 45 + 70W x 0.75 = 97.5°C
+
+Now calculate the diode junction temperatures:
+TDiode = Tsink + Pdiode x (θJC + θCS)
+       = 97.5°C + 10 x 0.48 = 102.3°C
+
+Finally, calculate the transistor junction temperature:
+Ttrans = Tsink + Ptrans x (θJC + θCS)
+      = 97.5°C + 50 x 0.3 = 112.5°C
+                                                                                   18
+Thermal circuit diagram for example 1.
+
+                         102.3°C                        112.5°C
+              Diode 1              Diode 2          Transistor
+
+             10W                10W                50W
+
+
+
+
+          θJC=0.33°C/W       θJC=0.33°C/W        θJC=0.2°C/W
+
+
+
+          θCS=0.15°C/W       θCS=0.15°C/W        θCS=0.1°C/W
+
+
+
+                                                                  97.5°C
+
+
+                             θSA=0.75°C/W         P=70W
+
+
+                                     TempAmbient=45°C                      19
+ Example 2.
+ With the values shown, how long does it take for the junction temperature to reach
+ 125°C? Assume the heat capacity of aluminium is 913J/kg °C.
+                                                                              TJ =125°C
+ First, find Tsink for Tjunction = 125°C:
+                                                                                 Device
+ θJS=0.2°C/W, P = 250W => ΔTJS = 50°C.                     250W                 JC = 0.15C/W
+ Hence Tsink (max) for Tj = 125°C is 75°C.
+
+ The maximum change in temperature                                               Contact
+ of the heatsink is the maximum temp                                           CS = 0.05C/W
+ allowed than the ambient:
+CSA (Joules per C) = Heat Capacity (J per kg C)  Mass (kg)                 TS(max) = 75°C
+ ΔTsink = Tmax – Tamb = 75°C – 35°C = 40°C
+                                                   Heatsink                      Heatsink
+           Power  Time               C  ΔT                                    SA = 0.65C/W
+ ΔT =                       = Time =              mass is
+        Thermal Capacitance              P         1.5kg
+                                                                  TA = 35°C
+  Time = (40 x 1.5 x 913) / 250 Tss=TA+P×(0.15+0.05+0.
+       = 219 seconds.           65)
+                                =35+212.5=247.5°C                             (TSS if allowed = 247.5°C)
+
+ Check : τ = RC = θSA  CSA = 0.65 1369.5 = 890 seconds, so t   , so OK.                      20
+Question: What is θSA, TJD1 and TJD2 for the values shown?
+
+
+
+              Diode 1         Diode 2           Transistor
+
+              15W             12W               60W
+
+
+         TJD1 =?°C       TJD2 =?°C          TJ =96.2°C
+
+          θJC=0.25°C/W     θJC=0.33°C/W    θJC=0.15°C/W
+
+
+
+           θCS=0.1°C/W    θCS=0.1°C/W       θCS=0.12°C/W
+
+
+
+
+                           θSA=?°C/W
+
+
+
+                                 TempAmbient=36.5°C          21
+  Answer. Use the transistor to determine the heatsink temperature. Then, divide the
+  heatsink ΔT by the total power to get its thermal resistance. The diode junction
+  temperatures are offset from the calculated sink temperature accordingly.
+
+     Diode 1          Diode 2           Transistor
+
+    15W              12W                60W          P = 60W
+                                                     ΔT = 0.27°C/W x 60W = 16.2°C
+TJD1 =85.25°C   TJD2 =85.16°C       TJ =96.2°C
+                                                     TSink = 96.2°C – 16.2°C = 80°C.
+θJC=0.25°C/W      θJC=0.33°C/W     θJC=0.15°C/W
+                                                     PSink = 60+12+15=87 W and
+                                                     ΔT=（80-36.5）=43.5°C
+ θCS=0.1°C/W      θCS=0.1°C/W       θCS=0.12°C/W
+                                                     θSA = ΔT / PSink = 0.5°C/W
+                                                     TJD1=80+15×(0.25+0.1)
+                                                         =80+5.25=85.25°C
+                θSA=0.50°C/W
+                                                     TJD2=80+12×(0.33+0.1)
+                                                        =80+5.16=85.16°C
+                         TempAmbient=36.5°C                                       22
+

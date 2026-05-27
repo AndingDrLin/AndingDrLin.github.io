@@ -1,0 +1,27 @@
+---
+title: "# Figure Manifest（期末复习图示规划）"
+description: "ExamRevision work artifact"
+date: 2025-01-01
+category: "课程学习"
+docGroup: "power-electronic-notes"
+draft: true
+---
+
+# Figure Manifest（期末复习图示规划）
+
+> 目标：规划最终复习笔记所需图示。当前 SVG 均为自绘简化示意，不复制课件原图；文件可直接在 Markdown 中按相对路径引用。
+
+| Figure ID | 文件路径 | Topic | Purpose | Source basis | Used section | Required |
+|---|---|---|---|---|---|---|
+| FIG-001 | `ExamRevision/assets/avg_rms_waveform.svg` | Average / RMS waveform | 对比 average level 与 RMS level，帮助记忆“先平方再平均再开方”和平均值面积法 | `slides/Lecture 2 Revision of Electric Circuit.pdf`; `materials/Tutorial_1.pdf`; `materials/homework.pdf` | 基础波形量：Average、RMS、Form Factor | Yes |
+| FIG-002 | `ExamRevision/assets/rectifier_ripple.svg` | Rectifier capacitor ripple | 展示 full-wave rectified input、电容峰值充电与负载放电造成的 ripple；配合 `$\Delta V\approx I/(fC)$` | `slides/Lecture 4 Uncontrolled Switch -Diodes.pdf`; `materials/Tutorial_2.pdf` | Diode rectifier、filter capacitor、ripple | Yes |
+| FIG-003 | `ExamRevision/assets/scr_firing_angle.svg` | SCR phase control | 显示 firing angle `$\alpha$` 从过零点起算，以及 SCR 在 gate pulse 后导通至自然关断 | `slides/Lecture 5 Controllable Switches .pdf`; `materials/homework.pdf` | Controllable switches、SCR rectifier | Yes |
+| FIG-004 | `ExamRevision/assets/thermal_chain.svg` | Thermal chain | 用热阻串联图说明 junction-case-sink-ambient 与 `$T_j=T_a+P\sum R_\theta$` | `slides/Lecture 6 Heatsinks.pdf`; `materials/final_2017.pdf`; `materials/final_2018.pdf` | Thermal management、heatsink selection | Yes |
+| FIG-005 | `ExamRevision/assets/buck_waveforms.svg` | Buck converter waveforms | 用 `$v_L$` 方波与 `$i_L$` 三角波说明 volt-second balance 和 `$V_o=DV_{in}$` | `slides/Lecture 7 DC-DC Converters_BckGnd_BuckCov.pdf`; `materials/Tutorial_2.pdf` | DC-DC converters: Buck | Yes |
+| FIG-006 | `ExamRevision/assets/boost_waveforms.svg` | Boost converter waveforms | 显示 boost on/off 两段电感电压和电感电流斜率；服务 `$V_o=V_{in}/(1-D)$` 推导 | `slides/Lecture 8 DC-DC Converters_Boost_BuckBoostConv.pdf`; `materials/Tutorial_2.pdf` | DC-DC converters: Boost | Yes |
+| FIG-007 | `ExamRevision/assets/buck_boost_waveforms.svg` | Inverting Buck-Boost waveforms | 强调 buck-boost 输出极性相反，on 时储能、off 时向输出释放能量 | `slides/Lecture 8 DC-DC Converters_Boost_BuckBoostConv.pdf`; `slides/Lecture 9 Flyback and Snubber Circuits.pdf` | DC-DC converters: Buck-Boost / Flyback bridge concept | Yes |
+| FIG-008 | `ExamRevision/assets/pwm_spwm.svg` | PWM / SPWM comparator | 展示 triangular carrier 与 sinusoidal reference 比较产生变宽脉冲，服务 `$m_a$`、`$m_f$` 与 PWM logic | `slides/Lecture 10 - DC-AC-Inverters_Half_Bridge.pdf`; `slides/Lecture 11 DC-AC-Inverters_Full_Bridge.pdf`; `slides/Lecture 12 DC-AC-Inverters_3Phase_PE_Applciations.pdf`; `materials/homework.pdf` | PWM、SPWM、inverter control | Yes |
+| FIG-009 | `ExamRevision/assets/inverter_states.svg` | Full-bridge inverter states | 用两组 diagonal switch pairs 说明 full-bridge 输出 `$+V_d$` 与 `$-V_d$` 状态，避免上下同臂直通 | `slides/Lecture 11 DC-AC-Inverters_Full_Bridge.pdf`; `slides/Lecture 12 DC-AC-Inverters_3Phase_PE_Applciations.pdf` | DC-AC inverter states | Yes |
+| FIG-010 | `ExamRevision/assets/diode_reverse_recovery.svg` | Diode reverse recovery | 计划图：显示 forward current 过零后反向恢复电流、`$I_{RM}$`、`$t_{rr}$`、`$Q_{rr}$` 面积 | `slides/Lecture 4 Uncontrolled Switch -Diodes.pdf`; `materials/Review of week 5 and week 6 lectures for final exam.pdf`; `materials/homework.pdf` | Power diodes、reverse recovery loss | Recommended |
+| FIG-011 | `ExamRevision/assets/mosfet_switching_loss.svg` | MOSFET switching loss | 计划图：显示 turn-on/turn-off 期间 `$v_{DS}$` 与 `$i_D$` 重叠面积，连接 `$P_{sw}` | `slides/Lecture 5 Controllable Switches .pdf`; `slides/Lecture 6 Heatsinks.pdf`; `materials/homework.pdf` | MOSFET losses | Recommended |
+| FIG-012 | `ExamRevision/assets/flyback_operation.svg` | Flyback operation | 计划图：显示 primary on-time 储能、secondary off-time 放能及 reflected voltage | `slides/Lecture 9 Flyback and Snubber Circuits.pdf` | Flyback converter、snubber voltage stress | Optional |

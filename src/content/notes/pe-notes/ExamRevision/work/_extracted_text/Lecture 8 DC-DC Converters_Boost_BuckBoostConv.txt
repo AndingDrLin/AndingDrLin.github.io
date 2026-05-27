@@ -1,0 +1,656 @@
+               Power Electronics
+         Switched Mode DC-DC Converters I:
+        Boost Converter, Buck-Boost Converter
+
+                                    Dr Atif Jafri
+                            Atif.Jafri@glasgow.ac.uk
+
+
+Please read Chapter 7 in the textbook
+  POWER ELECTRONICS
+  Converters, Applications, and Design                 1
+The Boost Converter
+
+    - How it works?
+    - Important waveforms
+    - Expression for output voltage
+       - Based on average voltage of inductor
+       - Based on change in current of inductor
+    - Numerical Problems
+The boost (step-up) converter. (VOut > VIn)
+
+
+                                              D
+         VIN           Control                               RL     VOut
+                                                   C
+                                     Switch
+
+
+
+• The boost converter is used to increase the output voltage (VOut) above
+  the input voltage (VIn).
+• As in the case of the buck converter we will assume the circuit operates in
+  continuous mode, i.e., current is always flowing in the inductor.
+• If we disregard the switch for a moment and examine the circuit, we see
+  that in the steady state the output voltage is connected to the input
+  voltage via an inductor (assume zero resistance) and a diode. As with the
+  buck, ignore the voltage drop across the diode.
+                                                                                3
+                               VL
+
+                     Current
+                                                 D
+            VIN           Control                                  RL     VOut
+                                                        C
+                                        Switch
+
+
+• Now consider the circuit when the switch is closed.
+• Any voltage on capacitor C will ensure the diode is reverse biased and therefore
+  the output circuit is “disconnected” from the input. [Because the diode’s anode is
+  connected to ground via the switch.]
+• The inductor is connected across the supply (VIn) and hence current will start to
+  build through it with the energy being stored in the magnetic field. During this
+  phase, VL = VIn.
+                                                                         VL
+
+                                                     Sw on     Current
+
+Switch ON: Charging the inductor !!!                  VIN
+                                                                 VL=VIn
+                                                             Energy in => I ↑
+                                                                                 4
+                                 VL
+
+                      Current
+                                                    D
+            VIN             Control                                    RL        VOut
+                                                           C
+                                           Switch
+
+
+Switch OFF: Discharging the inductor !!!
+When the switch is opened, the inductor wants to
+maintain the current flow and with the supply side                          VL
+of the inductor still held at VIN, the potential at the
+opposite side of the inductor rises until the diode       Sw off    Current
+starts to conduct. The inductor voltage during this
+phase is the difference between the input voltage
+                                                            VIN                             VOut
+(VIN) and the output voltage (VOUT).                                VL= VIN - VOUT
+                                                                   Energy out => I ↓
+So VL = VIN – VOUT
+As energy is transferred from the inductor’s
+magnetic field so the current flowing through the
+inductor and diode falls.
+
+                                                                                        5
+Waveforms for the boost converter
+                    ±VL
+
+            Current
+                                         D
+    VIN          Control                                 RL        VOut
+                                              C
+                                Switch
+
+                                                                     Shut
+
+                                                                    Open          Switch
+
+                                                                    VIN
+                                                                                  Inductor
+                                                       VIN -VOUT                  voltage
+                                                                            Inductor current
+                                                                            (= supply current)
+
+
+
+                                                                            Diode current
+                                                                            (=output current)
+
+
+   Note that current always flows in the inductor (continuous mode again)             6
+Boost converter Input/Output Voltage Relation
+ The integral of inductor voltage is equal to the change in the inductor flux linkage.
+ The net change of flux linking the inductor over one time period of repetition is zero,
+ which is a necessary condition for steady-state operation.
+                                 𝑇
+                                න 𝑉𝐿 𝑑𝑡 = 0
+                                0
+           𝑡𝑜𝑛             𝑇
+         න       𝑉𝐼𝑁 𝑑𝑡 + න (𝑉𝐼𝑁 − 𝑉𝑂𝑈𝑇 )𝑑𝑡 = 0
+           0              𝑡𝑜𝑛
+
+         𝑉𝐼𝑁 𝑡𝑜𝑛 + 𝑉𝐼𝑁 𝑇 − 𝑉𝐼𝑁 𝑡𝑜𝑛 − 𝑉𝑂𝑈𝑇 𝑇 + 𝑉𝑂𝑈𝑇 𝑡𝑜𝑛 = 0
+
+        (𝑉𝐼𝑁 − 𝑉𝑂𝑈𝑇 )𝑇 = −𝑉𝑂𝑈𝑇 𝑡𝑜𝑛
+                                     𝑡
+        (𝑉𝐼𝑁 − 𝑉𝑂𝑈𝑇 ) = −𝑉𝑂𝑈𝑇 𝑜𝑛
+                              𝑇
+
+        𝑉𝐼𝑁 − 𝑉𝑂𝑈𝑇 = −𝑉𝑂𝑈𝑇 𝐷
+
+           𝑉𝐼𝑁 = 𝑉𝑂𝑈𝑇 − 𝑉𝑂𝑈𝑇 𝐷
+
+           𝑉𝐼𝑁 = 𝑉𝑂𝑈𝑇 (1 − 𝐷)
+                                                 𝑽𝑰𝑵
+    𝑉𝐼𝑁 = 𝑉𝑂𝑈𝑇 1 − 𝐷            ⇒        𝑽𝑶𝑼𝑻 =
+                                                𝟏−𝑫
+Boost converter Inductor Current Change
+                                                                                           Inductor current
+                                                                                           (= supply current)
+
+
+                                                                                 Inductor current
+
+       Computing the change in current using following expression:
+
+                                         𝑑𝑖        𝑑𝑖     𝑣
+                                𝑣𝐿 = 𝐿 𝑑𝑡𝐿     => 𝑑𝑡𝐿 = 𝐿𝐿
+
+                                                                                                         VL
+        When switch is closed:                                                    Sw on       Current
+
+(∆𝑖𝐿 )𝑠𝑤𝑖𝑡𝑐ℎ 𝑐𝑙𝑜𝑠𝑒𝑑   𝑉𝐼𝑁                                      𝑉𝐼𝑁                  VIN
+                    =             ⇒    (∆𝑖𝐿 )𝑠𝑤𝑖𝑡𝑐ℎ 𝑐𝑙𝑜𝑠𝑒𝑑 =       × 𝑡𝑜𝑛                       VL=VIN
+        𝑡𝑜𝑛            𝐿                                        𝐿                           Energy in => I ↑
+
+
+                                                                                                   VL
+
+                                                                                   Sw off    Current
+
+      When switch is open:                                                           VIN                        VO
+                                                                                             VL= VIN - VOUT
+                                                                                            Energy out => I ↓
+
+  (∆𝑖𝐿 )𝑠𝑤𝑖𝑡𝑐ℎ 𝑜𝑝𝑒𝑛       𝑉𝐼𝑁 − 𝑉𝑂𝑈𝑇                                            𝑉𝐼𝑁 − 𝑉𝑂𝑈𝑇
+                      =                           ⇒       (∆𝑖𝐿 )𝑠𝑤𝑖𝑡𝑐ℎ 𝑜𝑝𝑒𝑛 =              × (𝑇 − 𝑡𝑜𝑛 )
+      𝑇− 𝑡𝑜𝑛                   𝐿                                                     𝐿
+ Boost converter Input/Output Voltage Relation
+                                                                                              Inductor current
+                                                                                              (= supply current)
+
+
+                                                                                        Inductor current
+           Net change in inductor current over one period is zero.
+                           (∆𝑖𝐿 )𝑠𝑤𝑖𝑡𝑐ℎ 𝑐𝑙𝑜𝑠𝑒𝑑 + (∆𝑖𝐿 )𝑠𝑤𝑖𝑡𝑐ℎ 𝑜𝑝𝑒𝑛 = 0.
+                                        VL                                      VL
+                    Sw on     Current                           Sw off    Current
+
+                     VIN                                          VIN                        VOut
+                               VL=VIN                                     VL= VIN - VOUT
+                            Energy in => I ↑                             Energy out => I ↓
+
+
+  𝑉𝐼𝑁         𝑉𝐼𝑁 − 𝑉𝑂𝑈𝑇                                  𝑉𝐼𝑁         𝑉𝐼𝑁                𝑉𝑂𝑈𝑇
+      × 𝑡𝑜𝑛 +            × (𝑇 − 𝑡𝑜𝑛 ) = 0           =>        × 𝑡𝑜𝑛 +     × (𝑇 − 𝑡𝑜𝑛 ) −      × (𝑇 − 𝑡𝑜𝑛 ) = 0
+   𝐿               𝐿                                       𝐿           𝐿                  𝐿
+
+𝑉𝑂𝑈𝑇                𝑉                                     𝑉𝑂𝑈𝑇 × (𝑇 − 𝑡𝑜𝑛 ൯ = 𝑉𝐼𝑁 × (𝑇)
+     × (𝑇 − 𝑡𝑜𝑛 ቁ = 𝐼𝑁 × (𝑡𝑜𝑛 + 𝑇 − 𝑡𝑜𝑛 )           =>
+  𝐿                  𝐿
+
+                       𝑇                                                         𝑇
+   𝑉𝑂𝑈𝑇 = 𝑉𝐼𝑁                                  =>                                𝑇
+                  (𝑇 − 𝑡𝑜𝑛 ൯                                      𝑉𝑂𝑈𝑇 = 𝑉𝐼𝑁
+                                                                              𝑇 𝑡𝑜𝑛
+                                                    𝑡𝑜𝑛
+                                                                             (𝑇 − 𝑇 )
+  Duty cycle of switching signal = 𝐷 =               𝑇
+                                                            𝟏
+                                        𝑽𝑶𝑼𝑻 = 𝑽𝑰𝑵
+                                                          𝟏− 𝑫
+  Minimum and Maximum Inductor Current
+Assuming lossless system
+                                                                                         𝑉𝑂𝑈𝑇
+   𝑃𝐼𝑁 = 𝑃𝑂𝑈𝑇          ⇒          𝑉𝐼𝑁 𝐼𝐿,𝑎𝑣𝑔 = 𝑉𝑂𝑈𝑇 𝐼𝑂𝑈𝑇      ⇒        𝑉𝐼𝑁 𝐼𝐿,𝑎𝑣𝑔 = 𝑉𝑂𝑈𝑇
+                                                                                          R
+
+                        𝑉𝑂𝑈𝑇 2                                         𝑉𝐼𝑁 2 1
+           𝑉𝐼𝑁 𝐼𝐿,𝑎𝑣𝑔 =                     ⇒          𝑉𝐼𝑁 𝐼𝐿,𝑎𝑣𝑔 = (      ) ×
+                          R                                           1−𝐷      R
+
+                                             𝑉𝐼𝑁
+                                 𝐼𝐿,𝑎𝑣𝑔 =
+                                          (1 − 𝐷)2 𝑅
+
+
+                     ∆𝑖𝐿 𝑠𝑤𝑖𝑡𝑐ℎ 𝑐𝑙𝑜𝑠𝑒𝑑                                     ∆𝑖𝐿 𝑠𝑤𝑖𝑡𝑐ℎ 𝑐𝑙𝑜𝑠𝑒𝑑
+   𝐼𝐿,𝑚𝑎𝑥 = 𝐼𝐿,𝑎𝑣𝑔 +                                     𝐼𝐿,𝑚𝑖𝑛 = 𝐼𝐿,𝑎𝑣𝑔 −
+                           2                                                     2
+
+
+Note: Since change in inductor current is zero, you can take ∆𝑖𝐿 𝑠𝑤𝑖𝑡𝑐ℎ 𝑐𝑙𝑜𝑠𝑒𝑑 or
+ ∆𝑖𝐿 𝑠𝑤𝑖𝑡𝑐ℎ 𝑜𝑝𝑒𝑛 to calculate max and min current. You need to consider the sign of the
+current.
+Boost converter Output Voltage Ripples
+• Assuming that all the ripple current component of the diode current flows through the
+  capacitor and its average value flows through the load resistor.
+
+
+
+
+                                   ∆Q
+ ∆Q = C ∆𝑉𝑂𝑈𝑇           ∆𝑉𝑂𝑈𝑇 =
+                                    C
+                     𝐼𝑜 𝑡𝑜𝑛
+          ∆𝑉𝑂𝑈𝑇 =
+                       𝐶
+
+                 𝑉𝑂𝑈𝑇 𝑡𝑜𝑛
+         ∆𝑉𝑂𝑈𝑇 =
+                   𝑅𝐶
+
+         ∆𝑉𝑂𝑈𝑇   𝑡𝑜𝑛
+               =
+          𝑉𝑂𝑈𝑇   𝑅𝐶
+          ∆𝑉𝑂𝑈𝑇   𝐷𝑇
+                =
+           𝑉𝑂𝑈𝑇   𝑅𝐶
+Boost tutorial.
+A boost converter has following parameters. Determine duty cycle, average, minimum
+and maximum inductor current and output voltage ripple.
+
+     𝑉𝐼𝑁 = 12 V
+     𝑉𝑂𝑈𝑇 = 30 V
+     𝐿 = 120 μH
+     𝐶 = 48 μ𝐹
+     𝑅 = 50 𝑜ℎ𝑚
+     𝑓 = 50 KHz
+
+
+
+                                    𝑽𝑰𝑵
+                            𝑽𝑶𝑼𝑻 =
+                                   𝟏−𝑫
+
+                                  𝟏𝟐
+                          𝟑𝟎 =           ⇒     𝐃 = 𝟎. 𝟔
+                                 𝟏−𝑫
+
+
+
+
+                                                                            12
+Boost tutorial.
+A boost converter has following parameters. Determine duty cycle, average, minimum
+and maximum inductor current and output voltage ripple.
+
+     𝑉𝐼𝑁 = 12 V                                            𝑽𝑰𝑵
+     𝑉𝑂𝑈𝑇 = 30 V                            𝑰𝑳,𝒂𝒗𝒈 =
+                                                        (𝟏 − 𝑫)𝟐 𝑹
+     𝐿 = 120 μH
+     𝐶 = 48 μ𝐹                                               𝟏𝟐
+                                      ⇒      𝑰𝑳,𝒂𝒗𝒈 =                  = 𝟏. 𝟓
+     𝑅 = 50 𝑜ℎ𝑚                                         (𝟏 − 𝟎. 𝟔)𝟐 𝟓𝟎
+     𝑓 = 50 KHz                           𝑽𝑰𝑵           𝑽𝑰𝑵                𝑽𝑰𝑵 𝑫
+                    (∆𝒊𝑳 )𝒔𝒘𝒊𝒕𝒄𝒉 𝒄𝒍𝒐𝒔𝒆𝒅 =     × 𝒕𝒐𝒏 =        × 𝑫𝑻      =      ×
+                                           𝑳             𝑳                  𝑳   𝒇
+                                           𝟏𝟐       𝟎. 𝟔
+                   (∆𝒊𝑳 )𝒔𝒘𝒊𝒕𝒄𝒉 𝒄𝒍𝒐𝒔𝒆𝒅 =         ×         = 𝟐. 𝟒𝑨
+                                         𝟏𝟐𝟎 𝝁𝐇 𝟐𝟓𝟎𝟎𝟎
+                       ∆𝒊𝑳 𝒔𝒘𝒊𝒕𝒄𝒉 𝒄𝒍𝒐𝒔𝒆𝒅                                  ∆𝒊𝑳 𝒔𝒘𝒊𝒕𝒄𝒉 𝒄𝒍𝒐𝒔𝒆𝒅
+    𝑰𝑳,𝒎𝒂𝒙 = 𝑰𝑳,𝒂𝒗𝒈 +                                  𝑰𝑳,𝒎𝒊𝒏 = 𝑰𝑳,𝒂𝒗𝒈 −
+                             𝟐                                                   𝟐
+   𝐼𝐿,𝑚𝑎𝑥 = 1.5 + 1.2 = 2.7A                           𝐼𝐿,𝑚𝑖𝑛 = 1.5 − 1.2 = 0.3A
+    ∆𝑽𝑶𝑼𝑻   𝑫𝑻                 ∆𝑽𝑶𝑼𝑻    𝑫
+          =            ⇒             =
+     𝑽𝑶𝑼𝑻   𝑹𝑪                  𝑽𝑶𝑼𝑻   𝑹 𝑪𝒇
+  ∆𝑉𝑂𝑈𝑇           0.6
+        =                    = 0.01
+   𝑉𝑂𝑈𝑇   50 × 48 μ𝐹 × 25000                                                          13
+Example.
+A boost converter is required to provide a constant 24V / 100W output from an input
+voltage that varies between 9V and 15V. For a switching frequency of 20KHz and
+assuming 100% efficiency and operation in continuous mode, determine the
+following:
+1. The required PWM duty cycle range to maintain a 24V DC output.
+2. The average input current when the input voltage is 15V.
+3. The value of the inductor required if the instantaneous current through the inductor
+at the end of the PWM period is zero. Calculate the value for both 9V and 15V input.
+
+Solution:
+1. For boost converter
+        𝑰𝑵 𝑽                            𝑽𝑰𝑵                        𝟗
+𝑽𝑶𝑼𝑻 = 𝟏−𝑫         => 𝑫 = 𝟏 −                 For 𝑉𝐼𝑁 = 9V 𝑫 = 𝟏 − 𝟐𝟒 = 62.5%
+                                       𝑽𝑶𝑼𝑻
+                                                                   𝟏𝟓
+                                              For 𝑉𝐼𝑁 = 15V 𝑫 = 𝟏 − 𝟐𝟒 = 37.5%
+
+ 2. Assuming 100% efficiency:
+     VIN I IN ( MEAN ) = VOUT I OUT ( MEAN ) = 100W
+                                       100W
+     For VIN = 15V , I IN ( MEAN ) =        = 6.67 A
+                                        15V                                      14
+3. For a boost converter. the inductor current = input current. At 15V, D=37.5% and
+IIN(AVE)=6.67A. We know that at the end of the PWM period the inductor current is
+zero, hence we can construct the current waveform:
+                                                            IMAX = 2 x IAVE = 13.33A
+                        18.75μS   31.25μS          IMAX = 13.33A
+
+                                                          IAVE = 6.67A
+
+
+        VIN
+                          A       B
+         (VIN - VOUT)
+
+
+
+ f = 20KHz, D = 37.5% => TON = 18.75μS
+
+      di           t
+ V =L     = L = V
+      dt           i
+             15V 18.75S
+ For A : L =                   = 21H
+                 13.3 A
+             − (24V − 15V )  31.25S
+ For B : L =                          = 21H
+                       − 13.3 A
+                                                                               15
+The Buck-Boost Converter
+
+    - How it works?
+    - Important waveforms
+    - Expression for output voltage
+       - Based on average voltage of inductor
+       - Based on change in current of inductor
+    - Numerical Problems
+The buck-boost converter (VOUT <> VIN).
+
+                         Switch
+
+
+                                                D
+                         Control
+             VIN                                                  RL     VOut
+                                                         C
+
+
+
+
+The Buck-Boost converter is able to produce output voltages that are higher or lower
+than the input voltage. Once again, we will consider the continuous mode system.
+Note that the output is negative with respect to the 0V side of the input voltage.
+
+
+
+                   VIN                              VOUT
+
+                                   Buck-boost
+                   0V                               0V
+
+                                                                                17
+               Switch
+
+
+                                             D                              Charging
+               Control
+     VIN                             VL                          RL      VOUT
+                                                      C
+                    Current
+
+
+
+
+Before starting …
+… Notice that when the switch is open there is no connection between the input to
+the supply and its output. Hence, we can conclude that the supply is capable of
+delivering 0V output regardless of the input voltage for a 0% duty cycle on the
+switch.
+With the switch closed, the input voltage is imposed across the inductor and the
+current through the inductor starts to rise. The diode is “off” since the cathode is
+more positive than the anode.
+Hence for the “on” period, VL = VIN.
+Note that with the diode reverse biased, the only route for the current to take that completes
+the circuit is back through the supply to the converter.
+                                                                                        18
+             Switch
+
+
+                                           D                           Discharging
+             Control
+    VIN                            VL                          RL      VOUT
+                                                    C
+                  Current
+
+
+
+
+When the switch is opened the voltage on the inductor reverses polarity, the
+diode starts to conduct and hence the inductor current flows into the capacitor.
+During this “off” period, VL = VOUT and this is maintained as the current in the
+inductor falls to its value at the end of the PWM period.
+
+Note that with the switch opened there is no return path for current through the input to
+the converter and hence the only route the inductor current can follow is into the
+capacitor and load.
+Also note that the capacitor will supply current to the load when there is no current
+contribution from the inductor.
+
+                                                                                        19
+Waveforms for the buck-boost converter
+
+                                  ON
+
+                                          OFF
+                                                  Switch waveform
+                                  VIN
+
+
+                                                  Inductor voltage
+                                         VOUT
+
+
+
+
+                                                  Inductor current
+                                         ION=IL
+
+                            IOFF=ICAP             Switch current
+
+
+
+
+                                                  Current INTO capacitor
+
+
+
+
+                                                                           20
+Buck-boost converter Input/Output Voltage Relation
+
+        𝑇
+    න 𝑉𝐿 𝑑𝑡 = 0
+     0
+     𝑡𝑜𝑛             𝑇
+   න        𝑉𝐼𝑁 𝑑𝑡 + න 𝑉𝑂𝑈𝑇 𝑑𝑡 = 0
+    0               𝑡𝑜𝑛
+
+  𝑉𝐼𝑁 𝑡𝑜𝑛 + 𝑉𝑂𝑈𝑇 𝑇 − 𝑉𝑂𝑈𝑇 𝑡𝑜𝑛 = 0
+
+  𝑉𝐼𝑁 𝑡𝑜𝑛 = −𝑉𝑂𝑈𝑇 𝑇 + 𝑉𝑂𝑈𝑇 𝑡𝑜𝑛
+  𝑉𝐼𝑁 𝐷𝑇 = −𝑉𝑂𝑈𝑇 𝑇 + 𝑉𝑂𝑈𝑇 𝐷𝑇
+
+  𝑉𝐼𝑁 𝐷 = −𝑉𝑂𝑈𝑇 (1 − 𝐷)
+
+               −𝑽𝑰𝑵 𝑫
+        𝑽𝑶𝑼𝑻 =
+               𝟏−𝑫
+
+
+Polarity is opposite than the input
+ Buck-boost converter change in inductor current
+
+
+
+                                                                                 Inductor current
+
+           Computing the change in current using following expression:
+
+                                           𝑑𝑖          𝑑𝑖     𝑣
+                                𝑣𝐿 = 𝐿 𝑑𝑡𝐿         => 𝑑𝑡𝐿 = 𝐿𝐿
+
+           When switch is closed:
+
+  (∆𝑖𝐿 )𝑠𝑤𝑖𝑡𝑐ℎ 𝑐𝑙𝑜𝑠𝑒𝑑   𝑉𝐼𝑁                                       𝑉𝐼𝑁
+                      =        =>        (∆𝑖𝐿 )𝑠𝑤𝑖𝑡𝑐ℎ 𝑐𝑙𝑜𝑠𝑒𝑑 =        × 𝑡𝑜𝑛
+          𝑡𝑜𝑛            𝐿                                         𝐿
+
+
+
+
+         When switch is open:
+(∆𝑖𝐿 )𝑠𝑤𝑖𝑡𝑐ℎ 𝑜𝑝𝑒𝑛       𝑉𝑂𝑈𝑇                                          𝑉𝑂𝑈𝑇
+                    =               =>          (∆𝑖𝐿 )𝑠𝑤𝑖𝑡𝑐ℎ 𝑜𝑝𝑒𝑛 =        × (𝑇 − 𝑡𝑜𝑛 )
+    𝑇− 𝑡𝑜𝑛                𝐿                                             𝐿
+  Minimum and Maximum Inductor Current
+Assuming lossless system
+                                                                                          𝑉𝑂𝑈𝑇
+   𝑃 =𝑃                 ⇒          𝑉𝐼𝑁 𝐼𝐼𝑁 = 𝑉𝑂𝑈𝑇 𝐼𝑂𝑈𝑇       ⇒        𝑉𝐼𝑁 𝐼𝐿,𝑎𝑣𝑔 𝐷 = 𝑉𝑂𝑈𝑇
+    𝐼𝑁    𝑂𝑈𝑇                                                                              R
+
+                         𝑉𝑂𝑈𝑇 2                              (𝑉𝑂𝑈𝑇 )2 1
+          𝑉𝐼𝑁 𝐼𝐿,𝑎𝑣𝑔 𝐷 =                          ⇒ 𝐼𝐿,𝑎𝑣𝑔 =         ×
+                           R                                  𝑉𝐼𝑁 𝐷    R
+
+                                              𝐷          1
+                          𝐼𝐿,𝑎𝑣𝑔 = (𝑉𝐼𝑁          )2 ×
+                                             1−𝐷      𝑉𝐼𝑁 𝐷R
+
+                                                𝑉𝐼𝑁 𝐷
+                                  𝐼𝐿,𝑎𝑣𝑔 =
+                                             (1 − 𝐷)2 𝑅
+
+
+                     ∆𝑖𝐿 𝑠𝑤𝑖𝑡𝑐ℎ 𝑐𝑙𝑜𝑠𝑒𝑑                                        ∆𝑖𝐿 𝑠𝑤𝑖𝑡𝑐ℎ 𝑐𝑙𝑜𝑠𝑒𝑑
+   𝐼𝐿,𝑚𝑎𝑥 = 𝐼𝐿,𝑎𝑣𝑔 +                                      𝐼𝐿,𝑚𝑖𝑛 = 𝐼𝐿,𝑎𝑣𝑔 −
+                           2                                                        2
+
+
+ Note: Since change in inductor current is zero, you can take ∆𝑖𝐿 𝑠𝑤𝑖𝑡𝑐ℎ 𝑐𝑙𝑜𝑠𝑒𝑑 or
+  ∆𝑖𝐿 𝑠𝑤𝑖𝑡𝑐ℎ 𝑜𝑝𝑒𝑛 to calculate max and min current. You need to consider the sign of the
+ current.
+Buck-Boost converter Output Voltage Ripples
+• Assuming that all the ripple current component of the diode current flows through the
+  capacitor and its average value flows through the load resistor.
+
+
+
+                                ∆Q
+ ∆Q = C ∆𝑉𝑂𝑈𝑇           ∆𝑉𝑂𝑈𝑇 =
+                                 C
+                  𝐼𝑜 𝑡𝑜𝑛
+          ∆𝑉𝑂𝑈𝑇 =
+                    𝐶
+
+                𝑉𝑂𝑈𝑇 𝑡𝑜𝑛
+        ∆𝑉𝑂𝑈𝑇 =
+                  𝑅𝐶
+
+         ∆𝑉𝑂𝑈𝑇   𝑡𝑜𝑛
+               =
+          𝑉𝑂𝑈𝑇   𝑅𝐶
+          ∆𝑉𝑂𝑈𝑇   𝐷𝑇
+                =
+           𝑉𝑂𝑈𝑇   𝑅𝐶
+Question.
+A small wind turbine generates 1.5V DC per MPH of wind speed.
+For operation over the range 8 MPH to 32 MPH, determine the following:
+1. The type of converter to be used;
+2. The required range of duty cycle for these wind speeds;
+3. The average input current to the converter at 32MPH;
+4. The peak input current @ 32 MPH assuming operation at the boundary condition.
+
+
+
+
+                                                                          25
+Solution.
+For a wind speed of 8MPH, the turbine output voltage is 8 x 1.5 = 12V. At a wind
+speed of 32 MPH the output voltage is 48V. Hence use a buck-boost converter since
+VIN can be less than or greater than the output voltage.
+
+For the BB,
+                                          𝐷
+                             𝑉𝑂𝑈𝑇 = −𝑉𝐼𝑁
+                                         1−𝐷
+Neglecting the sign as it only shows the polarity with respect to input voltage.
+
+                                        𝑉𝑂𝑈𝑇
+                                 𝐷 =
+                                     𝑉𝐼𝑁 + 𝑉𝑂𝑈𝑇
+
+For 8MPH, D = 24 / (12 + 24) = 66.6%
+For 32 MPH, D = 24 / (48 + 24) = 33.3%
+
+
+
+
+                                                                                   26
+                      Converter summary
+       For all converters, assume VIN I IN ( Ave ) = VOUT I OUT ( Ave )
+Type             Voltage Equation       Current Equation
+Buck
+                                                           𝐼𝐼𝑁(𝐴𝑣𝑔.)
+(VOUT < VIN)         𝑉𝑂𝑈𝑇 = 𝐷𝑉𝐼𝑁               𝐼𝑂𝑈𝑇(𝐴𝑣𝑒) =
+                                                              𝐷
+Boost
+                            𝑉𝐼𝑁
+(VOUT > VIN)        𝑉𝑂𝑈𝑇 =                      𝐼𝑂𝑈𝑇 = (1 − 𝐷)𝐼𝐼𝑁(𝐴𝑣𝑔.)
+                           1− 𝐷
+
+Buck-boost
+                                 𝐷                                      1−𝐷
+(VOUT <> VIN)     𝑉𝑂𝑈𝑇 = −𝑉𝐼𝑁                   𝐼𝑂𝑈𝑇(𝐴𝑣𝑒) = −𝐼𝐼𝑁(𝐴𝑣𝑔)
+                                1−𝐷                                      𝐷
+
+
+
+
+                                                                              27
+The following diagrams summarise the energy flow in the circuit for each converter type
+during the storage and release phases of operation.
+
+
+   Charging the Inductor                        Discharging the Inductor
+ Storage                                        Release
+
+
+        Control                                       Control
+  VIN                                    VOut   VIN                                        VOut
+                                Buck                                           Buck
+
+
+
+
+  VIN         Control                    VOut   VIN         Control                        VOut
+                                                                            Boost
+
+
+
+
+          Control                                       Control
+  VIN                                    VOut   VIN                                        VOut
+                            Buck-boost                                  Buck-boost
+
+
+
+
+                        Switch ON                                 Switch OFF
+                                                                                      28
+What have we learned so far?
+ • DC-DC Converters
+ • Switched Mode Power Supplies (Converters)
+   • Buck Converter
+   • Boost Converter
+   • Buck-Boost Converter
+
+
+
+
+                                               29
+

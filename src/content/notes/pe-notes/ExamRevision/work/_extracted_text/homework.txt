@@ -1,0 +1,264 @@
+GLASGOW COLLEGE UESTC
+
+             Homework
+       Academic Year 2025-2026
+             Semester II
+
+
+
+Power Electronics (UESTC3022)
+
+
+
+ Attempt all PARTS. Total 100 marks
+
+
+
+
+             Page 1 of 6
+                              Power Electronics 2 Formulae List
+                             diL (t )              1                      1
+For an inductor: vL (t ) = L          , iL (t ) =  vL (t )dt , EL (t ) = L iL (t ) 
+                                                                                      2
+
+                               dt                  L                      2
+                           1                         dv  (t )            1
+For a capacitor: vC (t ) =  iC (t ) dt , iC (t ) = C C , EC (t ) = C vC (t ) 
+                                                                                      2
+
+                           C                           dt                2
+                           T
+                         1
+Average value: Vave =  v(t )dt
+                         T 0
+                                      T
+                                 1
+RMS value: Vrms =                  
+                                 T 0
+                                     v(t ) 2 dt
+
+                                   Ton      T
+Duty cycle: D   =                       = on
+                                Ton + Toff Tperiod
+Amplitude modulation index of SPWM :
+          Vˆ
+     ma = control
+          Vˆ      carrier
+
+Frequency modulation index of SPWM:
+                  f carrier
+       mf =
+                  f control
+Instantaneous power:
+           v 2 (t ) 2
+       p (t ) =    = i (t ) R = v(t )  i (t ) = force  velocity = torque  angular velocity
+              R
+Average power:
+             T                        2
+                                    Vrms
+       P =  v(t )i (t )dt =             = I rms
+                                             2
+                                                 R
+             0
+                                     R
+reverse recovery power loss in a diode:
+      PRR = QRR  VR (blocking )  f switching
+MOSFET switching loss:
+
+                                                  (T I + T I )
+                         f switchingVDS ( off )
+       Pswitching =                                on on   off   off
+                                  2
+Thermal circuit:
+                                                                     power  time
+        T = Pdevice   XY               or T (°C) =
+                                                                 thermal capacitance
+Junction temperature of device:
+       Tjunction = Tsink + Pdevice ( juntion-case + case-sink )
+Calculus:
+     cos 2 = 2 cos 2  − 1 = 1 − 2sin 2 
+                      1                          1
+      cos ( a )d = a sin   cos ( a )d = − a sin 
+
+                                                       Page 2 of 6
+Q1. Answer all questions in this section:
+
+    a. For the periodic load current waveform of Figure Q1-a, calculate:
+
+           i.       The average current.                                                                 [1]
+
+          ii.       The RMS current.                                                                     [2]
+
+         iii.       The form factor of the waveform.                                                     [2]
+
+                                   10
+
+
+                                    5
+
+
+
+
+                     Current (A)
+                                    0
+                                         2   4   6   8   10   12   14      16   18   20   22   24   26   28
+
+
+                                   -5
+
+
+
+                                   -10
+                                                               Time (ms)
+
+
+                                                           Figure Q1-a
+
+    b.
+
+           i.       Draw and label a circuit to show how two silicon controlled rectifiers (SCRs)
+                    can be used to control a resistive load from an AC supply, allowing current to
+                    flow in both directions through the load.                                  [2]
+
+          ii.       Draw and label sketches of the current through the load to show how phase-
+                    angle control of SCRs is used to provide an average power (1) less than 50% of
+                    its maximum value and (2) above 50% of its maximum value.                  [3]
+
+    c. Please list three advantages and three disadvantages of MOSFETs.                                  [5]
+
+    d. A switch-mode power supply contains two power semiconductor devices:
+
+                •   A MOSFET switch, which dissipates 1.0 W.
+
+                •   A diode, which dissipates 2.0 W.
+
+         Both are in TO220 packages, which have thermal resistances Ɵjc =3 °CW-1 and Ɵca
+         =60 °CW-1. The temperature of their junctions should not exceed 125°C and the
+         ambient temperature is 25°C.
+
+           i.       Is it possible to use either device safely without a heatsink?                       [2]
+                                                     Page 3 of 6
+         ii.   Despite the results of the previous analysis, the designer decides to mount both
+               devices on a common heatsink. Specify the heatsink. (Hint: which component
+               is most at risk from overheating?)                                           [3]
+   e. Consider the circuit in Figure Q1-e. Assume the power diode’s forward voltage drop =
+      0.7 V. When an 80 Vrms sine voltage is applied to the primary winding of the
+      transformer,
+
+          i.   What type of circuit is this?                                                [1]
+
+         ii.   What is the total peak secondary voltage (Vp(sec))?                          [1]
+
+        iii.   Draw the voltage waveform across RL                                          [1]
+
+        iv.    What is the peak current through each diode?                                 [1]
+
+         v.    Determine the peak inverse voltage (PIV) for each diode.                     [1]
+
+
+
+
+                                         Figure Q1-e
+
+
+Q2. a. For the full-wave diode rectifier circuit shown in Figure Q2, assuming the input voltage
+       is 𝑉𝐴𝐶 = 100 𝑠𝑖𝑛( 100𝜋𝑡), the conduction angle of the diode is 30, the load resistance
+       RL = 20 Ω, and the capacitor CS = 10 mF. We assume that all components are perfect
+       and neglect the voltage drop across the diodes.
+
+
+      i. Estimate the peak-to-peak ripple voltage in the output voltage VR and the peak inverse
+            voltage in the voltage drop VD for the diode D.                                 [4]
+
+
+     ii. If the output filter capacitor Cs is removed, sketch and label the voltages across the
+             load RL and the diode D separately, showing the time scale clearly. Calculate the
+             RMS value of the output voltage VR.                                            [4]
+
+
+    iii. If the ripple voltage across the load resistance RL must not exceed 1V peak-to-peak.
+             Calculate the value of smoothing capacitance CS required. You may assume that
+             the capacitor provides current to the load for each complete cycle of the rectified
+             voltage.                                                                        [4]
+
+
+    iv. If only increase the value of Cs, what will it affect VR ripple, the power diode
+           conduction angle, the form factor of the current waveform drawn from the
+           transformer, and the VA rating of the transformer, respectively?           [4]
+                                          Page 4 of 6
+        v. List the advantages and disadvantages of this full bridge rectifier circuit.              [4]
+
+
+                                                                IL
+                                    VAC
+                                                                CS      R L VR
+
+
+                                              Figure Q2
+
+ b. A MOSFET has thermal resistance from the junction to case jc as 1.8 °C/W and the
+    thermal resistance from the case to the heat sink cs as 0.6 °C/W.
+
+   i.    If the device is mounted on a heat sink that has a thermal resistance of sa 7 °C/W,
+         determine the maximum power that can be absorbed without exceeding a junction
+         temperature of 160 °C when the ambient temperature is 50 °C.                      [1]
+
+ ii.     Determine the junction temperature when the absorbed power is 20 W.                         [2]
+
+ iii.    Determine sa of a heat sink that would limit the junction temperature to 160 °C for 20
+         W absorbed.                                                                         [2]
+
+
+Q3. You are designing a high-speed power converter for a critical portable device that needs
+to be secured. During testing, you observe high-frequency voltage oscillations across the main
+switching MOSFET. If not mitigated, these spikes could cause:
+
+         Physical Breach: Dielectric breakdown of the MOSFET (Device Failure).
+
+         Electromagnetic Compliance and Information Leakage: Radiated Electromagnetic
+         Interference (EMI) that on one side can affect other nearby devices and on the other
+         side can allows a remote attacker to "sniff" the device’s operating frequency and
+         power state from a distance. This can allow the sniffer to perform malicious activity
+         of disturbing the function of the critical application.
+   i.    Consider that the parasitic board inductance of Lp = 20 nH and a device stray capacitance of
+         500 pF, the switching frequency of 200 KHz and the bus voltage of 400V, design an RC
+         Snubber Circuit to mitigate these risks. [8]
+  ii.    Calculate the power loss introduced by this snubber circuit. Evaluate the significance of this
+         loss in the context of a portable device. Select and apply appropriate a compromise between
+         oscillation suppression and minimising power loss. [8]
+ iii.    Do a literature survey and cite any three formal sources (i.e *books and/or research papers
+         only) that discuss holistic approach which looks beyond the snubber component and
+         addresses the root cause of the risk. Summrize the holistic approach mentioned in three
+         sources you identified. [9]
+
+   *you               can              use           AccessEngineering                         platform
+at https://eleanor.lib.gla.ac.uk/record=b4512480 to search reference material.
+
+
+                                              Page 5 of 6
+Q4. Figure Q4 shows a three-phase inverter working in square-wave mode.
+
+
+
+
+                                         Figure Q4
+
+  i.   Idenfity the key components of the three-phase inverter shown in Figure Q4 and explain
+       the functions they perform. [3]
+ ii.   A swcithing seuqeson below has been given as follows, compute and tabulate the line
+       voltages. [7]
+
+
+
+
+iii.   Assume each step last for 60°, draw the waveform for the line voltages.             [6]
+iv.    Evaluate the waveform and suggest whether this switching sequence is suitable for
+       motor applications. [5]
+ v.    If the inverter output is distorted, explain how this affects the motor’s speed control
+       and performance. [4]
+
+
+
+
+                                        Page 6 of 6
+
