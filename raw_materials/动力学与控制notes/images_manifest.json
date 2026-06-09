@@ -1,0 +1,4484 @@
+{
+  "ch01": [
+    {
+      "filename": "lecI_JLK_p001_1.png",
+      "page": 1,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecI_JLK_p002_1.png",
+      "page": 2,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecI_JLK_p003_1.png",
+      "page": 3,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecI_JLK_p004_1.png",
+      "page": 4,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecI_JLK_p004_2.png",
+      "page": 4,
+      "size_bytes": 14245,
+      "width": 512,
+      "height": 222
+    },
+    {
+      "filename": "lecI_JLK_p005_1.png",
+      "page": 5,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecI_JLK_p006_1.png",
+      "page": 6,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecI_JLK_p006_3.jpeg",
+      "page": 6,
+      "size_bytes": 95936,
+      "width": 1132,
+      "height": 713
+    },
+    {
+      "filename": "lecI_JLK_p007_1.png",
+      "page": 7,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecI_JLK_p007_3.jpeg",
+      "page": 7,
+      "size_bytes": 93215,
+      "width": 1035,
+      "height": 919
+    },
+    {
+      "filename": "lecI_JLK_p008_1.png",
+      "page": 8,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecI_JLK_p008_2.png",
+      "page": 8,
+      "size_bytes": 6612,
+      "width": 378,
+      "height": 194
+    },
+    {
+      "filename": "lecI_JLK_p009_1.png",
+      "page": 9,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecI_JLK_p009_2.png",
+      "page": 9,
+      "size_bytes": 6990,
+      "width": 783,
+      "height": 172
+    },
+    {
+      "filename": "lecI_JLK_p010_1.png",
+      "page": 10,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecI_JLK_p011_1.png",
+      "page": 11,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecI_JLK_p011_2.png",
+      "page": 11,
+      "size_bytes": 22755,
+      "width": 720,
+      "height": 561
+    },
+    {
+      "filename": "lecI_JLK_p012_1.png",
+      "page": 12,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecI_JLK_p012_2.png",
+      "page": 12,
+      "size_bytes": 30940,
+      "width": 762,
+      "height": 566
+    },
+    {
+      "filename": "lecI_JLK_p013_1.png",
+      "page": 13,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecI_JLK_p014_1.png",
+      "page": 14,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecI_JLK_p014_2.png",
+      "page": 14,
+      "size_bytes": 8069,
+      "width": 362,
+      "height": 81
+    },
+    {
+      "filename": "lecI_JLK_p014_3.png",
+      "page": 14,
+      "size_bytes": 20925,
+      "width": 368,
+      "height": 486
+    },
+    {
+      "filename": "lecI_JLK_p015_1.png",
+      "page": 15,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecI_JLK_p016_1.png",
+      "page": 16,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecI_JLK_p017_1.png",
+      "page": 17,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecI_JLK_p018_1.png",
+      "page": 18,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecI_JLK_p019_1.png",
+      "page": 19,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecI_JLK_p020_1.png",
+      "page": 20,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecI_JLK_p020_2.png",
+      "page": 20,
+      "size_bytes": 7306,
+      "width": 337,
+      "height": 281
+    },
+    {
+      "filename": "lecI_JLK_p021_1.png",
+      "page": 21,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecI_JLK_p022_1.png",
+      "page": 22,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecI_JLK_p022_2.png",
+      "page": 22,
+      "size_bytes": 21971,
+      "width": 552,
+      "height": 393
+    },
+    {
+      "filename": "lecI_JLK_p023_1.png",
+      "page": 23,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecI_JLK_p024_1.png",
+      "page": 24,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecI_JLK_p025_1.png",
+      "page": 25,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    }
+  ],
+  "ch02": [
+    {
+      "filename": "lecII_JLK_p001_1.png",
+      "page": 1,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecII_JLK_p002_1.png",
+      "page": 2,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecII_JLK_p003_1.png",
+      "page": 3,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecII_JLK_p003_2.png",
+      "page": 3,
+      "size_bytes": 37225,
+      "width": 1707,
+      "height": 283
+    },
+    {
+      "filename": "lecII_JLK_p003_3.jpeg",
+      "page": 3,
+      "size_bytes": 31730,
+      "width": 1275,
+      "height": 221
+    },
+    {
+      "filename": "lecII_JLK_p003_4.jpeg",
+      "page": 3,
+      "size_bytes": 13753,
+      "width": 275,
+      "height": 183
+    },
+    {
+      "filename": "lecII_JLK_p004_1.png",
+      "page": 4,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecII_JLK_p004_2.jpeg",
+      "page": 4,
+      "size_bytes": 9305,
+      "width": 269,
+      "height": 187
+    },
+    {
+      "filename": "lecII_JLK_p004_3.jpeg",
+      "page": 4,
+      "size_bytes": 41473,
+      "width": 658,
+      "height": 623
+    },
+    {
+      "filename": "lecII_JLK_p004_4.png",
+      "page": 4,
+      "size_bytes": 24693,
+      "width": 587,
+      "height": 351
+    },
+    {
+      "filename": "lecII_JLK_p004_5.jpeg",
+      "page": 4,
+      "size_bytes": 9310,
+      "width": 180,
+      "height": 196
+    },
+    {
+      "filename": "lecII_JLK_p004_6.jpeg",
+      "page": 4,
+      "size_bytes": 8096,
+      "width": 260,
+      "height": 194
+    },
+    {
+      "filename": "lecII_JLK_p005_1.png",
+      "page": 5,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecII_JLK_p005_2.png",
+      "page": 5,
+      "size_bytes": 13550,
+      "width": 643,
+      "height": 145
+    },
+    {
+      "filename": "lecII_JLK_p005_3.jpeg",
+      "page": 5,
+      "size_bytes": 12121,
+      "width": 225,
+      "height": 225
+    },
+    {
+      "filename": "lecII_JLK_p005_4.jpeg",
+      "page": 5,
+      "size_bytes": 10418,
+      "width": 261,
+      "height": 193
+    },
+    {
+      "filename": "lecII_JLK_p005_5.jpeg",
+      "page": 5,
+      "size_bytes": 7864,
+      "width": 225,
+      "height": 225
+    },
+    {
+      "filename": "lecII_JLK_p006_1.png",
+      "page": 6,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecII_JLK_p006_2.png",
+      "page": 6,
+      "size_bytes": 32317,
+      "width": 894,
+      "height": 340
+    },
+    {
+      "filename": "lecII_JLK_p007_1.png",
+      "page": 7,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecII_JLK_p007_2.png",
+      "page": 7,
+      "size_bytes": 72322,
+      "width": 1030,
+      "height": 410
+    },
+    {
+      "filename": "lecII_JLK_p008_1.png",
+      "page": 8,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecII_JLK_p008_2.png",
+      "page": 8,
+      "size_bytes": 32317,
+      "width": 894,
+      "height": 340
+    },
+    {
+      "filename": "lecII_JLK_p008_3.png",
+      "page": 8,
+      "size_bytes": 72322,
+      "width": 1030,
+      "height": 410
+    },
+    {
+      "filename": "lecII_JLK_p009_1.png",
+      "page": 9,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecII_JLK_p009_2.png",
+      "page": 9,
+      "size_bytes": 71134,
+      "width": 1181,
+      "height": 276
+    },
+    {
+      "filename": "lecII_JLK_p010_1.png",
+      "page": 10,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecII_JLK_p011_1.png",
+      "page": 11,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecII_JLK_p011_2.png",
+      "page": 11,
+      "size_bytes": 5475,
+      "width": 296,
+      "height": 387
+    },
+    {
+      "filename": "lecII_JLK_p012_1.png",
+      "page": 12,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecII_JLK_p013_1.png",
+      "page": 13,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecII_JLK_p013_2.png",
+      "page": 13,
+      "size_bytes": 26032,
+      "width": 1080,
+      "height": 255
+    },
+    {
+      "filename": "lecII_JLK_p014_1.png",
+      "page": 14,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecII_JLK_p015_1.png",
+      "page": 15,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecII_JLK_p015_2.png",
+      "page": 15,
+      "size_bytes": 9059,
+      "width": 383,
+      "height": 137
+    },
+    {
+      "filename": "lecII_JLK_p015_3.png",
+      "page": 15,
+      "size_bytes": 19774,
+      "width": 1164,
+      "height": 412
+    },
+    {
+      "filename": "lecII_JLK_p016_1.png",
+      "page": 16,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecII_JLK_p016_2.png",
+      "page": 16,
+      "size_bytes": 6034,
+      "width": 541,
+      "height": 118
+    },
+    {
+      "filename": "lecII_JLK_p017_1.png",
+      "page": 17,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecII_JLK_p017_2.png",
+      "page": 17,
+      "size_bytes": 7225,
+      "width": 595,
+      "height": 174
+    },
+    {
+      "filename": "lecII_JLK_p018_1.png",
+      "page": 18,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecII_JLK_p018_2.png",
+      "page": 18,
+      "size_bytes": 7311,
+      "width": 487,
+      "height": 196
+    },
+    {
+      "filename": "lecII_JLK_p018_3.png",
+      "page": 18,
+      "size_bytes": 9630,
+      "width": 676,
+      "height": 254
+    },
+    {
+      "filename": "lecII_JLK_p019_1.png",
+      "page": 19,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecII_JLK_p019_2.png",
+      "page": 19,
+      "size_bytes": 7286,
+      "width": 510,
+      "height": 193
+    },
+    {
+      "filename": "lecII_JLK_p019_3.png",
+      "page": 19,
+      "size_bytes": 8997,
+      "width": 488,
+      "height": 254
+    },
+    {
+      "filename": "lecII_JLK_p020_1.png",
+      "page": 20,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecII_JLK_p020_2.png",
+      "page": 20,
+      "size_bytes": 5508,
+      "width": 351,
+      "height": 207
+    },
+    {
+      "filename": "lecII_JLK_p020_3.png",
+      "page": 20,
+      "size_bytes": 7381,
+      "width": 546,
+      "height": 207
+    },
+    {
+      "filename": "lecII_JLK_p021_1.png",
+      "page": 21,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecII_JLK_p021_2.png",
+      "page": 21,
+      "size_bytes": 5569,
+      "width": 389,
+      "height": 205
+    },
+    {
+      "filename": "lecII_JLK_p021_3.png",
+      "page": 21,
+      "size_bytes": 7334,
+      "width": 378,
+      "height": 248
+    },
+    {
+      "filename": "lecII_JLK_p022_1.png",
+      "page": 22,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecII_JLK_p022_2.png",
+      "page": 22,
+      "size_bytes": 9885,
+      "width": 521,
+      "height": 257
+    },
+    {
+      "filename": "lecII_JLK_p022_3.png",
+      "page": 22,
+      "size_bytes": 5450,
+      "width": 425,
+      "height": 128
+    },
+    {
+      "filename": "lecII_JLK_p023_1.png",
+      "page": 23,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    }
+  ],
+  "ch03": [
+    {
+      "filename": "lecIII_JLK_p001_1.png",
+      "page": 1,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecIII_JLK_p002_1.png",
+      "page": 2,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecIII_JLK_p003_1.png",
+      "page": 3,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecIII_JLK_p003_2.png",
+      "page": 3,
+      "size_bytes": 76182,
+      "width": 639,
+      "height": 809
+    },
+    {
+      "filename": "lecIII_JLK_p004_1.png",
+      "page": 4,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecIII_JLK_p004_2.png",
+      "page": 4,
+      "size_bytes": 24531,
+      "width": 1500,
+      "height": 547
+    },
+    {
+      "filename": "lecIII_JLK_p005_1.png",
+      "page": 5,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecIII_JLK_p005_2.png",
+      "page": 5,
+      "size_bytes": 33356,
+      "width": 1001,
+      "height": 286
+    },
+    {
+      "filename": "lecIII_JLK_p005_3.jpeg",
+      "page": 5,
+      "size_bytes": 23939,
+      "width": 904,
+      "height": 365
+    },
+    {
+      "filename": "lecIII_JLK_p006_1.png",
+      "page": 6,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecIII_JLK_p006_2.png",
+      "page": 6,
+      "size_bytes": 33356,
+      "width": 1001,
+      "height": 286
+    },
+    {
+      "filename": "lecIII_JLK_p006_3.jpeg",
+      "page": 6,
+      "size_bytes": 23939,
+      "width": 904,
+      "height": 365
+    },
+    {
+      "filename": "lecIII_JLK_p007_1.png",
+      "page": 7,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecIII_JLK_p007_2.png",
+      "page": 7,
+      "size_bytes": 70374,
+      "width": 970,
+      "height": 370
+    },
+    {
+      "filename": "lecIII_JLK_p007_3.png",
+      "page": 7,
+      "size_bytes": 10753,
+      "width": 639,
+      "height": 132
+    },
+    {
+      "filename": "lecIII_JLK_p007_4.png",
+      "page": 7,
+      "size_bytes": 11218,
+      "width": 639,
+      "height": 116
+    },
+    {
+      "filename": "lecIII_JLK_p007_5.png",
+      "page": 7,
+      "size_bytes": 24531,
+      "width": 1500,
+      "height": 547
+    },
+    {
+      "filename": "lecIII_JLK_p008_1.png",
+      "page": 8,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecIII_JLK_p008_2.png",
+      "page": 8,
+      "size_bytes": 70374,
+      "width": 970,
+      "height": 370
+    },
+    {
+      "filename": "lecIII_JLK_p008_3.jpeg",
+      "page": 8,
+      "size_bytes": 22728,
+      "width": 908,
+      "height": 370
+    },
+    {
+      "filename": "lecIII_JLK_p008_4.png",
+      "page": 8,
+      "size_bytes": 10753,
+      "width": 639,
+      "height": 132
+    },
+    {
+      "filename": "lecIII_JLK_p008_5.png",
+      "page": 8,
+      "size_bytes": 11218,
+      "width": 639,
+      "height": 116
+    },
+    {
+      "filename": "lecIII_JLK_p008_6.png",
+      "page": 8,
+      "size_bytes": 24531,
+      "width": 1500,
+      "height": 547
+    },
+    {
+      "filename": "lecIII_JLK_p009_1.png",
+      "page": 9,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecIII_JLK_p009_2.png",
+      "page": 9,
+      "size_bytes": 70374,
+      "width": 970,
+      "height": 370
+    },
+    {
+      "filename": "lecIII_JLK_p009_3.jpeg",
+      "page": 9,
+      "size_bytes": 22923,
+      "width": 822,
+      "height": 318
+    },
+    {
+      "filename": "lecIII_JLK_p009_4.jpeg",
+      "page": 9,
+      "size_bytes": 22728,
+      "width": 908,
+      "height": 370
+    },
+    {
+      "filename": "lecIII_JLK_p009_5.png",
+      "page": 9,
+      "size_bytes": 11218,
+      "width": 639,
+      "height": 116
+    },
+    {
+      "filename": "lecIII_JLK_p009_6.png",
+      "page": 9,
+      "size_bytes": 24531,
+      "width": 1500,
+      "height": 547
+    },
+    {
+      "filename": "lecIII_JLK_p010_1.png",
+      "page": 10,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecIII_JLK_p010_2.png",
+      "page": 10,
+      "size_bytes": 70374,
+      "width": 970,
+      "height": 370
+    },
+    {
+      "filename": "lecIII_JLK_p010_3.jpeg",
+      "page": 10,
+      "size_bytes": 22728,
+      "width": 908,
+      "height": 370
+    },
+    {
+      "filename": "lecIII_JLK_p010_4.png",
+      "page": 10,
+      "size_bytes": 29503,
+      "width": 1059,
+      "height": 318
+    },
+    {
+      "filename": "lecIII_JLK_p010_5.jpeg",
+      "page": 10,
+      "size_bytes": 22923,
+      "width": 822,
+      "height": 318
+    },
+    {
+      "filename": "lecIII_JLK_p010_6.png",
+      "page": 10,
+      "size_bytes": 24531,
+      "width": 1500,
+      "height": 547
+    },
+    {
+      "filename": "lecIII_JLK_p011_1.png",
+      "page": 11,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecIII_JLK_p011_2.png",
+      "page": 11,
+      "size_bytes": 30906,
+      "width": 1733,
+      "height": 619
+    },
+    {
+      "filename": "lecIII_JLK_p012_1.png",
+      "page": 12,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecIII_JLK_p012_2.png",
+      "page": 12,
+      "size_bytes": 29199,
+      "width": 589,
+      "height": 239
+    },
+    {
+      "filename": "lecIII_JLK_p012_3.jpeg",
+      "page": 12,
+      "size_bytes": 13222,
+      "width": 597,
+      "height": 238
+    },
+    {
+      "filename": "lecIII_JLK_p012_4.jpeg",
+      "page": 12,
+      "size_bytes": 12219,
+      "width": 594,
+      "height": 209
+    },
+    {
+      "filename": "lecIII_JLK_p012_5.png",
+      "page": 12,
+      "size_bytes": 27250,
+      "width": 589,
+      "height": 242
+    },
+    {
+      "filename": "lecIII_JLK_p012_6.png",
+      "page": 12,
+      "size_bytes": 26888,
+      "width": 589,
+      "height": 242
+    },
+    {
+      "filename": "lecIII_JLK_p012_7.jpeg",
+      "page": 12,
+      "size_bytes": 18804,
+      "width": 545,
+      "height": 304
+    },
+    {
+      "filename": "lecIII_JLK_p012_8.png",
+      "page": 12,
+      "size_bytes": 22720,
+      "width": 594,
+      "height": 179
+    },
+    {
+      "filename": "lecIII_JLK_p013_1.png",
+      "page": 13,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecIII_JLK_p013_2.jpeg",
+      "page": 13,
+      "size_bytes": 11498,
+      "width": 603,
+      "height": 167
+    },
+    {
+      "filename": "lecIII_JLK_p013_3.png",
+      "page": 13,
+      "size_bytes": 12611,
+      "width": 484,
+      "height": 251
+    },
+    {
+      "filename": "lecIII_JLK_p014_1.png",
+      "page": 14,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecIII_JLK_p014_2.png",
+      "page": 14,
+      "size_bytes": 7944,
+      "width": 411,
+      "height": 183
+    },
+    {
+      "filename": "lecIII_JLK_p015_1.png",
+      "page": 15,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecIII_JLK_p015_2.png",
+      "page": 15,
+      "size_bytes": 15934,
+      "width": 902,
+      "height": 323
+    },
+    {
+      "filename": "lecIII_JLK_p016_1.png",
+      "page": 16,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecIII_JLK_p016_2.png",
+      "page": 16,
+      "size_bytes": 15934,
+      "width": 902,
+      "height": 323
+    },
+    {
+      "filename": "lecIII_JLK_p017_1.png",
+      "page": 17,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecIII_JLK_p017_2.png",
+      "page": 17,
+      "size_bytes": 9318,
+      "width": 729,
+      "height": 235
+    },
+    {
+      "filename": "lecIII_JLK_p017_3.png",
+      "page": 17,
+      "size_bytes": 15934,
+      "width": 902,
+      "height": 323
+    },
+    {
+      "filename": "lecIII_JLK_p018_1.png",
+      "page": 18,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecIII_JLK_p018_2.png",
+      "page": 18,
+      "size_bytes": 9496,
+      "width": 730,
+      "height": 233
+    },
+    {
+      "filename": "lecIII_JLK_p018_3.png",
+      "page": 18,
+      "size_bytes": 15934,
+      "width": 902,
+      "height": 323
+    },
+    {
+      "filename": "lecIII_JLK_p019_1.png",
+      "page": 19,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecIII_JLK_p019_2.png",
+      "page": 19,
+      "size_bytes": 15934,
+      "width": 902,
+      "height": 323
+    },
+    {
+      "filename": "lecIII_JLK_p020_1.png",
+      "page": 20,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecIII_JLK_p020_2.png",
+      "page": 20,
+      "size_bytes": 16492,
+      "width": 1013,
+      "height": 368
+    },
+    {
+      "filename": "lecIII_JLK_p021_1.png",
+      "page": 21,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecIV_p001_1.png",
+      "page": 1,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecIV_p002_1.png",
+      "page": 2,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecIV_p003_1.png",
+      "page": 3,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecIV_p003_3.png",
+      "page": 3,
+      "size_bytes": 6256,
+      "width": 209,
+      "height": 64
+    },
+    {
+      "filename": "lecIV_p004_1.png",
+      "page": 4,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecIV_p004_2.png",
+      "page": 4,
+      "size_bytes": 9658,
+      "width": 472,
+      "height": 104
+    },
+    {
+      "filename": "lecIV_p005_1.png",
+      "page": 5,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecIV_p005_2.png",
+      "page": 5,
+      "size_bytes": 9467,
+      "width": 321,
+      "height": 421
+    },
+    {
+      "filename": "lecIV_p005_3.png",
+      "page": 5,
+      "size_bytes": 15701,
+      "width": 528,
+      "height": 114
+    },
+    {
+      "filename": "lecIV_p006_1.png",
+      "page": 6,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecIV_p006_2.png",
+      "page": 6,
+      "size_bytes": 11159,
+      "width": 487,
+      "height": 367
+    },
+    {
+      "filename": "lecIV_p007_1.png",
+      "page": 7,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecIV_p007_2.png",
+      "page": 7,
+      "size_bytes": 99088,
+      "width": 971,
+      "height": 618
+    },
+    {
+      "filename": "lecIV_p008_1.png",
+      "page": 8,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecIV_p008_2.png",
+      "page": 8,
+      "size_bytes": 23449,
+      "width": 713,
+      "height": 397
+    },
+    {
+      "filename": "lecIV_p009_1.png",
+      "page": 9,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecIV_p010_1.png",
+      "page": 10,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecIV_p011_1.png",
+      "page": 11,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    }
+  ],
+  "ch04": [
+    {
+      "filename": "lec1_RL_p001_0.jpeg",
+      "page": 1,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec1_RL_p001_1.jpeg",
+      "page": 1,
+      "size_bytes": 75930,
+      "width": 1168,
+      "height": 657
+    },
+    {
+      "filename": "lec1_RL_p001_2.png",
+      "page": 1,
+      "size_bytes": 52625,
+      "width": 320,
+      "height": 320
+    },
+    {
+      "filename": "lec1_RL_p001_3.png",
+      "page": 1,
+      "size_bytes": 19489,
+      "width": 156,
+      "height": 158
+    },
+    {
+      "filename": "lec1_RL_p002_0.jpeg",
+      "page": 2,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec1_RL_p002_1.jpeg",
+      "page": 2,
+      "size_bytes": 61336,
+      "width": 1168,
+      "height": 657
+    },
+    {
+      "filename": "lec1_RL_p002_2.png",
+      "page": 2,
+      "size_bytes": 52625,
+      "width": 320,
+      "height": 320
+    },
+    {
+      "filename": "lec1_RL_p003_0.jpeg",
+      "page": 3,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec1_RL_p004_0.jpeg",
+      "page": 4,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec1_RL_p005_0.jpeg",
+      "page": 5,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec1_RL_p006_0.jpeg",
+      "page": 6,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec1_RL_p007_0.jpeg",
+      "page": 7,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec1_RL_p007_1.jpeg",
+      "page": 7,
+      "size_bytes": 15776,
+      "width": 788,
+      "height": 312
+    },
+    {
+      "filename": "lec1_RL_p007_2.png",
+      "page": 7,
+      "size_bytes": 5662,
+      "width": 481,
+      "height": 221
+    },
+    {
+      "filename": "lec1_RL_p008_0.jpeg",
+      "page": 8,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec1_RL_p009_0.jpeg",
+      "page": 9,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec1_RL_p010_0.jpeg",
+      "page": 10,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec1_RL_p011_0.jpeg",
+      "page": 11,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec1_RL_p012_0.jpeg",
+      "page": 12,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec1_RL_p013_0.jpeg",
+      "page": 13,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec1_RL_p014_0.jpeg",
+      "page": 14,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec1_RL_p014_1.png",
+      "page": 14,
+      "size_bytes": 28343,
+      "width": 876,
+      "height": 754
+    },
+    {
+      "filename": "lec1_RL_p015_0.jpeg",
+      "page": 15,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec1_RL_p015_1.png",
+      "page": 15,
+      "size_bytes": 28343,
+      "width": 876,
+      "height": 754
+    },
+    {
+      "filename": "lec1_RL_p016_0.jpeg",
+      "page": 16,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec1_RL_p016_1.png",
+      "page": 16,
+      "size_bytes": 50064,
+      "width": 1276,
+      "height": 301
+    },
+    {
+      "filename": "lec1_RL_p017_0.jpeg",
+      "page": 17,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec1_RL_p018_0.jpeg",
+      "page": 18,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec1_RL_p019_0.jpeg",
+      "page": 19,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec1_RL_p020_0.jpeg",
+      "page": 20,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec1_RL_p021_0.jpeg",
+      "page": 21,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec1_RL_p022_0.jpeg",
+      "page": 22,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec1_RL_p023_0.jpeg",
+      "page": 23,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec1_RL_p024_0.jpeg",
+      "page": 24,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec1_RL_p025_0.jpeg",
+      "page": 25,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec1_RL_p026_0.jpeg",
+      "page": 26,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec1_RL_p027_0.jpeg",
+      "page": 27,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec1_RL_p028_0.jpeg",
+      "page": 28,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec1_RL_p029_0.png",
+      "page": 29,
+      "size_bytes": 21737,
+      "width": 1000,
+      "height": 1000
+    },
+    {
+      "filename": "lec1_RL_p030_0.jpeg",
+      "page": 30,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec1_RL_p031_0.jpeg",
+      "page": 31,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec1_RL_p031_1.png",
+      "page": 31,
+      "size_bytes": 39279,
+      "width": 840,
+      "height": 624
+    },
+    {
+      "filename": "lec1_RL_p032_0.jpeg",
+      "page": 32,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec1_RL_p033_0.jpeg",
+      "page": 33,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec1_RL_p033_1.png",
+      "page": 33,
+      "size_bytes": 12670,
+      "width": 763,
+      "height": 622
+    },
+    {
+      "filename": "lec1_RL_p034_0.jpeg",
+      "page": 34,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec1_RL_p034_1.png",
+      "page": 34,
+      "size_bytes": 20362,
+      "width": 844,
+      "height": 297
+    },
+    {
+      "filename": "lec1_RL_p035_0.jpeg",
+      "page": 35,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec1_RL_p035_1.png",
+      "page": 35,
+      "size_bytes": 19384,
+      "width": 672,
+      "height": 569
+    },
+    {
+      "filename": "lec4_RL2_p001_0.jpeg",
+      "page": 1,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec4_RL2_p001_1.jpeg",
+      "page": 1,
+      "size_bytes": 75930,
+      "width": 1168,
+      "height": 657
+    },
+    {
+      "filename": "lec4_RL2_p001_2.png",
+      "page": 1,
+      "size_bytes": 52625,
+      "width": 320,
+      "height": 320
+    },
+    {
+      "filename": "lec4_RL2_p001_3.png",
+      "page": 1,
+      "size_bytes": 19489,
+      "width": 156,
+      "height": 158
+    },
+    {
+      "filename": "lec4_RL2_p002_0.jpeg",
+      "page": 2,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec4_RL2_p002_1.jpeg",
+      "page": 2,
+      "size_bytes": 61336,
+      "width": 1168,
+      "height": 657
+    },
+    {
+      "filename": "lec4_RL2_p002_2.png",
+      "page": 2,
+      "size_bytes": 52625,
+      "width": 320,
+      "height": 320
+    },
+    {
+      "filename": "lec4_RL2_p003_0.jpeg",
+      "page": 3,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec4_RL2_p004_0.jpeg",
+      "page": 4,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec4_RL2_p004_1.png",
+      "page": 4,
+      "size_bytes": 6134,
+      "width": 1352,
+      "height": 802
+    },
+    {
+      "filename": "lec4_RL2_p004_2.png",
+      "page": 4,
+      "size_bytes": 89527,
+      "width": 1310,
+      "height": 750
+    },
+    {
+      "filename": "lec4_RL2_p005_0.jpeg",
+      "page": 5,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec4_RL2_p006_0.jpeg",
+      "page": 6,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec4_RL2_p007_0.jpeg",
+      "page": 7,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec4_RL2_p008_0.jpeg",
+      "page": 8,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec4_RL2_p009_0.jpeg",
+      "page": 9,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec4_RL2_p010_0.jpeg",
+      "page": 10,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec4_RL2_p010_1.png",
+      "page": 10,
+      "size_bytes": 13625,
+      "width": 566,
+      "height": 293
+    },
+    {
+      "filename": "lec4_RL2_p011_0.jpeg",
+      "page": 11,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec4_RL2_p011_1.png",
+      "page": 11,
+      "size_bytes": 9494,
+      "width": 566,
+      "height": 326
+    },
+    {
+      "filename": "lec4_RL2_p012_0.jpeg",
+      "page": 12,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec4_RL2_p012_1.png",
+      "page": 12,
+      "size_bytes": 23524,
+      "width": 574,
+      "height": 665
+    },
+    {
+      "filename": "lec4_RL2_p012_2.png",
+      "page": 12,
+      "size_bytes": 9632,
+      "width": 331,
+      "height": 196
+    },
+    {
+      "filename": "lec4_RL2_p013_0.jpeg",
+      "page": 13,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec4_RL2_p014_0.jpeg",
+      "page": 14,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec4_RL2_p015_0.jpeg",
+      "page": 15,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec4_RL2_p016_0.jpeg",
+      "page": 16,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec4_RL2_p016_1.png",
+      "page": 16,
+      "size_bytes": 42721,
+      "width": 1360,
+      "height": 1068
+    },
+    {
+      "filename": "lec4_RL2_p017_0.jpeg",
+      "page": 17,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec4_RL2_p018_0.jpeg",
+      "page": 18,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec4_RL2_p019_0.jpeg",
+      "page": 19,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec4_RL2_p020_0.jpeg",
+      "page": 20,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec4_RL2_p021_0.jpeg",
+      "page": 21,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec4_RL2_p021_1.png",
+      "page": 21,
+      "size_bytes": 46193,
+      "width": 1360,
+      "height": 1068
+    },
+    {
+      "filename": "lec4_RL2_p022_0.jpeg",
+      "page": 22,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec4_RL2_p023_0.jpeg",
+      "page": 23,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec4_RL2_p023_1.png",
+      "page": 23,
+      "size_bytes": 24045,
+      "width": 888,
+      "height": 396
+    },
+    {
+      "filename": "lec4_RL2_p024_0.jpeg",
+      "page": 24,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec4_RL2_p025_0.jpeg",
+      "page": 25,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec4_RL2_p026_0.jpeg",
+      "page": 26,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec4_RL2_p027_0.jpeg",
+      "page": 27,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec4_RL2_p028_0.jpeg",
+      "page": 28,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    }
+  ],
+  "ch05": [
+    {
+      "filename": "lec2_Nyq_p001_0.jpeg",
+      "page": 1,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec2_Nyq_p001_1.jpeg",
+      "page": 1,
+      "size_bytes": 75930,
+      "width": 1168,
+      "height": 657
+    },
+    {
+      "filename": "lec2_Nyq_p001_2.png",
+      "page": 1,
+      "size_bytes": 52625,
+      "width": 320,
+      "height": 320
+    },
+    {
+      "filename": "lec2_Nyq_p001_3.png",
+      "page": 1,
+      "size_bytes": 19489,
+      "width": 156,
+      "height": 158
+    },
+    {
+      "filename": "lec2_Nyq_p002_0.jpeg",
+      "page": 2,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec2_Nyq_p002_1.jpeg",
+      "page": 2,
+      "size_bytes": 61336,
+      "width": 1168,
+      "height": 657
+    },
+    {
+      "filename": "lec2_Nyq_p002_2.png",
+      "page": 2,
+      "size_bytes": 52625,
+      "width": 320,
+      "height": 320
+    },
+    {
+      "filename": "lec2_Nyq_p003_0.jpeg",
+      "page": 3,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec2_Nyq_p004_0.jpeg",
+      "page": 4,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec2_Nyq_p005_0.jpeg",
+      "page": 5,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec2_Nyq_p006_0.jpeg",
+      "page": 6,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec2_Nyq_p007_0.jpeg",
+      "page": 7,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec2_Nyq_p008_0.jpeg",
+      "page": 8,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec2_Nyq_p009_0.jpeg",
+      "page": 9,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec2_Nyq_p010_0.jpeg",
+      "page": 10,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec2_Nyq_p010_1.png",
+      "page": 10,
+      "size_bytes": 27829,
+      "width": 966,
+      "height": 782
+    },
+    {
+      "filename": "lec2_Nyq_p011_0.jpeg",
+      "page": 11,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec2_Nyq_p012_0.jpeg",
+      "page": 12,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec2_Nyq_p012_1.png",
+      "page": 12,
+      "size_bytes": 14013,
+      "width": 1177,
+      "height": 150
+    },
+    {
+      "filename": "lec2_Nyq_p012_2.png",
+      "page": 12,
+      "size_bytes": 19148,
+      "width": 863,
+      "height": 353
+    },
+    {
+      "filename": "lec2_Nyq_p013_0.jpeg",
+      "page": 13,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec2_Nyq_p014_0.jpeg",
+      "page": 14,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec2_Nyq_p015_0.jpeg",
+      "page": 15,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec2_Nyq_p016_0.jpeg",
+      "page": 16,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec2_Nyq_p016_1.png",
+      "page": 16,
+      "size_bytes": 38522,
+      "width": 1086,
+      "height": 845
+    },
+    {
+      "filename": "lec2_Nyq_p017_0.jpeg",
+      "page": 17,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec2_Nyq_p018_0.jpeg",
+      "page": 18,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec2_Nyq_p018_1.jpeg",
+      "page": 18,
+      "size_bytes": 30587,
+      "width": 850,
+      "height": 406
+    },
+    {
+      "filename": "lec2_Nyq_p019_0.jpeg",
+      "page": 19,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec2_Nyq_p020_0.jpeg",
+      "page": 20,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec2_Nyq_p021_0.jpeg",
+      "page": 21,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec2_Nyq_p022_0.jpeg",
+      "page": 22,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec2_Nyq_p023_0.jpeg",
+      "page": 23,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec2_Nyq_p024_0.jpeg",
+      "page": 24,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec2_Nyq_p025_0.jpeg",
+      "page": 25,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec2_Nyq_p026_0.jpeg",
+      "page": 26,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec2_Nyq_p027_0.jpeg",
+      "page": 27,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec2_Nyq_p027_1.png",
+      "page": 27,
+      "size_bytes": 8846,
+      "width": 678,
+      "height": 633
+    },
+    {
+      "filename": "lec2_Nyq_p028_0.jpeg",
+      "page": 28,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec2_Nyq_p028_1.png",
+      "page": 28,
+      "size_bytes": 8491,
+      "width": 658,
+      "height": 656
+    },
+    {
+      "filename": "lec2_Nyq_p029_0.jpeg",
+      "page": 29,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec2_Nyq_p029_1.png",
+      "page": 29,
+      "size_bytes": 13559,
+      "width": 480,
+      "height": 287
+    },
+    {
+      "filename": "lec2_Nyq_p030_0.jpeg",
+      "page": 30,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec2_Nyq_p031_0.jpeg",
+      "page": 31,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec3_Bode_p001_0.jpeg",
+      "page": 1,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec3_Bode_p001_1.jpeg",
+      "page": 1,
+      "size_bytes": 75930,
+      "width": 1168,
+      "height": 657
+    },
+    {
+      "filename": "lec3_Bode_p001_2.png",
+      "page": 1,
+      "size_bytes": 52625,
+      "width": 320,
+      "height": 320
+    },
+    {
+      "filename": "lec3_Bode_p001_3.png",
+      "page": 1,
+      "size_bytes": 19489,
+      "width": 156,
+      "height": 158
+    },
+    {
+      "filename": "lec3_Bode_p002_0.jpeg",
+      "page": 2,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec3_Bode_p002_1.jpeg",
+      "page": 2,
+      "size_bytes": 61336,
+      "width": 1168,
+      "height": 657
+    },
+    {
+      "filename": "lec3_Bode_p002_2.png",
+      "page": 2,
+      "size_bytes": 52625,
+      "width": 320,
+      "height": 320
+    },
+    {
+      "filename": "lec3_Bode_p003_0.jpeg",
+      "page": 3,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec3_Bode_p004_0.jpeg",
+      "page": 4,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec3_Bode_p005_0.jpeg",
+      "page": 5,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec3_Bode_p006_0.jpeg",
+      "page": 6,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec3_Bode_p007_0.jpeg",
+      "page": 7,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec3_Bode_p007_1.png",
+      "page": 7,
+      "size_bytes": 13559,
+      "width": 480,
+      "height": 287
+    },
+    {
+      "filename": "lec3_Bode_p008_0.jpeg",
+      "page": 8,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec3_Bode_p009_0.jpeg",
+      "page": 9,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec3_Bode_p010_0.jpeg",
+      "page": 10,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec3_Bode_p011_0.jpeg",
+      "page": 11,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec3_Bode_p011_1.png",
+      "page": 11,
+      "size_bytes": 23429,
+      "width": 959,
+      "height": 771
+    },
+    {
+      "filename": "lec3_Bode_p012_0.jpeg",
+      "page": 12,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec3_Bode_p013_0.jpeg",
+      "page": 13,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec3_Bode_p014_0.jpeg",
+      "page": 14,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec3_Bode_p014_1.png",
+      "page": 14,
+      "size_bytes": 24428,
+      "width": 946,
+      "height": 771
+    },
+    {
+      "filename": "lec3_Bode_p015_0.jpeg",
+      "page": 15,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec3_Bode_p016_0.jpeg",
+      "page": 16,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec3_Bode_p016_1.png",
+      "page": 16,
+      "size_bytes": 47687,
+      "width": 1031,
+      "height": 808
+    },
+    {
+      "filename": "lec3_Bode_p017_0.jpeg",
+      "page": 17,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec3_Bode_p018_0.jpeg",
+      "page": 18,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec3_Bode_p019_0.jpeg",
+      "page": 19,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec3_Bode_p020_0.jpeg",
+      "page": 20,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec3_Bode_p021_0.jpeg",
+      "page": 21,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec3_Bode_p022_0.jpeg",
+      "page": 22,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec3_Bode_p023_0.jpeg",
+      "page": 23,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec3_Bode_p023_1.png",
+      "page": 23,
+      "size_bytes": 24408,
+      "width": 662,
+      "height": 324
+    },
+    {
+      "filename": "lec3_Bode_p024_0.jpeg",
+      "page": 24,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec3_Bode_p024_1.png",
+      "page": 24,
+      "size_bytes": 38423,
+      "width": 1483,
+      "height": 726
+    },
+    {
+      "filename": "lec3_Bode_p025_0.jpeg",
+      "page": 25,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec3_Bode_p025_1.png",
+      "page": 25,
+      "size_bytes": 16503,
+      "width": 566,
+      "height": 235
+    },
+    {
+      "filename": "lec3_Bode_p026_0.jpeg",
+      "page": 26,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec3_Bode_p027_0.jpeg",
+      "page": 27,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec3_Bode_p027_1.png",
+      "page": 27,
+      "size_bytes": 17853,
+      "width": 566,
+      "height": 217
+    },
+    {
+      "filename": "lec3_Bode_p027_2.png",
+      "page": 27,
+      "size_bytes": 36287,
+      "width": 642,
+      "height": 317
+    },
+    {
+      "filename": "lec3_Bode_p028_0.jpeg",
+      "page": 28,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec3_Bode_p028_1.png",
+      "page": 28,
+      "size_bytes": 16291,
+      "width": 557,
+      "height": 261
+    },
+    {
+      "filename": "lec3_Bode_p028_2.png",
+      "page": 28,
+      "size_bytes": 17624,
+      "width": 557,
+      "height": 233
+    },
+    {
+      "filename": "lec3_Bode_p029_0.jpeg",
+      "page": 29,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec3_Bode_p029_1.png",
+      "page": 29,
+      "size_bytes": 6134,
+      "width": 1352,
+      "height": 802
+    },
+    {
+      "filename": "lec3_Bode_p029_2.png",
+      "page": 29,
+      "size_bytes": 89527,
+      "width": 1310,
+      "height": 750
+    },
+    {
+      "filename": "lec3_Bode_p030_0.jpeg",
+      "page": 30,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec3_Bode_p031_0.jpeg",
+      "page": 31,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec3_Bode_p032_0.jpeg",
+      "page": 32,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec3_Bode_p032_1.png",
+      "page": 32,
+      "size_bytes": 22949,
+      "width": 566,
+      "height": 594
+    },
+    {
+      "filename": "lec3_Bode_p033_0.jpeg",
+      "page": 33,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec3_Bode_p033_1.png",
+      "page": 33,
+      "size_bytes": 22949,
+      "width": 566,
+      "height": 594
+    },
+    {
+      "filename": "lec3_Bode_p034_0.jpeg",
+      "page": 34,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec3_Bode_p034_1.png",
+      "page": 34,
+      "size_bytes": 22949,
+      "width": 566,
+      "height": 594
+    },
+    {
+      "filename": "lec3_Bode_p034_2.png",
+      "page": 34,
+      "size_bytes": 9632,
+      "width": 331,
+      "height": 196
+    },
+    {
+      "filename": "lec3_Bode_p035_0.jpeg",
+      "page": 35,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec3_Bode_p035_1.png",
+      "page": 35,
+      "size_bytes": 23524,
+      "width": 574,
+      "height": 665
+    },
+    {
+      "filename": "lec3_Bode_p036_0.jpeg",
+      "page": 36,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec3_Bode_p037_0.jpeg",
+      "page": 37,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec3_Bode_p038_0.jpeg",
+      "page": 38,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec3_Bode_p038_1.png",
+      "page": 38,
+      "size_bytes": 24045,
+      "width": 888,
+      "height": 396
+    },
+    {
+      "filename": "lec3_Bode_p039_0.jpeg",
+      "page": 39,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    }
+  ],
+  "ch06": [
+    {
+      "filename": "lec5_stab_p001_0.jpeg",
+      "page": 1,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec5_stab_p001_1.jpeg",
+      "page": 1,
+      "size_bytes": 75930,
+      "width": 1168,
+      "height": 657
+    },
+    {
+      "filename": "lec5_stab_p001_2.png",
+      "page": 1,
+      "size_bytes": 52625,
+      "width": 320,
+      "height": 320
+    },
+    {
+      "filename": "lec5_stab_p001_3.png",
+      "page": 1,
+      "size_bytes": 19489,
+      "width": 156,
+      "height": 158
+    },
+    {
+      "filename": "lec5_stab_p002_0.jpeg",
+      "page": 2,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec5_stab_p002_1.jpeg",
+      "page": 2,
+      "size_bytes": 61336,
+      "width": 1168,
+      "height": 657
+    },
+    {
+      "filename": "lec5_stab_p002_2.png",
+      "page": 2,
+      "size_bytes": 52625,
+      "width": 320,
+      "height": 320
+    },
+    {
+      "filename": "lec5_stab_p003_0.jpeg",
+      "page": 3,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec5_stab_p004_0.jpeg",
+      "page": 4,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec5_stab_p005_0.jpeg",
+      "page": 5,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec5_stab_p006_0.jpeg",
+      "page": 6,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec5_stab_p007_0.jpeg",
+      "page": 7,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec5_stab_p007_1.png",
+      "page": 7,
+      "size_bytes": 47900,
+      "width": 648,
+      "height": 293
+    },
+    {
+      "filename": "lec5_stab_p008_0.jpeg",
+      "page": 8,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec5_stab_p009_0.jpeg",
+      "page": 9,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec5_stab_p009_1.jpeg",
+      "page": 9,
+      "size_bytes": 28700,
+      "width": 785,
+      "height": 604
+    },
+    {
+      "filename": "lec5_stab_p009_2.png",
+      "page": 9,
+      "size_bytes": 5803,
+      "width": 367,
+      "height": 325
+    },
+    {
+      "filename": "lec5_stab_p010_0.jpeg",
+      "page": 10,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec5_stab_p010_1.jpeg",
+      "page": 10,
+      "size_bytes": 28700,
+      "width": 785,
+      "height": 604
+    },
+    {
+      "filename": "lec5_stab_p010_2.png",
+      "page": 10,
+      "size_bytes": 5803,
+      "width": 367,
+      "height": 325
+    },
+    {
+      "filename": "lec5_stab_p011_0.jpeg",
+      "page": 11,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec5_stab_p011_1.png",
+      "page": 11,
+      "size_bytes": 128661,
+      "width": 803,
+      "height": 581
+    },
+    {
+      "filename": "lec5_stab_p012_0.jpeg",
+      "page": 12,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec5_stab_p012_1.png",
+      "page": 12,
+      "size_bytes": 128426,
+      "width": 803,
+      "height": 528
+    },
+    {
+      "filename": "lec5_stab_p013_0.jpeg",
+      "page": 13,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec5_stab_p014_0.jpeg",
+      "page": 14,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec5_stab_p015_0.jpeg",
+      "page": 15,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec5_stab_p016_0.jpeg",
+      "page": 16,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec5_stab_p016_1.png",
+      "page": 16,
+      "size_bytes": 114522,
+      "width": 1871,
+      "height": 704
+    },
+    {
+      "filename": "lec5_stab_p017_0.jpeg",
+      "page": 17,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec5_stab_p017_1.png",
+      "page": 17,
+      "size_bytes": 110544,
+      "width": 1827,
+      "height": 687
+    },
+    {
+      "filename": "lec5_stab_p018_0.jpeg",
+      "page": 18,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec5_stab_p019_0.jpeg",
+      "page": 19,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec5_stab_p019_1.jpeg",
+      "page": 19,
+      "size_bytes": 41970,
+      "width": 919,
+      "height": 824
+    },
+    {
+      "filename": "lec5_stab_p020_0.jpeg",
+      "page": 20,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec5_stab_p021_0.jpeg",
+      "page": 21,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec5_stab_p022_0.jpeg",
+      "page": 22,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec5_stab_p023_0.jpeg",
+      "page": 23,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec5_stab_p024_0.jpeg",
+      "page": 24,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec5_stab_p024_1.png",
+      "page": 24,
+      "size_bytes": 77446,
+      "width": 1337,
+      "height": 873
+    },
+    {
+      "filename": "lec5_stab_p025_0.jpeg",
+      "page": 25,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec5_stab_p026_0.jpeg",
+      "page": 26,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec5_stab_p027_0.jpeg",
+      "page": 27,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec5_stab_p028_0.jpeg",
+      "page": 28,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec5_stab_p029_0.jpeg",
+      "page": 29,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec5_stab_p029_1.jpeg",
+      "page": 29,
+      "size_bytes": 26337,
+      "width": 494,
+      "height": 375
+    },
+    {
+      "filename": "lec5_stab_p029_2.jpeg",
+      "page": 29,
+      "size_bytes": 49845,
+      "width": 1016,
+      "height": 1136
+    },
+    {
+      "filename": "lec5_stab_p030_0.jpeg",
+      "page": 30,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec5_stab_p031_0.jpeg",
+      "page": 31,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec5_stab_p032_0.jpeg",
+      "page": 32,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lec5_stab_p032_1.jpeg",
+      "page": 32,
+      "size_bytes": 17820,
+      "width": 354,
+      "height": 404
+    },
+    {
+      "filename": "lec5_stab_p033_0.jpeg",
+      "page": 33,
+      "size_bytes": 12363,
+      "width": 226,
+      "height": 226
+    },
+    {
+      "filename": "lecIV_stab_p001_1.png",
+      "page": 1,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecIV_stab_p002_1.png",
+      "page": 2,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecIV_stab_p003_1.png",
+      "page": 3,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecIV_stab_p003_3.png",
+      "page": 3,
+      "size_bytes": 6256,
+      "width": 209,
+      "height": 64
+    },
+    {
+      "filename": "lecIV_stab_p004_1.png",
+      "page": 4,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecIV_stab_p004_2.png",
+      "page": 4,
+      "size_bytes": 9658,
+      "width": 472,
+      "height": 104
+    },
+    {
+      "filename": "lecIV_stab_p005_1.png",
+      "page": 5,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecIV_stab_p005_2.png",
+      "page": 5,
+      "size_bytes": 9467,
+      "width": 321,
+      "height": 421
+    },
+    {
+      "filename": "lecIV_stab_p005_3.png",
+      "page": 5,
+      "size_bytes": 15701,
+      "width": 528,
+      "height": 114
+    },
+    {
+      "filename": "lecIV_stab_p006_1.png",
+      "page": 6,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecIV_stab_p006_2.png",
+      "page": 6,
+      "size_bytes": 11159,
+      "width": 487,
+      "height": 367
+    },
+    {
+      "filename": "lecIV_stab_p007_1.png",
+      "page": 7,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecIV_stab_p007_2.png",
+      "page": 7,
+      "size_bytes": 99088,
+      "width": 971,
+      "height": 618
+    },
+    {
+      "filename": "lecIV_stab_p008_1.png",
+      "page": 8,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecIV_stab_p008_2.png",
+      "page": 8,
+      "size_bytes": 23449,
+      "width": 713,
+      "height": 397
+    },
+    {
+      "filename": "lecIV_stab_p009_1.png",
+      "page": 9,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecIV_stab_p010_1.png",
+      "page": 10,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecIV_stab_p011_1.png",
+      "page": 11,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    }
+  ],
+  "ch07": [
+    {
+      "filename": "lecV_p001_1.png",
+      "page": 1,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecV_p002_1.png",
+      "page": 2,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecV_p003_1.png",
+      "page": 3,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecV_p003_2.png",
+      "page": 3,
+      "size_bytes": 33371,
+      "width": 1223,
+      "height": 342
+    },
+    {
+      "filename": "lecV_p004_1.png",
+      "page": 4,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecV_p005_1.png",
+      "page": 5,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecV_p006_1.png",
+      "page": 6,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecV_p006_2.png",
+      "page": 6,
+      "size_bytes": 5393,
+      "width": 242,
+      "height": 86
+    },
+    {
+      "filename": "lecV_p007_1.png",
+      "page": 7,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecV_p007_2.png",
+      "page": 7,
+      "size_bytes": 6497,
+      "width": 278,
+      "height": 74
+    },
+    {
+      "filename": "lecV_p008_1.png",
+      "page": 8,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecV_p008_2.png",
+      "page": 8,
+      "size_bytes": 6729,
+      "width": 345,
+      "height": 83
+    },
+    {
+      "filename": "lecV_p009_1.png",
+      "page": 9,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecV_p009_2.png",
+      "page": 9,
+      "size_bytes": 8498,
+      "width": 470,
+      "height": 75
+    },
+    {
+      "filename": "lecV_p010_1.png",
+      "page": 10,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecV_p010_2.png",
+      "page": 10,
+      "size_bytes": 18034,
+      "width": 825,
+      "height": 220
+    },
+    {
+      "filename": "lecV_p011_1.png",
+      "page": 11,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecV_p011_3.png",
+      "page": 11,
+      "size_bytes": 37667,
+      "width": 565,
+      "height": 423
+    },
+    {
+      "filename": "lecV_p012_1.png",
+      "page": 12,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecV_p012_2.png",
+      "page": 12,
+      "size_bytes": 5405,
+      "width": 251,
+      "height": 78
+    },
+    {
+      "filename": "lecV_p012_3.png",
+      "page": 12,
+      "size_bytes": 66697,
+      "width": 843,
+      "height": 630
+    },
+    {
+      "filename": "lecV_p012_4.png",
+      "page": 12,
+      "size_bytes": 25564,
+      "width": 559,
+      "height": 413
+    },
+    {
+      "filename": "lecV_p012_5.png",
+      "page": 12,
+      "size_bytes": 8207,
+      "width": 197,
+      "height": 202
+    },
+    {
+      "filename": "lecV_p013_1.png",
+      "page": 13,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecV_p013_2.png",
+      "page": 13,
+      "size_bytes": 11157,
+      "width": 691,
+      "height": 184
+    },
+    {
+      "filename": "lecV_p014_1.png",
+      "page": 14,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecV_p014_3.jpeg",
+      "page": 14,
+      "size_bytes": 41695,
+      "width": 1069,
+      "height": 470
+    },
+    {
+      "filename": "lecV_p015_1.png",
+      "page": 15,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecV_p015_2.png",
+      "page": 15,
+      "size_bytes": 11978,
+      "width": 691,
+      "height": 190
+    },
+    {
+      "filename": "lecV_p016_1.png",
+      "page": 16,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecV_p016_2.png",
+      "page": 16,
+      "size_bytes": 6780,
+      "width": 370,
+      "height": 77
+    },
+    {
+      "filename": "lecV_p016_4.png",
+      "page": 16,
+      "size_bytes": 29596,
+      "width": 586,
+      "height": 509
+    },
+    {
+      "filename": "lecV_p017_1.png",
+      "page": 17,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecV_p017_2.png",
+      "page": 17,
+      "size_bytes": 13640,
+      "width": 753,
+      "height": 179
+    },
+    {
+      "filename": "lecV_p018_1.png",
+      "page": 18,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecV_p018_2.png",
+      "page": 18,
+      "size_bytes": 10436,
+      "width": 633,
+      "height": 80
+    },
+    {
+      "filename": "lecV_p018_4.png",
+      "page": 18,
+      "size_bytes": 39529,
+      "width": 604,
+      "height": 521
+    },
+    {
+      "filename": "lecV_p019_1.png",
+      "page": 19,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecV_p020_1.png",
+      "page": 20,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecVI_p001_1.png",
+      "page": 1,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecVI_p002_1.png",
+      "page": 2,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecVI_p003_1.png",
+      "page": 3,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecVI_p003_2.png",
+      "page": 3,
+      "size_bytes": 13944,
+      "width": 756,
+      "height": 182
+    },
+    {
+      "filename": "lecVI_p004_1.png",
+      "page": 4,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecVI_p004_3.png",
+      "page": 4,
+      "size_bytes": 14272,
+      "width": 656,
+      "height": 113
+    },
+    {
+      "filename": "lecVI_p004_4.png",
+      "page": 4,
+      "size_bytes": 33554,
+      "width": 592,
+      "height": 514
+    },
+    {
+      "filename": "lecVI_p005_1.png",
+      "page": 5,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecVI_p005_2.png",
+      "page": 5,
+      "size_bytes": 135734,
+      "width": 1074,
+      "height": 613
+    },
+    {
+      "filename": "lecVI_p006_1.png",
+      "page": 6,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecVI_p006_2.png",
+      "page": 6,
+      "size_bytes": 11211,
+      "width": 682,
+      "height": 180
+    },
+    {
+      "filename": "lecVI_p007_1.png",
+      "page": 7,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecVI_p007_2.png",
+      "page": 7,
+      "size_bytes": 60130,
+      "width": 662,
+      "height": 567
+    },
+    {
+      "filename": "lecVI_p007_4.png",
+      "page": 7,
+      "size_bytes": 5585,
+      "width": 561,
+      "height": 97
+    },
+    {
+      "filename": "lecVI_p008_1.png",
+      "page": 8,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecVI_p008_2.png",
+      "page": 8,
+      "size_bytes": 13396,
+      "width": 752,
+      "height": 172
+    },
+    {
+      "filename": "lecVI_p009_1.png",
+      "page": 9,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecVI_p009_2.png",
+      "page": 9,
+      "size_bytes": 11810,
+      "width": 699,
+      "height": 178
+    },
+    {
+      "filename": "lecVI_p010_1.png",
+      "page": 10,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecVI_p010_2.png",
+      "page": 10,
+      "size_bytes": 33460,
+      "width": 603,
+      "height": 505
+    },
+    {
+      "filename": "lecVI_p010_4.png",
+      "page": 10,
+      "size_bytes": 6372,
+      "width": 541,
+      "height": 90
+    },
+    {
+      "filename": "lecVI_p011_1.png",
+      "page": 11,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecVI_p011_2.png",
+      "page": 11,
+      "size_bytes": 13930,
+      "width": 767,
+      "height": 182
+    },
+    {
+      "filename": "lecVI_p012_1.png",
+      "page": 12,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecVI_p012_2.png",
+      "page": 12,
+      "size_bytes": 12691,
+      "width": 746,
+      "height": 176
+    },
+    {
+      "filename": "lecVI_p013_1.png",
+      "page": 13,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecVI_p013_3.png",
+      "page": 13,
+      "size_bytes": 7719,
+      "width": 609,
+      "height": 88
+    },
+    {
+      "filename": "lecVI_p013_4.png",
+      "page": 13,
+      "size_bytes": 28541,
+      "width": 645,
+      "height": 477
+    },
+    {
+      "filename": "lecVI_p014_1.png",
+      "page": 14,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecVI_p014_2.png",
+      "page": 14,
+      "size_bytes": 24935,
+      "width": 407,
+      "height": 415
+    },
+    {
+      "filename": "lecVI_p014_3.png",
+      "page": 14,
+      "size_bytes": 24379,
+      "width": 407,
+      "height": 440
+    },
+    {
+      "filename": "lecVI_p014_4.png",
+      "page": 14,
+      "size_bytes": 23533,
+      "width": 400,
+      "height": 422
+    },
+    {
+      "filename": "lecVI_p015_1.png",
+      "page": 15,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    },
+    {
+      "filename": "lecVI_p015_2.png",
+      "page": 15,
+      "size_bytes": 11098,
+      "width": 635,
+      "height": 146
+    },
+    {
+      "filename": "lecVI_p016_1.png",
+      "page": 16,
+      "size_bytes": 15457,
+      "width": 404,
+      "height": 125
+    }
+  ],
+  "ch08": [
+    {
+      "filename": "lec7_comp_p001_0.jpeg",
+      "page": 1,
+      "size_bytes": 9828,
+      "width": 455,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p001_3.jpeg",
+      "page": 1,
+      "size_bytes": 13314,
+      "width": 627,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p001_4.png",
+      "page": 1,
+      "size_bytes": 51472,
+      "width": 356,
+      "height": 356
+    },
+    {
+      "filename": "lec7_comp_p001_5.jpeg",
+      "page": 1,
+      "size_bytes": 888555,
+      "width": 3999,
+      "height": 2250
+    },
+    {
+      "filename": "lec7_comp_p001_6.png",
+      "page": 1,
+      "size_bytes": 120395,
+      "width": 711,
+      "height": 711
+    },
+    {
+      "filename": "lec7_comp_p001_7.jpeg",
+      "page": 1,
+      "size_bytes": 21906,
+      "width": 479,
+      "height": 488
+    },
+    {
+      "filename": "lec7_comp_p002_0.jpeg",
+      "page": 2,
+      "size_bytes": 9828,
+      "width": 455,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p002_3.jpeg",
+      "page": 2,
+      "size_bytes": 13314,
+      "width": 627,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p002_4.png",
+      "page": 2,
+      "size_bytes": 120395,
+      "width": 711,
+      "height": 711
+    },
+    {
+      "filename": "lec7_comp_p002_5.jpeg",
+      "page": 2,
+      "size_bytes": 901864,
+      "width": 3999,
+      "height": 2250
+    },
+    {
+      "filename": "lec7_comp_p003_0.jpeg",
+      "page": 3,
+      "size_bytes": 9828,
+      "width": 455,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p003_3.jpeg",
+      "page": 3,
+      "size_bytes": 13314,
+      "width": 627,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p003_4.png",
+      "page": 3,
+      "size_bytes": 120395,
+      "width": 711,
+      "height": 711
+    },
+    {
+      "filename": "lec7_comp_p004_0.jpeg",
+      "page": 4,
+      "size_bytes": 9828,
+      "width": 455,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p004_3.jpeg",
+      "page": 4,
+      "size_bytes": 13314,
+      "width": 627,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p004_4.png",
+      "page": 4,
+      "size_bytes": 120395,
+      "width": 711,
+      "height": 711
+    },
+    {
+      "filename": "lec7_comp_p005_0.jpeg",
+      "page": 5,
+      "size_bytes": 9828,
+      "width": 455,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p005_3.jpeg",
+      "page": 5,
+      "size_bytes": 13314,
+      "width": 627,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p005_4.png",
+      "page": 5,
+      "size_bytes": 120395,
+      "width": 711,
+      "height": 711
+    },
+    {
+      "filename": "lec7_comp_p005_5.png",
+      "page": 5,
+      "size_bytes": 20516,
+      "width": 423,
+      "height": 360
+    },
+    {
+      "filename": "lec7_comp_p006_0.jpeg",
+      "page": 6,
+      "size_bytes": 9828,
+      "width": 455,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p006_3.jpeg",
+      "page": 6,
+      "size_bytes": 13314,
+      "width": 627,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p006_4.png",
+      "page": 6,
+      "size_bytes": 120395,
+      "width": 711,
+      "height": 711
+    },
+    {
+      "filename": "lec7_comp_p006_5.png",
+      "page": 6,
+      "size_bytes": 20516,
+      "width": 423,
+      "height": 360
+    },
+    {
+      "filename": "lec7_comp_p007_0.jpeg",
+      "page": 7,
+      "size_bytes": 9828,
+      "width": 455,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p007_3.jpeg",
+      "page": 7,
+      "size_bytes": 13314,
+      "width": 627,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p007_4.png",
+      "page": 7,
+      "size_bytes": 120395,
+      "width": 711,
+      "height": 711
+    },
+    {
+      "filename": "lec7_comp_p008_0.jpeg",
+      "page": 8,
+      "size_bytes": 9828,
+      "width": 455,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p008_3.jpeg",
+      "page": 8,
+      "size_bytes": 13314,
+      "width": 627,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p008_4.png",
+      "page": 8,
+      "size_bytes": 120395,
+      "width": 711,
+      "height": 711
+    },
+    {
+      "filename": "lec7_comp_p009_0.jpeg",
+      "page": 9,
+      "size_bytes": 9828,
+      "width": 455,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p009_3.jpeg",
+      "page": 9,
+      "size_bytes": 13314,
+      "width": 627,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p009_4.png",
+      "page": 9,
+      "size_bytes": 120395,
+      "width": 711,
+      "height": 711
+    },
+    {
+      "filename": "lec7_comp_p010_0.jpeg",
+      "page": 10,
+      "size_bytes": 9828,
+      "width": 455,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p010_3.jpeg",
+      "page": 10,
+      "size_bytes": 13314,
+      "width": 627,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p010_4.png",
+      "page": 10,
+      "size_bytes": 120395,
+      "width": 711,
+      "height": 711
+    },
+    {
+      "filename": "lec7_comp_p011_0.jpeg",
+      "page": 11,
+      "size_bytes": 9828,
+      "width": 455,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p011_3.jpeg",
+      "page": 11,
+      "size_bytes": 13314,
+      "width": 627,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p011_4.png",
+      "page": 11,
+      "size_bytes": 120395,
+      "width": 711,
+      "height": 711
+    },
+    {
+      "filename": "lec7_comp_p012_0.jpeg",
+      "page": 12,
+      "size_bytes": 9828,
+      "width": 455,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p012_3.jpeg",
+      "page": 12,
+      "size_bytes": 13314,
+      "width": 627,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p012_4.png",
+      "page": 12,
+      "size_bytes": 120395,
+      "width": 711,
+      "height": 711
+    },
+    {
+      "filename": "lec7_comp_p013_0.jpeg",
+      "page": 13,
+      "size_bytes": 9828,
+      "width": 455,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p013_3.jpeg",
+      "page": 13,
+      "size_bytes": 13314,
+      "width": 627,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p013_4.png",
+      "page": 13,
+      "size_bytes": 120395,
+      "width": 711,
+      "height": 711
+    },
+    {
+      "filename": "lec7_comp_p014_0.jpeg",
+      "page": 14,
+      "size_bytes": 9828,
+      "width": 455,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p014_3.jpeg",
+      "page": 14,
+      "size_bytes": 13314,
+      "width": 627,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p014_4.png",
+      "page": 14,
+      "size_bytes": 120395,
+      "width": 711,
+      "height": 711
+    },
+    {
+      "filename": "lec7_comp_p015_0.jpeg",
+      "page": 15,
+      "size_bytes": 9828,
+      "width": 455,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p015_3.jpeg",
+      "page": 15,
+      "size_bytes": 13314,
+      "width": 627,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p015_4.png",
+      "page": 15,
+      "size_bytes": 120395,
+      "width": 711,
+      "height": 711
+    },
+    {
+      "filename": "lec7_comp_p015_5.png",
+      "page": 15,
+      "size_bytes": 36911,
+      "width": 1035,
+      "height": 619
+    },
+    {
+      "filename": "lec7_comp_p016_0.jpeg",
+      "page": 16,
+      "size_bytes": 9828,
+      "width": 455,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p016_3.jpeg",
+      "page": 16,
+      "size_bytes": 13314,
+      "width": 627,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p016_4.png",
+      "page": 16,
+      "size_bytes": 120395,
+      "width": 711,
+      "height": 711
+    },
+    {
+      "filename": "lec7_comp_p017_0.jpeg",
+      "page": 17,
+      "size_bytes": 9828,
+      "width": 455,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p017_3.jpeg",
+      "page": 17,
+      "size_bytes": 13314,
+      "width": 627,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p017_4.png",
+      "page": 17,
+      "size_bytes": 120395,
+      "width": 711,
+      "height": 711
+    },
+    {
+      "filename": "lec7_comp_p017_5.png",
+      "page": 17,
+      "size_bytes": 25602,
+      "width": 850,
+      "height": 612
+    },
+    {
+      "filename": "lec7_comp_p018_0.jpeg",
+      "page": 18,
+      "size_bytes": 9828,
+      "width": 455,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p018_3.jpeg",
+      "page": 18,
+      "size_bytes": 13314,
+      "width": 627,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p018_4.png",
+      "page": 18,
+      "size_bytes": 120395,
+      "width": 711,
+      "height": 711
+    },
+    {
+      "filename": "lec7_comp_p018_5.png",
+      "page": 18,
+      "size_bytes": 37188,
+      "width": 1035,
+      "height": 619
+    },
+    {
+      "filename": "lec7_comp_p018_6.png",
+      "page": 18,
+      "size_bytes": 24839,
+      "width": 1035,
+      "height": 619
+    },
+    {
+      "filename": "lec7_comp_p018_7.png",
+      "page": 18,
+      "size_bytes": 25083,
+      "width": 1035,
+      "height": 619
+    },
+    {
+      "filename": "lec7_comp_p019_0.jpeg",
+      "page": 19,
+      "size_bytes": 9828,
+      "width": 455,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p019_3.jpeg",
+      "page": 19,
+      "size_bytes": 13314,
+      "width": 627,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p019_4.png",
+      "page": 19,
+      "size_bytes": 120395,
+      "width": 711,
+      "height": 711
+    },
+    {
+      "filename": "lec7_comp_p020_0.jpeg",
+      "page": 20,
+      "size_bytes": 9828,
+      "width": 455,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p020_3.jpeg",
+      "page": 20,
+      "size_bytes": 13314,
+      "width": 627,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p020_4.png",
+      "page": 20,
+      "size_bytes": 120395,
+      "width": 711,
+      "height": 711
+    },
+    {
+      "filename": "lec7_comp_p021_0.jpeg",
+      "page": 21,
+      "size_bytes": 9828,
+      "width": 455,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p021_3.jpeg",
+      "page": 21,
+      "size_bytes": 13314,
+      "width": 627,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p021_4.png",
+      "page": 21,
+      "size_bytes": 120395,
+      "width": 711,
+      "height": 711
+    },
+    {
+      "filename": "lec7_comp_p022_0.jpeg",
+      "page": 22,
+      "size_bytes": 9828,
+      "width": 455,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p022_3.jpeg",
+      "page": 22,
+      "size_bytes": 13314,
+      "width": 627,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p022_4.png",
+      "page": 22,
+      "size_bytes": 120395,
+      "width": 711,
+      "height": 711
+    },
+    {
+      "filename": "lec7_comp_p022_5.png",
+      "page": 22,
+      "size_bytes": 34133,
+      "width": 850,
+      "height": 612
+    },
+    {
+      "filename": "lec7_comp_p023_0.jpeg",
+      "page": 23,
+      "size_bytes": 9828,
+      "width": 455,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p023_3.jpeg",
+      "page": 23,
+      "size_bytes": 13314,
+      "width": 627,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p023_4.png",
+      "page": 23,
+      "size_bytes": 120395,
+      "width": 711,
+      "height": 711
+    },
+    {
+      "filename": "lec7_comp_p024_0.jpeg",
+      "page": 24,
+      "size_bytes": 9828,
+      "width": 455,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p024_3.jpeg",
+      "page": 24,
+      "size_bytes": 13314,
+      "width": 627,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p024_4.png",
+      "page": 24,
+      "size_bytes": 120395,
+      "width": 711,
+      "height": 711
+    },
+    {
+      "filename": "lec7_comp_p024_5.png",
+      "page": 24,
+      "size_bytes": 27033,
+      "width": 850,
+      "height": 612
+    },
+    {
+      "filename": "lec7_comp_p025_0.jpeg",
+      "page": 25,
+      "size_bytes": 9828,
+      "width": 455,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p025_3.jpeg",
+      "page": 25,
+      "size_bytes": 13314,
+      "width": 627,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p025_4.png",
+      "page": 25,
+      "size_bytes": 120395,
+      "width": 711,
+      "height": 711
+    },
+    {
+      "filename": "lec7_comp_p025_5.png",
+      "page": 25,
+      "size_bytes": 33744,
+      "width": 850,
+      "height": 612
+    },
+    {
+      "filename": "lec7_comp_p025_6.png",
+      "page": 25,
+      "size_bytes": 24614,
+      "width": 850,
+      "height": 612
+    },
+    {
+      "filename": "lec7_comp_p026_0.jpeg",
+      "page": 26,
+      "size_bytes": 9828,
+      "width": 455,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p026_3.jpeg",
+      "page": 26,
+      "size_bytes": 13314,
+      "width": 627,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p026_4.png",
+      "page": 26,
+      "size_bytes": 120395,
+      "width": 711,
+      "height": 711
+    },
+    {
+      "filename": "lec7_comp_p027_0.jpeg",
+      "page": 27,
+      "size_bytes": 9828,
+      "width": 455,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p027_3.jpeg",
+      "page": 27,
+      "size_bytes": 13314,
+      "width": 627,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p027_4.png",
+      "page": 27,
+      "size_bytes": 120395,
+      "width": 711,
+      "height": 711
+    },
+    {
+      "filename": "lec7_comp_p027_5.png",
+      "page": 27,
+      "size_bytes": 22213,
+      "width": 1231,
+      "height": 1132
+    },
+    {
+      "filename": "lec7_comp_p028_0.jpeg",
+      "page": 28,
+      "size_bytes": 9828,
+      "width": 455,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p028_3.jpeg",
+      "page": 28,
+      "size_bytes": 13314,
+      "width": 627,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p028_4.png",
+      "page": 28,
+      "size_bytes": 120395,
+      "width": 711,
+      "height": 711
+    },
+    {
+      "filename": "lec7_comp_p029_0.jpeg",
+      "page": 29,
+      "size_bytes": 9828,
+      "width": 455,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p029_3.jpeg",
+      "page": 29,
+      "size_bytes": 13314,
+      "width": 627,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p029_4.png",
+      "page": 29,
+      "size_bytes": 120395,
+      "width": 711,
+      "height": 711
+    },
+    {
+      "filename": "lec7_comp_p030_0.jpeg",
+      "page": 30,
+      "size_bytes": 9828,
+      "width": 455,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p030_3.jpeg",
+      "page": 30,
+      "size_bytes": 13314,
+      "width": 627,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p030_4.png",
+      "page": 30,
+      "size_bytes": 120395,
+      "width": 711,
+      "height": 711
+    },
+    {
+      "filename": "lec7_comp_p031_0.jpeg",
+      "page": 31,
+      "size_bytes": 9828,
+      "width": 455,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p031_3.jpeg",
+      "page": 31,
+      "size_bytes": 13314,
+      "width": 627,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p031_4.png",
+      "page": 31,
+      "size_bytes": 120395,
+      "width": 711,
+      "height": 711
+    },
+    {
+      "filename": "lec7_comp_p032_0.jpeg",
+      "page": 32,
+      "size_bytes": 9828,
+      "width": 455,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p032_3.jpeg",
+      "page": 32,
+      "size_bytes": 13314,
+      "width": 627,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p032_4.png",
+      "page": 32,
+      "size_bytes": 120395,
+      "width": 711,
+      "height": 711
+    },
+    {
+      "filename": "lec7_comp_p033_0.jpeg",
+      "page": 33,
+      "size_bytes": 9828,
+      "width": 455,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p033_3.jpeg",
+      "page": 33,
+      "size_bytes": 13314,
+      "width": 627,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p033_4.png",
+      "page": 33,
+      "size_bytes": 120395,
+      "width": 711,
+      "height": 711
+    },
+    {
+      "filename": "lec7_comp_p034_0.jpeg",
+      "page": 34,
+      "size_bytes": 9828,
+      "width": 455,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p034_3.jpeg",
+      "page": 34,
+      "size_bytes": 13314,
+      "width": 627,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p034_4.png",
+      "page": 34,
+      "size_bytes": 120395,
+      "width": 711,
+      "height": 711
+    },
+    {
+      "filename": "lec7_comp_p035_0.jpeg",
+      "page": 35,
+      "size_bytes": 9828,
+      "width": 455,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p035_3.jpeg",
+      "page": 35,
+      "size_bytes": 13314,
+      "width": 627,
+      "height": 124
+    },
+    {
+      "filename": "lec7_comp_p035_4.png",
+      "page": 35,
+      "size_bytes": 120395,
+      "width": 711,
+      "height": 711
+    }
+  ]
+}
