@@ -607,6 +607,27 @@ PPT slide 3 的 Conflict Management 部分和 exam set 6 Q3(viii) 明确考查�
 
 > Set 2 Q2(g), Set 6 Q3(viii)
 
+### PPT slide 33 的 IRR 与 NPV 综合判断实例
+
+以下是 PPT slide 33 的 Investment opportunity 数据（NPV vs IRR）：
+
+| Project | Investment | NPV | IRR |
+|---|---|---|---|
+| A | ($50,000,000) | $5,413,000 | 16.2% |
+| B | ($750,000) | $150,000 | 14.5% |
+| C | ($8,000,000) | ($4,200,000) | 5.6% |
+| D | ($350,000) | $140,000 | 24% |
+| E | ($5,000,000) | $2,200,000 | 20.5% |
+| F | ($2,500,000) | ($5,000,000) | 2.8% |
+| G | ($10,000,000) | $2,500,000 | 11.7% |
+
+**分析：**
+- **NPV 为正（值得投资）：** A ($5.4M), B ($150K), D ($140K), E ($2.2M), G ($2.5M)
+- **NPV 为负（不值得投资）：** C (-$4.2M), F (-$5M)
+- **IRR 顺序：** D (24%) > E (20.5%) > A (16.2%) > B (14.5%) > G (11.7%) > C (5.6%) > F (2.8%)
+
+**判断技巧：** NPV > 0 = 值得投资，NPV < 0 = 不值得投资。IRR 排名看回报率，但 NPV 排名看绝对收益。项目 A 的 NPV 最大（$5.4M），项目 D 的 IRR 最高（24%），但 D 的投资只有 $350K。
+
 ---
 
 ## 高频判断速记
@@ -641,3 +662,19 @@ PPT slide 3 的 Conflict Management 部分和 exam set 6 Q3(viii) 明确考查�
 - "Accept Deliverables" — 错，课程术语统一用 Validate Scope。出题逻辑：用日常用语替换 PMI 术语
 - "Scope and Procurements are competing constraints" — 错，Procurements 不在六项约束中（Q11）
 - "Standards are mandatory, regulations are optional" — 错，性质反了（Q14）
+
+---
+## 历年真题考查情况
+
+| 年份 | 题号 | 考查形式 | 考查内容 |
+|---|---|---|---|
+| 2022 | Q1 | MCQ | NPV/BCR 判断：哪个更有吸引力（NPV vs BCR 无法直接比较） |
+| 2022 | Q4 | MCQ | 产品开发阶段特征（不确定性/成本/风险随时间变化） |
+| 2022 | Q13 | 简答 | 组织结构图识别（Divisional vs Matrix） |
+| 2023 | Q1 | MCQ | NPV/BCR/IRR 判断（同 2022 Q1 风格） |
+| 2023 | Q4 | MCQ | 项目早期阶段特征（stakeholder influence、uncertainty、cost） |
+| 2023 | Q7 | 计算 | PV/FV 计算（给定利率和年限） |
+| 2024 | Q1 | MCQ | NPV/BCR 判断逻辑 |
+| 2024 | Q4 | MCQ | 项目生命周期阶段特征 |
+| 2025 | Q1(ii) | 简答 | 项目生命周期阶段特征判断 |
+| 2025 | Q1(iii) | 简答 | Matrix 组织结构特征描述 |

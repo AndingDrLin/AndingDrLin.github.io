@@ -506,3 +506,22 @@ Reference: Set 1 Q1.8
 - "Technological pillar" 是三支柱之一 → 错（PPT slide 47 样题确认）
 - "Advertising Strategy" 是 DFM 原则 → 错（PPT slide 44 样题确认）
 - "Resource efficiency" 是 PPT 列出的 7 项 actionable principles 之一 → 错（不在 PPT 的 7 项列表中；Resource efficiency 常与 Dematerialization 混淆——Dematerialization 强调的是减少产品的材料和能源总 throughput，而 Resource efficiency 是一个更宽泛的非特指概念。此项为延伸辨析，非样题原题。）
+
+---
+## 历年真题考查情况
+
+> 以下为四份期末真题中本章知识点的出题记录，帮助定位复习重点。
+
+| 年份 | 题号 | 考查形式 | 考查内容 |
+|---|---|---|---|
+| 2022 | Q5 | MCQ | 鲁棒设计定义判断（噪声、控制因素） |
+| 2022 | Q11 | MCQ | Taguchi 三类损失函数（nominal/smaller/larger） |
+| 2022 | Q12 | MCQ | 质量损失系数 k 的含义与计算 |
+| 2023 | Q19 | MCQ | DFM 定义：降低复杂度、优化性能、重新定义产品 |
+| 2023 | Q20 | MCQ | 可持续三支柱（经济/环境/社会） |
+| 2023 | Q10 | MCQ | P-Diagram：Signal/Control/Noise factor 分类 |
+| 2024 | Q10 | MCQ | DFM 原则（Simplicity/Standardization 等六选四） |
+| 2025 | Q1(i) | 简答 | DFM 优势（DFM benefits 列举） |
+| 2025 | Q3 | 综合大题 | DFM 原则与设计比较（Design A vs B）+ 可持续分析 + 4Rs |
+
+**高频考点提示：** DFM 定义与六原则在每年都有出现；DFM 早期介入的理由也是反复考查的考点。

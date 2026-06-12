@@ -261,6 +261,17 @@ $$\text{Safety Margin} = \frac{700 - 500}{700} \times 100\% = 28.6\%$$
 - Revenue 线：从原点出发，斜率 = SP/unit
 - TC 与 Revenue 的交点 = break-even point
 
+### 历年真题 Break-even 题型汇总
+
+| 年份 | 题号 | 形式 | 具体考查内容 |
+|---|---|---|---|
+| 2022 | Q20 | 计算 | Break-even quantity + safety margin + 利润计算 |
+| 2023 | Q20 | 计算 | Break-even quantity + safety margin（含广告费影响） |
+| 2024 | Q10 | 计算 | Break-even quantity + safety margin（含租赁费影响） |
+| 2025 | Q2(ii) | 计算 | Break-even quantity + safety margin + 目标利润所需销量 |
+
+**提示：** Break-even 是必考计算题。近年趋势是增加 scenario 变化（如广告费、租赁费对 FC 的影响），以及问"要达到目标利润需卖多少"的变体。
+
 ---
 
 ## Make-or-buy / lease-or-buy
@@ -353,6 +364,20 @@ $$
 若年产量 $5000$，则回收年数 = $14000 / 5000 = 2.8$ years。
 
 **直觉：** 产量低于 14,000 时，手工更便宜（固定成本低）；产量高于 14,000 时，自动化更便宜（变动成本低）。如果每年生产 5,000 件，要 2.8 年才能达到交叉点。
+
+## Cross-over point 历年真题出题方式
+
+| 年份 | 题号 | 形式 | 具体考查内容 |
+|---|---|---|---|
+| 2022 | Q20(iii) | 计算 | 两个方案（manual vs automated）的 cross-over point + 年限换算 |
+| 2023 | Q20(iii) | 计算 | 同上风格 |
+| 2024 | Q10(iii) | 计算 | 同上风格 |
+| 2025 | Q2(iii) | 计算 | 同上风格 |
+
+Cross-over point 计算步骤（固定模板）：
+1. 写出两个方案的总成本方程：$TC_1 = FC_1 + VC_1 \times Q$，$TC_2 = FC_2 + VC_2 \times Q$
+2. 令 $TC_1 = TC_2$，解出 $Q^*$
+3. 用年产量折算年限：$Years = Q^* / \text{Annual Production}$
 
 ---
 
@@ -566,3 +591,21 @@ Sunk cost（沉没成本）= 已经花出去、无法收回的成本。不管你
 | Cost Management 过程 | Set 6 Q2(a) |
 | EBITDA / EBITA / P&L | Set 1 Q1.7, Set 3 Q1.2, Set 6 Q1.7 |
 | Cross-over point | Set 2 Q1.10 |
+
+---
+## 历年真题考查情况
+
+| 年份 | 题号 | 考查形式 | 考查内容 |
+|---|---|---|---|
+| 2022 | Q1 | MCQ | NPV/BCR 判断 |
+| 2022 | Q20 | 计算 | Break-even + safety margin + cross-over point |
+| 2023 | Q1 | MCQ | NPV/BCR/IRR 判断 |
+| 2023 | Q20 | 计算 | Break-even + safety margin + cross-over point |
+| 2024 | Q1 | MCQ | NPV/BCR 判断 |
+| 2024 | Q10 | 计算 | Break-even + safety margin + cross-over point |
+| 2025 | Q1(vi) | 简答 | Make-or-buy 相关因素分析 |
+| 2025 | Q1(vii) | 简答 | IRR 含义与判断 |
+| 2025 | Q2(ii) | 计算 | Break-even + safety margin + 目标利润销量 |
+| 2025 | Q2(iii) | 计算 | Cross-over point + 年限换算 |
+
+**高频考点提示：** Break-even + cross-over point 计算题每年必考（大题最后一小问），NPV/BCR/IRR 判断在 MCQ 中反复出现。

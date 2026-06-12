@@ -241,6 +241,19 @@ Start ──→ B(5) ──→ D(2) ──→ End
 | Backward pass 起点忘设 | LF 随便填 | LF = 项目总工期（forward pass 的最大 EF） |
 | 并行活动都标 critical | 两条路径都 critical → 必须是 | 只有 float = 0 的活动才标 critical |
 
+### 历年真题 CPM 题型汇总
+
+历年真题中 CPM 计算题出现频率极高，以下是各年考查形式：
+
+| 年份 | 题号 | 活动数量 | 是否求 Float | 是否画甘特图 |
+|---|---|---|---|---|
+| 2022 | Q18 | 5 | 是 | 否 |
+| 2023 | Q18 | 5+ | 是 | 否 |
+| 2024 | Q6 | 6 | 是（含 free float） | 否 |
+| 2025 | Q2(i) | 6 | 是（total + free float） | 是（Gantt chart） |
+
+**提示：** CPM 计算是必考题。2025 年新增了画甘特图的要求，建议练习时也尝试将 CPM 结果转换为甘特图。
+
 **Reference**: Set 1 Q3(b), Set 2 Q2(f)(ii--iii), Set 3 Q2, Set 4 Q4(d), Set 5 Q1.1/Q1.4, Set 6 Q2(a--b)
 
 ---
@@ -445,6 +458,22 @@ $$\text{Channels} = \frac{7 \times 6}{2} = 21$$
 
 如果题目问"哪一个不属于 risk response planning"，常见错项是 **Identification**，因为那是识别阶段，不是 response strategy。
 
+### Risk management 历年真题出题方式
+
+Risk management 在每年的简答题和 MCQ 中都有出现，但出题方式逐渐变化：
+
+| 年份 | 题号 | 形式 | 具体考查内容 |
+|---|---|---|---|
+| 2022 | Q9 | MCQ | 风险识别（Qualitative vs Quantitative 阶段区分） |
+| 2022 | Q19 | 简答 | WBS + 风险识别：scope 膨胀、资源不足、验收标准不清 |
+| 2023 | Q6 | MCQ | Risk response strategy：识别策略类型 |
+| 2023 | Q9 | MCQ | 风险识别（SWOT 内外部因素） |
+| 2024 | Q3 | MCQ | 风险识别（SWOT 内外部因素） |
+| 2024 | Q5 | MCQ | 风险识别（Qualitative vs Quantitative 阶段区分） |
+| 2025 | Q1(v) | 简答 | 风险识别：schedule pressure、skill gap、requirements volatility |
+
+**趋势判断：** 近年更倾向给具体项目场景，要求识别风险来源，而非单纯背诵 risk response strategy 列表。建议练习时多做"给场景列风险点"的训练。
+
 ---
 
 ## SWOT
@@ -577,3 +606,26 @@ SWOT 中哪两个字母代表内部因素？
 团队成员 A 和 B 对技术方案有分歧。PM 安排一次讨论会，让双方陈述各自方案的优点，然后合并两种方案的长处形成新方案。这是哪种冲突管理策略？
 
 **答案**：Collaborating（Problem Solving）——双方一起找最优解。
+
+---
+## 历年真题考查情况
+
+| 年份 | 题号 | 考查形式 | 考查内容 |
+|---|---|---|---|
+| 2022 | Q8 | MCQ | 沟通渠道计算（n(n-1)/2） |
+| 2022 | Q10 | MCQ | 冲突管理策略识别 |
+| 2022 | Q17 | 计算 | WBS 层级分解 + Work Package 识别 |
+| 2022 | Q18 | 计算 | CPM：forward/backward pass + critical path + float |
+| 2022 | Q19 | 简答 | WBS + 风险识别 + 组织结构 + 沟通渠道 |
+| 2023 | Q5 | MCQ | 沟通渠道计算 |
+| 2023 | Q8 | MCQ | WBS 100% rule |
+| 2023 | Q18 | 计算 | CPM + float 计算 |
+| 2023 | Q19 | 简答 | 组织结构识别 + 风险识别 + 沟通渠道 |
+| 2024 | Q2 | MCQ | WBS 100% rule |
+| 2024 | Q5 | MCQ | 风险识别阶段区分 |
+| 2024 | Q6 | 计算 | CPM + total/free float 计算 |
+| 2025 | Q1(iv) | 简答 | 过程组识别（Monitor & Control） |
+| 2025 | Q1(v) | 简答 | 风险识别（schedule/skill/requirements） |
+| 2025 | Q2(i) | 计算 | CPM + float + Gantt chart |
+
+**高频考点提示：** CPM 计算几乎每年必考（大题），沟通渠道计算、WBS 100% rule、风险识别也是高频考点。
