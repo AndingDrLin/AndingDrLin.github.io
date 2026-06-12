@@ -8,7 +8,7 @@ tags:
   - six-sigma
 category: "课程学习"
 docGroup: "epmf-final-exam-revision-notes"
-order: 3
+order: 2
 draft: false
 ---
 
@@ -859,9 +859,12 @@ $$
 | 2022 | Q3 | MCQ | Taguchi 三类损失函数识别 |
 | 2022 | Q6 | MCQ | Cp/Cpk 含义判断（过程能力与偏心） |
 | 2022 | Q7 | MCQ | 鲁棒设计中质量损失的概念 |
+| 2022 | Q11 | 简答 | Taguchi 三类损失函数（nominal/smaller/larger） |
+| 2022 | Q12 | 简答 | 质量损失系数 k 的含义与计算 |
 | 2022 | Q14 | 计算 | Taguchi 损失计算（给定 k 和观测值） |
 | 2022 | Q15 | 计算 | 控制图 CL/UCL/LCL 计算 + 稳定性判断 |
 | 2022 | Q16 | 计算 | Cp/Cpk 计算 + 过程能力判断 |
+| 2023 | Q10 | MCQ | P-Diagram：Signal/Control/Noise factor 分类 |
 | 2023 | Q11 | MCQ | 控制图稳定性判断 |
 | 2023 | Q12 | MCQ | Cp/Cpk 判断逻辑 |
 | 2023 | Q17 | MCQ | DMAIC 流程顺序 |

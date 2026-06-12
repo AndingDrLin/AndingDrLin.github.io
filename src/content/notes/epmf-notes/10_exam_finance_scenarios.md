@@ -9,7 +9,7 @@ tags:
   - evm
 category: "课程学习"
 docGroup: "epmf-final-exam-revision-notes"
-order: 11
+order: 10
 draft: false
 ---
 
@@ -386,15 +386,16 @@ Sales (Revenue)
 = Gross Profit
 - Operating Expenses (SG&A)
 = EBIT (Operating Profit)
-+ Depreciation
 + Amortization
-= EBITDA
-- Amortization
 = EBITA
++ Depreciation
+= EBITDA
 - Interest
 - Tax
 = Net Profit (Bottom Line)
 ```
+
+注意：EBITA = EBIT + A（只加回摊销），EBITDA = EBIT + D + A（加回折旧和摊销）。所以 EBITDA = EBITA + Depreciation。
 
 **速记**：
 

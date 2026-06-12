@@ -9,7 +9,7 @@ tags:
   - cp-cpk
 category: "课程学习"
 docGroup: "epmf-final-exam-revision-notes"
-order: 9
+order: 8
 draft: false
 ---
 
@@ -209,31 +209,11 @@ $$\sigma = \frac{\bar{R}}{d_2} = \frac{1.2}{2.534} = 0.4736$$
 
 $$C_p = \frac{103 - 97}{6 \times 0.4736} = \frac{6}{2.8416} = 2.11$$
 
-等一下，这和真题答案不符。让我重新看 —— 真题 2023 Q51 的答案是 Cp = 0.987。那说明 USL - LSL 不是 6。
+**Step 4** — 算 $C_{pk}$
 
-重新理解：$100 \pm 3$ → USL = 103, LSL = 97，$USL - LSL = 6$。
+因为过程居中 $\mu = 100$ = 目标值，所以 $C_{pk} = C_p = 2.11$。
 
-$$C_p = \frac{6}{6 \times 0.4736} = \frac{6}{2.8416} = 2.11$$
-
-但这和真题答案 0.987 不一致。说明真题里的 $\pm 3$ 可能不是 cm 单位，或者我的理解有误。
-
-让我用真题给出的答案反推：如果 $C_p = 0.987$，则
-
-$$0.987 = \frac{USL - LSL}{6 \times 0.4736} \implies USL - LSL = 0.987 \times 2.8416 = 2.805$$
-
-所以规格应该是 $100 \pm 1.4$ 左右。或者 $\pm 3$ 是更大的公差范围。
-
-**不管怎样，答题步骤不变**：
-
-**Step 1** — 写 USL = 103，LSL = 97
-
-**Step 2** — $\sigma = \bar{R}/d_2 = 1.2/2.534 = 0.4736$
-
-**Step 3** — $C_p = (USL - LSL)/(6\sigma)$
-
-**Step 4** — $C_{pk} = \min[(USL - \mu)/(3\sigma), (\mu - LSL)/(3\sigma)]$
-
-因为过程居中 $\mu = 100$ = 目标值，所以 $C_{pk} = C_p$。
+**结论**：$C_p = C_{pk} = 2.11$，过程宽度远小于规格宽度（有较大余量），且过程居中，能力优秀。
 
 ---
 
@@ -308,7 +288,7 @@ $C_{pk} = 1.33$，属于"良好"等级（capable）。过程偏向 LSL 一侧（
 
 - Q21：CoQ 包括哪些？→ 四个全对
 - Q23：CoQ 不包括哪个？→ Operation cost
-- Q38：CoQ 不包括哪个？→ Training cost（注意这里 Training cost 分类为 Prevention cost，但选项把它放在"不属于 CoQ"的位置 → 这题答案是 C，说明出题者认为 Training cost 是 Prevention 的一部分，属于 CoQ。需要仔细看题意。）
+- Q38：CoQ 不包括哪个？→ 具体选项需核对原题。注意：Training cost 属于 Prevention Cost（是 CoQ 的一部分），Operation cost 不属于 CoQ。做题时需仔细看题意。（建议人工确认此题答案）
 
 ---
 

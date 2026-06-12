@@ -8,7 +8,7 @@ tags:
   - calculation
 category: "课程学习"
 docGroup: "epmf-final-exam-revision-notes"
-order: 7
+order: 6
 draft: false
 ---
 

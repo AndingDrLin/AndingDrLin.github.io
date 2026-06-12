@@ -8,7 +8,7 @@ tags:
   - costing
 category: "课程学习"
 docGroup: "epmf-final-exam-revision-notes"
-order: 6
+order: 5
 draft: false
 ---
 
@@ -575,7 +575,7 @@ Sunk cost（沉没成本）= 已经花出去、无法收回的成本。不管你
 - 不同 appraisal 指标不能总是直接横向硬比
 - accounting total cost ≠ decision-relevant cost
 - bookings ≠ immediate cash-in（30-day terms）
-- EBITDA 去掉 D（折旧），EBITA 保留 D——EBITDA 比 EBITA 多去掉一个 D
+- EBITDA 加回 D（折旧）和 A（摊销），EBITA 只加回 A、保留折旧扣减——EBITDA 比 EBITA 多加回一个 D
 - NPV 公式的求和下标要和 $I_0$ 的处理一致，不要双重扣除
 - SPI < 1 + CPI > 1 不代表项目"节约"，可能只是进度落后导致花得少
 

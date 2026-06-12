@@ -60,8 +60,6 @@ draft: false
 
 四份期末考试真题的完整参考答案（存放于 `raw_materials/epmf-final/` 文件夹）：
 
-四份期末考试真题的完整参考答案，存放在仓库 `raw_materials/epmf-final/` 文件夹：
-
 - `2022_Exam_Reference_Answers.md`
 - `2023_Exam_Reference_Answers.md`
 - `2024_Exam_Reference_Answers.md`

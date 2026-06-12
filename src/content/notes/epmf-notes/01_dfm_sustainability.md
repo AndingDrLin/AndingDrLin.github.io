@@ -514,12 +514,8 @@ Reference: Set 1 Q1.8
 
 | 年份 | 题号 | 考查形式 | 考查内容 |
 |---|---|---|---|
-| 2022 | Q5 | MCQ | 鲁棒设计定义判断（噪声、控制因素） |
-| 2022 | Q11 | MCQ | Taguchi 三类损失函数（nominal/smaller/larger） |
-| 2022 | Q12 | MCQ | 质量损失系数 k 的含义与计算 |
 | 2023 | Q19 | MCQ | DFM 定义：降低复杂度、优化性能、重新定义产品 |
 | 2023 | Q20 | MCQ | 可持续三支柱（经济/环境/社会） |
-| 2023 | Q10 | MCQ | P-Diagram：Signal/Control/Noise factor 分类 |
 | 2024 | Q10 | MCQ | DFM 原则（Simplicity/Standardization 等六选四） |
 | 2025 | Q1(i) | 简答 | DFM 优势（DFM benefits 列举） |
 | 2025 | Q3 | 综合大题 | DFM 原则与设计比较（Design A vs B）+ 可持续分析 + 4Rs |
