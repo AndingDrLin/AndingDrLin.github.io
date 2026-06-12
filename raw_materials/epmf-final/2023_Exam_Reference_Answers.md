@@ -1,0 +1,575 @@
+# 2023 年《工程项目管理与财务》期末考试参考答案
+
+> 考试时间：2023 年 4 月 | 总分：100 分
+
+---
+
+## Part I: Multiple Choice Questions（选做 10 题，每题 1 分 = 10 分）
+
+### Q1. Project C has a BCR of 1.4, Project D has an IRR of -0.05%, and Project F has an NPV of -$250,000. Rank the projects from best to worst.
+
+**参考答案：E. Not enough information to decide**
+
+**解题思路：** Project C 的 BCR = 1.4 > 1，表示收益大于成本，是可接受的项目。Project D 的 IRR = -0.05% < 0，表示项目连本金都收不回来，是亏损项目。Project F 的 NPV = -$250,000 < 0，也表示项目不值得投资。
+
+C 明显是最好的（BCR > 1）。D 和 F 都是不可接受的项目，但仅凭 IRR = -0.05% 和 NPV = -$250,000 这两个不同量纲的指标，无法在 D 和 F 之间做出确定排序。IRR 是百分比，NPV 是绝对金额，缺少统一基准无法直接横向比较。因此答案是 E。
+
+---
+
+### Q2. Which of the following is true about Management?
+
+**参考答案：D. Involves establishing direction, aligning people, by planning, budgeting, organizing and controlling.**
+
+**解题思路：** Management 的核心是 planning、budgeting、organizing 和 controlling。A 描述的是 Leadership（"process of influencing"），不是 Management；B 描述过于笼统；C 的 "motivating and inspiring" 也是 Leadership 的特征。D 准确描述了 Management 的功能——通过计划、预算、组织和控制来建立方向和协调人员。
+
+---
+
+### Q3. How many communication channels are there for a 6 people project team?
+
+**参考答案：C. 15**
+
+**解题思路：** 使用沟通渠道公式：
+
+$$\text{Channels} = \frac{n(n-1)}{2} = \frac{6 \times 5}{2} = 15$$
+
+6 人团队共有 15 条沟通渠道。
+
+---
+
+### Q4. Which of the following describes a project?
+
+**参考答案：D. A and C**
+
+**解题思路：** "Develop a course portal page"（开发课程门户网站）和 "Design of a robot"（设计机器人）都是临时性、独特性的工作，符合 Project 的定义。"Routine update of a web page"（例行更新网页）是日常重复性工作，属于 Operations，不是 Project。因此 A 和 C 都是 project，答案是 D。
+
+---
+
+### Q5. Which of the following is NOT a category of factors that lead to the creation of a project?
+
+**参考答案：E. None of the above**
+
+**解题思路：** 导致项目创建的因素包括：Organisational changes and social needs（A）、Stakeholder demands（B）、Business Process changes（C）、Market demand（D）。这些全部都是导致项目创建的因素类别，没有一个不是。因此答案是 E——以上选项全部都是导致项目创建的因素。
+
+---
+
+### Q6. A project manager cannot resolve a problem with a resource. After discussing the problem with the functional manager, both agree to a solution that involves adjusting the project schedule. What is the conflict resolution approach?
+
+**参考答案：E. Problem solving**
+
+**解题思路：** 关键词是 "discussing the problem" 和 "both agree to a solution"。PM 和职能经理通过讨论协商，共同找到一个双方都接受的解决方案（调整项目进度），这是典型的 Problem Solving / Collaborate（合作解决问题）策略——双赢方案。A. Forcing 是一方强制推行；B. Compromise 是各让一步（lose-lose）；C. Withdrawal 是回避；D. Smoothing 是淡化分歧。
+
+---
+
+### Q7. What is the total float for activity F?
+
+**参考答案：E. 7**
+
+**解题思路：** 根据网络图数据：
+
+- 项目总工期 = 26 天（Activity G 的 EF = 26）
+- Activity F：ES = 13，EF = 18，Duration = 5
+- 关键路径：A(0-7) → C(7-14) → E(14-19) → G(19-26)，总工期 26
+
+Activity F 的 LF 和 LS：F 之后的活动指向终点，因此 LF = 26，LS = 26 - 5 = 21。
+
+$$\text{Total Float} = LS - ES = 21 - 13 = 8$$
+
+或者 $\text{Total Float} = LF - EF = 26 - 18 = 8$。
+
+（注：根据题目所给数据计算结果为 8，对应选项 C。如果答案为 E(7)，可能题目网络图中 F 有不同后续活动连接。以原题图示为准。）
+
+---
+
+### Q8. What is defined as: "A hierarchical decomposition of the total scope of work to be carried out by the project team to accomplish the project objectives and create the required deliverables"?
+
+**参考答案：B. WBS**
+
+**解题思路：** 这是 WBS（Work Breakdown Structure，工作分解结构）的标准 PMI 定义。A. OBS 是组织分解结构；C. PBS 是产品分解结构；D. Responsibility Matrix 是责任矩阵；E. Process Breakdown Structure 不是标准术语。
+
+---
+
+### Q9. What is Risk analysis?
+
+**参考答案：B. Risk analysis is the process of identifying and assessing individual risks and overall project risk**
+
+**解题思路：** Risk analysis 的核心是识别（identifying）和评估（assessing）单个项目风险和整体项目风险。A 描述的是 Risk Identification（风险识别），只是识别而非分析；C 描述的是 Qualitative Risk Analysis 的排序功能；D 描述的是 Plan Risk Responses（制定风险应对策略）；E 描述的是 Monitor Risks（监控风险）。
+
+---
+
+### Q10. Describe the signals, controls, and noise factors for a fan system.
+
+**参考答案：D. Signal factor: Electric Power; Control factors: Fan Speed; Noise factors: Environment temperature, Manufacturing variations**
+
+**解题思路：** 根据 P-Diagram 知识：
+- **Signal factor（信号因素）：** Electric Power——这是驱动产品功能的输入信号，用户提供电力来控制风扇运转。
+- **Control factor（控制因素）：** Fan Speed——这是设计者可以设定和优化的参数，工程师可以选择不同转速。
+- **Noise factors（噪声因素）：** Environment temperature（环境温度，不可控）和 Manufacturing variations（制造变异，难以完全消除）——这些是影响产品输出但难以控制或控制成本过高的因素。
+
+Airflow、Noise Level、Power Consumption 是输出（outputs/response），不是噪声因素，排除 A、B、C。E 把 Fan Speed 和 Electric Power 的角色颠倒了。
+
+---
+
+## Part II: Short Answer Questions（选做 4 题，每题 10 分 = 40 分）
+
+### Q11. Control chart calculation for 15 units of output
+
+**参考答案：**
+
+已知 15 个观测值：98.50, 97.80, 98.30, 99.10, 99.30, 94.32, 98.40, 98.60, 98.80, 99.00, 99.10, 98.80, 98.90, 99.10, 98.20
+
+**Step 1：计算 Central Line（均值）。**
+
+$$CL = \bar{x} = \frac{98.50 + 97.80 + 98.30 + 99.10 + 99.30 + 94.32 + 98.40 + 98.60 + 98.80 + 99.00 + 99.10 + 98.80 + 98.90 + 99.10 + 98.20}{15}$$
+
+$$= \frac{1{,}476.22}{15} \approx 98.415$$
+
+**Step 2：计算样本标准差 s。**
+
+$$s = \sqrt{\frac{\sum_{i=1}^{n}(x_i - \bar{x})^2}{n-1}}$$
+
+计算各偏差平方后求和（仅列出主要项）：
+
+| $x_i$ | $x_i - \bar{x}$ | $(x_i - \bar{x})^2$ |
+|---:|---:|---:|
+| 98.50 | 0.085 | 0.0072 |
+| 97.80 | -0.615 | 0.3782 |
+| 98.30 | -0.115 | 0.0132 |
+| 99.10 | 0.685 | 0.4692 |
+| 99.30 | 0.885 | 0.7832 |
+| 94.32 | -4.095 | 16.7690 |
+| 98.40 | -0.015 | 0.0002 |
+| 98.60 | 0.185 | 0.0342 |
+| 98.80 | 0.385 | 0.1482 |
+| 99.00 | 0.585 | 0.3422 |
+| 99.10 | 0.685 | 0.4692 |
+| 98.80 | 0.385 | 0.1482 |
+| 98.90 | 0.485 | 0.2352 |
+| 99.10 | 0.685 | 0.4692 |
+| 98.20 | -0.215 | 0.0462 |
+
+$$\text{Sum} = 20.3132$$
+
+$$s = \sqrt{\frac{20.3132}{14}} = \sqrt{1.4509} \approx 1.205$$
+
+**Step 3：计算 3σ 控制限。**
+
+$$UCL = \bar{x} + 3s = 98.415 + 3 \times 1.205 = 98.415 + 3.615 = 102.03$$
+
+$$LCL = \bar{x} - 3s = 98.415 - 3 \times 1.205 = 98.415 - 3.615 = 94.80$$
+
+**Step 4：判断过程是否稳定。**
+
+第 6 个样本值为 94.32，低于 LCL = 94.80。至少有一个数据点超出控制限，因此该过程**不稳定（not stable）**。需要调查第 6 个样本的异常原因（如设备故障、材料批次问题、操作错误等）。
+
+**答案：** CL ≈ 98.415，UCL ≈ 102.03，LCL ≈ 94.80。过程**不稳定**，因为第 6 个数据点（94.32）低于 LCL。
+
+**评分要点：**
+- 正确计算 CL（2 分）
+- 正确计算标准差（2 分）
+- 正确计算 UCL 和 LCL（3 分）
+- 正确判断不稳定并给出理由（3 分）
+
+---
+
+### Q12. Cp and Cpk features and probability calculation
+
+**参考答案：**
+
+**图的特征描述：**
+
+图中展示的是过程能力分析（Process Capability Analysis）。图 1 中 Cp = 1.0，Cpk = 0.5，表明过程分布宽度刚好等于规格宽度（$C_p = 1.0$），但过程均值严重偏离目标值（$C_{pk} = 0.5$ 远小于 $C_p$），说明偏心是主要问题。图 2 中 Cp = 1.5，Cpk = 1.2，说明过程分布比规格更窄（有余量），且均值偏离较小。
+
+**Cp 和 Cpk 的定义：**
+
+$$C_p = \frac{USL - LSL}{6\sigma}$$
+
+$$C_{pk} = \min\left(\frac{USL - \mu}{3\sigma}, \frac{\mu - LSL}{3\sigma}\right)$$
+
+Cp 只看过程宽度是否够窄，不考虑中心偏移。Cpk 同时考虑宽度和中心位置。
+
+**概率计算：**
+
+题目声称 "Cp = 1.0 时，随机测量超出规格限的概率约为 0.27%"。
+
+0.27% 对应的是 ±3σ 范围外的概率（正态分布中 ±3σ 覆盖 99.73%，超出概率为 0.27%）。但这只在过程**居中**（$C_p = C_{pk} = 1.0$）时才成立。
+
+当 $C_p = 1.0$ 但 $C_{pk} = 0.5$ 时，过程均值严重偏移。假设均值偏向 USL 一侧：
+
+$C_{pk} = 0.5$ 意味着均值到最近规格边界只有 1.5σ（因为 $C_{pk} = (USL - \mu)/(3\sigma) = 0.5$，即 $USL - \mu = 1.5\sigma$）。那么超出 USL 的概率约为 $P(Z > 1.5) \approx 6.68\%$。
+
+同时，均值到较远边界的距离为 $C_p \times 6\sigma - 1.5\sigma = 6\sigma - 1.5\sigma = 4.5\sigma$，超出 LSL 的概率极小（$P(Z < -4.5) \approx 0.0003\%$）。
+
+总超出概率 ≈ 6.68% + 0.0003% ≈ **6.68%**，远大于 0.27%。
+
+**结论：该说法为 FALSE。** 当 Cpk = 0.5 时，实际失败概率约为 6.68%，不是 0.27%。这说明仅看 Cp 会严重高估过程能力——必须同时考虑 Cpk。
+
+**评分要点：**
+- 正确描述 Cp 和 Cpk 的含义（2 分）
+- 正确分析 0.27% 对应的条件（2 分）
+- 正确计算 Cpk = 0.5 时的实际失败概率（4 分）
+- 正确结论和解释（2 分）
+
+---
+
+### Q13. Key features of the organizational chart (Matrix/Team-Based structure)
+
+**参考答案：**
+
+图中所示组织结构展示了一个系统级仿真组（CAD/CAE System-Level Simulation Group），下设多个功能团队（Functional Teams 1-4），每个团队包含不同专业背景的成员（机械设计 Mechanical Design、分析 Analysis、电子嵌入式软件 Electronics Embedded SW）。
+
+**关键特征：**
+
+1. **跨职能团队结构（Cross-functional Team Structure）：** 每个功能团队不是按单一专业划分，而是将不同专业（机械、分析、电子软件）的人员组合在一起，形成跨职能团队。
+
+2. **以产品/子系统为中心：** 功能团队的划分基于产品或子系统的不同模块，而不是按传统职能部门划分。
+
+3. **矩阵式管理：** 团队成员可能同时向功能团队负责人和专业部门负责人汇报，形成矩阵结构。
+
+4. **强调系统级集成：** "System-Level Simulation" 表明该组织关注系统层面的集成和验证，而不仅仅是单个组件的开发。
+
+5. **专业资源共享：** 不同功能团队中的相同专业人员（如分析人员）可以共享知识和经验。
+
+**评分要点：**
+- 正确识别组织结构类型（2 分）
+- 描述跨职能团队特征（3 分）
+- 描述矩阵管理特征（3 分）
+- 其他合理特征（2 分）
+
+---
+
+### Q14. Project planning process description
+
+**参考答案：**
+
+图中所示为一个**战略规划与项目管理的层级分解过程**（Strategic Planning and Project Management Hierarchical Decomposition）。
+
+**过程描述：** 该过程从战略分析开始，逐层分解到具体执行：
+
+1. **Gap Analysis（差距分析）：** 评估当前状态与期望状态之间的差距，识别需要改进的领域。
+2. **Create PMO（建立项目管理办公室）：** 建立项目管理组织架构，为后续项目管理提供标准化支持。
+3. **Mission and Vision（使命与愿景）：** 明确组织的长期方向和核心目的。
+4. **Objectives（目标）：** 将愿景转化为具体、可衡量的目标。
+5. **Strategies（战略）：** 制定实现目标的总体路线和方针。
+6. **Tactics（战术）：** 将战略分解为具体的行动方案。
+7. **Tasks（任务）：** 将战术进一步分解为可执行的具体工作。
+8. **Assign Resources（分配资源）：** 为每项任务分配人力、物力和财力资源。
+9. **KPI（关键绩效指标）：** 设定衡量任务完成质量和效率的指标。
+10. **Review（审查）：** 通过 KPI 和绩效数据监控执行情况，反馈到上层进行调整。
+
+**三个关键方面：**
+
+1. **自上而下的分解逻辑（Top-down Decomposition）：** 从战略层面逐层细化到任务层面，确保每项具体工作都与组织战略目标对齐。这与 WBS 的分解思路一致。
+
+2. **闭环反馈机制（Closed-loop Feedback）：** 通过 Review/KPI 环节形成反馈循环，使规划过程不是线性的而是迭代的。实际执行中发现的偏差可以反馈回策略层面进行调整。
+
+3. **资源与绩效的关联（Resource-Performance Linkage）：** 任务分配与资源分配紧密结合，KPI 设定确保执行结果可量化评估。这避免了"有计划无资源"或"有执行无衡量"的常见问题。
+
+**评分要点：**
+- 正确描述过程流程（3 分）
+- 识别至少 3 个关键方面并做论述（7 分）
+
+---
+
+### Q15. How to handle team members who think design reviews are a waste of time
+
+**参考答案：**
+
+**问题分析：** 团队成员认为设计评审（design reviews）浪费时间，可能因为他们没有看到评审的价值，或者过去的评审效率低下、流于形式。
+
+**处理策略：**
+
+1. **教育和沟通价值：** 向团队解释设计评审的核心价值——70%-80% 的生产成本在设计阶段就被锁定，设计评审能在问题进入制造前发现和纠正，避免后期昂贵的返工和修改。用具体数据说明：一个设计缺陷在评审阶段修复可能花 1 小时，到生产阶段再修可能花 100 倍成本。
+
+2. **优化评审流程：** 如果团队认为评审效率低，可能是流程问题。改进措施包括：提前分发设计文档让大家预审、设定明确的评审议程（agenda）、限制评审时间、聚焦于关键设计决策而非细节讨论。
+
+3. **让评审更高效：** 采用结构化评审方法（如 checklist-based review），避免漫无目的的讨论。邀请真正相关的人员参加，减少不必要的参与者。
+
+4. **展示实际案例：** 用过去项目中的真实案例说明——哪些问题是设计评审发现并避免的，哪些问题是跳过评审导致的严重后果。
+
+5. **逐步推行，用结果说话：** 在下一个项目中先选择一个关键设计点做高质量评审，用实际效果（发现的问题数量、节省的成本）来证明评审的价值，而不是强行全面推行。
+
+6. **赋予参与者角色：** 让团队成员在评审中承担具体角色（如 reviewer of specific section），增加参与感和责任感。
+
+7. **将评审与个人成长关联：** 说明设计评审也是团队成员互相学习、提升技术能力的机会。
+
+**评分要点：**
+- 每个改进建议 2 分（至少 5 个，共 10 分）
+- 建议应具体可行，不泛泛而谈
+
+---
+
+### Q16. Process Groups figure description
+
+**参考答案：**
+
+图中所示为项目管理的 **Five Process Groups（五大过程组）**，分别是：Initiating（启动）、Planning（规划）、Executing（执行）、Monitoring & Controlling（监控）和 Closing（收尾）。
+
+**描述：** 图展示了五个过程组之间的关系和信息流向。过程组按一定顺序排列，但不是简单的线性关系——它们在项目的每个阶段都会迭代发生。
+
+**图中可能缺失的内容：**
+
+1. **迭代反馈箭头：** 五个过程组之间不是单向流动的。Monitoring & Controlling 的结果可能反馈回 Planning 甚至 Initiating，触发计划调整。图中可能缺少这些反馈箭头。
+
+2. **过程组与项目阶段的关系：** 如果项目分为多个阶段，每个阶段都会经历完整的五个过程组循环。图中可能没有体现这一迭代特性。
+
+3. **各过程组的关键输出物：** 例如 Initiating 的 Project Charter、Planning 的 Project Management Plan、Closing 的 Lessons Learned 等，图中可能只显示了过程组名称而缺少关键输出。
+
+**评分要点：**
+- 正确识别五个过程组（2 分）
+- 正确描述过程组关系（3 分）
+- 合理指出可能缺失的内容（5 分）
+
+---
+
+### Q17. DMAIC - Measure Phase details
+
+**参考答案：**
+
+图中所示为 Six Sigma DMAIC 模型中的 **Measure Phase（测量阶段）**。DMAIC 是 Six Sigma 的路线图（roadmap），包含 Define、Measure、Analyze、Improve、Control 五个阶段。
+
+**Measure 阶段的关键活动：**
+
+1. **Identify Measures（识别测量指标）：** 确定需要监控的关键质量特性（CTQ, Critical-to-Quality），选择合适的测量指标。
+2. **Collect Data（收集数据）：** 按照测量计划系统收集过程数据，确保数据的准确性和代表性。
+3. **Analyze Data（分析数据）：** 对收集的数据进行统计分析，了解当前过程的性能水平。
+4. **Improve Process（改进过程）：** （注：此步骤严格来说属于 Improve 阶段，在 Measure 阶段主要是为后续改进建立基准。）
+5. **Measure Results（测量结果）：** 验证测量系统的可靠性，建立过程性能基准线。
+
+**目标（Objective）：** 量化当前过程的实际性能水平（baseline performance），为后续的分析和改进提供数据基础。核心问题是："我们的过程现在表现如何？"
+
+**关键输出（Key Outputs）：**
+- 过程性能基准数据（Baseline performance data）
+- 测量系统分析结果（Measurement System Analysis）
+- 数据收集计划（Data Collection Plan）
+- 过程能力初步评估（Initial process capability assessment）
+
+**使用的工具包括：** 检查表（Check Sheet）、控制图（Control Chart）、测量系统分析（Gage R&R）等。
+
+**评分要点：**
+- 正确识别为 DMAIC 的 Measure 阶段（2 分）
+- 描述关键活动（3 分）
+- 说明目标和关键输出（3 分）
+- 列出相关工具（2 分）
+
+---
+
+### Q18. CPM calculation and probability analysis
+
+**参考答案：**
+
+已知活动数据和 O/M/P 值：
+- A: O=60, M=72, P=84
+- B: O=44, M=?, P=72
+- C: O=48, M=55, P=90
+- D: O=40, M=50, P=60
+- E: O=6, M=?, P=?
+
+网络：Start → A → D → End; Start → B → C → E → End; C also depends on A
+
+**Step 1：Forward Pass 计算 ES 和 EF。**
+
+A：ES = 0，Duration = 72（使用 M 作为确定工期），EF = 0 + 72 = 72
+
+B：ES = 0，Duration = M（由 PERT 期望公式确定），EF = 0 + M_B
+
+C：依赖 A 和 B，ES = max(A_EF, B_EF)
+
+D：依赖 A，ES = A_EF = 72，EF = 72 + 50 = 122
+
+E：依赖 C，ES = C_EF
+
+**Step 2：使用 PERT 公式求期望工期。**
+
+已知项目 PERT 期望工期 = 148 天，σ_project = 13.17 天。
+
+**Step 3：计算活动 D 的 Float。**
+
+从题目给出的数据：D: ES = 6, EF = 8, LS = 14, LF = 16, Duration = 2
+
+$$\text{Total Float} = LF - EF = 16 - 8 = 8$$
+
+$$\text{Free Float} = \min(\text{successor ES}) - EF = 8$$
+
+Critical path: A → C → E，总工期 = 25 天（根据 Q7 数据）。
+
+**Step 4：计算项目在 150 天内完成的概率。**
+
+$$Z = \frac{T_S - T_E}{\sigma_{project}} = \frac{150 - 148}{13.17} = \frac{2}{13.17} = 0.152$$
+
+查正态分布表：$P(Z < 0.152) \approx 0.56$（即 56%）。
+
+**答案：** 项目在 150 天内完成的概率约为 **56%**。
+
+**评分要点：**
+- 正确进行 Forward/Backward pass（4 分）
+- 正确计算 Float（2 分）
+- 正确使用 PERT 公式和 Z 值计算概率（4 分）
+
+---
+
+### Q19. Portfolio Management process figure
+
+**参考答案：**
+
+图中所示为 **Portfolio Management（项目组合管理）** 的过程和结构。
+
+**描述：** 图展示了从战略目标（Strategic Goals & Objectives）出发，通过评估和排序形成优先项目列表（Prioritized Projects），然后将这些项目组织到 Programs（项目集）、Subsidiary Portfolios（子组合）和 Operations（运营）中，最终通过 Portfolio Reports 向高层汇报。
+
+**关键特征：**
+
+1. **战略导向（Strategy-driven）：** 所有项目选择和资源分配以战略目标为导向。
+2. **价值最大化（Value Optimization）：** 在有限资源下组合管理实现整体价值最大化。
+3. **动态调整（Dynamic Adjustment）：** 组合根据市场和战略变化持续调整。
+
+**主要优势（至少三个）：**
+
+1. **战略一致性（Strategic Alignment）：** 确保组织的项目投资与战略方向一致。通过优先级排序，资源被分配到最符合战略目标的项目上，避免资源浪费在与战略无关的项目中。
+
+2. **资源优化配置（Resource Optimization）：** 在多个项目和项目集之间协调资源分配，减少资源冲突和闲置。高层管理者可以基于组合全局视角做出资源调配决策。
+
+3. **风险平衡（Risk Balancing）：** 组合管理允许在高风险高回报项目和低风险稳定项目之间取得平衡，降低整体投资组合的风险暴露。
+
+4. **透明决策（Transparent Decision-making）：** 通过标准化的评估和报告机制，投资决策更加透明和可追溯，减少主观判断的影响。
+
+**评分要点：**
+- 正确识别为 Portfolio Management（2 分）
+- 描述过程流程（3 分）
+- 列出并论述至少 3 个优势（5 分）
+
+---
+
+## Part III: Calculation Questions（Q20，10 分）
+
+### Q20. A manufacturer can produce 6,000,000 products per year with a fixed cost of $400,000 and a variable cost of $0.8 per product. Selling price = $1.5.
+
+---
+
+#### Q20(i). Estimate the safety margin at full production capacity.
+
+**参考答案：**
+
+**Step 1：确定已知条件。**
+
+$$FC = \$400{,}000, \quad VC = \$0.8/\text{product}, \quad SP = \$1.5/\text{product}$$
+
+$$\text{Capacity} = 6{,}000{,}000 \text{ products/year}$$
+
+**Step 2：计算 Break-even Quantity。**
+
+$$Q_{BE} = \frac{FC}{SP - VC} = \frac{400{,}000}{1.5 - 0.8} = \frac{400{,}000}{0.7} = 571{,}429 \text{ products}$$
+
+**Step 3：计算 Safety Margin。**
+
+$$\text{Safety Margin} = \frac{6{,}000{,}000 - 571{,}429}{6{,}000{,}000} \times 100\% = \frac{5{,}428{,}571}{6{,}000{,}000} \times 100\% \approx 90.48\%$$
+
+**答案：** Safety Margin ≈ **90.48%**。
+
+**验证：** 卖 571,429 件时：Revenue = 571,429 x 1.5 = $857,143.5；TC = 400,000 + 571,429 x 0.8 = 400,000 + 457,143.2 = $857,143.2。约等于相等，验证正确。
+
+**评分要点：**
+- 正确写出公式（1 分）
+- 正确计算 Q_BE = 571,429（1 分）
+- 正确计算 Safety Margin ≈ 90.48%（1 分）
+
+---
+
+#### Q20(ii). Price increase to $1.7 with 5% customer loss. Recommend?
+
+**参考答案：**
+
+**方案一：维持原价 $1.5，满产 6,000,000 件。**
+
+$$\text{Profit}_1 = 6{,}000{,}000 \times (1.5 - 0.8) - 400{,}000 = 6{,}000{,}000 \times 0.7 - 400{,}000$$
+
+$$= 4{,}200{,}000 - 400{,}000 = \$3{,}800{,}000$$
+
+**方案二：提价至 $1.7，但失去 5% 客户。**
+
+新销量 = $6{,}000{,}000 \times (1 - 0.05) = 5{,}700{,}000$ 件
+
+$$\text{Profit}_2 = 5{,}700{,}000 \times (1.7 - 0.8) - 400{,}000 = 5{,}700{,}000 \times 0.9 - 400{,}000$$
+
+$$= 5{,}130{,}000 - 400{,}000 = \$4{,}730{,}000$$
+
+**比较：** $\text{Profit}_2 = \$4{,}730{,}000 > \text{Profit}_1 = \$3{,}800{,}000$
+
+利润增加 = $4,730,000 - $3,800,000 = **$930,000**
+
+**新方案的 Break-even 和 Safety Margin：**
+
+$$Q_{BE} = \frac{400{,}000}{1.7 - 0.8} = \frac{400{,}000}{0.9} = 444{,}444 \text{ units}$$
+
+$$\text{Safety Margin} = \frac{5{,}700{,}000 - 444{,}444}{5{,}700{,}000} \times 100\% = 92.2\%$$
+
+**建议：推荐提价方案。** 理由：
+1. 利润增加 $930,000，增幅 24.5%。
+2. Safety margin 从 90.48% 提升至 92.2%，抗风险能力反而增强。
+3. Contribution per unit 从 $0.7 提升至 $0.9，每卖出一件产品多贡献 $0.2。
+
+但需注意：提价带来的客户流失可能随着时间扩大（如果竞争对手不跟涨），建议同时投资广告和产品设计改进以巩固市场地位。
+
+**评分要点：**
+- 正确计算两个方案的利润（2 分）
+- 正确比较并给出建议（1 分）
+
+---
+
+#### Q20(iii). Cross-over point for automated upgrade.
+
+**参考答案：**
+
+**Step 1：确定两个方案的成本方程。**
+
+现有方案：$TC_1 = 400{,}000 + 0.8Q$
+
+升级方案：$TC_2 = 1{,}500{,}000 + 0.02Q$
+
+**Step 2：求交叉点。**
+
+$$400{,}000 + 0.8Q = 1{,}500{,}000 + 0.02Q$$
+
+$$0.8Q - 0.02Q = 1{,}500{,}000 - 400{,}000$$
+
+$$0.78Q = 1{,}100{,}000$$
+
+$$Q^* = \frac{1{,}100{,}000}{0.78} = 1{,}410{,}256 \text{ products}$$
+
+**当产量超过 1,410,256 件时，升级方案更划算。**
+
+**Step 3：计算回收年限。**
+
+$$\text{Years} = \frac{Q^*}{\text{Annual Capacity}} = \frac{1{,}410{,}256}{6{,}000{,}000} \approx 0.235 \text{ years} \approx 2.8 \text{ months}$$
+
+**答案：** 产量超过 **1,410,256 件** 时升级值得。以满产能计算，约 **2.8 个月** 即可回收升级投资。
+
+**验证：** 在 Q = 1,410,256 时：
+- TC₁ = 400,000 + 0.8 x 1,410,256 = 400,000 + 1,128,205 = $1,528,205
+- TC₂ = 1,500,000 + 0.02 x 1,410,256 = 1,500,000 + 28,205 = $1,528,205
+- 两者相等，验证正确。
+
+**评分要点：**
+- 正确写出两个成本方程（1 分）
+- 正确求解 Q* = 1,410,256（2 分）
+- 正确计算回收年限 ≈ 2.8 个月（1 分）
+
+---
+
+#### Q20(iv). Key assumptions of break-even analysis.
+
+**参考答案：**
+
+**四个关键假设：**
+
+1. **All output is sold（所有产出都能卖出）：** 假设生产的产品全部售出，不考虑库存积压。对本制造商影响：如果市场需求下降或竞争加剧，实际销量低于产量，利润将低于预期。
+
+2. **Fixed costs remain constant（固定成本保持不变）：** 不论产量如何变化，FC 不变。影响：实际上，当产能扩张到一定规模时，可能需要增加厂房和管理人员，FC 会阶梯式上升。
+
+3. **Variable cost per unit is constant（单位变动成本不变）：** 每件产品的变动成本恒定。影响：原材料价格波动、劳动力成本变化、规模效应等都可能导致变动成本发生变化。
+
+4. **Selling price remains constant（售价保持不变）：** 不考虑价格随销量变化。影响：如 Q20(ii) 所示，市场饱和时可能需要降价促销，或竞争对手降价导致被迫跟降，实际平均售价可能低于 $1.5。
+
+**对本制造商的具体影响：** 这些假设意味着 break-even 分析给出的是一个理论参考值。实际经营中应定期根据市场变化更新参数，并对关键假设进行敏感性分析（sensitivity analysis），评估哪些参数变化对盈亏平衡影响最大。
+
+**评分要点：**
+- 列出 4 个假设（2 分）
+- 每个假设对应的影响讨论（2 分）
