@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="自测练习"
+  description="多学科通用自测平台 — 电磁场、EPMF 等课程的刷题练习，支持错题本与薄弱点分析。"
+  path="/notes/quiz/"
+>
+  <div id="quiz-root"></div>
+</BaseLayout>
+
+<script>
+  import('../../components/quiz/main');
+</script>
+
+<style>
+  #quiz-root {
+    max-width: min(1480px, calc(100vw - 2rem));
+    margin: 0 auto;
+    padding: 1.5rem 0 3rem;
+  }
+</style>
