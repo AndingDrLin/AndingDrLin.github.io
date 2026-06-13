@@ -1,5 +1,6 @@
 // @ts-check
 import mdx from '@astrojs/mdx';
+import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import { defineConfig } from 'astro/config';
 import remarkMath from 'remark-math';
@@ -21,7 +22,7 @@ function remarkMermaid() {
 
 export default defineConfig({
   site: 'https://andingdrlin.github.io',
-  integrations: [mdx(), sitemap()],
+  integrations: [mdx(), sitemap(), react()],
   markdown: {
     remarkPlugins: [remarkMath, remarkMermaid],
     rehypePlugins: [rehypeKatex],
