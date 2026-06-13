@@ -83,6 +83,17 @@ pre {
   background: var(--bg-code);
 }
 
+.prose .mermaid {
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--bg-code);
+  margin: 0 0 1.2rem;
+}
+
 :where(p, ul, ol, blockquote, pre, table, figure) {
   margin: 0 0 1.2rem;
 }

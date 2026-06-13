@@ -1,14 +1,14 @@
 ---
 import { getCollection, render } from 'astro:content';
 import PostLayout from '../../layouts/PostLayout.astro';
-import { NOTE_COURSES } from '../../consts';
+import { NOTE_COURSES, NOTE_TUTORIALS } from '../../consts';
 import { getReadingTime } from '../../utils/readingTime';
 
 export async function getStaticPaths() {
   const notes = await getCollection('notes', ({ data }) => (import.meta.env.PROD ? !data.draft : true));
 
   return notes
-    .filter((entry) => !(entry.data.docGroup in NOTE_COURSES))
+    .filter((entry) => !(entry.data.docGroup in NOTE_COURSES) && !(entry.data.docGroup in NOTE_TUTORIALS))
     .map((entry) => ({
       params: { slug: entry.id },
       props: { entry }

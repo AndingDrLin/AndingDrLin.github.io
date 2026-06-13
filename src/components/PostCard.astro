@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import { NOTE_COURSES, ARTICLE_META } from '../consts';
+import { NOTE_COURSES, NOTE_TUTORIALS, ARTICLE_META } from '../consts';
 import { formatDate } from '../utils/content';
 
 interface Props {
@@ -10,13 +10,19 @@ interface Props {
 
 const { entry, showKind = false } = Astro.props;
 const course = entry.collection === 'notes' ? NOTE_COURSES[entry.data.docGroup as keyof typeof NOTE_COURSES] : undefined;
+const tutorial = entry.collection === 'notes' ? NOTE_TUTORIALS[entry.data.docGroup as keyof typeof NOTE_TUTORIALS] : undefined;
 const isCourseReadme = course && /\/readme$/i.test(entry.id);
-const noteSlug = course ? entry.id.replace(/^[^/]+\//, '') : entry.id;
+const isTutorialReadme = tutorial && /\/readme$/i.test(entry.id);
+const noteSlug = (course || tutorial) ? entry.id.replace(/^[^/]+\//, '') : entry.id;
 const href = isCourseReadme
   ? `/notes/${course.slug}/`
-  : course
-    ? `/notes/${course.slug}/${noteSlug}/`
-    : `/${entry.collection}/${entry.id}/`;
+  : isTutorialReadme
+    ? `/notes/tutorial/${tutorial.slug}/`
+    : course
+      ? `/notes/${course.slug}/${noteSlug}/`
+      : tutorial
+        ? `/notes/tutorial/${tutorial.slug}/${noteSlug}/`
+        : `/${entry.collection}/${entry.id}/`;
 const kindLabel = ARTICLE_META.kindLabels[entry.collection];
 ---
 

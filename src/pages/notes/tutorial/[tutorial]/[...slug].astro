@@ -1,0 +1,43 @@
+---
+import { getCollection, render } from 'astro:content';
+import PostLayout from '../../../../layouts/PostLayout.astro';
+import { NOTE_TUTORIALS } from '../../../../consts';
+import { getReadingTime } from '../../../../utils/readingTime';
+
+export async function getStaticPaths() {
+  const notes = await getCollection('notes', ({ data }) => (import.meta.env.PROD ? !data.draft : true));
+
+  return notes.flatMap((entry) => {
+    const tutorial = NOTE_TUTORIALS[entry.data.docGroup as keyof typeof NOTE_TUTORIALS];
+    if (!tutorial || /\/readme$/i.test(entry.id)) return [];
+
+    return [{
+      params: {
+        tutorial: tutorial.slug,
+        slug: entry.id.replace(/^[^/]+\//, '')
+      },
+      props: { entry, tutorial }
+    }];
+  });
+}
+
+const { entry, tutorial } = Astro.props;
+const slug = entry.id.replace(/^[^/]+\//, '');
+const { Content, headings, remarkPluginFrontmatter } = await render(entry);
+const readingTime = getReadingTime(String(remarkPluginFrontmatter?.readingTime ?? entry.body));
+---
+
+<PostLayout
+  title={entry.data.title}
+  description={entry.data.description}
+  date={entry.data.date}
+  updated={entry.data.updated}
+  category={tutorial.title}
+  readingTime={readingTime.text}
+  headings={headings}
+  path={`/notes/tutorial/${tutorial.slug}/${slug}/`}
+  kind="教程"
+  source={entry.data.source}
+>
+  <Content />
+</PostLayout>

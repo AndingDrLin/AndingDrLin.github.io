@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PostCard from '../../components/PostCard.astro';
-import { NOTE_COURSES, NOTES_PAGE } from '../../consts';
+import { NOTE_COURSES, NOTE_TUTORIALS, NOTES_PAGE } from '../../consts';
 import { getPublishedCollection } from '../../utils/content';
 
 const allNotes = await getPublishedCollection('notes');
@@ -11,9 +11,15 @@ const courses = Object.entries(NOTE_COURSES).map(([group, course]) => ({
   count: allNotes.filter((entry) => entry.data.docGroup === group && !/\/readme$/i.test(entry.id)).length
 }));
 
+const tutorials = Object.entries(NOTE_TUTORIALS).map(([group, tutorial]) => ({
+  ...tutorial,
+  count: allNotes.filter((entry) => entry.data.docGroup === group && !/\/readme$/i.test(entry.id)).length
+}));
+
 const otherNotes = allNotes.filter((entry) => {
   const group = entry.data.docGroup;
   if (group && group in NOTE_COURSES) return false;
+  if (group && group in NOTE_TUTORIALS) return false;
   return !/\/readme$/i.test(entry.id);
 });
 ---
@@ -37,6 +43,21 @@ const otherNotes = allNotes.filter((entry) => {
               <h3>{course.title}</h3>
               <p>{course.description}</p>
               <span class="course-count">{course.count} 篇笔记</span>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section class="section-block">
+        <div class="section-heading">
+          <h2>{NOTES_PAGE.tutorialNotesTitle}</h2>
+        </div>
+        <div class="course-grid">
+          {tutorials.map((tutorial) => (
+            <a class="course-card" href={`/notes/tutorial/${tutorial.slug}/`}>
+              <h3>{tutorial.title}</h3>
+              <p>{tutorial.description}</p>
+              <span class="course-count">{tutorial.count} 篇笔记</span>
             </a>
           ))}
         </div>

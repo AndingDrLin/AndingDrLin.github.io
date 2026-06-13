@@ -1,0 +1,36 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import PostCard from '../../../../components/PostCard.astro';
+import { NOTE_TUTORIALS } from '../../../../consts';
+import { getPublishedCollection } from '../../../../utils/content';
+
+export async function getStaticPaths() {
+  return Object.values(NOTE_TUTORIALS).map((tutorial) => ({
+    params: { tutorial: tutorial.slug },
+    props: { tutorial }
+  }));
+}
+
+const { tutorial } = Astro.props;
+const allNotes = await getPublishedCollection('notes');
+const group = Object.entries(NOTE_TUTORIALS).find(([, value]) => value.slug === tutorial.slug)?.[0];
+const entries = allNotes.filter((entry) => entry.data.docGroup === group && !/\/readme$/i.test(entry.id));
+const readme = (await getCollection('notes')).find((entry) => entry.data.docGroup === group && /\/readme$/i.test(entry.id));
+---
+
+<BaseLayout title={tutorial.title} description={tutorial.description} path={`/notes/tutorial/${tutorial.slug}/`}>
+  <section class="page-grid">
+    <div class="page-intro">
+      <p class="eyebrow">教程</p>
+      <h1>{tutorial.title}</h1>
+      <p>{readme?.data.description ?? tutorial.description}</p>
+    </div>
+
+    <div class="post-list">
+      {entries.map((entry) => (
+        <PostCard entry={entry} />
+      ))}
+    </div>
+  </section>
+</BaseLayout>

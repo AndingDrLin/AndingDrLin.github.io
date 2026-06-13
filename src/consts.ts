@@ -38,6 +38,14 @@ export const NOTE_COURSES = {
   }
 } as const;
 
+export const NOTE_TUTORIALS = {
+  'agent-tutorial': {
+    slug: 'ai-agent',
+    title: 'AI Agent 从零到精通',
+    description: '面向纯新手的 AI Agent 开发教程，从 LLM 基础到生产级 Multi-Agent 系统。'
+  }
+} as const;
+
 export const TOPIC_CHIPS = ['AI Research', '3D Vision', 'Agents', 'AI Tools', 'Research Notes'] as const;
 
 export const CATEGORIES = [
@@ -113,11 +121,12 @@ export const BLOG_PAGE = {
 /* ── 笔记页文字 ── */
 export const NOTES_PAGE = {
   title: '笔记',
-  description: '课程笔记、技术片段与学习记录。',
+  description: '课程笔记、自学教程与技术片段。',
   eyebrow: '笔记',
-  heading: '课程笔记与技术片段。',
-  intro: '选择一门课程按章节浏览，或查看零散的技术记录。这些内容不追求完整，更接近学习过程中的快照。',
+  heading: '课程笔记、自学教程与技术片段。',
+  intro: '选择一门课程按章节浏览，或查看自学教程与零散的技术记录。这些内容不追求完整，更接近学习过程中的快照。',
   courseNotesTitle: '课程笔记',
+  tutorialNotesTitle: '自学教程',
   otherNotesTitle: '其他记录'
 } as const;
 
