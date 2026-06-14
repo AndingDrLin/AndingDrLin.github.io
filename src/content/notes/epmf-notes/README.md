@@ -58,14 +58,12 @@ draft: false
 
 ## 历年真题参考答案
 
-四份期末考试真题的完整参考答案（存放于 `raw_materials/epmf-final/` 文件夹）：
+四份期末考试真题的完整参考答案与试卷 PDF：
 
-- `2022_Exam_Reference_Answers.md`
-- `2023_Exam_Reference_Answers.md`
-- `2024_Exam_Reference_Answers.md`
-- `2025_Exam_Reference_Answers.md`
-
-> 这些文件不在网站上发布，直接在 GitHub 仓库中查看即可。
+- [2022 年期末考试参考答案](/notes/engineering-project-management-and-finance/11_exam_2022/) — BCR/IRR 选择题、Taguchi loss、矩阵组织、CPM、break-even 计算
+- [2023 年期末考试参考答案](/notes/engineering-project-management-and-finance/12_exam_2023/) — 项目排序、沟通渠道、控制图、Cp/Cpk、PERT 概率计算
+- [2024 年期末考试参考答案](/notes/engineering-project-management-and-finance/13_exam_2024/) — DFM、Taguchi 三种 loss、P&L 分析、组织结构对比
+- [2025 年期末考试参考答案](/notes/engineering-project-management-and-finance/14_exam_2025/) — DFM 六原则、4Rs 循环经济、CPM + Gantt、break-even + cross-over
 
 ---
 
