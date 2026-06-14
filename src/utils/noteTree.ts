@@ -36,11 +36,6 @@ export function getNoteSlug(entry: CollectionEntry<'notes'>) {
 
 export function formatDirectoryTitle(value: string) {
   const name = value.split('/').filter(Boolean).at(-1) ?? value;
-  const lowerName = name.toLowerCase();
-
-  if (lowerName === 'src') return 'SRC';
-  if (lowerName === 'work') return 'Work';
-  if (lowerName === 'examrevision') return 'Exam Revision';
 
   return name
     .replace(/([a-z])([A-Z])/g, '$1 $2')
