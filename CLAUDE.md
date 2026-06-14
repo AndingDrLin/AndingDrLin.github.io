@@ -6,34 +6,97 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - `npm install` — install dependencies
 - `npm run dev` — start the Astro dev server
-- `npm run build` — create the production build in `dist/`
+- `npm run build` — production build + Pagefind search index (`astro build && npx pagefind --site dist --force-language zh`)
 - `npm run preview` — preview the production build locally
+
+There are **no lint, test, or format commands** configured. TypeScript strict mode is enabled via `tsconfig.json`.
 
 ## Architecture overview
 
-- This repository is a static Astro blog for **Latent Note** deployed to GitHub Pages as a user-site repo.
-- The production site URL is `https://andingdrlin.github.io/`, so Astro should use that `site` value and should not use a project-site `base` path unless the deployment target changes.
-- Content is organized with Astro Content Collections in two parallel authoring streams:
-  - `src/content/blog/` for longer posts
-  - `src/content/notes/` for course notes and shorter records
-- Collection schemas and loaders live in `src/content.config.ts`. New writing should usually be added by creating a Markdown or MDX file in one of the content directories rather than editing route code.
-- Route entrypoints live in `src/pages/` and are intentionally simple. Shared behavior should usually go into:
-  - `src/layouts/` for page/article structure
-  - `src/components/` for reusable UI pieces
-  - `src/utils/` for content sorting, date formatting, reading time, and tag helpers
-- `src/layouts/PostLayout.astro` is the main reading experience shell for blog posts and notes. It handles metadata display, tags, and optional table-of-contents rendering.
-- Styling is centralized in `src/styles/global.css` with plain CSS rather than a component library or utility framework. Keep the design minimal, text-first, and easy to modify.
-- SEO metadata is centralized through `src/components/SEO.astro`, and RSS/sitemap generation are part of the Astro build.
+This repository is a static Astro site for **Latent Note** (隐空间) deployed to GitHub Pages as a user-site repo. The production URL is `https://andingdrlin.github.io/` — there is **no `base` path**.
 
-## Deployment notes
+### Content collections
+
+Two collections in `src/content.config.ts` using Astro v2 `glob` loader:
+
+- `src/content/blog/` — longer posts
+- `src/content/notes/` — course notes, tutorials, and shorter records
+
+Both share a `baseSchema` (title, description, date, updated, tags, category, draft, cover, source). Notes extend it with `docGroup` (string) and `order` (optional number).
+
+Allowed `category` values (enum in `src/consts.ts`): `AI Tools`, `3D Vision`, `Agents`, `Research Notes`, `Essays`, `Tutorials`, `课程学习`.
+
+### Routing — the `docGroup` link
+
+`docGroup` is the critical link between content and routing. Each note's `docGroup` must map to an entry in `NOTE_COURSES` or `NOTE_TUTORIALS` in `src/consts.ts`. **The dict key (e.g. `'dsp-notes'`) is NOT the URL slug** — the `slug` field inside each entry (e.g. `'digital-signal-processing'`) is what appears in URLs.
+
+| Route | File | Notes |
+|---|---|---|
+| `/notes/` | `notes/index.astro` | Hub page with course + tutorial cards |
+| `/notes/[course]/` | `notes/[course]/index.astro` | Course landing, uses `NoteDirectoryList` |
+| `/notes/[course]/[...slug]/` | `notes/[course]/[...slug].astro` | **Both** article pages **and** nested directory pages in one route. Checks `'directoryPrefix' in props` to decide rendering mode |
+| `/notes/tutorial/[tutorial]/[...slug]/` | mirrors course routing | For tutorials |
+| `/notes/[slug]/` | `notes/[...slug].astro` | Standalone notes not in any course/tutorial |
+| `/notes/quiz/` | `notes/quiz.astro` | React quiz app (`client:only="react"`) |
+
+**README convention**: Notes named `readme.md` (case-insensitive) are filtered from all listings and directory views. Their `description` is used as the course landing page fallback description.
+
+### Adding a new course
+
+1. Add entry to `NOTE_COURSES` in `src/consts.ts`
+2. Create directory `src/content/notes/{docGroup-key}/`
+3. Add `README.md` with `order: -1` and the same `docGroup` value
+4. Add chapter `.md` files with sequential `order` values
+
+### Layouts and components
+
+- `BaseLayout.astro` — root layout: lang, CSS, KaTeX, Mermaid CDN loader, theme flash prevention, Header + Footer + SEO
+- `PostLayout.astro` — article shell: eyebrow, h1, meta (date/readingTime/category/updated/source), TOC, content slot
+- `PostCard.astro` — article card with complex URL-resolution logic for courses, tutorials, and standalone notes
+- `NoteDirectoryList.astro` — renders directory cards + note cards for a course page
+- `Search.astro` — Pagefind search dialog with `Cmd+K` shortcut
+
+### Styling
+
+Plain CSS in `src/styles/global.css`. CSS custom properties for theming (`--bg`, `--text`, `--accent`, etc.). Dark mode via `:root[data-theme='dark']`. No framework or utility classes.
+
+### Quiz system (React, client-only)
+
+The only React usage. Lives at `/notes/quiz/`. Question banks are in `src/data/question-banks/` as TypeScript files. All state is in `localStorage`. Math uses `$...$` rendered via `react-katex`.
+
+### Utility functions (`src/utils/`)
+
+- `content.ts` — `getPublishedCollection()`, `getLatestNotes()`, `formatDate()`, etc.
+- `noteTree.ts` — directory tree logic: `getNoteSlug()`, `getNoteDirectoryListing()`, `getNoteBreadcrumbs()`
+- `readingTime.ts` — bilingual: 220 WPM English, 500 CPM Chinese. Returns `{minutes, text}`
+
+### Markdown pipeline
+
+`remark-math` → custom `remarkMermaid` (converts to `<pre class="mermaid">`) → `rehype-katex`. Mermaid renders client-side from CDN only if `.mermaid` elements exist. Shiki uses `github-light` / `github-dark` dual themes.
+
+## Pitfalls — read before editing
+
+1. **`docGroup` key ≠ URL slug.** `'dsp-notes'` is the key, `'digital-signal-processing'` is the slug. Confusing them breaks links.
+2. **`getNoteSlug()` assumes the first path segment is the docGroup.** `entry.id.replace(/^[^/]+\//, '')`. Do not add content files with different nesting conventions.
+3. **`PostCard` link logic is intricate.** It checks README status, course membership, and tutorial membership. Changes to routing structure must be reflected here.
+4. **`getPublishedCollection('notes')` includes READMEs; `getLatestNotes()` does not.** Choose the right one for your page.
+5. **`notes/[...slug].astro` only handles notes NOT in any course or tutorial.** It explicitly filters out entries whose `docGroup` matches a registered key.
+6. **`unist-util-visit` is imported in `astro.config.mjs` but not in `package.json`.** It works as a transitive dep of remark. If you add direct usage, add it to `package.json`.
+7. **Pagefind runs as a post-build step**, not an Astro integration. If `astro build` fails, the search index will be stale.
+8. **No scheduled publishing.** The `isPublished` check only looks at `draft`, not `date`.
+9. **Do not commit source artifacts or working documents to content directories.** Development notes, extracted text files, review logs, and raw source material belong outside the repo or in a private location — they bloat the build and may expose internal data. Use `draft: true` only for genuinely unfinished content, not for staging files.
+10. **Quiz progress is localStorage-only.** Clearing browser data loses it. There is no export/import.
+
+## Deployment
 
 - GitHub Actions workflow: `.github/workflows/deploy.yml`
-- GitHub Pages should be configured to deploy from **GitHub Actions**.
-- CI currently uses Node 22 to match the Astro 6 toolchain in this repo.
+- Triggers on push to `main` or manual dispatch
+- Node 22, `npm ci` → `npm run build` (includes Pagefind) → upload to GitHub Pages
+- GitHub Pages must be configured to deploy from **GitHub Actions** (not branch)
 
 ## Writing style for Latent Note
 
-Content is written in Chinese. The following rules apply to all blog posts (`src/content/blog/`), notes (`src/content/notes/`), and any other long-form writing in this repo.
+Content is written in Chinese. The following rules apply to all blog posts, notes, and any other long-form writing in this repo.
 
 ### Overall tone
 

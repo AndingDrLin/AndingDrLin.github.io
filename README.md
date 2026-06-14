@@ -4,93 +4,70 @@
 
 ## Stack
 
-- Astro 6
-- TypeScript
-- Astro Content Collections
-- Markdown and MDX
-- KaTeX for LaTeX math rendering
-- Pagefind for full-text search
-- Static output for GitHub Pages
+- **Framework:** [Astro 6](https://astro.build/) with TypeScript strict mode
+- **Content:** Astro Content Collections (Markdown + MDX)
+- **Math:** KaTeX via `remark-math` + `rehype-katex`
+- **Diagrams:** Mermaid (client-side CDN, triggered by ` ```mermaid ``` ` code blocks)
+- **Search:** [Pagefind](https://pagefind.app/) with `--force-language zh` for Chinese tokenization
+- **Quiz:** React 19 (`client:only="react"`) — the only client-side interactive component
+- **Deployment:** GitHub Pages via GitHub Actions
 
 ## Development
 
-Install dependencies:
-
 ```bash
-npm install
+npm install          # install dependencies
+npm run dev          # start dev server
+npm run build        # production build + Pagefind search index
+npm run preview      # preview production build locally
 ```
 
-Start the local dev server:
-
-```bash
-npm run dev
-```
-
-Create a production build (includes Pagefind search index):
-
-```bash
-npm run build
-```
-
-Preview the production build locally:
-
-```bash
-npm run preview
-```
+Node >= 22 required. No lint/test/format tooling is configured.
 
 ## Content authoring
 
-Content lives in Astro Content Collections:
+Content lives in two Astro Content Collections:
 
-- `src/content/blog/` for longer posts
-- `src/content/notes/` for course notes and shorter records
+| Collection | Directory | Purpose |
+|---|---|---|
+| `blog` | `src/content/blog/` | Longer posts |
+| `notes` | `src/content/notes/` | Course notes, tutorials, shorter records |
 
-### Adding new content
+### Adding a new course
 
-Use the templates in `templates/` as a starting point:
+1. Add an entry to `NOTE_COURSES` in `src/consts.ts` — the dict key is the `docGroup`, the `slug` field becomes the URL path
+2. Create `src/content/notes/{docGroup}/README.md` with `order: -1`
+3. Add chapter `.md` files with sequential `order` values
+4. Use `templates/docs-template.md` as a starting point
 
-1. Copy the appropriate template:
-   - `templates/blog-template.md` for blog posts
-   - `templates/note-template.md` for short notes
-   - `templates/docs-template.md` for course notes
+### Adding a blog post
 
-2. Move it into the correct content directory
+Copy `templates/blog-template.md` into `src/content/blog/`, fill in frontmatter, set `draft: false` when ready.
 
-3. Fill in the frontmatter and write your content
-
-4. Set `draft: false` when ready to publish
-
-All site-facing text is centralized in `src/consts.ts` for easy customization.
-
-### Frontmatter schema
+### Frontmatter reference
 
 ```yaml
 ---
-title: Example title
-description: Short summary
-date: 2026-04-30
-updated: 2026-05-01 # optional
-tags:
-  - Example
-category: AI Tools
-draft: false
-docGroup: dsp-notes # docs collection only
-order: 1 # docs collection only, optional
+title: Required title
+description: Required short summary (used in cards and SEO)
+date: 2026-06-15          # required
+updated: 2026-06-16       # optional
+tags: [tag1, tag2]        # optional, defaults to []
+category: "课程学习"       # required, see allowed values below
+docGroup: dsp-notes       # notes only — maps to NOTE_COURSES key
+order: 1                  # notes only — lower = earlier in listings
+draft: false              # hidden in production when true
 cover: /path/to/image.png # optional
-source: https://example.com # optional
+source: https://example.com # optional, must be valid URL
 ---
 ```
 
-Allowed categories: `AI Tools`, `3D Vision`, `Agents`, `Research Notes`, `Essays`, `Tutorials`, `课程学习`
+**Allowed categories:** `AI Tools`, `3D Vision`, `Agents`, `Research Notes`, `Essays`, `Tutorials`, `课程学习`
 
-Draft entries are hidden in production builds.
+### LaTeX math
 
-### LaTeX math support
+Inline: `$E = mc^2$`
 
-Inline math and display math are supported via KaTeX:
-
-- Inline: `$E = mc^2$`
-- Display:
+Display:
 
 ```
 $$
@@ -98,33 +75,41 @@ $$
 $$
 ```
 
+## Project structure
+
+```
+src/
+├── pages/           # route entrypoints
+├── layouts/         # BaseLayout, PostLayout
+├── components/      # Header, Footer, PostCard, Search, NoteDirectoryList, quiz/
+├── content/         # blog/ and notes/ collections
+├── content.config.ts # collection schemas (glob loader)
+├── consts.ts        # NOTE_COURSES, CATEGORIES, NAV_LINKS, all site text
+├── utils/
+│   ├── content.ts   # getPublishedCollection, formatDate, readingTime
+│   ├── noteTree.ts  # directory tree logic for nested course notes
+│   └── readingTime.ts # bilingual WPM/CPM estimation
+├── data/
+│   └── question-banks/ # quiz question banks (TypeScript)
+└── styles/
+    └── global.css   # plain CSS, custom properties, dark mode
+templates/           # starter templates for new content
+```
+
+## Key design decisions
+
+- **No `base` path.** This is a GitHub Pages user site (`andingdrlin.github.io`), not a project site.
+- **`docGroup` links content to routing.** The dict key in `NOTE_COURSES` is not the URL slug — the `slug` field inside each entry is.
+- **README files are hidden.** Notes named `readme.md` (case-insensitive) are filtered from listings but provide course descriptions.
+- **Plain CSS only.** No component library, no utility framework, no preprocessor. All styles in `src/styles/global.css`.
+- **Content source files stay out of the repo.** Working documents, extracted text, and raw materials should not be committed.
+
 ## Search
 
-The site includes full-text search powered by Pagefind:
-
-- Click the search button in the header, or press `Cmd+K` (Mac) / `Ctrl+K` (Windows/Linux)
-- Supports Chinese and English content with fuzzy matching
-- Results show highlighted matching excerpts
-
-Search is built automatically during `npm run build`.
+Click the search button in the header, or press `Cmd+K` (Mac) / `Ctrl+K` (Windows/Linux). Supports Chinese and English with fuzzy matching.
 
 ## Deployment
 
-This repository is a GitHub Pages **user site** repository, production URL:
+GitHub Actions workflow: `.github/workflows/deploy.yml` — triggers on push to `main`.
 
-- `https://andingdrlin.github.io/`
-
-Deployment is handled by GitHub Actions using `.github/workflows/deploy.yml`.
-
-Repository settings should use **Pages source:** GitHub Actions.
-
-## Structure
-
-- `src/pages/` — route entrypoints
-- `src/layouts/` — shared page and article layouts
-- `src/components/` — navigation, search, metadata, and shared UI pieces
-- `src/content/` — post, note, and docs content
-- `src/content.config.ts` — collection schema and loaders
-- `src/consts.ts` — site title, navigation, and all user-facing text
-- `src/utils/` — content sorting, date formatting, and reading time helpers
-- `templates/` — starter templates for new content
+Repository settings: **Pages source** must be **GitHub Actions** (not "Deploy from a branch").
