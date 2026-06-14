@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import QuizApp from '../../components/quiz/QuizApp';
+import '../../components/quiz/QuizApp.css';
 ---
 
 <BaseLayout
@@ -7,12 +9,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   description="多学科通用自测平台 — 电磁场、EPMF 等课程的刷题练习，支持错题本与薄弱点分析。"
   path="/notes/quiz/"
 >
-  <div id="quiz-root"></div>
+  <div id="quiz-root">
+    <QuizApp client:only="react" />
+  </div>
 </BaseLayout>
-
-<script>
-  import('../../components/quiz/main');
-</script>
 
 <style>
   #quiz-root {

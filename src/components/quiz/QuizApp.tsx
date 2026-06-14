@@ -28,13 +28,21 @@ function TextWithMath({ text }: { text: string }) {
   return (
     <>
       {parts.map((part, index) => {
-        if (part.startsWith("$") && part.endsWith("$")) {
+        if (part.startsWith("$") && part.endsWith("$") && isLikelyMath(part.slice(1, -1))) {
           return <InlineMath key={`${part}-${index}`} math={part.slice(1, -1)} renderError={() => <span>{part}</span>} />;
         }
         return <span key={`${part}-${index}`}>{part}</span>;
       })}
     </>
   );
+}
+
+function isLikelyMath(value: string) {
+  const trimmed = value.trim();
+  if (!trimmed) return false;
+  if (/[\u4e00-\u9fff]/.test(trimmed) && !trimmed.includes("\\")) return false;
+  if (/[&%]/.test(trimmed) && !trimmed.includes("\\")) return false;
+  return /\\|[_^{}=<>]|[+\-*/]/.test(trimmed);
 }
 
 function formatRate(value: number) {
