@@ -1,0 +1,2 @@
+SOURCE: /Users/zhoushengye/Desktop/课程/笔记/封装/slides/electronic-packaging-technology.pdf
+EXTRACTION_ERROR: Command '['node', '/Users/zhoushengye/Desktop/课程/笔记/AndingDrLin.github.io/src/content/_note-sources/microelectronics-packaging-notes/work/_extracted_text/_extract_pdf.mjs', '/Users/zhoushengye/Desktop/课程/笔记/封装/slides/electronic-packaging-technology.pdf', '/Users/zhoushengye/Desktop/课程/笔记/AndingDrLin.github.io/src/content/_note-sources/microelectronics-packaging-notes/work/_extracted_text/slides__electronic-packaging-technology.pdf.txt']' returned non-zero exit status 1.

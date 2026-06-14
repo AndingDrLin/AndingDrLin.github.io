@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="360" viewBox="0 0 920 360" role="img" aria-label="Packaging hierarchy and functions">
+  <style>.box{fill:#fff;stroke:#334155;stroke-width:2;rx:10}.label{font:600 18px Arial;fill:#0f172a}.small{font:14px Arial;fill:#334155}.arrow{stroke:#0f766e;stroke-width:3;marker-end:url(#a)}.tag{fill:#e0f2fe;stroke:#0284c7;stroke-width:1}.tag2{fill:#ecfdf5;stroke:#059669;stroke-width:1}</style>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#0f766e"/></marker></defs>
+  <rect class="box" x="45" y="110" width="150" height="90"/><text class="label" x="87" y="145">Chip</text><text class="small" x="75" y="173">IC / MEMS die</text>
+  <rect class="box" x="265" y="88" width="170" height="134"/><text class="label" x="305" y="126">Package</text><text class="small" x="292" y="155">connect, protect</text><text class="small" x="298" y="179">power, cool</text>
+  <rect class="box" x="505" y="110" width="150" height="90"/><text class="label" x="552" y="145">PWB</text><text class="small" x="530" y="173">board routing</text>
+  <rect class="box" x="725" y="110" width="150" height="90"/><text class="label" x="768" y="145">System</text><text class="small" x="753" y="173">product level</text>
+  <line class="arrow" x1="195" y1="155" x2="265" y2="155"/><line class="arrow" x1="435" y1="155" x2="505" y2="155"/><line class="arrow" x1="655" y1="155" x2="725" y2="155"/>
+  <rect class="tag" x="245" y="265" width="130" height="36"/><text class="small" x="271" y="288">Signal I/O</text>
+  <rect class="tag" x="385" y="265" width="130" height="36"/><text class="small" x="415" y="288">Power</text>
+  <rect class="tag2" x="525" y="265" width="130" height="36"/><text class="small" x="559" y="288">Heat</text>
+  <rect class="tag2" x="665" y="265" width="130" height="36"/><text class="small" x="692" y="288">Reliability</text>
+  <text class="small" x="260" y="330">Microelectronics packaging is the bridge from fragile die to usable system.</text>
+</svg>
