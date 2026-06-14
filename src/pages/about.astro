@@ -52,13 +52,14 @@ import { ABOUT, CONTRIBUTORS, PROFILE } from '../consts';
       <div class="contributors-grid">
         {CONTRIBUTORS.map((person) => (
           <article class="contributor-card">
-            <h3>{person.name}</h3>
-            <p class="profile-role">{person.role}</p>
-            <p>{person.bio}</p>
-            <div class="profile-links" aria-label={`${person.name} links`}>
-              {person.links.map((link) => (
-                <a href={link.href}>{link.label}</a>
-              ))}
+            <img class="contributor-avatar" src={`${person.avatar}?s=96`} alt={`${person.name} avatar`} loading="lazy" width="48" height="48" />
+            <div class="contributor-info">
+              <h3>{person.name}</h3>
+              <p class="contributor-role">{person.role}</p>
+              <p class="contributor-bio">{person.bio}</p>
+              <a class="contributor-github" href={`https://github.com/${person.github}`} target="_blank" rel="noopener">
+                @{person.github}
+              </a>
             </div>
           </article>
         ))}

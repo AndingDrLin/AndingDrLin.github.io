@@ -108,9 +108,24 @@ export const PROFILE = {
 export const CONTRIBUTORS = [
   {
     name: PROFILE.name,
-    role: PROFILE.role,
-    bio: '站点维护者。主要写 AI、3D 视觉、Agent 工具与科研过程中的阶段性判断。',
-    links: PROFILE.links
+    role: '站点维护者',
+    bio: '主要写 AI、3D 视觉、Agent 工具与科研过程中的阶段性判断。',
+    avatar: 'https://avatars.githubusercontent.com/u/142360770?v=4',
+    github: 'AndingDrLin'
+  },
+  {
+    name: 'Zihe Bai',
+    role: '学科自测题贡献者',
+    bio: 'Why have you forsaken us?',
+    avatar: 'https://avatars.githubusercontent.com/u/95523297?v=4',
+    github: 'AyaSKT'
+  },
+  {
+    name: 'Shengye Zhou',
+    role: '微电子封装笔记贡献者',
+    bio: 'Microelectronics science and technology @ UESTC.',
+    avatar: 'https://avatars.githubusercontent.com/u/148251856?v=4',
+    github: 'Seling11'
   }
 ] as const;
 
