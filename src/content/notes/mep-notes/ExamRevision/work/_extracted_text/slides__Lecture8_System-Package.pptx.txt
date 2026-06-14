@@ -1,0 +1,99 @@
+SOURCE: /Users/zhoushengye/Desktop/课程/笔记/封装/slides/Lecture8_System-Package.pptx
+TYPE: PPTX
+SLIDES: 32
+
+--- SLIDE 1 ---
+UESTC 4031 Microelectronics Packaging Technology Course Books Fundamental of Microsystems Packaging, Rao Tummala ( Mcgraw-hill Professional Publishing), 2001. Microelectronics Packaging Handbook / edited by Rao R. Tummala , Eugene J. Rymaszewski , New York, N. Y. : Van Nostrand Reinhold, c1989. Fundamental of Device and Systems Packaging: Technologies and Applications , Rao R. Tummala , Publisher ‏ : ‎ McGraw Hill; 2nd edition (January 1, 2020) ; ISBN-10 ‏ : ‎ 9390385512. Dr Aynul Islam (Room A308) Assessment Final Exam (2 hours) 75% Writing Report 15% Presentation 10%
+
+--- SLIDE 2 ---
+Chapter 8. System Level Integration in Package 8.1 introduction to SOC/SIP/SOP 8.2 Difficult challenges for SiP , SiP Thermal Management 8.3 Introduction to CSP and WLP, WLP Technologies, and Reliability 8.4 Wafer-level Burn-in and Test (Chapter 10 and ME_Packaging pdf) 2 UESTC 4031 Microelectronics Packaging Technology
+
+--- SLIDE 3 ---
+3
+
+--- SLIDE 4 ---
+4 System in Package ( SiP ) is a combination of multiple active electronic components of different functionality, assembled in a single unit, which provides multiple functions associated with a system or sub-system. A SiP may optionally contain passives , MEMS , optical components, and other packages and devices . System integration is aimed at higher performance, miniaturization, heterogeneous integration, and eventual cost reduction at the package level. Many critical technology challenges must be solved to achieve the ultimate performance goals and other benefits of SiP . The difficult challenges for SiP are presented in Table below. System Package
+
+--- SLIDE 5 ---
+5 System Package
+
+--- SLIDE 6 ---
+System Package The terminology SoC refers to a very large-scale integration circuit, which integrate an electronic system on a single chip. The embedded electronic system can combine all needed functions, including microprocessor, memory, optical, oscillator, and often radio-frequency, etc. SoC has a couple of advantages. Normally the overall performance for SoC is better than SiP due to the compact connection. There are however some issues posed by SoC technology, such as very high design and prototyping cost, long development cycle time. Given the high cost of SoC early development, SiP provides an alternative method to make up a complete electronic system. In contrast to SoC , SiP incorporates multiple chips into a single package. Each incorporated chip handles a part of functions in the whole system, and the combined system can operate the same as if it was integrated by SoC . 6 7.1 System-on-Chip (SoC) and System in Package (SiP)
+
+--- SLIDE 7 ---
+System Package SiP is a broader sense of an old concept called multi-chip-module ( MCM ). MCM normally refers to assembly of multiple chips side-by-side on a single ceramic substrate using traditional connecting processes, such as wire bonding and flip chip. SiPs can be found in mobile, internet of things (IoT) and wireless combo applications. Regarded as the next level of MCM technology, SiP is designed with the ability to assembly multiple chips not only horizontally, but vertically as well. The above-mentioned 3D die stacking and package stacking technology are encompassed in the concept of SiP . With SiP technology, electronic companies can drastically reduce development time and risk, which overcomes the limitations of SoC development. SoC and SiP have their own pros and cons. It's believed that SoC is more suitable for high volume production of systems with low complexity. And SiP is a good choice for low volume production of high complex systems. 7 7.1 System on Chip (SoC) and System-in-Package (SiP)
+
+--- SLIDE 8 ---
+8 7.2 System-on-Chip (SoC) Test System-on-chip (SoC) technology is based on using embedded cores to reduce time-to-market and save overall cost of the chip. These embedded cores may have been designed by different vendors, may have varying degrees of readiness for reuse in SoC design and may have been developed at a different time from the SoC that will use them. Figure 7.1: System on a Chip (SoC)
+
+--- SLIDE 9 ---
+9 Figure 7.2: Definition of Heterogeneous Integration ( SiP ) Heterogeneous Integration ( SiP )
+
+--- SLIDE 10 ---
+10 Comparison of SoC and SiP Architecture
+
+--- SLIDE 11 ---
+11 Figure 7.3: 3D Packaging
+
+--- SLIDE 12 ---
+Ultra Thin Chip Package (UTCP) 12 The UTCP can be used independently or serves as an interposer, which can be further embedded inside PCB or FCB (flexible circuit board) and replace the needs for directly embedding of bare die. The KGD problem is solved, because the functionality of UTCP can be easily tested before embedding it in the main board. Fig. 7.4 shows a functional electrocardiography (ECG) measurement circuit, where a TI microcontroller was packaged using UTCP technology and embedded inside FCB . Figure 7.4: Flexible wireless ECG monitoring circuit with embedded UTCP of TI microcontroller
+
+--- SLIDE 13 ---
+Single-Chip Wafer-Level packaging (SCP, WLP) The single-chip WLP is similar to a Chip-scale package (CSP) in package configuration. The main difference between a single-chip WLP and a CSP is the packaging assembly process. Single-chip WLP s are made using wafer-level packaging technology in which the interconnection bumping and testing is performed on the wafer. 13 Continuous significant changes are underway in the smart phones, mobile, computer, telecommunication, automotive, and consumer electronics industries. The common and pervasive requirements in all of these electronics are (1) ultra-low-cost , (2) thin, light, and portable , (3) very high performance , (4) diverse functions involving a variety of semiconductor chips and packaging , and (5) user friendliness .
+
+--- SLIDE 14 ---
+Chip Scale Package (CSP) 14 The trend in microelectronics has been toward ever-increasing numbers of I/ Os on packages, which is, in turn, driving the packaging configuration of semiconductors. Chip scale packaging can combine the strengths of various packaging technologies, such as the size and performance advantage of bare die assembly and the reliability of encapsulated devices. The advantages offered by chip scale packages include smaller size (reduced footprint and thickness), lesser weight, a relatively easier assembly process, lower overall production costs, and improvement in electrical performance. The advantages offered by chip scale packages include smaller size (reduced footprint and thickness), lesser weight, a relatively easier assembly process, lower overall production costs, and improvement in electrical performance.
+
+--- SLIDE 15 ---
+Single-Chip Wafer-Level packaging (SCP, WLP) 15 FIGURE: Difference between CSP (chip scale packaging), flip chip, and wafer-level packaging and (b) wafer-level packaging options. A single chip package (SCP) is a package that supports a single microelectronic device so that its electrical, mechanical, thermal, and chemical performance needs are adequately served.
+
+--- SLIDE 16 ---
+Single-Chip packaging (SCP) 16 Figure: Single-chip packaging concept from wire-bond to flip-chip ball grid array to wafer-level packaging (fan-in and fan-out). Fig. shows the purpose of microelectronics package from BGA to wafer level package (WLP)-molded and a more recent fan-out configurations. An interposer is used to accommodate the fine pitch of the chip as well as the next level interconnection, e.g. PCB.
+
+--- SLIDE 17 ---
+Fan-in and Fan-out 17 Fan-In Wafer-Level Package (FI-WLP) refers to the technology of packaging an integrated circuit (IC) at the wafer level, instead of the traditional process of assembling individual dies into packages after dicing them from a wafer . FI-WLP technology is an extension of the wafer fabrication process and uses the traditional fabrication processes and tools. Fan-Out Wafer-Level Package (FO-WLP) is an enhancement of standard WLPs, enabling a greater number of I/O connections. This package involves dicing chips from a silicon wafer, precisely positioning the known-good- die on a “reconstituted” or “carrier” wafer / panel, which is then molded .
+
+--- SLIDE 18 ---
+WLP Includes Fan-in and Fan-out 18 Figure: WLP Market Drivers Fan-in is mainly applied to the mobile market (90% of its market) while fan-out has also found applications in the high-end market (networking and computing applications) due to its ability to address higher I/O count and larger package form factors; it also has improved reliability performance and increased capability for 3D integration using PoP and SiP heterogeneous integration.
+
+--- SLIDE 19 ---
+Single-Chip packaging (SCP) Fig. shows single-chip microelectronic packaging technologies into three key technologies: (1) plastic ball grid arrays (PBGAs), (2) ceramic column grid arrays (CGAs or CCGAs), and (3) and smaller foot-print wafer-level packages. PBGAs and chip scale packages (CSPs) are now widely used for many commercial electronic applications, including portable and telecommunication products. 19 Figure: Single-chip packaging trends from ball grid array (BGA) to wafer level packages (Fan-in or Fan-out).
+
+--- SLIDE 20 ---
+Wafer-level packaging (WLP) 20 L ower cost and higher performance cannot be achieved without major changes in architecture, materials and manufacturing processes. Today, these new technologies include SiP , wafer level packaging ( WLP ), wafer thinning, and through silicon vias ( TSVs ). In the near future, we will see additional changes with the incorporation of nanomaterials. The consumer's demand for thin multifunctional products has led to increased pressure on alternative high density packaging technologies. High-density three-dimensional (3D) packaging of complete functional blocks has become the major challenge in the industry:  RF System-in-Package ( SiP ) applications have become the technology driver for small components, packaging, assembly processes, and high-density substrates.  The use of motion-gesture sensors in various consumer and portable devices has expanded the MEMS  Performance requirements such as increased bandwidth and lower power are driving 3D integrated circuits ( ICs ) designed with through silicon vias ( TSV ). WLP is IC packaging formed at the wafer level on the wafer in the wafer foundry. Wafer-level packaging provides many benefits—the two most important being lowest cost and smallest size.
+
+--- SLIDE 21 ---
+Wafer-level packaging (WLP) Wafer-level packaging is expected to provide several benefits that include: Providing the smallest system size, because it is truly a chip size package Enabling interconnect continuum from IC to PWB because of thin-film processing Reduced cost of packaging, because all the connections are done at wafer level Reduced cost of testing, because testing is done at the wafer level once for all ICs Reduced cost of burn-in, because the burn-in is done at the wafer level once Elimination of underfill because of compliancy of the leads or other ways to achieve reliability Improved electrical performance because of short lead lengths The two most important factors driving the WLP are size benefits for portable products and cost benefits for all products. 21
+
+--- SLIDE 22 ---
+Wafer-level packaging (WLP) Wafer-level packaging is expected to provide several disadvantages that include: Since the interconnect must be located in the active area of the die, very high I /O ICs would require very small solder balls on very tight pitch. Figure shows an area array of 30 micron solder balls on 100 micron pitch. I t is technically feasible to manufacture such small solder balls, they would require very high density PWB to interconnect, but it is very expensive. The tightest board pitch currently in use today is 0.5 mm or 500 microns. So, the board pitch will have to be improved to 100 microns, requiring 25 micron lithography technology to be manufactured on a very large board. 22 FIGURE: (a) System-level board pitch constraint and (b) area array of 30 micron solder balls on 100 micron pitch.
+
+--- SLIDE 23 ---
+23 Figure 8.5: WLP (a) Schematic cross section and (b) backside photography Wafer-level packaging (WLP) Wafer-level packaging (WLP) is IC packaging formed at the wafer level on the wafer in the wafer foundry. This is in contrast to conventional packaging that is done in two parts — wafer and singulation of that wafer into ICs and the subsequent packaging of these ICs into QFP, BGA, CSP or other packages.
+
+--- SLIDE 24 ---
+24 Figure 8.5: Wafer-level packaging in comparison with conventional packaging. Wafer-level packaging (WLP)
+
+--- SLIDE 25 ---
+Figure 8.6: Wafer-level IC to package interconnection options for reliability . . Wafer-level packaging Reliability F our ways to provide a reliable connection. one way (Fig. 8.5 a) is simply to provide a compliant connection. T his concept provides an excellent reliability as with PGAs between IC package and the board (u sed for over 30 years ). Wirebonding reliability is also based on this concept where the stresses are taken up by the compliant leads. The second way ( Fig. 8.5 b ) is based on providing this compliancy by stacking solders. The third way is to increase the solder ball size, the net effect of which is similar to the stacked solder balls in achieving the increased height. The fourth approach is to have matched thermal expansion of silicon IC and the board .
+
+--- SLIDE 26 ---
+26 Figure 8.7: WLP (a) Wafer-level IC to package interconnection options for reliability (b) WLP solder reflow to board and underfill (encapsulation) operations. Wafer-level packaging Reliability The WLP reliability is achieved by one of several ways. The fundamentals of reliability are based on what is called Coffin-Manson or modified equation which predicts that the thermal fatigue lifetime of a solder joint is proportional to the square of the bump height or standoff. Underfills are filled epoxy resins.
+
+--- SLIDE 27 ---
+WLP is a true chip scale package technology, offering the smallest possible footprint of the same size of the die. The low profile and improved signal characteristic make WLP ideal for portable electronics . Wafer-level packaging provides many benefits—the two most important being lowest cost and smallest size. In addition, WLP can integrate package process in wafer fab, which provides a streamline from the silicon start to customer shipment. The WLP cross section and a close-up backside image are presented in Fig. 8.6 . As can be seen, WLP does not use an interposer, and the solder balls are realized on the chip by wafer level processing. The solder ball pad is routed within the chip outline from the chip perimeter contact pad, which is so called a “ fan-in ” design. The ball pitch can be as small as 0.3 mm . But, as the WLP is directly mounted on PCB , ball pitch larger than 0.4 mm is necessary to ensure high yield and reliability. Another limitation of WLP is the number of I/O count. Since the package area and ball pitch are confined, the total number of I/O count is normally no more than 100 . 27 Wafer-level packaging (WLP)
+
+--- SLIDE 28 ---
+28 WLP Technologies FIGURE 8.8: An example of a complete wafer-level packaging process [Chapter 10 in the Book] . S equence of processes from a bare wafer to IC fabrication to wafer-level packaging to burn-in and test to scribing into individual ICs to system board assembly. The burn-in and test at wafer level is a very important part of the WLP , since it allows all the ICs to be tested while still in wafer form, known good packages (KGP) .
+
+--- SLIDE 29 ---
+29 WLP Technologies FIGURE 8.8: VS-contact technology. [Chapter 10 in the Book]. Wafer-level burn-in and tests are a necessity for the adoption of low-cost WLP . Non-destructive probing technologies have been developed to deal with wafer-level testing and burn-in of bumped wafers. In the VS-contact technology, shown in Figure 8.8 , the connection is made between the substrate and the wafer with an interposer composed of conductive isotropic rubber and a flexible polyimide sheet containing Ni plated vias that match up with the bumped wafer surface. Electrical testing is accomplished through these contacts. Microspring contact technology uses a controlled shape and height spring element. The microspring contact has been used previously on probe cards to test contact at Al wirebond pads, Au pads and solder balls .
+
+--- SLIDE 30 ---
+30 Die Packaging: embedded die packaging, the idea is to embed components inside the substrate using a multi-step manufacturing process. Die preparation is a step of semiconductor device fabrication during which a wafer is prepared for IC packaging and IC testing . [embed – to envelope, to enclose] “Packaging” is defined as the bridge that interconnects the ICs and other components into a system-level board to form electronic products. Photonic crystals, also known as photonic bandgap materials , are periodic nanostructures . Photonic crystal basics is the periodic arrangements of two materials with different index of refraction. WLP: Wafer level packaging is where a die is packaged while still in wafer form, either singly or combined with additional dies or other components such as discrete passive devices, or functional components like micro- electromechanical systems (MEMS) or radio-frequency (RF) filters .
+
+--- SLIDE 31 ---
+Ball Grid Array 31 Ball Grid Array (BGA) Ball grid arrays ( see Fig. 2-3 ), with 1.27-mm pitch (distance between adjacent ball centers ) and finer pitch versions with 1- and 0.8-mm pitches, are the only choice for packages with higher than 300 I/O counts, replacing leaded packages such as the quad flat pack (QFP). BGA s provide improved electrical and thermal performance, more effective manufacturing, and ease-of-handling compared to conventional surface mount (SMT ) leaded parts. Finer pitch area array packages ( FPBGA ), also known as CSPs , are further miniaturized versions of BGA s, or smaller configurations of leaded and leadless packages with features generally less than 0.8-mm pitches.
+
+--- SLIDE 32 ---
+Questions 1. What is the difference b etween CSP, Flip Chip and Wafer-level Packaging? Why do you expect the cost of wafer-level packaging to be lower than with wirebond? 2 . Flip chip production that has been in place for 30 years has always been on wafer. How is wafer-level packaging being developed differently today? 3 . If you were to use the solder ball flip chip approach to wafer-level packaging with 100-micron pitch, how do you guarantee the fatigue life of the solder joint? 4. What is the major argument and challenge with high–density three–dimensional wafer-level packaging in the industry in near future? Explain the concept of single-chip package (SCP), and analysis the single-chip microelectronics packaging improvement trends using proper graph. 5. Estimate the cost and time savings that can be realized with WLP in relation to wirebonding. Assume a 300 mm wafer, 10 mm IC and 500 I /Os on each IC. 32

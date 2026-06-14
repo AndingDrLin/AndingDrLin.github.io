@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="340" viewBox="0 0 920 340" role="img" aria-label="CTE mismatch causing solder joint stress">
+  <style>.board{fill:#dcfce7;stroke:#15803d;stroke-width:2}.die{fill:#dbeafe;stroke:#1d4ed8;stroke-width:2}.solder{fill:#fbbf24;stroke:#92400e}.arrow{stroke:#dc2626;stroke-width:3;marker-end:url(#a)}.txt{font:16px Arial;fill:#0f172a}.small{font:13px Arial;fill:#334155}</style>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#dc2626"/></marker></defs>
+  <text class="txt" x="330" y="35">CTE mismatch under thermal cycling</text>
+  <rect class="board" x="150" y="235" width="620" height="42" rx="5"/><text class="small" x="405" y="263">PWB / substrate, larger expansion</text>
+  <rect class="die" x="305" y="105" width="310" height="70" rx="6"/><text class="small" x="400" y="145">silicon die, smaller CTE</text>
+  <circle class="solder" cx="350" cy="205" r="16"/><circle class="solder" cx="430" cy="205" r="16"/><circle class="solder" cx="510" cy="205" r="16"/><circle class="solder" cx="590" cy="205" r="16"/>
+  <line class="arrow" x1="150" y1="300" x2="80" y2="300"/><line class="arrow" x1="770" y1="300" x2="840" y2="300"/>
+  <line class="arrow" x1="350" y1="225" x2="322" y2="242"/><line class="arrow" x1="590" y1="225" x2="620" y2="242"/>
+  <text class="small" x="150" y="320">temperature change: ΔL = αLΔT</text><text class="small" x="590" y="320">solder shear, fatigue, delamination</text>
+</svg>

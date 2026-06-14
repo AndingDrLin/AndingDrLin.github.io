@@ -1,0 +1,93 @@
+SOURCE: /Users/zhoushengye/Desktop/课程/笔记/封装/slides/Additional_Lecture9.pptx
+TYPE: PPTX
+SLIDES: 30
+
+--- SLIDE 1 ---
+UESTC 4031 Microelectronics Packaging Technology Course Books Fundamental of Microsystems Packaging, Rao Tummala ( Mcgraw-hill Professional Publishing), 2001. Microelectronics Packaging Handbook / edited by Rao R. Tummala , Eugene J. Rymaszewski , New York, N. Y. : Van Nostrand Reinhold, c1989. Fundamental of Device and Systems Packaging: Technologies and Applications , Rao R. Tummala , Publisher ‏ : ‎ McGraw Hill; 2nd edition (January 1, 2020) ; ISBN-10 ‏ : ‎ 9390385512. Dr Aynul Islam (Room B375) Assessment Final Exam (2 hours) 75% Writing Report 15% Presentation 10%
+
+--- SLIDE 2 ---
+Chapter 9. Additional Lecture: Electronic Packaging Technology Chip Connection: Wire Bonding, TAB Structure, Flip-Chip Introduction to 3D Packages, Ball Grid Array (BGA), Chip Scale Package (CSP), Wafer Level Package (WLP). Challenging 2D Packaging and Advancement of 3D Packaging Impact and Mitigate of M ismatched CTE in Microelectronics P ackaging. C hallenges of Heat F low Across S olid I nterfaces in Conduction, Convection (Natural and Forced), and Radiation. Challenges of H eterogeneous I ntegration in Modern E lectrical P ackaging D esign . Advanced Packaging Technologies, Like 2.5D and 3D 2 UESTC 4031 Microelectronics Packaging Technology
+
+--- SLIDE 3 ---
+3
+
+--- SLIDE 4 ---
+4 9.1 Electronic Packaging Technology The electronic packaging has six functions: Signal distribution , involving topological and electromagnetic considerations; Power distribution , involving electromagnetic, structural, and material aspects; Heat dissipation (thermal management), involving structural and mate- rial considerations; Support and protection (mechanical, chemical, and electromagnetic) components and interconnections from the hostile environments; Design (for performance, environment, manufacture ability, and reliability) at the front end and system test at the final stage prior to the system shipment; System testing that involves every aspect of system reliabilities.
+
+--- SLIDE 5 ---
+5 9.2 Chip Connection: Wire Bonding, TAB Structure, Flip-Chip Fig. 9.2. Schematic depiction of chip connection by (a) wire bonding, (b) TAB, and (c) FC.
+
+--- SLIDE 6 ---
+6 9.2 Chip Connection: Wire Bonding, TAB Structure, Flip-Chip Fig. 9.2. General configuration of wire bonding package and samples.
+
+--- SLIDE 7 ---
+7 9.2 Chip Connection: Wire Bonding, TAB Structure, Flip-Chip Fig. 9.3 A schematic TAB structure.
+
+--- SLIDE 8 ---
+8 9.2 Chip Connection: Wire Bonding, TAB Structure, Flip-Chip Fig. 9.4 General configuration of FC package. FC Advantages: Smaller size, increased functionality, Improved performance, Most rugged (high reliability), Improved thermal capabilities, Low cost
+
+--- SLIDE 9 ---
+FC Assembly 9 Fig. 9.5: FC assembly using new lead-free solder paste formulations.
+
+--- SLIDE 10 ---
+10 Figure 9.3: 3D Packaging 3D Packages
+
+--- SLIDE 11 ---
+CSP, BGA. WLA 11 CSP: An improvement in packaging efficiency beyond BGAs is achieved by CSP. Most CSPs use substrate (interposer) or metal layer to redistribute the very fine-pith (as small as 0.075 mm) peripheral pads on the chip to a much larger pitch (1 mm, 0.8 mm, 0.75 mm, and 0.5 mm) area array pads on the PWB. WLP is the technology employed for the fabrication of ICs while still part of the wafer, in contrast to the more conventional method of slicing the wafer into individual circuits (dice) and then packaging them. This technique has grown rapidly in popularity in the IC industry due to advantages in terms of component size as well as production time and cost. WLP is essentially a type of chip-scale package (CSP) technology, since the resulting package is practically of the same size as the die.
+
+--- SLIDE 12 ---
+Single-Chip Wafer-Level packaging (SCP, WLP) 12 FIGURE: Difference between CSP (chip scale packaging), flip chip, and wafer-level packaging and (b) wafer-level packaging options. A single chip package (SCP) is a package that supports a single microelectronic device so that its electrical, mechanical, thermal, and chemical performance needs are adequately served.
+
+--- SLIDE 13 ---
+Single-Chip packaging (SCP) 13 Figure: Single-chip packaging concept from wire-bond to flip-chip ball grid array to wafer-level packaging (fan-in and fan-out). Fig. shows the purpose of microelectronics package from BGA to wafer level package (WLP)-molded and a more recent fan-out configurations. An interposer is used to accommodate the fine pitch of the chip as well as the next level interconnection, e.g. PCB.
+
+--- SLIDE 14 ---
+Fan-in and Fan-out 14 Fan-In Wafer-Level Package (FI-WLP) refers to the technology of packaging an integrated circuit (IC) at the wafer level, instead of the traditional process of assembling individual dies into packages after dicing them from a wafer . FI-WLP technology is an extension of the wafer fabrication process and uses the traditional fabrication processes and tools. Fan-Out Wafer-Level Package (FO-WLP) is an enhancement of standard WLPs, enabling a greater number of I/O connections. This package involves dicing chips from a silicon wafer, precisely positioning the known-good- die on a “reconstituted” or “carrier” wafer / panel, which is then molded .
+
+--- SLIDE 15 ---
+WLP Includes Fan-in and Fan-out 15 Figure: WLP Market Drivers Fan-in is mainly applied to the mobile market (90% of its market) while fan-out has also found applications in the high-end market (networking and computing applications) due to its ability to address higher I/O count and larger package form factors; it also has improved reliability performance and increased capability for 3D integration using PoP and SiP heterogeneous integration.
+
+--- SLIDE 16 ---
+16 Wafer-level packaging Reliability Fig. 9.6 . Comparing conventional IC packaging and WLP.
+
+--- SLIDE 17 ---
+17 Wafer-level packaging Fig. 9.7 . The comparison of a fan-in vs. a fan-out WLP.
+
+--- SLIDE 18 ---
+Ball Grid Array 18 Ball Grid Array (BGA) Ball grid arrays ( see Fig. 2-3 ), with 1.27-mm pitch (distance between adjacent ball centers ) and finer pitch versions with 1- and 0.8-mm pitches, are the only choice for packages with higher than 300 I/O counts, replacing leaded packages such as the quad flat pack (QFP). BGA s provide improved electrical and thermal performance, more effective manufacturing, and ease-of-handling compared to conventional surface mount (SMT ) leaded parts. Finer pitch area array packages ( FPBGA ), also known as CSPs , are further miniaturized versions of BGA s, or smaller configurations of leaded and leadless packages with features generally less than 0.8-mm pitches.
+
+--- SLIDE 19 ---
+Challenging 2D Packaging and Advancement of 3D Packaging 19 Challenges in Traditional 2D Packaging Interconnect Bottlenecks: As transistor sizes shrink (following Moore’s Law), the number of interconnects increases, leading to signal delays and power inefficiencies due to long wiring distances. Power and Thermal Issues: Higher power densities in advanced nodes lead to increased heat dissipation challenges. Power delivery becomes inefficient due to longer traces. Form Factor Constraints: 2D scaling is reaching physical limits, making further miniaturization difficult. Larger packages are needed for multi-chip solutions, increasing cost. Bandwidth Limitations: Data transfer between chips is constrained by the limited number of I/ Os in 2D configurations. Memory bandwidth (e.g., between processors and DRAM) becomes a bottleneck (the "memory wall" problem).
+
+--- SLIDE 20 ---
+Challenging 2D Packaging and Advancement of 3D Packaging 20 3D Stacking Technologies Through-Silicon Vias (TSVs): Vertical electrical connections that pass-through silicon dies, enabling direct stacking. Hybrid Bonding: Advanced bonding technique that allows ultra-fine pitch interconnects (<10µm). Chiplet -Based Designs: Disaggregates large monolithic dies into smaller " chiplets " that can be stacked or placed side-by-side. Types of 3D Packaging 3D IC Stacking (Die-on-Die): Logic-on-logic or memory-on-logic stacking (e.g., HBM on GPUs). 2.5D Interposer-Based Packaging: Dies placed side-by-side on a silicon interposer with TSVs (e.g., NVIDIA’s CoWoS ). Fan-Out Wafer-Level Packaging (FOWLP): Dies embedded in epoxy mold with redistribution layers (RDLs) for high-density interconnects.
+
+--- SLIDE 21 ---
+Impact and Mitigate of M ismatched CTE in Microelectronics P ackaging 21 Mismatched CTE causes mechanical stress during thermal cycling (e.g., power cycling, reflow soldering, environmental changes), leading to reliability issues. A. Thermo-Mechanical Stress & Warpage Die Cracking/Delamination: Silicon dies bonded to substrates (e.g., flip-chip BGA) experience bending stress. S tress can crack brittle silicon or delaminate interfaces Package Warpage: Uneven expansion causes warping, leading to misalignment in assembly (e.g., solder joint failures). B. Solder Joint Fatigue Crack Formation: Repeated thermal cycling induces fatigue in solder balls (e.g., in BGA packages). Electrical Failures: Cracked solder joints increase resistance, leading to intermittent or open connections .
+
+--- SLIDE 22 ---
+Impact and Mitigate of M ismatched CTE in Microelectronics P ackaging 22 C. Underfill & Interconnect Reliability Underfill Cracking: High-CTE underfill materials can induce stress on low-CTE silicon. Through-Silicon Via (TSV) Reliability: In 3D ICs, TSVs experience stress due to Si-Cu CTE mismatch, risking via cracking. Mitigation Strategies for CTE Mismatch Material Selection & Design Low-CTE Substrates: Use ceramic ( Al₂O ₃, ~6–8 ppm/°C) or advanced organic substrates with adjusted CTE. Example: Ajinomoto Build-up Film (ABF) for better CTE matching. Underfill Optimization: CTE-Tailored Underfill: Modified epoxy with fillers (e.g., silica) to reduce CTE (~10–25 ppm/°C). Corner- vs. Full-Underfill: Selective application to minimize stress. Compliant Interconnects: Copper Pillars with Solder Cap: More flexible than traditional solder bumps. Polymer-Based Interposers: Reduces stress in 2.5D/3D packages.
+
+--- SLIDE 23 ---
+Heat F low Across S olid I nterfaces: Conduction, Convection, and Radiation 23 Challenges of Heat Conduction Across Solid Interfaces A. Thermal Contact Resistance (TCR) Cause: Microscopic air gaps or surface roughness (~µm-scale) reduce effective contact area. Impact: High interfacial temperature drop (e.g., CPU-heatsink interfaces), and degrades thermal performance in electronics packaging. Mitigation: Thermal Interface Materials (TIMs): Greases, gels, phase-change materials (PCMs), or metal-based TIMs (e.g., indium, graphene). Surface Polishing & Flatness Control: Reduces air gaps. B. Material Mismatch (CTE & Thermal Conductivity) Cause: Different thermal expansion coefficients (CTE) and conductivities (k) between materials. Impact: Warping or delamination under thermal cycling (e.g., Si die to Cu heat spreader). Mitigation: Graded CTE interlayers (e.g., tungsten-copper composites). Anisotropic thermal conductors (e.g., graphite sheets).
+
+--- SLIDE 24 ---
+Heat F low Across S olid I nterfaces: Conduction, Convection, and Radiation 24 Challenges of Heat Conduction Across Solid Interfaces C. Phonon Scattering at Nanoscale Interfaces Cause: In nanostructured materials (e.g., Si-Ge superlattices), phonon scattering reduces thermal conductivity. Impact: Limits heat dissipation in advanced semiconductor devices. Mitigation: Phonon engineering (e.g., aligned nanowires, metamaterials). Challenges of Heat Convection Across Solid-Fluid Interfaces Key Challenges: A. Boundary Layer Resistance Cause: A stagnant fluid layer forms near the solid surface, acting as insulation. Impact: Reduces cooling efficiency (e.g., in heat sinks). Mitigation: Turbulence promoters (fins, microchannels). High-velocity flow (forced convection).
+
+--- SLIDE 25 ---
+Heat F low Across S olid I nterfaces: Conduction, Convection, and Radiation 25 Challenges of Heat Conduction Across Solid Interfaces B. Non-Uniform Flow Distribution Cause: Poor fluid dynamics (e.g., dead zones in heat exchangers). Impact: Hotspots in electronics cooling. Mitigation: Optimized fin/pin layouts (e.g., staggered vs. inline). Jet impingement cooling (direct high-speed fluid jets). C. Phase Change Limitations (Boiling/Condensation) Cause : Bubble formation (nucleate boiling) can lead to dry-out or film boiling (critical heat flux). Impact: Sudden temperature spikes in high-power electronics. Mitigation: Microporous surfaces (enhance nucleation). Dielectric fluids (for immersion cooling).
+
+--- SLIDE 26 ---
+Heat F low Across S olid I nterfaces: Conduction, Convection, and Radiation 26 Challenged of Heat Radiation Across Solid Interfaces Radiation is electromagnetic wave-based heat transfer (no medium required). Key Challenges: A. Low Emissivity of Metals Cause: Metals (e.g., Al, Cu) reflect most IR radiation. Impact: Poor radiative cooling in electronics. Mitigation: High-emissivity coatings (e.g., anodized Al, carbon black). B. View Factor & Shadowing Cause: Geometric obstructions reduce radiative exchange. Impact: Inefficient heat rejection in spacecraft/electronics. Mitigation: Optimized radiator designs (angled fins, selective emitters). Emerging Solutions Hybrid Cooling: Combining conduction (heat pipes) + convection (liquid cooling) + radiation (IR coatings). Nanostructured TIMs: Graphene, boron nitride for ultra-low TCR. AI-Optimized Heat Sinks: Machine learning for fluid/thermal design.
+
+--- SLIDE 27 ---
+H eterogeneous I ntegration in Modern E lectrical P ackaging D esign 27 Introduction to Heterogeneous Integration (HI) Heterogeneous Integration (HI) refers to the advanced packaging technique of combining multiple dissimilar chips (e.g., processors, memory, sensors, RF, and analog components) into a single system. Unlike traditional monolithic ICs, HI enables: Higher performance (shorter interconnects, lower latency). Better power efficiency (optimized partitioning). Smaller form factor (3D stacking, chiplets ). Cost-effective scaling (mix-and-match process nodes). Challenges in Heterogeneous Integration A. Thermal Management Problem: 3D stacking increases power density, leading to hotspots. Solution: Microfluidic cooling, thermal vias, and advanced TIMs. B. Signal Integrity & Power Delivery Problem: High-speed signals between chiplets suffer from crosstalk and loss. Solution: Co-design of interconnects, low-loss dielectrics. C. Testing & Known-Good-Die (KGD) Problem: Ensuring each chiplet works before assembly. Solution: Built-in self-test (BIST), advanced probe testing.
+
+--- SLIDE 28 ---
+Advanced Packaging Technologies, Like 2.5D and 3D 28 2.5D Packaging: Bridging the Gap Between 2D and 3D What is 2.5D Packaging? Dies are placed side-by-side on an interposer (silicon, organic, or glass) that provides high-density interconnects. No direct stacking (hence "2.5D" – more than 2D but not fully 3D). Advantages of 2.5D ✅ High bandwidth (short interconnects via interposer). ✅ Better thermal management (compared to full 3D stacking). ✅ Supports heterogeneous integration (e.g., CPU + HBM memory). Challenges ❌ Cost (silicon interposers are expensive). ❌ Thermal issues (heat buildup in dense interconnects).
+
+--- SLIDE 29 ---
+Advanced Packaging Technologies, Like 2.5D and 3D 29 What is 3D Packaging? Dies are stacked vertically (e.g., memory-on-logic) using hybrid bonding, microbumps , or TSVs . Enables ultra-short interconnects (microns vs. millimeters in 2D). Advantages of 3D ✅ Highest performance (shortest possible interconnects). ✅ Smallest footprint (ideal for mobile/AI chips). ✅ Power efficiency (reduced parasitic capacitance). D. Challenges ❌ Thermal issues (heat trapped between layers). ❌ Complex manufacturing (alignment, bonding yield). ❌ Testing difficulties (hard to probe stacked dies).
+
+--- SLIDE 30 ---
+Questions 1. What is the difference b etween CSP, Flip Chip and Wafer-level Packaging? Why do you expect the cost of wafer-level packaging to be lower than with wirebond? 2 . Flip chip production that has been in place for 30 years has always been on wafer. How is wafer-level packaging being developed differently today? 3 . If you were to use the solder ball flip chip approach to wafer-level packaging with 100 micron pitch, how do you guarantee the fatigue life of the solder joint? 4. What is the major argument and challenge with high–density three–dimensional wafer-level packaging in the industry in near future? Explain the concept of single-chip package (SCP), and analysis the single-chip microelectronics packaging improvement trends using proper graph. 5. Estimate the cost and time savings that can be realized with WLP in relation to wirebonding. Assume a 300 mm wafer, 10 mm IC and 500 I /Os on each IC. 30

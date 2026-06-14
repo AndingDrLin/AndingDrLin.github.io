@@ -1,9 +1,10 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
-import PostCard from '../../../components/PostCard.astro';
+import NoteDirectoryList from '../../../components/NoteDirectoryList.astro';
 import { NOTE_COURSES } from '../../../consts';
 import { getPublishedCollection } from '../../../utils/content';
+import { getNoteDirectoryListing } from '../../../utils/noteTree';
 
 export async function getStaticPaths() {
   return Object.values(NOTE_COURSES).map((course) => ({
@@ -17,6 +18,7 @@ const allNotes = await getPublishedCollection('notes');
 const group = Object.entries(NOTE_COURSES).find(([, value]) => value.slug === course.slug)?.[0];
 const entries = allNotes.filter((entry) => entry.data.docGroup === group && !/\/readme$/i.test(entry.id));
 const readme = (await getCollection('notes')).find((entry) => entry.data.docGroup === group && /\/readme$/i.test(entry.id));
+const { directories, entries: currentEntries } = getNoteDirectoryListing(entries);
 ---
 
 <BaseLayout title={course.title} description={course.description} path={`/notes/${course.slug}/`}>
@@ -27,10 +29,6 @@ const readme = (await getCollection('notes')).find((entry) => entry.data.docGrou
       <p>{readme?.data.description ?? course.description}</p>
     </div>
 
-    <div class="post-list">
-      {entries.map((entry) => (
-        <PostCard entry={entry} />
-      ))}
-    </div>
+    <NoteDirectoryList directories={directories} entries={currentEntries} basePath={`/notes/${course.slug}/`} />
   </section>
 </BaseLayout>

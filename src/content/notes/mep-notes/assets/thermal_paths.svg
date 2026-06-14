@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="390" viewBox="0 0 920 390" role="img" aria-label="Thermal path in microelectronics packaging">
+  <style>.die{fill:#fee2e2;stroke:#dc2626;stroke-width:2}.tim{fill:#fde68a;stroke:#d97706}.sink{fill:#cbd5e1;stroke:#475569}.board{fill:#dcfce7;stroke:#16a34a}.txt{font:16px Arial;fill:#0f172a}.small{font:13px Arial;fill:#334155}.heat{stroke:#ef4444;stroke-width:4;marker-end:url(#h)}.air{stroke:#0284c7;stroke-width:3;fill:none;marker-end:url(#b)}</style>
+  <defs><marker id="h" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#ef4444"/></marker><marker id="b" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#0284c7"/></marker></defs>
+  <text class="txt" x="330" y="35">Thermal management path</text>
+  <rect class="die" x="385" y="260" width="150" height="55" rx="6"/><text class="small" x="425" y="292">heat source</text>
+  <rect class="tim" x="360" y="220" width="200" height="28"/><text class="small" x="410" y="239">TIM / interface</text>
+  <rect class="sink" x="290" y="105" width="340" height="95" rx="8"/><text class="small" x="420" y="155">heat sink</text>
+  <rect class="board" x="275" y="325" width="370" height="28"/><text class="small" x="405" y="344">substrate / PWB</text>
+  <line class="heat" x1="460" y1="260" x2="460" y2="220"/><line class="heat" x1="460" y1="220" x2="460" y2="105"/>
+  <path class="air" d="M640 120 C720 90, 780 100, 850 70"/><path class="air" d="M640 160 C730 160, 780 180, 850 160"/>
+  <text class="small" x="670" y="55">convection / radiation to ambient</text>
+  <text class="small" x="90" y="100">Key formulas:</text><text class="small" x="90" y="128">Rθ = ΔT / P</text><text class="small" x="90" y="154">Q = kAΔT / L</text><text class="small" x="90" y="180">Q = hA(Ts - Tf)</text><text class="small" x="90" y="206">Q = εσAF(T1⁴ - T2⁴)</text>
+</svg>

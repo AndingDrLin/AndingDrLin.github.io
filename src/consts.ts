@@ -31,6 +31,11 @@ export const NOTE_COURSES = {
     title: '电力电子',
     description: '按章节整理的电力电子课程复习笔记，覆盖整流、SCR、开关损耗、热设计、DC-DC、逆变与 PWM。'
   },
+  'microelectronics-packaging-notes': {
+    slug: 'microelectronics-packaging',
+    title: '微电子封装',
+    description: '按考试复习主线整理的微电子封装课程笔记，覆盖封装基础、电热机械可靠性、材料、SiP/WLP 与先进封装。'
+  },
   'dc-notes': {
     slug: 'dynamics-and-control',
     title: '动力学与控制',

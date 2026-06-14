@@ -76,9 +76,9 @@ draft: false
 
 $$CL = \bar{\bar{x}} = \frac{1}{n}\sum x_i$$
 
-$$UCL = \bar{\bar{x}} + k \cdot s，\quad LCL = \bar{\bar{x}} - k \cdot s$$
+$$UCL = \bar{\bar{x}} + k \cdot \sigma，\quad LCL = \bar{\bar{x}} - k \cdot \sigma$$
 
-$$s = \sqrt{\frac{\sum(x_i - \bar{\bar{x}})^2}{n}}$$
+$$\sigma = \sqrt{\frac{\sum(x_i - \bar{\bar{x}})^2}{n}}$$
 
 **方法二：查表法**（给 $\bar{\bar{x}}$、$\bar{R}$、样本量，查 $A_2$、$D_4$、$d_2$）
 
@@ -88,7 +88,7 @@ $$UCL_R = D_4 \bar{R}，\quad LCL_R = 0$$
 
 ---
 
-### 练习 1：简单 CL/UCL/LCL 计算（3σ 直接法）
+### 练习 1：简单 CL/UCL/LCL 计算（2σ 直接法）
 
 > 参考样题 Set 1 Q2(b) 风格
 
@@ -112,17 +112,17 @@ $$\bar{\bar{x}} = \frac{510+516+500+495+505+500+510+505+500+499+505+511+500+498+
 
 **Step 2** — 算标准差
 
-$$s = \sqrt{\frac{\sum(x_i - 502.85)^2}{19}} \approx 6.13 \text{ mA}$$
+$$\sigma = \sqrt{\frac{\sum(x_i - 502.85)^2}{20}} \approx 5.89 \text{ mA}$$
 
 **Step 3** — 算 UCL/LCL（2σ）
 
-$$UCL = 502.85 + 2 \times 6.13 = 502.85 + 12.26 = 515.11 \text{ mA}$$
+$$UCL = 502.85 + 2\sigma = 502.85 + 2 \times 5.89 = 514.64 \text{ mA}$$
 
-$$LCL = 502.85 - 2 \times 6.13 = 502.85 - 12.26 = 490.59 \text{ mA}$$
+$$LCL = 502.85 - 2\sigma = 502.85 - 2 \times 5.89 = 491.06 \text{ mA}$$
 
 **Step 4** — 判断
 
-检查所有 20 个数据点：样本 2 = 516 > UCL (515.11)，超出上控制限。样本 17 = 490 < LCL (490.59)，超出下控制限。
+检查所有 20 个数据点：样本 2 = 516 > UCL (514.64)，超出上控制限。样本 17 = 490 < LCL (491.06)，超出下控制限。
 
 **结论**：过程**不稳定**（out of control），有 2 个点超出控制限。
 

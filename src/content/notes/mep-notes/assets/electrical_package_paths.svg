@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="390" viewBox="0 0 920 390" role="img" aria-label="Electrical package signal and power paths">
+  <style>.chip{fill:#f8fafc;stroke:#334155;stroke-width:2}.pkg{fill:#fff7ed;stroke:#ea580c;stroke-width:2}.line{stroke:#2563eb;stroke-width:4;fill:none;marker-end:url(#b)}.pwr{stroke:#dc2626;stroke-width:4;fill:none;marker-end:url(#r)}.gnd{stroke:#475569;stroke-width:3}.txt{font:16px Arial;fill:#0f172a}.small{font:13px Arial;fill:#334155}</style>
+  <defs><marker id="b" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#2563eb"/></marker><marker id="r" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#dc2626"/></marker></defs>
+  <rect class="pkg" x="140" y="70" width="640" height="240" rx="14"/>
+  <rect class="chip" x="210" y="145" width="130" height="90" rx="8"/><text class="txt" x="245" y="182">Driver</text><text class="small" x="240" y="205">chip A</text>
+  <rect class="chip" x="580" y="145" width="130" height="90" rx="8"/><text class="txt" x="615" y="182">Receiver</text><text class="small" x="615" y="205">chip B</text>
+  <path class="line" d="M340 170 C420 110, 500 110, 580 170"/><text class="small" x="420" y="108">signal path: delay / reflection / crosstalk</text>
+  <path class="pwr" d="M460 295 L460 238 L340 220"/><path class="pwr" d="M500 295 L500 238 L580 220"/><text class="small" x="410" y="330">power / ground distribution: IR drop, inductive noise</text>
+  <line class="gnd" x1="200" y1="270" x2="720" y2="270"/><text class="txt" x="375" y="55">Package Electrical Design</text>
+  <text class="small" x="190" y="355">At high frequency, package interconnects are no longer ideal wires: R, L and C become design constraints.</text>
+</svg>

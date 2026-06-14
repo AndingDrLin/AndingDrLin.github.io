@@ -1,0 +1,66 @@
+SOURCE: /Users/zhoushengye/Desktop/课程/笔记/封装/slides/Lecture5_Role-Packaging in Microsystem.pptx
+TYPE: PPTX
+SLIDES: 21
+
+--- SLIDE 1 ---
+UESTC 4031 Microelectronics Packaging Technology Course Books Fundamental of Microsystems Packaging, Rao Tummala ( Mcgraw-hill Professional Publishing), 2001. Microelectronics Packaging Handbook / edited by Rao R. Tummala , Eugene J. Rymaszewski , New York, N. Y. : Van Nostrand Reinhold, c1989. Fundamental of Device and Systems Packaging: Technologies and Applications , Rao R. Tummala , Publisher ‏ : ‎ McGraw Hill; 2nd edition (January 1, 2020) ; ISBN-10 ‏ : ‎ 9390385512. Dr Aynul Islam (Room A308) Assessment Final Exam (2 hours) 75% Writing Report 15% Presentation 10%
+
+--- SLIDE 2 ---
+5. The Role of Packaging in Microsystems (Chapter 3) 5 .1 Anatomy of a Microsystem 5.2 Role of Packaging in the Computer and Telecommunication Industry 5.3 Role of Packaging in Automotive Systems and in Medical Electronics 5.4 Role of Packaging in Micro-Electro-Mechanical Systems (MEMS) Products 2 UESTC 4031 Microelectronics Packaging Technology
+
+--- SLIDE 3 ---
+The Role of Packaging in Microsystem 3 Anatomy of a Microsystem Most of the microsystems can be classified into six categories: automotive, computer and business equipment, communications, consumer, industrial and medical, military and aerospace. The total market is illustrated in figure 5.1 Figure 5.1: Microsystems market
+
+--- SLIDE 4 ---
+The Role of Packaging in Microsystem 4 Anatomy of a Microsystem The pyramidal hierarchy spans from minerals to materials, processing these materials into ICs, devices and components, and electrically and mechanically designing, testing and assembling these components onto system-level boards as illustrated in Figure 5.2. Figure 5.2: Microsystem Hierarchy
+
+--- SLIDE 5 ---
+The Role of Packaging in Microsystem 5 Computer and Telecommunication Industry Electronic components can be roughly characterized into active and passive components. Active components consume power in delivering functionality within a system, while passives provide connection, mechanical support, filtering, noise reduction, and other functions. Microelectronics and computers are virtually synonymous. By the time electronic devices migrated from vacuum tubes to discrete transistors and finally to integrated circuits, the digital computer became the driving force for almost all new semiconductor-related technologies. M icroelectronics being challenged by network and portable communications products, where the need for low power, high performance and integration of passive components are becoming important.
+
+--- SLIDE 6 ---
+The Role of Packaging in Microsystem 6 Some important Parameters are described below: Bandwidth Is the Most Important Parameter in Computing How Do Computers Work? Computer System Performance How Does Packaging Affect System Performance? How Does Microsystem Packaging Affect the Bus Design? ROLE OF PACKAGING IN THE COMPUTER INDUSTRY
+
+--- SLIDE 7 ---
+The Role of Packaging in Microsystem 7 Bandwidth Is the Most Important Parameter in Computing: T he rate of moving around electrons is called frequency , the concept of frequency is combined with the quantity of electrons moving in parallel, the term used is bandwidth. Even though frequency is commonly used to describe the power of a computer, it is really bandwidth that determines the computer’s performance. Bandwidth is defined in digital systems as the number of parallel datum bits (the width) delivered to destination multiplied by delivery frequency. The units of bandwidth are bits per second (b/ s). As an example , a 64 bit bus that uses a 100 MHz clock frequency but uses the up and down clock transitions to introduce data onto the bus is said to transmit 12.8 Gb/ s . In terms of bytes ( eight bits to a byte ) transmitted, it is a 1.6 GB/ s bus. ROLE OF PACKAGING IN THE COMPUTER INDUSTRY
+
+--- SLIDE 8 ---
+The Role of Packaging in Microsystem 8 How Do Computer Work? In the diagram in Figure 5.3, the data to be processed enters the computer through the input/output (I /O) subsystem. At the other end of this bus, the data is delivered to the system’s main memory ( L3 ). D ata is moved through the memory cache hierarchy ( L2 and L1 ) and delivered to the P for processing. A key element in determining the total amount of data that is moved between the levels of memory and the P is the bandwidths of the various interconnection buses used. Bandwidth is important to packaging engineers because it is their contribution to the overall system performance. ROLE OF PACKAGING IN THE COMPUTER INDUSTRY
+
+--- SLIDE 9 ---
+The Role of Packaging in Microsystem 9 How Do Computer Work? To be efficient, a computing system has to keep the P busy almost all of the time. This means that there has to be sufficient bandwidth between the incoming data and the P to keep the latter always supplied with work to do Figure 5.3: How do computers process information? ROLE OF PACKAGING IN THE COMPUTER INDUSTRY The bandwidth properties of the system are determined by the design of the different elements in the system and their interconnections .
+
+--- SLIDE 10 ---
+The Role of Packaging in Microsystem 10 Computer System Performance Computer system performance is a function of many different variables. A very simple expression for performance is: Perf (performance) = ( P Speed) (MIPS/MHz) ( P Utilization) Performance (Perf) is commonly stated in terms of MIPS or millions of instructions per second. As expected, MIPS are directly proportional to the P speed ( in MHz ). ROLE OF PACKAGING IN THE COMPUTER INDUSTRY
+
+--- SLIDE 11 ---
+The Role of Packaging in Microsystem 11 Microsystems packaging is the enabler for good bus performance. A good bus has to be very fast and very wide. I t is important for the connection between the P and the L2 to run at the P ’s speed and deliver at least one cache word ( 8B for an Intel@Pentium ) per cycle with no more delay than one cycle time. This will minimize the P wait states caused by an L1 cache miss, need for a fast bus How Does Packaging Affect System Performance? ROLE OF PACKAGING IN THE COMPUTER INDUSTRY
+
+--- SLIDE 12 ---
+The Role of Packaging in Microsystem 12 Package speed is important for high-performance bus design. Package attributes that support high speed are: High via and wiring densities for shorter line lengths Low dielectric constant materials for high propagation speed and low capacitance. A large count of vias in conjunction with thin dielectric layers and many power planes to support low noise and good power distribution How D oes Microsystems Packaging Affect Bus Design? ROLE OF PACKAGING IN THE COMPUTER INDUSTRY
+
+--- SLIDE 13 ---
+The Role of Packaging in Microsystem 13 Multimedia Arrives at Forefront: It refers to the combination of multiple types of content into the same message and into the same transmission medium, each type of content has different requirements for performance and service reliability . For example, voice content is delay-sensitive, but data content, which is not delay sensitive, but a single missing or wrong bit will render the entire message useless . The C ommunication Industry: Communications is the act of exchanging information . This exchange is done by dozens of different products that make up the second largest electronic and most technologically exciting industry. ROLE OF PACKAGING IN THE TELECOMMUNICATION INDUSTRY
+
+--- SLIDE 14 ---
+The Role of Packaging in Microsystem 14 ROLE OF PACKAGING IN THE TELECOMMUNICATION INDUSTRY Bandwidth Is the Main Problem in Communications: The problem with mobile phones and other means of wireless communications is the very limited bandwidth. This is where photonics comes into play. It is best if that phone function is packaged as a fully integrated microsystem, either with emerging system-on-package (SOP), system-on-chip (SOC) technology or both. Battery and Weight: Battery: R equirement is the life of the battery. It is necessary to design the circuits that the life of the battery is maximized. Weight: One of the main system requirements is low weight of the unit, number of ICs and system level board. The situation is different in the RF section. Here, components based on different materials (e.g., silicon, silicon germanium or gallium arsenide ) and different process technologies (e.g., CMOS and/or bipolar ) are used to achieve the best combination of performance and cost. Furthermore, many RF components , which can amount to more than 100, are passives , such as filters and oscillators . As a result, integration has been difficult . RF Section :
+
+--- SLIDE 15 ---
+The Role of Packaging in Microsystem 15 ROLE OF PACKAGING IN THE TELECOMMUNICATION INDUSTRY Wireless technology is also increasingly used for noncommunications functions. Mercedes cars, for example, are now equipped with a collision avoidance system that is based on radar. Navigational Global Positioning Systems ( GPSs ) are being integrated into more and more consumer items, where size and cost are paramount. For all of these products, a small, low-cost RF package is required .
+
+--- SLIDE 16 ---
+The Role of Packaging in Microsystem 16 Role of Packaging in Automotive System Market Size: The automotive industry is approximately the same size as the electronics industry. Electronics Content: In general, an automotive subsystem with an electronic content, such as an airbag deployment system , Sensors are included, but vehicle lighting is not. Cost, size and weight reductions are also major factors that influence packaging of automotive electronics products. Characteristics of Automotive is Harsh Environment: Automotive electronics presents some of the biggest challenges in systems packaging. For example, under the hood the temperature in a car can be as low as 40 0 C, and 204 0 C somewhere in the world. At present, automotive electronic modules are designed for an operating temperature of 125 0 C . Technology advances in thermal management will help these challenges. Electronic Packaging Technologies: IC and System Substrates Technologies (Substrates can be classified as Organic, Ceramic, and plastic )
+
+--- SLIDE 17 ---
+The Role of Packaging in Microsystem 17 Role of Packaging in Medical Electronics Implantable Electromedical Devices: There are several electronic devices used in the human body to regulate, monitor or enhance bodily functions, and thus enhance the quality of life of all ages. The devices are hearing aids and heart pacemakers (Implanted Pulse Generator) etc. Medical Systems Packaging Has to Be Ultra-reliable : The requirements of these medical devices are focused on reliability, size, functionality and longevity . Medical Systems Packaging Has to Be Ultra-compact : The classic problem faced by the packaging engineer is finding a way to incorporate increasing functionality and performance into a smaller and less intrusive volume for the patients. Microsystems Play a Dominant Role in Medical Electronics : The functions of a representative cardiac device include Sensing the heart’s electrical activity , Sensing the motions and activity level of the patient, Sensing the blood flow to and from the heart , Determining the required pacing algorithm from the sensed data .
+
+--- SLIDE 18 ---
+The Role of Packaging in Microsystem 18 Role of Packaging in Medical Electronics
+
+--- SLIDE 19 ---
+The Role of Packaging in Microsystem 19 Micro-Electro-Mechanical Systems (MEMS) Products Benefits of MEMS : MEMS accelerometers are the sensors used in nearly all automobile airbag deployment systems. The influence of MEMS is made possible through their benefits in cost, functionality, size, and reliability . MEMS in Microsystems : The requirements of these medical devices are focused on reliability, size, functionality and longevity . MEMS Play a Major Role in Medical Electronics : MEMS are already an important part of the medical electronics markets. Soon, MEMS will go further to enable remote diagnostics and patient independence. The micropump is a system in which a flow sensor measures the pumping rate and adjusts it accordingly to provide measured doses or correct dose of medication . MEMS Applications : MEMS accelerometers are currently used in industrial process control systems. Industrial MEMS accelerometers are applied in the measurement of gravity to determine orientation tilt and inclination ; inertial measurement of velocity and position for motion control ; and vibration and shock measurement for machine reliability .
+
+--- SLIDE 20 ---
+The Role of Packaging in Microsystem 20 MEMS Application Several MEMS accelerometers are currently used in industrial process control systems. Industrial MEMS accelerometers are applied in the measurement of gravity to determine orientation tilt and inclination; inertial measurement of velocity and position for motion control; and vibration and shock measurement for machine reliability.
+
+--- SLIDE 21 ---
+The Role of Packaging in Microsystem 21 F or automotive, hand-held, cost performance and high performance , represent the single largest part of systems packaging .

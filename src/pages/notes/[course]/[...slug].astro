@@ -1,43 +1,123 @@
 ---
 import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
 import PostLayout from '../../../layouts/PostLayout.astro';
+import NoteDirectoryList from '../../../components/NoteDirectoryList.astro';
 import { NOTE_COURSES } from '../../../consts';
 import { getReadingTime } from '../../../utils/readingTime';
+import {
+  formatDirectoryTitle,
+  getNoteBreadcrumbs,
+  getNoteDirectoryListing,
+  getNoteDirectoryPrefixes,
+  getNoteSlug,
+  isReadmeEntry
+} from '../../../utils/noteTree';
 
 export async function getStaticPaths() {
   const notes = await getCollection('notes', ({ data }) => (import.meta.env.PROD ? !data.draft : true));
 
-  return notes.flatMap((entry) => {
+  const articlePaths = notes.flatMap((entry) => {
     const course = NOTE_COURSES[entry.data.docGroup as keyof typeof NOTE_COURSES];
-    if (!course || /\/readme$/i.test(entry.id)) return [];
+    if (!course || isReadmeEntry(entry)) return [];
 
     return [{
       params: {
         course: course.slug,
-        slug: entry.id.replace(/^[^/]+\//, '')
+        slug: getNoteSlug(entry)
       },
       props: { entry, course }
     }];
   });
+
+  const directoryPaths = Object.entries(NOTE_COURSES).flatMap(([group, course]) => {
+    const entries = notes.filter((entry) => entry.data.docGroup === group && !isReadmeEntry(entry));
+
+    return getNoteDirectoryPrefixes(entries).map((directoryPrefix) => ({
+      params: {
+        course: course.slug,
+        slug: directoryPrefix
+      },
+      props: { course, directoryPrefix, entries }
+    }));
+  });
+
+  return [...directoryPaths, ...articlePaths];
 }
 
-const { entry, course } = Astro.props;
-const slug = entry.id.replace(/^[^/]+\//, '');
-const { Content, headings, remarkPluginFrontmatter } = await render(entry);
-const readingTime = getReadingTime(String(remarkPluginFrontmatter?.readingTime ?? entry.body));
+const props = Astro.props;
+const course = props.course;
+const isDirectoryPage = 'directoryPrefix' in props;
+
+let entry = props.entry;
+let Content;
+let headings = [];
+let readingTime = '';
+let slug = '';
+let directoryTitle = '';
+let breadcrumbs = [];
+let directories = [];
+let currentEntries = [];
+
+if (isDirectoryPage) {
+  directoryTitle = formatDirectoryTitle(props.directoryPrefix);
+  breadcrumbs = getNoteBreadcrumbs(props.directoryPrefix);
+  const listing = getNoteDirectoryListing(props.entries, props.directoryPrefix);
+  directories = listing.directories;
+  currentEntries = listing.entries;
+} else {
+  slug = getNoteSlug(entry);
+  const rendered = await render(entry);
+  Content = rendered.Content;
+  headings = rendered.headings;
+  readingTime = getReadingTime(String(rendered.remarkPluginFrontmatter?.readingTime ?? entry.body)).text;
+}
 ---
 
-<PostLayout
-  title={entry.data.title}
-  description={entry.data.description}
-  date={entry.data.date}
-  updated={entry.data.updated}
-  category={course.title}
-  readingTime={readingTime.text}
-  headings={headings}
-  path={`/notes/${course.slug}/${slug}/`}
-  kind="课程笔记"
-  source={entry.data.source}
->
-  <Content />
-</PostLayout>
+{
+  isDirectoryPage ? (
+    <BaseLayout
+      title={`${directoryTitle} | ${course.title}`}
+      description={course.description}
+      path={`/notes/${course.slug}/${props.directoryPrefix}/`}
+    >
+      <section class="page-grid">
+        <div class="page-intro">
+          <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+            <a href={`/notes/${course.slug}/`}>{course.title}</a>
+            {breadcrumbs.slice(0, -1).map((breadcrumb) => (
+              <>
+                <span>/</span>
+                <a href={`/notes/${course.slug}/${breadcrumb.path}/`}>{breadcrumb.title}</a>
+              </>
+            ))}
+          </nav>
+          <p class="eyebrow">课程目录</p>
+          <h1>{directoryTitle}</h1>
+          <p>{course.description}</p>
+        </div>
+
+        <NoteDirectoryList
+          directories={directories}
+          entries={currentEntries}
+          basePath={`/notes/${course.slug}/`}
+        />
+      </section>
+    </BaseLayout>
+  ) : (
+    <PostLayout
+      title={entry.data.title}
+      description={entry.data.description}
+      date={entry.data.date}
+      updated={entry.data.updated}
+      category={course.title}
+      readingTime={readingTime}
+      headings={headings}
+      path={`/notes/${course.slug}/${slug}/`}
+      kind="课程笔记"
+      source={entry.data.source}
+    >
+      <Content />
+    </PostLayout>
+  )
+}

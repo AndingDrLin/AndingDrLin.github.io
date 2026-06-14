@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="390" viewBox="0 0 960 390" role="img" aria-label="System package technology map">
+  <style>.box{fill:#fff;stroke:#334155;stroke-width:2;rx:10}.soc{fill:#ede9fe;stroke:#7c3aed}.sip{fill:#e0f2fe;stroke:#0284c7}.wlp{fill:#ecfdf5;stroke:#059669}.adv{fill:#fff7ed;stroke:#ea580c}.txt{font:600 17px Arial;fill:#0f172a}.small{font:13px Arial;fill:#334155}.arrow{stroke:#475569;stroke-width:2;marker-end:url(#a)}</style>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#475569"/></marker></defs>
+  <text class="txt" x="350" y="36">System-level integration options</text>
+  <rect class="soc" x="55" y="95" width="190" height="110" rx="10"/><text class="txt" x="125" y="130">SoC</text><text class="small" x="78" y="160">one die, high performance</text><text class="small" x="74" y="184">high design/prototype cost</text>
+  <rect class="sip" x="285" y="95" width="190" height="110" rx="10"/><text class="txt" x="355" y="130">SiP</text><text class="small" x="307" y="160">multiple dies/components</text><text class="small" x="309" y="184">heterogeneous, fast TTM</text>
+  <rect class="wlp" x="515" y="95" width="190" height="110" rx="10"/><text class="txt" x="586" y="130">WLP / CSP</text><text class="small" x="542" y="160">small form factor</text><text class="small" x="537" y="184">wafer-level cost advantage</text>
+  <rect class="adv" x="745" y="95" width="170" height="110" rx="10"/><text class="txt" x="790" y="130">3D / TSV</text><text class="small" x="767" y="160">vertical integration</text><text class="small" x="768" y="184">thermal / yield challenge</text>
+  <line class="arrow" x1="245" y1="150" x2="285" y2="150"/><line class="arrow" x1="475" y1="150" x2="515" y2="150"/><line class="arrow" x1="705" y1="150" x2="745" y2="150"/>
+  <rect class="box" x="195" y="265" width="570" height="70"/><text class="small" x="225" y="298">Exam comparison dimensions: integration level, performance, process compatibility, cost, reliability, thermal path, time-to-market.</text>
+</svg>

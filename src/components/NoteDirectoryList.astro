@@ -1,0 +1,45 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import PostCard from './PostCard.astro';
+import type { NoteDirectory } from '../utils/noteTree';
+
+interface Props {
+  directories: NoteDirectory[];
+  entries: CollectionEntry<'notes'>[];
+  basePath: string;
+}
+
+const { directories, entries, basePath } = Astro.props;
+---
+
+<div class="note-directory-stack">
+  {
+    directories.length > 0 && (
+      <div class="directory-grid">
+        {directories.map((directory) => (
+          <a class="directory-card" href={`${basePath}${directory.path}/`}>
+            <span class="directory-label">目录</span>
+            <h2>{directory.title}</h2>
+            <p>{directory.count} 篇内容</p>
+          </a>
+        ))}
+      </div>
+    )
+  }
+
+  {
+    entries.length > 0 && (
+      <div class="post-list">
+        {entries.map((entry) => (
+          <PostCard entry={entry} />
+        ))}
+      </div>
+    )
+  }
+
+  {
+    directories.length === 0 && entries.length === 0 && (
+      <div class="empty-state">这个目录暂时没有可展示的内容。</div>
+    )
+  }
+</div>
