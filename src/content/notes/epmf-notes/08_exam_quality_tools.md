@@ -78,7 +78,7 @@ $$CL = \bar{\bar{x}} = \frac{1}{n}\sum x_i$$
 
 $$UCL = \bar{\bar{x}} + k \cdot s，\quad LCL = \bar{\bar{x}} - k \cdot s$$
 
-$$s = \sqrt{\frac{\sum(x_i - \bar{\bar{x}})^2}{n - 1}}$$
+$$s = \sqrt{\frac{\sum(x_i - \bar{\bar{x}})^2}{n}}$$
 
 **方法二：查表法**（给 $\bar{\bar{x}}$、$\bar{R}$、样本量，查 $A_2$、$D_4$、$d_2$）
 
