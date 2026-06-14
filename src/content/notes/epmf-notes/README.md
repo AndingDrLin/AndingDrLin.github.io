@@ -60,7 +60,7 @@ draft: false
 
 四份期末考试真题的完整参考答案与试卷 PDF：
 
-- [2022 年期末考试参考答案](/notes/engineering-project-management-and-finance/11_exam_2022/) — BCR/IRR 选择题、Taguchi loss、矩阵组织、CPM、break-even 计算
+- [2022 年期末考试参考答案](/notes/engineering-project-management-and-finance/11_exam_2022/) — MCQ、NPV/DCF、Cpk 能力图、质量分级收入、break-even + make-or-buy
 - [2023 年期末考试参考答案](/notes/engineering-project-management-and-finance/12_exam_2023/) — 项目排序、沟通渠道、控制图、Cp/Cpk、PERT 概率计算
 - [2024 年期末考试参考答案](/notes/engineering-project-management-and-finance/13_exam_2024/) — DFM、Taguchi 三种 loss、P&L 分析、组织结构对比
 - [2025 年期末考试参考答案](/notes/engineering-project-management-and-finance/14_exam_2025/) — DFM 六原则、4Rs 循环经济、CPM + Gantt、break-even + cross-over
