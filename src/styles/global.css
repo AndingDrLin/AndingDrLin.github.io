@@ -270,6 +270,16 @@ pre {
   line-height: 1.3;
 }
 
+.contributor-card h3 a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.contributor-card h3 a:hover {
+  color: var(--accent);
+}
+
 .contributor-avatar {
   width: 48px;
   height: 48px;
@@ -293,17 +303,6 @@ pre {
   font-size: 0.92rem;
   color: var(--text-soft);
   line-height: 1.5;
-}
-
-.contributor-github {
-  font-size: 0.85rem;
-  color: var(--text-faint);
-  text-decoration: none;
-  transition: color 0.15s;
-}
-
-.contributor-github:hover {
-  color: var(--accent);
 }
 
 .start-card span {
