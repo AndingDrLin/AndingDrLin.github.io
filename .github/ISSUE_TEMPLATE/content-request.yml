@@ -1,0 +1,38 @@
+name: Content request
+description: 请求新增内容（课程笔记、博客文章、教程等）
+labels: ["content"]
+body:
+  - type: dropdown
+    id: type
+    attributes:
+      label: 内容类型
+      options:
+        - 课程笔记
+        - 博客文章
+        - 独立笔记
+        - 教程
+        - 其他
+    validations:
+      required: true
+
+  - type: input
+    id: title
+    attributes:
+      label: 标题
+      placeholder: 例：机器学习基础笔记
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 说明
+      description: 简要描述想要的内容，包括范围、来源课件、期望结构等
+    validations:
+      required: true
+
+  - type: textarea
+    id: source
+    attributes:
+      label: 源材料
+      description: 如有源课件、参考链接等，附在这里

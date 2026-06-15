@@ -1,0 +1,37 @@
+name: Link Check
+
+on:
+  schedule:
+    - cron: '0 8 * * 1'  # Every Monday at 8 AM UTC
+  workflow_dispatch:
+
+jobs:
+  check-links:
+    name: Check broken links
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Build site
+        run: |
+          npm ci
+          npm run build
+
+      - name: Check links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >
+            --no-progress
+            --exclude-mail
+            --exclude 'cdn.jsdelivr.net'
+            --exclude 'pagefind'
+            --exclude 'localhost'
+            --exclude 'avatars.githubusercontent.com'
+            dist/**/*.html src/content/**/*.md
+          fail: false

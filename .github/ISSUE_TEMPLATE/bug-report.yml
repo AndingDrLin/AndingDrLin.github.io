@@ -1,0 +1,36 @@
+name: Bug report
+description: 报告站点功能问题
+labels: ["bug"]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: 页面 URL
+      placeholder: https://andingdrlin.github.io/...
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 问题描述
+      description: 你遇到了什么问题？预期行为是什么？
+    validations:
+      required: true
+
+  - type: dropdown
+    id: browser
+    attributes:
+      label: 浏览器
+      options:
+        - Chrome
+        - Firefox
+        - Safari
+        - Edge
+        - 其他
+
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: 截图
+      description: 如有截图可附在这里

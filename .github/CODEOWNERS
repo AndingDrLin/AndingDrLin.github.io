@@ -1,0 +1,8 @@
+# Default maintainer for the entire project
+* @AndingDrLin
+
+# CI / workflows
+.github/ @AndingDrLin
+
+# Content contributions welcome from all
+src/content/ @AndingDrLin
