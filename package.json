@@ -9,7 +9,14 @@
     "dev": "astro dev",
     "build": "astro build && npx pagefind --site dist --force-language zh",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "check": "astro check",
+    "validate": "node scripts/validate-content.mjs",
+    "validate:blog": "node scripts/validate-content.mjs --blog",
+    "validate:notes": "node scripts/validate-content.mjs --notes",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "publish:course": "node scripts/publish-course.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.4",
@@ -22,9 +29,13 @@
     "react-dom": "^19.2.7",
     "react-katex": "^3.1.0",
     "rehype-katex": "^7.0.1",
-    "remark-math": "^6.0.0"
+    "remark-math": "^6.0.0",
+    "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
-    "pagefind": "^1.5.2"
+    "@astrojs/check": "^0.9.4",
+    "gray-matter": "^4.0.3",
+    "pagefind": "^1.5.2",
+    "vitest": "^3.2.1"
   }
 }
