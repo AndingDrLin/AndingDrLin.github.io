@@ -33,7 +33,10 @@
 
 - [ ] 运行：
   ```bash
-  node scripts/notes-pipeline/validate-frontmatter.mjs src/content/notes/<docGroup>/
+  npm run validate              # 校验所有内容
+  npm run validate:notes        # 只校验笔记
+  # 或针对单个目录：
+  node scripts/validate-content.mjs --dir src/content/notes/<docGroup>
   ```
 - [ ] 修复脚本报出的所有错误
 - [ ] 最终校验结果为 0 错误
@@ -105,6 +108,6 @@ draft: false
 
 - `src/content/notes/<docGroup>/` 中只保留 `README.md` 和章节 `.md` 文件
 - 源课件如果已完成对照，可直接删除
-- `node scripts/notes-pipeline/validate-frontmatter.mjs` 无报错
+- `npm run validate` 无报错
 - `npm run build` 成功
 - `/notes/<slug>/` 课程页和章节页均可正常访问

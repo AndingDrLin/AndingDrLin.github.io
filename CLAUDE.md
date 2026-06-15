@@ -1,144 +1,190 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+本文件为 Claude Code (claude.ai/code) 提供项目指引。
 
-## Development commands
+**交流语言：请始终使用中文与用户交流。**
 
-- `npm install` — install dependencies
-- `npm run dev` — start the Astro dev server
-- `npm run build` — production build + Pagefind search index (`astro build && npx pagefind --site dist --force-language zh`)
-- `npm run preview` — preview the production build locally
+## 开发命令
 
-There are **no lint, test, or format commands** configured. TypeScript strict mode is enabled via `tsconfig.json`.
+```bash
+npm install          # 安装依赖
+npm run dev          # 本地开发服务器
+npm run build        # 生产构建 + Pagefind 搜索索引
+npm run preview      # 预览生产构建
+npm run validate     # 校验所有内容的 frontmatter
+npm run validate:blog   # 只校验博客
+npm run validate:notes  # 只校验笔记
+npm run check        # Astro 类型检查 (astro check)
+npm run test         # 运行 Vitest 测试
+npm run test:watch   # Vitest 监听模式
+npm run publish:course <docGroup>  # 课程发布前的完整校验流程
+```
 
-## Architecture overview
+TypeScript strict mode 通过 `tsconfig.json` 启用。
 
-This repository is a static Astro site for **Latent Note** (隐空间) deployed to GitHub Pages as a user-site repo. The production URL is `https://andingdrlin.github.io/` — there is **no `base` path**.
+### CI 工作流
 
-### Content collections
-
-Two collections in `src/content.config.ts` using Astro v2 `glob` loader:
-
-- `src/content/blog/` — longer posts
-- `src/content/notes/` — course notes, tutorials, and shorter records
-
-Both share a `baseSchema` (title, description, date, updated, tags, category, draft, cover, source). Notes extend it with `docGroup` (string) and `order` (optional number).
-
-Allowed `category` values (enum in `src/consts.ts`): `AI Tools`, `3D Vision`, `Agents`, `Research Notes`, `Essays`, `Tutorials`, `课程学习`.
-
-### Routing — the `docGroup` link
-
-`docGroup` is the critical link between content and routing. Each note's `docGroup` must map to an entry in `NOTE_COURSES` or `NOTE_TUTORIALS` in `src/consts.ts`. **The dict key (e.g. `'dsp-notes'`) is NOT the URL slug** — the `slug` field inside each entry (e.g. `'digital-signal-processing'`) is what appears in URLs.
-
-| Route | File | Notes |
+| 文件 | 触发条件 | 作用 |
 |---|---|---|
-| `/notes/` | `notes/index.astro` | Hub page with course + tutorial cards |
-| `/notes/[course]/` | `notes/[course]/index.astro` | Course landing, uses `NoteDirectoryList` |
-| `/notes/[course]/[...slug]/` | `notes/[course]/[...slug].astro` | **Both** article pages **and** nested directory pages in one route. Checks `'directoryPrefix' in props` to decide rendering mode |
-| `/notes/tutorial/[tutorial]/[...slug]/` | mirrors course routing | For tutorials |
-| `/notes/[slug]/` | `notes/[...slug].astro` | Standalone notes not in any course/tutorial |
-| `/notes/quiz/` | `notes/quiz.astro` | React quiz app (`client:only="react"`) |
+| `.github/workflows/deploy.yml` | push to `main`（内容/配置相关路径）/ 手动 | 构建 + 部署到 GitHub Pages |
+| `.github/workflows/check.yml` | PR + push to `main` | validation → type check → build check (PR only) |
+| `.github/workflows/links.yml` | 每周一 / 手动 | 构建后用 lychee 检查断链 |
+| `.github/dependabot.yml` | 自动 | npm + GitHub Actions 依赖更新 |
 
-**README convention**: Notes named `readme.md` (case-insensitive) are filtered from all listings and directory views. Their `description` is used as the course landing page fallback description.
+## 项目架构
 
-### Adding a new course
+Astro v6 静态站点，部署到 GitHub Pages 用户站点。生产 URL：`https://andingdrlin.github.io/`，**没有 `base` 路径**。
 
-1. Add entry to `NOTE_COURSES` in `src/consts.ts`
-2. Create directory `src/content/notes/{docGroup-key}/`
-3. Add `README.md` with `order: -1` and the same `docGroup` value
-4. Add chapter `.md` files with sequential `order` values
+### 内容集合
 
-### Layouts and components
+两个集合，定义在 `src/content.config.ts`，使用 Astro v2 `glob` loader：
 
-- `BaseLayout.astro` — root layout: lang, CSS, KaTeX, Mermaid CDN loader, theme flash prevention, Header + Footer + SEO
-- `PostLayout.astro` — article shell: eyebrow, h1, meta (date/readingTime/category/updated/source), TOC, content slot
-- `PostCard.astro` — article card with complex URL-resolution logic for courses, tutorials, and standalone notes
-- `NoteDirectoryList.astro` — renders directory cards + note cards for a course page
-- `Search.astro` — Pagefind search dialog with `Cmd+K` shortcut
+- `src/content/blog/` — 博客文章
+- `src/content/notes/` — 课程笔记、教程、独立笔记
 
-### Styling
+共用 `baseSchema`：title, description, date, updated, tags, category, draft, cover, source。Notes 额外扩展 `docGroup` (string) 和 `order` (optional number)。
 
-Plain CSS in `src/styles/global.css`. CSS custom properties for theming (`--bg`, `--text`, `--accent`, etc.). Dark mode via `:root[data-theme='dark']`. No framework or utility classes.
+`category` 允许值（`src/consts.ts` 枚举）：`AI Tools` · `3D Vision` · `Agents` · `Research Notes` · `Essays` · `Tutorials` · `课程学习`。
 
-### Quiz system (React, client-only)
+### 路由 — docGroup 桥接
 
-The only React usage. Lives at `/notes/quiz/`. Question banks are in `src/data/question-banks/` as TypeScript files. All state is in `localStorage`. Math uses `$...$` rendered via `react-katex`.
+`docGroup` 是内容和路由之间的关键桥梁。每个 note 的 `docGroup` 必须映射到 `src/consts.ts` 中 `NOTE_COURSES` 或 `NOTE_TUTORIALS` 的条目。**dict key（如 `'dsp-notes'`）≠ URL slug** — 条目内的 `slug` 字段（如 `'digital-signal-processing'`）才是 URL 中出现的。
 
-### Utility functions (`src/utils/`)
+| 路由 | 文件 | 说明 |
+|---|---|---|
+| `/notes/` | `notes/index.astro` | 笔记首页，展示课程和教程卡片 |
+| `/notes/[course]/` | `notes/[course]/index.astro` | 课程着陆页，使用 `NoteDirectoryList` |
+| `/notes/[course]/[...slug]/` | `notes/[course]/[...slug].astro` | 文章页**和**嵌套目录页共用，通过 `'directoryPrefix' in props` 判断渲染模式 |
+| `/notes/tutorial/[tutorial]/[...slug]/` | 同课程路由 | 教程路由 |
+| `/notes/[slug]/` | `notes/[...slug].astro` | 不属于任何课程/教程的独立笔记 |
+| `/notes/quiz/` | `notes/quiz.astro` | React 测验应用 (`client:only="react"`) |
 
-- `content.ts` — `getPublishedCollection()`, `getLatestNotes()`, `formatDate()`, etc.
-- `noteTree.ts` — directory tree logic: `getNoteSlug()`, `getNoteDirectoryListing()`, `getNoteBreadcrumbs()`
-- `readingTime.ts` — bilingual: 220 WPM English, 500 CPM Chinese. Returns `{minutes, text}`
+**README 约定**：名为 `readme.md`（不区分大小写）的笔记会从所有列表和目录视图中过滤掉。其 `description` 用作课程着陆页的兜底描述。
 
-### Markdown pipeline
+### 添加新课程
 
-`remark-math` → custom `remarkMermaid` (converts to `<pre class="mermaid">`) → `rehype-katex`. Mermaid renders client-side from CDN only if `.mermaid` elements exist. Shiki uses `github-light` / `github-dark` dual themes.
+1. 在 `src/consts.ts` 的 `NOTE_COURSES` 中添加条目
+2. 创建目录 `src/content/notes/{docGroup-key}/`
+3. 添加 `README.md`，设置 `order: -1` 和相同的 `docGroup` 值
+4. 添加章节 `.md` 文件，`order` 顺序递增
 
-## Pitfalls — read before editing
+完整流程见 `CONTRIBUTING.md` 和 `scripts/notes-pipeline/PUBLISH_CHECKLIST.md`。可以用 `npm run publish:course <docGroup>` 自动运行发布前校验。
 
-1. **`docGroup` key ≠ URL slug.** `'dsp-notes'` is the key, `'digital-signal-processing'` is the slug. Confusing them breaks links.
-2. **`getNoteSlug()` assumes the first path segment is the docGroup.** `entry.id.replace(/^[^/]+\//, '')`. Do not add content files with different nesting conventions.
-3. **`PostCard` link logic is intricate.** It checks README status, course membership, and tutorial membership. Changes to routing structure must be reflected here.
-4. **`getPublishedCollection('notes')` includes READMEs; `getLatestNotes()` does not.** Choose the right one for your page.
-5. **`notes/[...slug].astro` only handles notes NOT in any course or tutorial.** It explicitly filters out entries whose `docGroup` matches a registered key.
-6. **`unist-util-visit` is imported in `astro.config.mjs` but not in `package.json`.** It works as a transitive dep of remark. If you add direct usage, add it to `package.json`.
-7. **Pagefind runs as a post-build step**, not an Astro integration. If `astro build` fails, the search index will be stale.
-8. **No scheduled publishing.** The `isPublished` check only looks at `draft`, not `date`.
-9. **Do not commit source artifacts or working documents to content directories.** Development notes, extracted text files, review logs, and raw source material belong outside the repo or in a private location — they bloat the build and may expose internal data. Use `draft: true` only for genuinely unfinished content, not for staging files.
-10. **Quiz progress is localStorage-only.** Clearing browser data loses it. There is no export/import.
+### 布局与组件
 
-## Deployment
+- `BaseLayout.astro` — 根布局：lang、CSS、KaTeX、Mermaid CDN loader、主题闪烁防护、skip-to-content 无障碍链接、Header + Footer + SEO（含 JSON-LD 结构化数据）
+- `PostLayout.astro` — 文章外壳：eyebrow、h1、meta（date/readingTime/category/updated/source）、TOC、内容 slot
+- `PostCard.astro` — 文章卡片，URL 解析逻辑复杂（课程、教程、独立笔记三路判断）
+- `NoteDirectoryList.astro` — 渲染课程页的目录卡片 + 笔记卡片
+- `Search.astro` — Pagefind 搜索对话框，`Cmd+K` 快捷键
 
-- GitHub Actions workflow: `.github/workflows/deploy.yml`
-- Triggers on push to `main` or manual dispatch
-- Node 22, `npm ci` → `npm run build` (includes Pagefind) → upload to GitHub Pages
-- GitHub Pages must be configured to deploy from **GitHub Actions** (not branch)
+### 工具函数 (`src/utils/`)
 
-## Writing style for Latent Note
+- `content.ts` — `getPublishedCollection()`、`getLatestNotes()`、`getFeedEntries()`、`formatDate()` 等
+- `noteTree.ts` — 目录树逻辑：`getNoteSlug()`、`getNoteDirectoryListing()`、`getNoteBreadcrumbs()`、`sortNoteEntries()`（共享排序函数）
+- `readingTime.ts` — 双语计算：英文 220 WPM，中文 500 CPM
 
-Content is written in Chinese. The following rules apply to all blog posts, notes, and any other long-form writing in this repo.
+### Markdown 处理管线
 
-### Overall tone
+`remark-math` → 自定义 `remarkMermaid`（转为 `<pre class="mermaid">`）→ `rehype-katex`。Mermaid 客户端渲染，仅在页面存在 `.mermaid` 元素时加载 CDN。Shiki 使用 `github-light` / `github-dark` 双主题。
 
-Articles should read like sober, clear-eyed, experiment-driven research notes — not viral posts, marketing copy, course slides, or translated papers. The author is not an omniscient expert but someone doing concrete research/project work. Write for "future me and peers in the same field." Tone is natural but never greasy; judgmental but never pretentious; reflective but never preachy.
+### 样式
 
-### Five core principles
+纯 CSS，`src/styles/global.css`。CSS 自定义属性用于主题化（`--bg`、`--text`、`--accent` 等）。暗色模式通过 `:root[data-theme='dark']`。无框架或工具类。
 
-1. **Start with a concrete problem, never a grand opening.** Ban openings like "With the rapid development of AI, computer vision is profoundly changing the world..." An opening must answer: What am I working on? What specific problem did I hit? Why is it worth writing about?
+### Quiz 系统（React，client-only）
 
-2. **Every article must have a clear central judgment.** Do not just stack materials. The judgment can be conservative, but it must exist.
+项目中唯一的 React 用途。位于 `/notes/quiz/`。题库在 `src/data/question-banks/`（TypeScript 文件）。所有状态存 `localStorage`。数学公式用 `$...$` 通过 `react-katex` 渲染。
 
-3. **Acknowledge boundaries; don't pretend to fully understand.** Allowed: "My current understanding is...", "I'm not sure about this yet.", "This conclusion only applies to my current experimental setup." Banned: "It is obvious that...", "This fully proves...", "This comprehensively and systematically reveals..."
+## 测试
 
-4. **Write with an experimental sensibility.** A good sentence includes: observed phenomenon, conditions, possible cause, next verification step.
+```bash
+npm run test              # 运行所有测试
+npm run test:watch        # 监听模式
+```
 
-5. **Write "limitations," not "significance."** Write "The biggest limitation of this method right now is...", "This experiment cannot prove...", "This result only supports a weak conclusion..." Avoid empty statements like "This provides important reference for future research."
+测试文件位于：
+- `src/utils/__tests__/readingTime.test.ts` — 阅读时间计算
+- `src/utils/__tests__/noteTree.test.ts` — 目录树工具函数
+- `scripts/__tests__/validate-content.test.mjs` — 校验脚本集成测试
 
-### Recommended article structures
+## 编辑前必读
 
-- **Research reflection** (pitfalls, failed experiments, direction judgment): Where the problem came from → What I initially thought → What the real problem turned out to be → What conclusions the evidence supports → What conclusions it does NOT support → Next 2–4 concrete actions.
-- **Paper/direction reading** (paper reviews, surveys, technical route assessment): What problem it solves → Why it matters now → Core method → What I find genuinely valuable → What I disagree with or don't yet understand → How it informs my own project.
-- **Technical decision** (internship choices, method selection, open-source strategy): Define the goal → List options → Analyze payoff and cost of each → State the current-stage choice → Specify what conditions would change that choice.
+1. **`docGroup` key ≠ URL slug。** `'dsp-notes'` 是 key，`'digital-signal-processing'` 是 slug。搞混了链接全断。
+2. **`getNoteSlug()` 假设第一段路径是 docGroup。** `entry.id.replace(/^[^/]+\//, '')`。不要用不同的嵌套约定添加内容文件。
+3. **`PostCard` 的链接逻辑很复杂。** 它检查 README 状态、课程归属和教程归属。修改路由结构必须同步修改这里。
+4. **`getPublishedCollection('notes')` 包含 README；`getLatestNotes()` 不包含。** 根据页面需求选择正确的函数。
+5. **`notes/[...slug].astro` 只处理不属于任何课程/教程的笔记。** 它会显式过滤掉 `docGroup` 匹配已注册 key 的条目。
+6. **`unist-util-visit` 在 `astro.config.mjs` 中使用但不在 `package.json` 中。** 作为 remark 的传递依赖可以工作。如果直接使用，需要加入 `package.json`。
+7. **Pagefind 是构建后步骤**，不是 Astro 集成。如果 `astro build` 失败，搜索索引会过期。
+8. **没有定时发布。** `isPublished` 只检查 `draft`，不检查 `date`。
+9. **不要将源课件或工作文档提交到内容目录。** 开发笔记、提取的文本文件、review 日记和原始素材放在仓库之外。`draft: true` 只用于真正未完成的内容。工作制品放在 `_archive/`（已 gitignore）。
+10. **Quiz 进度仅存 localStorage。** 清除浏览器数据会丢失，没有导出/导入功能。
+11. **`validate-content.mjs` 的常量从 `src/consts.ts` 动态读取。** 修改 CATEGORIES 或 NOTE_COURSES 后校验脚本自动同步，不需要手动更新。
+12. **`sortNoteEntries()` 是 `noteTree.ts` 导出的共享排序函数。** `content.ts` 和 `noteTree.ts` 都使用它，不要在别处重复实现。
 
-### Paragraph and language style
+## 部署
 
-One idea per paragraph, roughly 3–6 lines. Every few paragraphs, drop a clear judgment line (e.g., "So my current judgment: this problem should no longer be solved by tuning hyperparameters.").
+- GitHub Actions：`.github/workflows/deploy.yml`
+- push to `main`（内容/配置相关路径）或手动触发
+- Node 22，`npm ci` → `npm run build`（含 Pagefind）→ 上传到 GitHub Pages
+- GitHub Pages 必须配置为从 **GitHub Actions** 部署（不是从分支）
 
-Allowed register: casual-but-sober expressions like "说白了...", "更现实的问题是...", "我之前忽略的一点是...", "这听起来像废话，但在实际做实验时很重要."
+## 写作规范
 
-Banned register: 赋能, 打造, 深度融合, 闭环生态, 显著提升, 具有重要意义, 为未来研究提供新思路, 在当今快速发展的时代背景下, and similar bureaucratic/clickbait phrases.
+内容使用中文写作。以下规则适用于所有博客、笔记和长文。
 
-### Hard bans on AI writing patterns
+### 整体基调
 
-- No grand narrative openings
-- No exaggeration without evidence
-- No ending every section with "具有重要意义" or equivalent
-- No writing in standard paper-abstract style
-- No pretending the author fully understands everything
-- No piling up "首先，其次，最后" without real logic
-- No overly neat parallel sentence structures
-- No padding paragraphs just to appear comprehensive
+文章应像清醒的、以实验驱动的研究笔记——不是爆款文、营销文案、课程幻灯片或翻译论文。作者不是全知专家，而是在做具体研究/项目的人。写给"未来的自己和同领域的同行"。语气自然但不油腻，有判断但不装，有反思但不说教。
 
-### Self-check before publishing
+### 五条核心原则
 
-Does this article have a concrete problem? A clear judgment? Evidence from experiments, papers, code, or experience? Stated uncertainties? Deleted filler? After reading, does the reader know what to do next? If any answer is no, rewrite.
+1. **从具体问题出发，不要宏大叙事开头。** 禁止"随着 AI 的快速发展..."式开头。开头必须回答：我在做什么？遇到了什么具体问题？为什么值得写？
+2. **每篇文章必须有明确的中心判断。** 不要只堆材料。判断可以保守，但必须存在。
+3. **承认边界，不要假装完全理解。** 允许："我目前的理解是..."、"这个结论只适用于我当前的实验设置。"禁止："显而易见..."、"这充分证明..."、"这全面系统地揭示了..."
+4. **用实验思维写作。** 一个好的句子包含：观察到的现象、条件、可能原因、下一步验证。
+5. **写"局限"，不写"意义"。** 写"这个方法目前最大的局限是..."、"这个实验无法证明..."。避免"为未来研究提供了重要参考"式空话。
+
+### 推荐文章结构
+
+- **研究反思**（踩坑、失败实验、方向判断）：问题怎么来的 → 我一开始怎么想的 → 真正的问题是什么 → 证据支持什么结论 → 不支持什么结论 → 下一步 2–4 个具体行动。
+- **论文/方向阅读**（论文评述、技术路线评估）：解决什么问题 → 为什么现在重要 → 核心方法 → 我觉得真正有价值的地方 → 我不同意或还没理解的地方 → 对我自己项目的启发。
+- **技术决策**（实习选择、方法选择、开源策略）：定义目标 → 列出选项 → 分析各选项的收益和代价 → 说明当前阶段的选择 → 指出什么条件会改变这个选择。
+
+### 段落和语言风格
+
+一个段落一个观点，大致 3–6 行。每隔几段丢一句清晰的判断句（如"所以我目前的判断：这个问题不应该再靠调超参数来解决了"）。
+
+允许的表达：说白了...、更现实的问题是...、我之前忽略的一点是...、这听起来像废话，但在实际做实验时很重要。
+
+禁止的表达：赋能、打造、深度融合、闭环生态、显著提升、具有重要意义、为未来研究提供新思路、在当今快速发展的时代背景下，以及类似的官话/标题党用语。
+
+### AI 写作模式硬禁
+
+- 禁止宏大叙事开头
+- 禁止无证据的夸张
+- 禁止每节结尾都写"具有重要意义"或等价表达
+- 禁止论文摘要式写作
+- 禁止假装作者完全理解一切
+- 禁止没有真实逻辑的"首先，其次，最后"堆砌
+- 禁止过于工整的排比句式
+- 禁止为了显得全面而水字数
+
+### 发布前自检
+
+这篇文章有没有具体问题？有没有明确判断？有没有来自实验、论文、代码或经验的证据？有没有说明不确定性？有没有删掉废话？读完之后读者知不知道下一步该做什么？任何一个答案是否，重写。
+
+## 相关文档
+
+| 文件 | 说明 |
+|---|---|
+| `CONTRIBUTING.md` | 贡献指南：内容类型、frontmatter 规范、添加流程、CI 说明 |
+| `templates/` | 内容模板（blog、note、docs、tutorial、course-config） |
+| `scripts/validate-content.mjs` | 统一 frontmatter 校验脚本（动态读取 consts） |
+| `scripts/publish-course.mjs` | 课程发布自动化校验（validate → typecheck → build → link check） |
+| `scripts/notes-pipeline/` | 课程发布流水线（checklist、review prompt） |
+| `.claude/commands/review-notes.md` | Claude Code slash command：课程笔记生成与审查 |
+| `.editorconfig` | 编辑器统一配置 |
+| `.github/CODEOWNERS` | 代码所有权 |
+| `.github/dependabot.yml` | 自动依赖更新 |
