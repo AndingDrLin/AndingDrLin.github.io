@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PostCard from '../../components/PostCard.astro';
 import { NOTE_COURSES, NOTE_TUTORIALS, NOTES_PAGE } from '../../consts';
 import { getPublishedCollection } from '../../utils/content';
+import { subjects } from '../../data/question-banks/subjects';
 
 const allNotes = await getPublishedCollection('notes');
 
@@ -48,7 +49,7 @@ const otherNotes = allNotes.filter((entry) => {
           <a class="course-card" href="/notes/quiz/">
             <h3>自测练习</h3>
             <p>多学科刷题自测：电磁场、EPMF 等课程的选择题与判断题练习，支持错题本与薄弱点分析。</p>
-            <span class="course-count">3 个学科</span>
+            <span class="course-count">{subjects.length} 个学科</span>
           </a>
         </div>
       </section>

@@ -1,5 +1,5 @@
 ---
-import { SITE_TITLE } from '../consts';
+import { SITE_TITLE, SITE_URL } from '../consts';
 
 interface Props {
   title: string;
@@ -9,6 +9,7 @@ interface Props {
   type?: 'website' | 'article';
   publishedTime?: string;
   modifiedTime?: string;
+  tags?: string[];
 }
 
 const {
@@ -18,8 +19,39 @@ const {
   image,
   type = 'website',
   publishedTime,
-  modifiedTime
+  modifiedTime,
+  tags
 } = Astro.props;
+
+const jsonLd = type === 'article'
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: title,
+      description,
+      image,
+      url: canonical,
+      datePublished: publishedTime,
+      dateModified: modifiedTime || publishedTime,
+      author: {
+        '@type': 'Person',
+        name: 'AndingDrLin',
+        url: 'https://github.com/AndingDrLin'
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: SITE_TITLE,
+        url: SITE_URL
+      },
+      ...(tags?.length ? { keywords: tags.join(', ') } : {})
+    }
+  : {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: SITE_TITLE,
+      url: SITE_URL,
+      description
+    };
 ---
 
 <title>{title}</title>
@@ -37,3 +69,4 @@ const {
 <meta name="twitter:image" content={image} />
 {publishedTime && <meta property="article:published_time" content={publishedTime} />}
 {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

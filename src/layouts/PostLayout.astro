@@ -21,9 +21,10 @@ interface Props {
   path: string;
   kind: string;
   source?: string;
+  tags?: string[];
 }
 
-const { title, description, date, updated, category, readingTime, headings, path, kind, source } = Astro.props;
+const { title, description, date, updated, category, readingTime, headings, path, kind, source, tags } = Astro.props;
 ---
 
 <BaseLayout
@@ -33,6 +34,7 @@ const { title, description, date, updated, category, readingTime, headings, path
   type="article"
   publishedTime={date.toISOString()}
   modifiedTime={updated?.toISOString()}
+  tags={tags}
 >
   <article class="article-layout">
     <TOC headings={headings} />

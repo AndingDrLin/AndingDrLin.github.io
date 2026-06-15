@@ -64,6 +64,26 @@ a:hover {
   color: var(--accent);
 }
 
+/* ── Skip to content (a11y) ── */
+
+.skip-to-content {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 1000;
+  padding: 0.5rem 1rem;
+  background: var(--accent);
+  color: #fff;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: top 0.15s;
+}
+
+.skip-to-content:focus {
+  top: 0.5rem;
+}
+
 img {
   display: block;
   max-width: 100%;

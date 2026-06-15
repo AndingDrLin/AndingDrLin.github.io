@@ -14,6 +14,7 @@ interface Props {
   type?: 'website' | 'article';
   publishedTime?: string;
   modifiedTime?: string;
+  tags?: string[];
 }
 
 const {
@@ -23,7 +24,8 @@ const {
   image = '/social-card.svg',
   type = 'website',
   publishedTime,
-  modifiedTime
+  modifiedTime,
+  tags
 } = Astro.props;
 
 const pageTitle = title === SITE_TITLE ? SITE_TITLE : `${title} · ${SITE_TITLE}`;
@@ -47,7 +49,9 @@ const imageUrl = new URL(image, baseUrl).toString();
     </script>
     <script>
       if (document.querySelector('.mermaid')) {
-        const m = await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs');
+        // Pin to specific version for reproducibility; update both URL and comment when bumping.
+        const MERMAID_VERSION = '11';
+        const m = await import(`https://cdn.jsdelivr.net/npm/mermaid@${MERMAID_VERSION}/dist/mermaid.esm.min.mjs`);
         m.default.initialize({
           startOnLoad: true,
           theme: document.documentElement.dataset.theme === 'dark' ? 'dark' : 'default'
@@ -62,11 +66,13 @@ const imageUrl = new URL(image, baseUrl).toString();
       type={type}
       publishedTime={publishedTime}
       modifiedTime={modifiedTime}
+      tags={tags}
     />
   </head>
   <body>
     <Header />
-    <main class="shell page-shell">
+    <a href="#main-content" class="skip-to-content">跳到内容</a>
+    <main id="main-content" class="shell page-shell">
       <slot />
     </main>
     <Footer />

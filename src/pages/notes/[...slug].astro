@@ -31,6 +31,7 @@ const readingTime = getReadingTime(String(remarkPluginFrontmatter?.readingTime ?
   path={`/notes/${entry.id}/`}
   kind="笔记"
   source={entry.data.source}
+  tags={entry.data.tags}
 >
   <Content />
 </PostLayout>
