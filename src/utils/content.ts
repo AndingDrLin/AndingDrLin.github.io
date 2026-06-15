@@ -1,4 +1,5 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
+import { sortNoteEntries } from './noteTree';
 
 export type ContentKind = 'blog' | 'notes';
 
@@ -9,22 +10,12 @@ export type EntryWithKind = {
   kind: ContentKind;
 };
 
-function getEntryDate(entry: { data?: { date: Date }; entry?: { data: { date: Date } } }) {
-  return entry.data?.date ?? entry.entry?.data.date;
+function sortByDateDesc<T extends { data: { date: Date } }>(entries: T[]) {
+  return [...entries].sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 }
 
-function sortByDateDesc<T extends { data?: { date: Date }; entry?: { data: { date: Date } } }>(entries: T[]) {
-  return entries.sort((a, b) => getEntryDate(b)!.getTime() - getEntryDate(a)!.getTime());
-}
-
-function sortNotes<T extends CollectionEntry<'notes'>>(entries: T[]) {
-  return entries.sort((a, b) => {
-    const orderA = a.data.order ?? Number.POSITIVE_INFINITY;
-    const orderB = b.data.order ?? Number.POSITIVE_INFINITY;
-
-    if (orderA !== orderB) return orderA - orderB;
-    return a.id.localeCompare(b.id);
-  });
+function sortWrappedByDateDesc<T extends { entry: { data: { date: Date } } }>(entries: T[]) {
+  return [...entries].sort((a, b) => b.entry.data.date.getTime() - a.entry.data.date.getTime());
 }
 
 function isPublished<T extends { data: { draft?: boolean } }>(entry: T) {
@@ -35,7 +26,7 @@ export async function getPublishedCollection(type: 'blog'): Promise<CollectionEn
 export async function getPublishedCollection(type: 'notes'): Promise<CollectionEntry<'notes'>[]>;
 export async function getPublishedCollection(type: ContentKind) {
   const entries = await getCollection(type, isPublished);
-  return type === 'notes' ? sortNotes(entries as CollectionEntry<'notes'>[]) : sortByDateDesc(entries);
+  return type === 'notes' ? sortNoteEntries(entries as CollectionEntry<'notes'>[]) : sortByDateDesc(entries);
 }
 
 export async function getLatestEntries(type: ContentKind, count: number) {
@@ -49,25 +40,13 @@ export async function getLatestNotes(count: number) {
   return sortByDateDesc(entries.filter((entry) => !/\/readme$/i.test(entry.id))).slice(0, count);
 }
 
-export async function getAllPublishedEntries() {
-  const [blog, notes] = await Promise.all([
-    getPublishedCollection('blog'),
-    getPublishedCollection('notes')
-  ]);
-
-  return sortByDateDesc([
-    ...blog.map((entry) => ({ entry, kind: 'blog' as const })),
-    ...notes.map((entry) => ({ entry, kind: 'notes' as const }))
-  ]);
-}
-
 export async function getFeedEntries() {
   const [blog, notes] = await Promise.all([
     getPublishedCollection('blog'),
     getPublishedCollection('notes')
   ]);
 
-  return sortByDateDesc([
+  return sortWrappedByDateDesc([
     ...blog.map((entry) => ({ entry, kind: 'blog' as const })),
     ...notes.map((entry) => ({ entry, kind: 'notes' as const }))
   ]);

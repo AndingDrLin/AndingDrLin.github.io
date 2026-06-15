@@ -108,7 +108,7 @@ export const PROFILE = {
 export const CONTRIBUTORS = [
   {
     role: '站点维护者',
-    bio: 'I am a student at University of Electronic Science and Technology of China (UESTC). My research interests lie in 3D Computer Vision and 3D restruction.',
+    bio: 'I am a student at University of Electronic Science and Technology of China (UESTC). My research interests lie in 3D Computer Vision and 3D reconstruction.',
     avatar: 'https://avatars.githubusercontent.com/u/142360770?v=4',
     github: 'AndingDrLin'
   },

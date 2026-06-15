@@ -16,7 +16,7 @@ function trimSlashes(value: string) {
   return value.replace(/^\/+|\/+$/g, '');
 }
 
-function sortNoteEntries(entries: CollectionEntry<'notes'>[]) {
+export function sortNoteEntries(entries: CollectionEntry<'notes'>[]) {
   return [...entries].sort((a, b) => {
     const orderA = a.data.order ?? Number.POSITIVE_INFINITY;
     const orderB = b.data.order ?? Number.POSITIVE_INFINITY;
