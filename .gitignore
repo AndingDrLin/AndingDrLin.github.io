@@ -6,3 +6,4 @@ dist/
 .env.production
 .DS_Store
 virtual-venus/
+_archive/

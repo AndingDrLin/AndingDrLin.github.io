@@ -1,27 +1,0 @@
-Problem Solving
- Buck
-
-
-
-
-Assuming ideal components, calculate (a) the output voltage , (b) the maximum and
-minimum inductor current, and (c) the output voltage ripple.
-Boost
-A boost converter has following parameters. Determine duty cycle, average, minimum and
-maximum inductor current and output voltage ripple.
-
-
-    𝑉𝐼𝑁 = 12 V
-    𝑉𝑂𝑈𝑇 = 30 V
-    𝐿 = 120 μH
-    𝐶 = 48 μ𝐹
-    𝑅 = 50 𝑜ℎ𝑚
-    𝑓 = 50 KHz
-Buck-Boost
-
-
-
-
-Determine the output voltage, inductor current average, maximum and
-minimum values, and the output voltage ripple
-
