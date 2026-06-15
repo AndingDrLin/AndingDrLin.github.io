@@ -462,11 +462,19 @@ $$
 
 ### 三种 Taguchi loss type
 
-| 类型 | 目标 | 例子 | 课程里怎么考 |
-|---|---|---|---|
-| **Nominal-the-best** | 越接近目标值越好 | 电压 10V、电阻 100Ω | 最常算 $k(y-m)^2$ |
-| **Smaller-the-better** | 越小越好 | 泄漏电流、污染排放、响应时间 | 多为概念识别 |
-| **Larger-the-better** | 越大越好 | 效率、准确率、功率放大 | 多为概念识别 |
+| 类型 | 目标 | 损失函数 | 例子 | 课程里怎么考 |
+|---|---|---|---|---|
+| **Nominal-the-best (NTB)** | 越接近目标值越好 | $L(y) = k(y - m)^2$ | 电压 10V、电阻 100Ω、零件尺寸 | 最常考计算，$m$ = 标称目标值 |
+| **Smaller-the-better (STB)** | 越小越好，理想值为 0 | $L(y) = k y^2$ | 泄漏电流、磨损量、污染排放、响应时间 | 多为概念识别 |
+| **Larger-the-better (LTB)** | 越大越好，理想值为 $\infty$ | $L(y) = k / y^2$ | 材料强度、电池寿命、放大倍数 | 多为概念识别 |
+
+**补充说明：**
+
+- **NTB** 是考试唯一会考计算的类型。核心公式 $L(y) = k(y-m)^2$，偏离目标越大，损失按平方增长。Sony TV 的例子就是 NTB：颜色密度有明确目标值，偏离越多，画质损失越大。
+- **STB** 适用于"越小越好"的质量特性。没有明确的目标值 $m$，因为理想值就是零。公式中 $m=0$，所以简化为 $L(y) = ky^2$。例如汽车尾气排放，零排放是理想状态；焊接缺陷数，零缺陷是目标。
+- **LTB** 适用于"越大越好"的质量特性。理想值趋向无穷大，所以用倒数形式。例如材料的抗拉强度越高越好、电池循环寿命越长越好。公式 $L(y)=k/y^2$ 说明：强度越接近理想值，$y$ 越大，$k/y^2$ 越小，损失越小。
+
+**速记口诀**：NTB 看偏离（$y-m$），STB 看大小（$y$），LTB 看倒数（$1/y$）。
 
 如果选项里出现 **Target-the-zero**，PPT/Sample 里把它作为错误项；常见三类是 nominal / smaller / larger。
 
@@ -491,6 +499,20 @@ Robust design 会把影响产品 response $y$ 的因素分成三类：signal fac
 如果题目说：“工程师选择不同材料、调整工艺参数来减少输出波动。”
 
 材料选择和工艺参数是 **control factors**，因为设计者可以主动设定。
+
+### Noise Factors 分类与举例
+
+Taguchi 将 noise factors 按来源分为三类：
+
+| 分类 | 英文 | 含义 | 举例 |
+|------|------|------|------|
+| **外噪声** | External noise | 来自产品外部环境和使用条件的变化 | 温度波动、湿度变化、供电电压不稳、灰尘、振动、日照变化 |
+| **内噪声** | Internal noise | 来自产品内部，包括制造过程中的随机变异和使用过程中的老化退化 | 零件间尺寸偏差、材料批次差异、设备磨损、焊接缺陷率波动、元器件老化 |
+| **产品间变异** | Piece-to-piece (unit-to-unit) variation | 同一生产批次中，不同产品之间的固有差异 | 同一批电阻的实际阻值在 98Ω~102Ω 之间波动、不同手机屏幕亮度不完全一致 |
+
+> **注意**：有些教材将内噪声进一步分为"piece-to-piece variation"和"wear & deterioration"两类，也有教材直接分为"外部噪声"和"内部噪声"两大类。课程 PPT 用的是三分类（external、internal、piece-to-piece），考试按 PPT 口径记。
+
+**Robust design 的核心思路**：不一定要消灭 noise factors（可能太贵或技术上做不到），而是通过优化 control factors，让产品在 noise 存在时也表现稳定。例如：电路设计中选择宽温度系数范围的元器件（优化 control factor），使得环境温度变化（external noise）对输出电压的影响最小化。
 
 ---
 
@@ -560,7 +582,19 @@ PPT 的 five key roles：
 4. Black Belts
 5. Green Belts
 
-考试通常不会深考每个 role 的职责，但要知道 Champion/Black Belt/Green Belt 属于 Six Sigma 组织角色。
+各角色职责简述：
+
+| 角色 | 职责 | 通俗理解 |
+|------|------|---------|
+| **Executive Leadership** | 确立组织的 Six Sigma 愿景和战略方向，提供资源和预算支持，在组织层面推动质量文化。包括 CEO 和高层管理者。 | "老板拍板 + 给钱" |
+| **Champions** | 在高层和执行层之间架桥。负责选择 Six Sigma 项目、分配资源、消除跨部门障碍。通常由部门主管或副总裁兼任。 | "项目把关人 + 扫除障碍" |
+| **Master Black Belts** | Six Sigma 方法论的最高级别专家。负责培训 Black Belts 和 Green Belts，指导组织内多个项目的技术方向，充当内部顾问。全职从事 Six Sigma 工作。 | "教练的教练 + 技术总顾问" |
+| **Black Belts** | 全职负责 Six Sigma 项目的执行。运用 DMAIC 方法论和统计工具分析问题、实施改进方案，直接领导项目团队。 | "项目执行主力 + 统计专家" |
+| **Green Belts** | 兼职参与 Six Sigma 项目，在完成本职工作的同时协助 Black Belts 进行数据收集和分析。通常是各部门的一线工程师或管理人员。 | "兼职队员 + 数据收集" |
+
+**考试要点**：Master Black Belts 是培训者和技术顾问（不是执行项目的人），Black Belts 是全职做项目的人，Green Belts 是兼职参与的人。Champions 负责资源和组织支持，不直接做统计分析。
+
+考试通常不会深考每个 role 的职责，但要知道 Champion/Black Belt/Green Belt 属于 Six Sigma 组织角色。如果简答题问"explain any two roles"，建议选 **Champions** 和 **Black Belts**（职责最清晰、区分度最高）。
 
 ---
 
