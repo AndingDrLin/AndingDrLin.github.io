@@ -1,6 +1,6 @@
 ---
-title: "第2章 Diodes 与 Rectifiers：Half-Wave、Full-Wave、Bridge、Smoothing"
-description: "整理 diode rectifier 的 half-wave、full-wave、bridge、PIV、smoothing 与 ripple 计算。"
+title: "第2章 Diodes 与 Rectifiers"
+description: "期末整流题要用的 half-wave、bridge、centre-tapped、PIV、capacitor ripple 和 regulated supply 计算。"
 date: 2026-05-17
 tags: [power-electronics, 电力电子]
 category: "课程学习"
@@ -8,264 +8,208 @@ docGroup: "power-electronic-notes"
 order: 2
 draft: false
 ---
-## 考试要会什么
+## 会怎么考
 
-本章是历年 Q2 高频题。你需要会：
+- 判断 half-wave、bridge、centre-tapped full-wave。
+- 画 load voltage 和 diode voltage。
+- 求 secondary peak、load peak、load RMS。
+- 求 PIV。
+- 有 capacitor 时求 ripple 或 required $C$。
+- 解释增大 capacitor 对 conduction angle、diode current、transformer VA 的影响。
+- 2024 Q2 这种题：rectifier + capacitor + linear regulator + transformer VA 一起算。
 
-- 画 half-wave rectifier、full-wave rectifier、bridge rectifier 的 load voltage 和 diode voltage；
-- 求理想整流输出的 $V_{DC}$ 和 $V_{\mathrm{rms}}$；
-- 判断 PIV，即 peak inverse voltage；
-- 处理 capacitor smoothing：ripple、conduction angle、所需 capacitance；
-- 解释增大 smoothing capacitor 的影响。
+## 先把输入换成 peak
 
-## 一句话记忆
-
-**Half-wave 每个 line cycle 充一次电，full-wave 每半个 line cycle 充一次电；PIV 一定按拓扑和极性画出来。**
-
-## 核心原理
-
-Diode 是 uncontrolled switch：正向偏置时自动导通，反向偏置时自动关断。Rectifier 的作用是把 AC 转成 pulsating DC。
-
-- **Half-wave rectifier**：只保留正半周，负半周输出为 $0$。
-- **Full-wave rectifier**：正负半周都变成同极性输出。
-- **Bridge rectifier**：用四个 diode，每半周有两个 diode 导通。
-- **Capacitor smoothing**：输入接近峰值时 diode 导通给 capacitor 充电；输入低于 capacitor voltage 时 diode 关断，capacitor 对 load 放电，形成 ripple。
-
-## 必背公式
-
-输入峰值：
+若题目给 RMS：
 
 $$
-\hat V_m=\sqrt{2}V_{AC,\mathrm{rms}}
+\hat V_m=\sqrt2 V_{AC,rms}
 $$
 
-Half-wave rectifier，理想 diode，resistive load：
+若题目直接写：
 
 $$
-V_{DC}=\frac{\hat V_m}{\pi}=\frac{\sqrt{2}}{\pi}V_{AC,\mathrm{rms}}\approx0.45V_{AC,\mathrm{rms}}
+v_s(t)=10\sin(100\pi t)
 $$
 
-$$
-V_{\mathrm{rms}}=\frac{\hat V_m}{2}
-$$
+这里 10 已经是 peak。
 
-Full-wave / bridge rectifier，理想 diode，resistive load：
+有 diode drop 时：
 
-$$
-V_{DC}=\frac{2\hat V_m}{\pi}\approx0.90V_{AC,\mathrm{rms}}
-$$
+- half-wave：导通路径 1 个 diode，输出 peak 约 $\hat V_m-V_F$。
+- centre-tapped：每半周 1 个 diode，输出 peak 约 $\hat V_{m,half}-V_F$。
+- bridge：每半周 2 个 diode，输出 peak 约 $\hat V_m-2V_F$。
 
-$$
-V_{\mathrm{rms}}=V_{AC,\mathrm{rms}}
-$$
+## 三种 rectifier 表
 
-Capacitor ripple 近似：
-
-$$
-\Delta V\approx\frac{I_{load}}{f_{\mathrm{ripple}}C}
-$$
-
-Ripple frequency：
-
-$$
-f_{\mathrm{ripple}}=f_{line}\quad\text{half-wave}
-$$
-
-$$
-f_{\mathrm{ripple}}=2f_{line}\quad\text{full-wave}
-$$
-
-更通用的 charge balance 写法：
-
-$$
-\Delta V\approx\frac{I_{load}\Delta t}{C}
-$$
-
-Ripple factor：
-
-$$
-r=\frac{V_{r,\mathrm{rms}}}{V_{DC}}
-$$
-
-Diode conduction loss 近似：
-
-$$
-P_D\approx V_F I_{F,\mathrm{avg}}
-$$
-
-## 图像/波形/拓扑
-
-![Rectifier capacitor ripple](./assets/rectifier_ripple.svg)
-
-这张图要看懂三个位置：
-
-1. 输入整流波形到峰值附近时，diode 导通，capacitor 被快速充电。
-2. 峰值过后，输入低于 capacitor voltage，diode 关断。
-3. Load 从 capacitor 取电，capacitor voltage 缓慢下降，下降量就是 peak-to-peak ripple $\Delta V$。
-
-### Half-wave、full-wave、bridge 对比
-
-| 项目 | Half-wave | Full-wave centre-tap | Bridge rectifier |
+| 项目 | Half-wave | Centre-tapped full-wave | Bridge rectifier |
 |---|---|---|---|
-| 每个 line cycle 的输出脉冲 | 1 个 | 2 个 | 2 个 |
+| 每个 line cycle 输出脉冲 | 1 个 | 2 个 | 2 个 |
 | Ripple frequency | $f_{line}$ | $2f_{line}$ | $2f_{line}$ |
-| 理想 $V_{DC}$ | $\hat V_m/\pi$ | $2\hat V_m/\pi$ | $2\hat V_m/\pi$ |
-| 理想 $V_{\mathrm{rms}}$ | $\hat V_m/2$ | $V_{AC,\mathrm{rms}}$ | $V_{AC,\mathrm{rms}}$ |
-| Diode drops | 1 个 | 1 个 | 2 个 |
-| 常见 PIV | 约 $\hat V_m$ | 约 $2\hat V_m$ | 约 $\hat V_m$ |
+| 每次导通 diode 数 | 1 | 1 | 2 |
+| 理想 average | $\hat V_m/\pi$ | $2\hat V_{m,half}/\pi$ | $2\hat V_m/\pi$ |
+| 理想 RMS | $\hat V_m/2$ | $\hat V_{m,half}/\sqrt2$ | $\hat V_m/\sqrt2$ |
+| 常见 PIV | 无 capacitor：$\hat V_m$；有 capacitor 可到 $2\hat V_m$ | $2\hat V_{m,half}$ | $\hat V_m$ |
+| 变压器要求 | 不需要 centre tap | 需要 centre tap | 不需要 centre tap |
+| 主要缺点 | ripple 大、利用率差 | PIV 高、要 centre tap | 两个 diode drops |
 
-PIV 的表格结论只适用于常见理想拓扑。考试如果给了 capacitor、diode polarity 或 centre-tap 标注，必须按图重新判断。
+Centre-tapped 的 $\hat V_{m,half}$ 是半边 secondary peak。不要把整段 secondary peak 又乘 2。
 
-## 做题步骤
+## PIV 怎么算
 
-### A. 无 smoothing capacitor 的 rectifier
+PIV 是关断 diode 承受的最大反向电压。不要用 average output 代替。
 
-1. 把输入写成 $v_s(t)=\hat V_m\sin\omega t$。
-2. 判断 diode 导通区间。
-3. 画 load voltage：
-   - half-wave：正半周跟随输入，负半周为 $0$；
-   - full-wave / bridge：输出近似为 $|v_s(t)|$。
-4. 若题目给 diode drop $V_F$，导通时输出约为输入减去 diode drop：
-   - half-wave 或 centre-tap：减 $V_F$；
-   - bridge：减 $2V_F$。
-5. 用对应公式求 $V_{DC}$ 或 $V_{\mathrm{rms}}$。
+板书步骤：
 
-### B. 有 smoothing capacitor 的 ripple 题
+1. 找哪个 diode 关断。
+2. 标它两端电压极性。
+3. 找 source 最不利 peak。
+4. 若有 capacitor，考虑 capacitor 保持在接近输出 peak。
+5. 写 each diode PIV。
 
-1. 判断 half-wave 还是 full-wave。
-2. 写 ripple period：
+常见结论：
 
-$$
-T_{\mathrm{ripple}}=\frac{1}{f_{\mathrm{ripple}}}
-$$
+- Bridge：each diode PIV 通常约 $\hat V_m$。
+- Centre-tapped：each diode PIV 通常约 $2\hat V_{m,half}$。
+- Half-wave + capacitor：source 到负峰、capacitor 保持正峰时，PIV 可能约 $2\hat V_m$。
 
-3. 若题目给 conduction angle $\theta_c$，先选 ripple period，再把 conduction angle 当作该 ripple period 内的充电时间比例。常用 exam approximation：
+## Capacitor ripple
 
-$$
-\Delta t\approx T_{\mathrm{ripple}}-\frac{\theta_c}{360^\circ}T_{\mathrm{ripple}}
-$$
-
-若题图给出具体 charging / discharging 起止点，应按图直接读 $\Delta t$，不要机械套公式。
-
-小例子：half-wave、$50\,\mathrm{Hz}$、$\theta_c=30^\circ$ 时，$T_{\mathrm{ripple}}=20\,\mathrm{ms}$，charging time 为 $(30/360)\times20=1.67\,\mathrm{ms}$，所以 discharge time 约为 $18.33\,\mathrm{ms}$。
-
-4. 估算 load current：
-
-$$
-I_{load}\approx\frac{V_{DC}}{R_L}
-$$
-
-5. 用 charge balance：
+Capacitor 在峰值附近充电，其余时间给负载放电。
 
 $$
 \Delta V\approx\frac{I_{load}\Delta t}{C}
 $$
 
-6. 若题目反求 capacitance：
+常用：
+
+$$
+\Delta V\approx\frac{I_{load}}{f_{ripple}C}
+$$
+
+但题目给 conduction angle 时，用放电时间：
+
+$$
+\Delta t\approx T_{ripple}-\frac{\theta_c}{360^\circ}T_{ripple}
+$$
+
+其中：
+
+$$
+T_{ripple}=\frac{1}{f_{ripple}}
+$$
+
+Half-wave 50 Hz：$T_{ripple}=20\,\mathrm{ms}$。
+
+Full-wave / bridge 50 Hz：$T_{ripple}=10\,\mathrm{ms}$。
+
+反求 capacitor：
 
 $$
 C\approx\frac{I_{load}\Delta t}{\Delta V}
 $$
 
-### C. PIV 题
+## 增大 capacitor 会怎样
 
-1. 先画 diode 关断时两端电压极性。
-2. 找 capacitor 可能保持的最高电压，通常接近 $\hat V_m$。
-3. 找 AC source 的最不利反向峰值。
-4. 两者按 polarity 相加或相减。
-5. 写清是“each diode PIV”还是“total secondary voltage”。
+考试简答直接写：
 
-PIV 三步判断小例子：
-
-| 拓扑 | 如何想 | 常见结论 |
-|---|---|---|
-| Half-wave with smoothing | capacitor 可能保持在 $+\hat V_m$，source 到负峰时 diode 反向电压按题图 polarity 可能接近 $2\hat V_m$ | 有电容时不要只背无电容 half-wave 的 PIV |
-| Bridge rectifier | 每次两个 diode 导通，关断 diode 通常只承受一个 secondary peak | each diode PIV 常约为 $\hat V_m$ |
-| Centre-tap full-wave | 未导通 diode 可能看到两个半绕组电压叠加 | each diode PIV 常约为 $2\hat V_m$ |
-
-表里的 $\hat V_m$ 必须对应题目指定的 secondary voltage peak；centre-tap 中要确认 $\hat V_m$ 是整段 secondary 还是半边绕组。
-
-### D. Diode voltage waveform sketch checklist
-
-- Diode 导通时，diode voltage 约为 $0$ 或题目给定的 forward drop $V_F$，符号按图上 $V_D$ 参考方向写。
-- Diode 关断时，$V_D$ 是 reverse voltage；峰值位置通常给出 PIV。
-- 无 capacitor 时，关断电压随输入负半周变化。
-- 有 capacitor 时，关断电压还要考虑 capacitor 保持的电压。
-- 画图必须标 time scale、zero line、peak / PIV、forward drop。
-
-### E. 增大 smoothing capacitor 的影响
-
-答简答题可以写：
-
-- $C$ 变大，$\Delta V$ 变小，输出更平滑。
+- Ripple 变小。
 - Diode conduction angle 变窄。
 - Peak diode current 变大。
-- Transformer / diode RMS current 和 VA rating 可能变大。
-- 输出 DC voltage 更接近 peak，但实际受 diode drop 和 load 影响。
+- Transformer RMS current / form factor 变差。
+- Transformer VA rating 可能要更大。
 
-## 高频错误
+## Regulated supply 题
 
-- Half-wave 50 Hz 的 ripple period 写成 $10\,\mathrm{ms}$，正确是 $20\,\mathrm{ms}$。
-- Full-wave 50 Hz 的 ripple frequency 忘记变成 $100\,\mathrm{Hz}$。
-- $V_{AC,\mathrm{rms}}$ 没乘 $\sqrt{2}$ 就当 peak 用。
-- Bridge rectifier 忘记每次有两个 diode drop。
-- Centre-tap 和 bridge 的 PIV 混淆。
-- Conduction angle 给 $30^\circ$ 时，没有换算成时间。
-- 只说 capacitor reduces ripple，漏说 peak current 和 VA rating 增大。
-- 用 $\Delta V=I/(fC)$ 时，$C$ 的 $\mathrm{\mu F}$ 没换算成 F。
+2024 Q2 这种题按这条链算。
 
-## Past paper 连接
+题目常给：输出 DC、load current、dropout、mains tolerance、transformer regulation、bridge diode drop、capacitor、conduction angle。
 
-- **2017 Q2(a)**：half-wave rectifier with capacitor smoothing，给 $C$、$R$、conduction angle，估 ripple 和 PIV。关键是 half-wave 周期用 $20\,\mathrm{ms}$。
-- **2017 Q2(b)**：无 capacitor，画 load voltage 和 diode voltage，题中 diode drop 要体现在波形峰值上。
-- **2018 Q2(a)**：full-wave rectifier with smoothing，关键是 full-wave ripple frequency 为 $100\,\mathrm{Hz}$。
-- **2018 Q2(b)**：full-wave output RMS，理想 full-wave rectified sine 的 RMS 等于原 sine RMS。
-- **2018 Q2(e)**：限制 ripple 反求 $C$，用 $C\approx I_{load}\Delta t/\Delta V$。
-- **Exam feedback**：PIV、half-wave / full-wave 周期、peak conversion 是高频扣分点。
+### 反推 minimum secondary RMS
 
-## 补充：PIV 三步判断例子
+1. Regulator 输入最低点必须满足：
 
-### Half-wave + smoothing capacitor
+$$
+V_{cap,min}\ge V_{out}+V_{dropout}
+$$
 
-1. 导通时：diode 正向导通，capacitor 充到 $\hat V_m$
-2. 关断时：source 反向到 $-\hat V_m$，capacitor 保持 $+\hat V_m$
-3. Diode 承受反向电压 ≈ $\hat V_m - (-\hat V_m) = 2\hat V_m$（最坏情况）
+2. capacitor peak 要比最低点高一个 ripple：
 
-**但**：若题目无 capacitor（纯 resistive load），PIV = $\hat V_m$ 即可。
+$$
+V_{cap,peak}\approx V_{cap,min}+\Delta V
+$$
 
-### Bridge rectifier
+3. Bridge 有两个 diode drops：
 
-每个 diode 关断时承受 ≈ $\hat V_m$。不要和 centre-tap 混淆。
+$$
+\hat V_{sec,min}\approx V_{cap,peak}+2V_F
+$$
 
-### Centre-tap
+4. peak 转 RMS：
 
-未导通 diode 看到整个 secondary 两半绕组叠加，PIV ≈ $2\hat V_m$。
+$$
+V_{sec,rms,min}=\frac{\hat V_{sec,min}}{\sqrt2}
+$$
 
-**考试提醒**：表格里的 $\hat V_m$ 是哪一段绕组的 peak？centre-tap 的 $\hat V_m$ 是单边 secondary peak，不是整个 secondary。
+5. 若题目给 mains low tolerance 和 transformer regulation，再按题目说明折算到 nominal secondary。
 
-## 补充：Conduction angle 数字例子
+### Regulator worst-case dissipation
 
-**Half-wave 50 Hz、$\theta_c = 30°$**：
+$$
+P_{reg}=(V_{in,reg}-V_{out})I_{load}
+$$
 
-1. Ripple period $T_{ripple} = 20\,\mathrm{ms}$（half-wave 50 Hz）
-2. Charging time = $30/360 \times 20 = 1.67\,\mathrm{ms}$
-3. Discharge time ≈ $20 - 1.67 = 18.33\,\mathrm{ms}$
+Worst case 通常看 high mains / high secondary / load condition。题目若指定 full-load，就用 full-load。
 
-**Full-wave 50 Hz、$\theta_c = 30°$**：
+### Capacitor voltage rating
 
-1. Ripple period $T_{ripple} = 10\,\mathrm{ms}$（full-wave 100 Hz ripple）
-2. Charging time = $30/360 \times 10 = 0.83\,\mathrm{ms}$
-3. Discharge time ≈ $10 - 0.83 = 9.17\,\mathrm{ms}$
+看 high mains、light/no load 时 capacitor 可能充到的最高 peak。不要只看 nominal output voltage。
 
-**关键**：先选 ripple period（half-wave 20 ms / full-wave 10 ms），再按 conduction angle 比例算充电时间。此为 exam approximation；若题图给出 conduction interval 起止点，应按图直接读 discharge time。
+### Transformer VA
 
-## 补充：Diode voltage waveform 画图清单
+$$
+VA\approx V_{sec,rms}I_{sec,rms}
+$$
 
-画 diode voltage 时必须标：
+若题目给 current form factor：
 
-1. **导通期间**：$v_D \approx 0$（理想）或 $v_D = -V_F$（有压降）
-2. **关断期间**：$v_D$ 为负值，峰值按 PIV 判断
-3. **时间轴**：标 period、导通区间、peak 时间点
-4. **极性**：按题图 polarity 标正负
+$$
+I_{sec,rms}=\mathrm{FF}\cdot I_{dc}
+$$
 
-参考：2017 Q2(b) 要求同时画 load voltage 和 diode voltage。
+再考虑 transformer efficiency / regulation，按题目给的条件代。
+
+## Bridge vs half-wave vs centre-tapped
+
+Bridge 优点：
+
+- 不需要 centre tap。
+- PIV 较低。
+- full-wave ripple，滤波容易。
+
+Bridge 缺点：
+
+- 每次导通两个 diode，有两个 forward drops。
+- 低电压大电流时 diode loss 明显。
+
+Centre-tapped 优点：
+
+- 每次导通一个 diode，压降低。
+
+Centre-tapped 缺点：
+
+- 需要 centre-tapped transformer。
+- 每只 diode PIV 高。
+- transformer secondary 利用率不如 bridge。
+
+Half-wave 优点：简单。缺点：ripple 大、DC output 低、transformer utilization 差。
+
+## 别丢分
+
+- Bridge 每次两个 diode drops。
+- Centre-tapped 的 PIV 用 half-secondary peak 判断。
+- Half-wave 和 full-wave 的 ripple period 不一样。
+- $\mu\mathrm{F}$、mF 要换成 F。
+- PIV 是 reverse voltage，不是 output average。
+- Diode voltage waveform 要按题目给的 polarity 画正负。
+- 有 capacitor 时 diode 只在峰值附近导通，不是整半周导通。

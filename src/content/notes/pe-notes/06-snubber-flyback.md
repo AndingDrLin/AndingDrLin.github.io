@@ -1,6 +1,6 @@
 ---
-title: "第6章 Snubber Circuits and Flyback Converter"
-description: "整理 snubber 电路与 flyback converter 的作用、工作阶段和常见计算。"
+title: "第6章 Snubber and Flyback"
+description: "期末 snubber 与 flyback 题要用的保护电路、数值计算、画图和隔离型 DC-DC 选择。"
 date: 2026-05-17
 tags: [power-electronics, 电力电子]
 category: "课程学习"
@@ -8,251 +8,161 @@ docGroup: "power-electronic-notes"
 order: 6
 draft: false
 ---
-## 考试要会什么
+## 会怎么考
 
-- 会解释 snubber 的作用：限制 $dv/dt$、$di/dt$、voltage spike、current spike、ringing 和 switching stress。
-- 会区分 **turn-off voltage snubber**、**turn-on current snubber**、**unpolarized RC snubber**。
-- 会画简单 RC snubber across switch / diode，并说明能量路径。
-- 会用 RC snubber 设计公式估算 ringing frequency、$R_{\mathrm{snub}}$、$C_{\mathrm{snub}}$ 和损耗。
-- 会说明 **flyback converter** 与 inverting buck-boost 的关系，以及为什么需要 isolation 时选 flyback 而不是 buck-boost。
+- 问 snubber 是干什么的。
+- 给感性负载开关，要求选 snubber 并重画电路。
+- 给 $L$、$C$，求 ringing frequency。
+- 给电感电压，求 $di/dt$。
+- 给 snubber resistor / peak current / frequency，估算 power。
+- 问需要 isolation 时选什么 DC-DC converter。
 
-## 一句话记忆
+## Snubber 作用
 
-**Snubber 是保护开关的缓冲网络；flyback 是带 coupled inductor / transformer isolation 的 buck-boost 思路。**
+考试直接写：
 
-## 核心原理
+- Limit $dv/dt$。
+- Limit $di/dt$。
+- Clamp voltage spike。
+- Damp ringing。
+- Provide a path for inductive current。
+- Keep switch trajectory inside SOA。
 
-### 1. Snubber 的本质作用
+Snubber 通常会增加损耗。它不是提高效率的东西，是保护和抑制 EMI 的东西。
 
-Power switch 关断或开通时，电路中的 stray inductance 和 parasitic capacitance 会造成：
+## 感性负载关断
 
-- high $dv/dt$：可能误触发、击穿器件、增加 EMI；
-- high $di/dt$：可能产生 current spike、reverse recovery stress；
-- ringing：由 stray $L$ 和 parasitic $C$ 形成振荡；
-- switching trajectory 进入危险区域，增加 switching loss 和 SOA stress。
+电感电流不能突变。开关突然关断时，电感会抬高电压，直到电流有路可走。
 
-Snubber 用额外的 $R$、$C$、$L$、diode 给能量提供受控路径，让开关承受更平滑的 voltage/current transition。
-
-### 2. 三类常考 snubber
-
-| 类型 | 常见名称 | 主要限制 | 典型连接 | 考试关键词 |
-|---|---|---|---|---|
-| Turn-off snubber | Voltage snubber / polarized RC | $dv/dt$、turn-off overvoltage | capacitor across switch，常带 diode 和 resistor | turn-off, voltage stress |
-| Turn-on snubber | Current snubber / polarized LR | $di/dt$、turn-on current spike | series inductor，带 reset resistor/diode | turn-on, current stress |
-| Unpolarized RC snubber | Series RC damping network | ringing、both-polarity transient | series $R$-$C$ across switch/diode | damping, oscillation |
-
-### 3. Turn-off voltage snubber
-
-关断时，开关电流不能瞬间消失，stray inductance 会抬高 switch voltage。RC snubber 中 capacitor 暂时接收电流，使 switch voltage 上升变慢。
-
-核心句：**The capacitor provides an alternative path for current during turn-off, reducing $dv/dt$ and peak device voltage; the resistor dissipates the stored energy before the next cycle.**
-
-### 4. Turn-on current snubber
-
-开通时，diode reverse recovery 或 capacitor discharge 可能让 switch current 急剧上升。series inductor 限制 current slope。
-
-核心句：**The inductor limits the rate of rise of current during turn-on, while the resistor/diode network resets the snubber energy.**
-
-### 5. Unpolarized RC snubber
-
-Series RC snubber 常并在 switch、diode 或 transformer winding 上，用于抑制由 stray inductance 和 parasitic capacitance 造成的 ringing。它不是 converter 的主功率传输元件，而是 damping/protection network。
-
-## 必背公式
-
-### 1. Ringing frequency
+用这个公式：
 
 $$
-f_0=\frac{1}{2\pi\sqrt{LC}}
+v_L=L\frac{di}{dt}
 $$
 
-这里 $L$ 常是 stray inductance，$C$ 常是 parasitic capacitance 或等效振荡电容。
-
-### 2. RC snubber 经验选择
-
-下面是 course homework / exam 中常用的 approximate design rule，只在题目给出 stray inductance、parasitic capacitance 并要求按该近似设计 damping snubber 时使用：
+所以：
 
 $$
-C_{\mathrm{snub}}\approx 3C_{\mathrm{para}}
+\frac{di}{dt}=\frac{v_L}{L}
+$$
+
+若题目问 current falls from $I$ to 0 in time $\Delta t$：
+
+$$
+v_L=L\frac{I}{\Delta t}
+$$
+
+## 常见 snubber / clamp 怎么选
+
+| 场景 | 写什么 | 作用 |
+|---|---|---|
+| DC relay / inductive load | Freewheel diode across load | 给电感电流续流路径，限制关断过压 |
+| Switch voltage spike | RCD clamp 或 TVS/Zener clamp | 限制 switch peak voltage |
+| LC ringing | Series RC snubber across switch/diode | damping，降低振铃 |
+| Turn-off $dv/dt$ 太大 | RC/RCD voltage snubber | 让 switch voltage 上升慢一点 |
+| Turn-on $di/dt$ 太大 | series inductor / current snubber | 限制电流上升速度 |
+
+画图时必须标出电流路径。只画一个 R 或 C 不够。
+
+## Ringing frequency
+
+由 stray inductance 和 parasitic capacitance 形成：
+
+$$
+f_r=\frac{1}{2\pi\sqrt{LC}}
+$$
+
+单位先换：nH、pF 都要换成 H、F。
+
+例如题目给 $L=800\,\mathrm{nH}$，$C=300\,\mathrm{pF}$：
+
+$$
+f_r=\frac{1}{2\pi\sqrt{800\times10^{-9}\cdot300\times10^{-12}}}
+$$
+
+## Snubber resistor power
+
+若题目给 resistor 上近似电流波形，按题目波形算平均功率。
+
+常见快速估算：
+
+- resistor 电流近似恒定 $I$、只在一段 duty 内流过：
+
+$$
+P_R\approx I^2RD
+$$
+
+- 每次吸收电感能量：
+
+$$
+E_L=\frac12LI^2
 $$
 
 $$
-R_{\mathrm{snub}}=\sqrt{\frac{L_{\mathrm{stray}}}{C_{\mathrm{para}}}}
+P\approx E_Lf_s
 $$
 
-如果题目指定用 total capacitance，则按题意说明：
+- 每次 capacitor 充放电：
 
 $$
-C_{\mathrm{total}}=C_{\mathrm{para}}+C_{\mathrm{snub}}
+E_C=\frac12CV^2
 $$
 
-### 3. Snubber capacitor energy and loss
-
-每次充放电能量近似：
-
 $$
-E_C=\frac{1}{2}CV^2
+P\approx E_Cf_s
 $$
 
-常用保守损耗估计：
+题目若给指定公式，按题目公式。
 
-$$
-P_{\mathrm{snub}}\approx f_sC_{\mathrm{snub}}V^2
-$$
+## 2022 Q4 这种计算怎么排版
 
-注意：有些推导因每周期充放电路径不同会出现 $1/2$，考试按题目给出的公式或说明使用。若未指定，写清楚假设。
+```text
+1. snubber purpose: limit overvoltage/ringing, protect switch.
+2. resistor power: use I^2R with correct waveform/duty, or E f_s if energy per cycle is given.
+3. di/dt: di/dt = V/L.
+4. switch voltage: supply/clamp/reflected voltage + spike,按题图极性相加。
+5. ringing: f = 1/(2πsqrt(LC)).
+```
 
-### 4. Buck-boost voltage gain
+## Flyback isolation
 
-Inverting buck-boost：
+题目出现这些词，优先答 flyback：
 
-$$
-V_o=-\frac{D}{1-D}V_{in}
-$$
+- isolated DC-DC。
+- galvanic isolation。
+- input range can be below or above output。
+- low/medium power SMPS。
 
-Magnitude 形式：
+Flyback 是 buck-boost 思路加 transformer / coupled inductor。
 
-$$
-|V_o|=\frac{D}{1-D}V_{in}
-$$
-
-### 5. Flyback voltage gain
-
-Ideal flyback，按输出幅值：
+理想关系常写：
 
 $$
 \frac{V_o}{V_{in}}=\frac{N_s}{N_p}\frac{D}{1-D}
 $$
 
-### 6. Flyback reflected voltage
+实际符号看 dot convention 和 diode 方向。考试一般写幅值即可。
 
-MOSFET 关断时 primary 侧看到 secondary 反射电压：
+Switch on：primary magnetising inductance 储能，secondary diode 通常 off。
+
+Switch off：primary 电流转到 secondary，secondary diode on，能量送到输出。
+
+## Flyback switch stress
+
+关断时 MOSFET 看到：
 
 $$
-V_R=\frac{N_p}{N_s}(V_o+V_D)
+V_{DS,off}\approx V_{in}+\frac{N_p}{N_s}(V_o+V_D)+V_{spike}
 $$
 
-理想 MOSFET off-state voltage 常估为：
+$V_{spike}$ 来自 leakage inductance，所以 flyback 常配 RCD clamp / snubber。
 
-$$
-V_{DS,off}\approx V_{in}+V_R
-$$
+## 别丢分
 
-实际还要加 leakage inductance spike，所以 flyback 常需要 RCD clamp 或 snubber。
-
-## 图像/波形/拓扑
-
-### 1. Unpolarized RC snubber
-
-```text
-        ┌──── Switch / Diode ────┐
-        │                        │
-        └──── R_snub ─ C_snub ───┘
-
-Series RC is placed across the stressed device to damp ringing.
-```
-
-### 2. Turn-off voltage snubber 概念图
-
-```text
-Turn-off:
-
-inductive current → snubber capacitor charging
-                 → switch voltage rises more slowly
-                 → resistor dissipates stored energy
-```
-
-画图关键词：capacitor across switch、diode gives charging path、resistor discharge path、limit $dv/dt$。
-
-### 3. Turn-on current snubber 概念图
-
-```text
-DC link ─ L_snub ─ switch ─ load
-             │
-        reset R/D path
-
-L_snub limits di/dt during switch turn-on.
-```
-
-### 4. Buck-boost 与 flyback 的文字拓扑对比
-
-```text
-Inverting buck-boost:
-Vin ─ switch ─ L ─ diode/capacitor/load
-Energy storage element: inductor
-Isolation: no
-Output polarity: inverted
-
-Flyback:
-Vin ─ switch ─ primary coupled inductor || secondary ─ diode/capacitor/load
-Energy storage element: transformer magnetising inductance
-Isolation: yes
-Output polarity: set by dot convention and diode direction
-```
-
-## 做题步骤
-
-### 1. Snubber 简答题步骤
-
-1. 先判断题目问 turn-on 还是 turn-off。
-2. 若问 turn-off / voltage stress：写 RC voltage snubber，重点 $dv/dt$ 和 overvoltage。
-3. 若问 turn-on / current stress：写 LR current snubber，重点 $di/dt$ 和 current spike。
-4. 若问 ringing：写 series RC unpolarized snubber，重点 damping stray $L$ 和 parasitic $C$。
-5. 最后补一句 trade-off：snubber 降低 stress 和 EMI，但会增加 loss、size 和 design complexity。
-
-### 2. RC snubber calculation 步骤
-
-1. 从题目读 $L_{\mathrm{stray}}$、$C_{\mathrm{para}}$、$V$、$f_s$。
-2. 求 ringing frequency：$f_0=1/(2\pi\sqrt{LC})$。
-3. 选 $C_{\mathrm{snub}}$，常用 $C_{\mathrm{snub}}\approx3C_{\mathrm{para}}$。
-4. 算 $R_{\mathrm{snub}}=\sqrt{L_{\mathrm{stray}}/C_{\mathrm{para}}}$。
-5. 算损耗：$P_{\mathrm{snub}}\approx f_sC_{\mathrm{snub}}V^2$。
-6. 写 compromise：更大的 $C$ 抑制更强，但 snubber loss 更大，便携或高效率设备尤其不利。
-
-### 3. Flyback vs buck-boost 选择题步骤
-
-1. 若题目要求 electrical isolation，直接优先考虑 **flyback**。
-2. 写 flyback derived from buck-boost，但把 inductor 拆成 coupled inductor / transformer。
-3. 写多了 turns ratio：除 duty cycle 外，$N_s/N_p$ 也决定 voltage gain。
-4. 写非隔离 buck-boost 不能替代 flyback，因为 buck-boost 没有 galvanic isolation。
-5. 若题目问 stress，补充 MOSFET off voltage 包含 input voltage、reflected voltage 和 leakage spike，需要 snubber/clamp。
-
-## 高频错误
-
-- 把 snubber 当作 converter 的主拓扑元件；它主要是 protection / damping network。
-- turn-off snubber 与 turn-on snubber 混淆：turn-off 主要限 $dv/dt$，turn-on 主要限 $di/dt$。
-- 只画 R/C/L，不解释能量路径和保护对象。
-- $f_0=1/(2\pi\sqrt{LC})$ 忘记平方根或 $2\pi$。
-- 计算 snubber loss 时漏掉 $f_s$，或 $\mathrm{nF}$、$\mathrm{pF}$ 没换成 farad。
-- Flyback 与 buck-boost 混淆：flyback 有 isolation 和 turns ratio，buck-boost 没有 isolation。
-- 以为 flyback transformer 是普通理想 transformer；实际核心储能在 magnetising inductance。
-- 估算 MOSFET voltage stress 时只写 $V_{in}$，漏掉 reflected voltage 和 leakage spike。
-
-## Past paper 连接
-
-- **2017 Q1(c)**：unpolarized voltage / turn-off snubber。要画 RC snubber 并说明限制 $dv/dt$、吸收能量、降低 switch stress。
-- **2018 Q1(d)**：polarized current / turn-on snubber。重点是限制 $di/dt$，不要画成 turn-off voltage snubber。
-- **2017 Q4 / 2018 Q4 相关 DC-DC 思路**：buck-boost 和 boost 计算常考；flyback 作为 buck-boost 的隔离版本，是 converter choice 简答题重点。
-- **Feedback Q3**：需要 isolation 时应选 flyback，不是 non-isolated buck-boost。
-- **Lecture 9**：flyback 与 snubber voltage stress 常联系在一起，尤其是 leakage inductance spike 需要 snubber/clamp。
-
-## 补充：Snubber 画图考试清单
-
-每种 snubber 考试画图最少要画：
-
-| Snubber 类型 | 必画元件 | 连接位置 | 限制什么 |
-|---|---|---|---|
-| Unpolarized RC (turn-off voltage) | R + C 串联 | Across switch 或 across diode | $dv/dt$、ringing |
-| Polarized RC (turn-off) | R + C 串联（有极性） | Across switch，C 靠阳极 | $dv/dt$ |
-| Polarized LR (turn-on current) | L + R 串联 | 与 switch 串联 | $di/dt$ |
-
-**关键**：RC snubber 是 series R-C branch，不是单独一个电容直接短路。画图时 R 和 C 必须串联。
-
-## 补充：Snubber 经验公式适用条件
-
-以下公式是 course/homework 近似设计规则，不是所有 RC snubber 的通用公式：
-
-- $R_{\mathrm{snub}} = \sqrt{L_{\mathrm{stray}} / C_{\mathrm{para}}}$：仅在题目给 stray inductance 和 parasitic capacitance 并要求该近似时使用
-- $C_{\mathrm{snub}} \approx 3 C_{\mathrm{para}}$：经验倍数，不同 damping criterion 可能用不同系数
-- $P_{\mathrm{snub}} \approx f_s C_{\mathrm{snub}} V^2$：snubber 损耗估算
-
-**考试提醒**：如果题目没有明确要求用这些近似，不要自行假设。
+- Snubber 不是主 converter 拓扑。
+- 感性负载一定要给电流路径。
+- RC snubber 通常是 series R-C branch，不是单独电容短路。
+- $f_r$ 公式别漏 $2\pi$ 和平方根。
+- Snubber power 别漏 switching frequency。
+- Flyback 有 isolation 和 turns ratio；普通 buck-boost 没有 isolation。
+- Flyback transformer 不是普通同时传能 transformer；它靠 magnetising inductance 先储能再放能。

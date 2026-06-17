@@ -1,6 +1,6 @@
 ---
 title: "第4章 Power Switches and Losses"
-description: "整理 MOSFET、IGBT 等功率开关选型，以及 conduction loss、switching loss 和 switching energy 计算。"
+description: "期末器件题要用的 SOA、diode recovery、MOSFET loss、MOSFET 并联和选型理由。"
 date: 2026-05-17
 tags: [power-electronics, 电力电子]
 category: "课程学习"
@@ -8,273 +8,161 @@ docGroup: "power-electronic-notes"
 order: 4
 draft: false
 ---
-## 考试要会什么
+## 会怎么考
 
-- 会比较 **ideal switch** 与 **actual power semiconductor switch**。
-- 会按 voltage / current / power / switching frequency / controllability 选择 MOSFET、IGBT、SCR、GTO、BJT。
-- 会解释 1 MW、690 V、2 kHz wind turbine converter 为什么通常选 **IGBT**。
-- 会从 MOSFET current waveform 求 $D$、$I_{\mathrm{avg}}$、$I_{\mathrm{rms}}$、load power、conduction loss、switching loss。
-- 会把 losses 接到 thermal 题：$P_{\mathrm{tot}}=P_{\mathrm{cond}}+P_{\mathrm{sw}}$。
+- SOA / FBSOA 图：解释安全工作区边界。
+- Diode transient 图：标 $V_F$、$I_F$、$V_{FP}$、reverse voltage/current/recovery。
+- Diode loss：forward conduction loss + reverse recovery loss。
+- MOSFET PWM loss：从 current waveform 求 $I_{avg}$、$I_{rms}$、$P_{cond}$、$P_{sw}$。
+- MOSFET 优缺点。
+- MOSFET 并联 current sharing。
+- 选 IGBT / MOSFET / SCR 时写理由。
 
-## 一句话记忆
+## 选型题怎么写
 
-**选开关先看 power rating 和 frequency，算损耗先用 RMS 做热损耗，再用 switching overlap 做开关损耗。**
-
-## 核心原理
-
-### 1. Ideal vs actual power switches
-
-| 项目 | Ideal switch | Actual switch |
+| 器件 | 考试常写优点 | 不适合的地方 |
 |---|---|---|
-| On-state | $V_{\mathrm{on}}=0$，无导通损耗 | 有 $V_{\mathrm{on}}$ 或 $R_{DS(on)}$，产生 conduction loss |
-| Off-state | leakage current 为 0 | 有 leakage current，且 blocking voltage 有上限 |
-| Rating | 无限 voltage/current/power | 受 voltage rating、current rating、SOA、thermal limit 限制 |
-| Switching | instant turn-on / turn-off | 有 $t_r,t_f$，电压电流重叠产生 switching loss |
-| Control | 理想控制、无 gate/base 功耗 | 需要 gate/base drive，存在 drive power 和 protection |
-| Thermal | 无温升 | junction temperature 决定可靠性和 heatsink |
+| MOSFET | fully controllable；开关快；gate drive power 小；适合高频低/中压 | 高压大功率时 $R_{DS(on)}$ 大；gate oxide 脆弱；body diode/recovery 要考虑 |
+| IGBT | fully controllable；高压大电流能力强；适合 kHz 级中高功率 | 比 MOSFET 慢；高频 switching loss 大 |
+| SCR / Thyristor | 超高功率；line-frequency rectifier；导通损耗低 | half-controllable；gate 不能 turn off；高频 PWM 不适合 |
+| GTO | 可 gate turn off；高功率 | 驱动复杂；速度慢 |
 
-考试写法：不要只写“ideal no loss”。至少覆盖 **on loss、off leakage、rating、switching time/loss、thermal** 五点。
-
-### 2. 器件选型速记
-
-| Device | Controllability | 适合场景 | 高频错误 |
-|---|---|---|---|
-| MOSFET | Fully-controllable | Low/medium voltage，high frequency，fast switching | 只因“fast”就选它做 MW 级高压大功率 |
-| IGBT | Fully-controllable | Medium/high voltage，high power，medium frequency | 忘记说明 frequency 不能太高 |
-| SCR / Thyristor | Half-controllable | Very high power，line-frequency rectifier，natural commutation | 把 SCR 写成 fully-controllable |
-| GTO | Fully-controllable | Very high power，low/medium frequency | 忽略其关断驱动复杂、速度较慢 |
-| BJT | Fully-controllable | 早期功率开关，需 base current | 忘记它是 current-driven，drive loss 较大 |
-
-### 3. Wind turbine 1 MW / 690 V / 2 kHz 选 IGBT 的思路
-
-高分答题模板：
-
-1. 题目要求 **fully-controllable switch**，所以 SCR 不合适，因为 SCR 只能 gate turn-on，不能 gate turn-off。
-2. $1\,\mathrm{MW}$、$690\,\mathrm{V}$ 意味着 current 和 power rating 很高，MOSFET 虽快但通常更适合较低电压或较低功率。
-3. $2\,\mathrm{kHz}$ 是 medium switching frequency，IGBT 可以承受高电压高电流，并能在 kHz 级工作。
-4. 因此选择 **IGBT**；若题目强调极高频率才考虑 MOSFET，若强调极高功率低频可讨论 GTO。
-
-一句英文可直接写：**An IGBT is preferred because it combines high voltage/current capability with full gate control at a moderate switching frequency.**
-
-### 4. Switching converter vs linear regulator / transformer conversion
-
-简答题可用这个高分框：
-
-| 方面 | Switching power electronic converter | Linear regulator / simple transformer route |
-|---|---|---|
-| Efficiency | 高，常可超过 90%，因为开关主要在 on/off 状态 | linear regulator 压差大时效率低，热损耗大 |
-| Size / weight | 高频开关可减小 magnetic components | 工频 transformer 通常大而重 |
-| Control | 可精确控制 voltage、current、frequency、power flow | 可控性较弱或需要额外级联 |
-| Flexibility | 可实现 AC-DC、DC-DC、DC-AC、AC-AC | 单一 transformer 只能改变 AC voltage level |
-| Disadvantages | EMI、ripple、控制复杂、需要 filtering/protection | 简单但效率或功能受限 |
-
-## 必背公式
-
-### 1. Duty cycle
-
-$$
-D=\frac{t_{\mathrm{on}}}{T}=\frac{t_{\mathrm{on}}}{t_{\mathrm{on}}+t_{\mathrm{off}}}
-$$
-
-### 2. Average and RMS current
-
-$$
-I_{\mathrm{avg}}=\frac{1}{T}\int_0^T i(t)\,dt
-$$
-
-$$
-I_{\mathrm{rms}}=\sqrt{\frac{1}{T}\int_0^T i^2(t)\,dt}
-$$
-
-若是矩形脉冲，on 时电流为 $I_m$、off 时为 0：
-
-$$
-I_{\mathrm{avg}}=DI_m
-$$
-
-$$
-I_{\mathrm{rms}}=I_m\sqrt{D}
-$$
-
-### 3. Load power
-
-若 supply voltage 近似恒定，且 current waveform 是从 source 取电：
-
-$$
-P_{\mathrm{load}}=V_{\mathrm{supply}}I_{\mathrm{avg}}
-$$
-
-若是纯电阻负载：
-
-$$
-P=I_{\mathrm{rms}}^2R=\frac{V_{\mathrm{rms}}^2}{R}
-$$
-
-### 4. MOSFET conduction loss
-
-$$
-P_{\mathrm{cond}}=I_{D,\mathrm{rms}}^2R_{DS(on)}
-$$
-
-注意：这里必须用 $I_{D,\mathrm{rms}}$，不能用 $I_{\mathrm{avg}}$。
-
-### 5. MOSFET switching loss
-
-常用线性 overlap 近似：
-
-$$
-P_{\mathrm{sw}}\approx \frac{1}{2}V_{DS}I_D(t_r+t_f)f_s
-$$
-
-这里的 $I_D$ 是 switching instant 的近似电流，不是 $I_{\mathrm{avg}}$ 或 $I_{\mathrm{rms}}$。若 turn-on 和 turn-off 时电流不同，应分别用 $I_{\mathrm{on}}$ 和 $I_{\mathrm{off}}$。
-
-若题目把 turn-on 和 turn-off 分开给：
-
-$$
-P_{\mathrm{sw}}\approx \frac{1}{2}f_sV_{DS}\left(I_{\mathrm{on}}t_{\mathrm{on,sw}}+I_{\mathrm{off}}t_{\mathrm{off,sw}}\right)
-$$
-
-若题目直接给 switching energy：
-
-$$
-P_{\mathrm{sw}}=(E_{\mathrm{on}}+E_{\mathrm{off}})f_s
-$$
-
-### 6. Total semiconductor loss
-
-$$
-P_{\mathrm{tot}}=P_{\mathrm{cond}}+P_{\mathrm{sw}}+P_{RR}
-$$
-
-MOSFET 主开关题通常先写：
-
-$$
-P_{\mathrm{tot}}\approx P_{\mathrm{cond}}+P_{\mathrm{sw}}
-$$
-
-## 图像/波形/拓扑
-
-### 1. MOSFET switching overlap 图像要点
-
-考试画图不用复杂，关键是标出 **voltage-current overlap area**：
+题目给 MW 级、几百伏、kHz 级 switching，通常写 IGBT：
 
 ```text
-Turn-on:                         Turn-off:
-
-v_DS  high \                     v_DS  low  /
-           \                              /
-            \ low                    high/
-
-i_D   low  /                     i_D   high\
-          /                                \
-     high/                              low \
-
-p = v_DS i_D 在斜坡重叠区形成近似三角形能量。
+IGBT: high voltage/current rating + fully gate controlled + suitable for medium switching frequency.
 ```
 
-### 2. MOSFET current waveform 解题图像
+## SOA / FBSOA 图
+
+SOA 题不要只写“不要超过额定值”。至少写四个限制：
+
+| 边界 | 该怎么解释 |
+|---|---|
+| Current limit | 电流不能超过器件允许峰值/连续值 |
+| Voltage limit | blocking voltage 不能超过器件耐压 |
+| Power limit | $P=VI$，电压电流同时大时会过热 |
+| Thermal / secondary breakdown limit | pulse duration 越长，允许区域越小；BJT/IGBT 还可能受 secondary breakdown 限制 |
+
+FBSOA 是 forward-biased safe operating area。写法：
 
 ```text
-i_D
-│        / ramp or pulse
-│       /
-│______/────────
-│      ← t_on →  ← t_off →
-└────────────────────── t
-       T = t_on + t_off
+The switching trajectory must stay inside the FBSOA during turn-on/turn-off; otherwise the device can fail even if voltage and current ratings are separately satisfied.
 ```
 
-标图必须包含：current scale、time scale、$t_{\mathrm{on}}$、$T$、peak/initial/final current、单位。
+## Diode transient 图要标什么
 
-## 做题步骤
+2022 Q1(c) 这种题通常给 diode turn-on / turn-off waveform，让你标量。
 
-### MOSFET waveform + loss 标准步骤
+常见标注：
 
-1. **读周期和 duty**：先从图上读 $t_{\mathrm{on}}$、$t_{\mathrm{off}}$、$T$，求 $D$。
-2. **分段写电流**：矩形直接用公式；斜坡或三角波用积分面积。
-3. **求 average current**：用于 source/load average power，常见是 $P_{\mathrm{load}}=VI_{\mathrm{avg}}$。
-4. **求 RMS current**：用于热效应和 conduction loss。
-5. **算 conduction loss**：$P_{\mathrm{cond}}=I_{D,\mathrm{rms}}^2R_{DS(on)}$。
-6. **算 switching loss**：统一单位后代入 $V_{DS}$、$I_D$、switching time、$f_s$。
-7. **合并损耗**：$P_{\mathrm{tot}}=P_{\mathrm{cond}}+P_{\mathrm{sw}}$，后续 thermal 题用这个值。
+| 符号 | 意思 |
+|---|---|
+| $V_F$ | steady forward voltage drop |
+| $I_F$ | forward current |
+| $V_{FP}$ | turn-on forward voltage overshoot / peak |
+| $V_R$ | reverse blocking voltage |
+| $I_R$ | reverse leakage 或 reverse current，按题图定义 |
+| $I_{rr}$ | peak reverse recovery current |
+| $t_{rr}$ | reverse recovery time |
+| $Q_{rr}$ | reverse recovery charge |
 
-### Which current is used where?
+别乱改题图符号。题图写 $V_{rr}$、$I_{rr}$ 就按图上的名字解释。
 
-| 电流/功率 | 用在哪里 | 不能误用成什么 |
-|---|---|---|
-| $I_{\mathrm{avg}}$ | constant supply 下的 average load/source power，例如 $P=VI_{\mathrm{avg}}$ | 不用于 conduction heating |
-| $I_{\mathrm{rms}}$ | resistor heating、MOSFET conduction loss、thermal source | 不等于 average current |
-| $I_{\mathrm{on}}$、$I_{\mathrm{off}}$ | switching loss 的 turn-on / turn-off overlap | 不一定等于 $I_{\mathrm{avg}}$ 或 $I_{\mathrm{rms}}$ |
-| $P_{\mathrm{loss}}$ | thermal ladder 的输入功率 | 不要用 load power 代替 device loss |
+## Diode loss
 
-### Ramp waveform 分段积分模板
-
-若 on interval 内电流从 $I_1$ 线性变到 $I_2$，持续 $t_{\mathrm{on}}$，off interval 为 0：
+Forward conduction loss：
 
 $$
-I_{\mathrm{avg}}=\frac{t_{\mathrm{on}}}{T}\frac{I_1+I_2}{2}
+P_F\approx V_F I_{F,avg}
 $$
 
-$$
-I_{\mathrm{rms}}^2=\frac{t_{\mathrm{on}}}{T}\frac{I_1^2+I_1I_2+I_2^2}{3}
-$$
+若 diode 只在一部分周期导通，$I_{F,avg}$ 要包含 duty。
 
-若有多个斜坡或平台，就对每一段分别求 $\int i(t)dt$ 和 $\int i^2(t)dt$ 后相加。2017/2018 Q3 的后续 loss 和 thermal 都依赖这一步。
-
-### 单位检查
-
-| 量 | 常见单位 | 换算提醒 |
-|---|---|---|
-| $R_{DS(on)}$ | $\mathrm{m}\Omega$ | $20\,\mathrm{m}\Omega=0.020\,\Omega$ |
-| switching time | $\mathrm{ns}$ | $20\,\mathrm{ns}=20\times10^{-9}\,\mathrm{s}$ |
-| period | $\mathrm{ms}$ 或 $\mu\mathrm{s}$ | 不要和 switching transition time 混淆 |
-| frequency | $\mathrm{kHz}$ | $2\,\mathrm{kHz}=2000\,\mathrm{Hz}$ |
-| power | $\mathrm{W}$ | thermal calculation 必须用 watt |
-
-## 高频错误
-
-- 用 $I_{\mathrm{avg}}^2R$ 算 MOSFET conduction loss；正确是 $I_{\mathrm{rms}}^2R$。
-- 把 waveform 的 on-time $t_{\mathrm{on}}$ 与 switching transition time $t_r$、$t_f$ 混淆。
-- $\mathrm{ns}$、$\mu\mathrm{s}$、$\mathrm{ms}$ 没换成秒，switching loss 差 $10^3$ 到 $10^6$ 倍。
-- 选型题只写器件名，没有说明 voltage/current/power/frequency/controllability。
-- 把 SCR 当作 fully-controllable switch。
-- 忘记 MOSFET 的 $R_{DS(on)}$ 随 temperature 上升，实际设计要留 thermal margin。
-
-## Past paper 连接
-
-- **2018 Q1(a)**：ideal vs actual power switches，答案必须覆盖 static rating 和 dynamic switching behavior。
-- **2018 Q1(b)**：1 MW、690 V、2 kHz wind turbine converter，标准方向是 IGBT。
-- **2017 Q1(a)**：画 fully-controllable switches 并比较 power rating 与 switching frequency；优先准备 MOSFET、IGBT、GTO 或 BJT。
-- **2017 Q3 / 2018 Q3**：MOSFET current waveform → $I_{\mathrm{avg}}$ → $I_{\mathrm{rms}}$ → load power → conduction loss → switching loss → thermal。
-- **Lecture 13 worked solution**：2017 Q3 的套路非常典型，考试换数字时保持同样 working layout。
-
-## 补充：MOSFET 电流用途表（高频大题提分点）
-
-| 电流类型 | 用于哪里 | 公式 |
-|---|---|---|
-| $I_{\mathrm{avg}}$（平均电流） | Load power = $V_{supply} \times I_{\mathrm{avg}}$ | $\frac{1}{T}\int i(t)dt$ |
-| $I_{\mathrm{rms}}$（RMS 电流） | Conduction loss = $I_{\mathrm{rms}}^2 R_{DS(on)}$ | $\sqrt{\frac{1}{T}\int i^2(t)dt}$ |
-| $I_{\mathrm{on}}, I_{\mathrm{off}}$（切换瞬间电流） | Switching loss = $\frac{1}{2}V_{DS}(I_{\mathrm{on}}t_r + I_{\mathrm{off}}t_f)f_s$ | 从波形读取切换时刻的电流值 |
-| $P_{\mathrm{loss}}$（总损耗） | Thermal ladder → $T_J$ | $P_{\mathrm{cond}} + P_{\mathrm{sw}}$ |
-
-**常见错误**：switching loss 中的 $I_D$ 不是 average 也不是 RMS，而是切换瞬间的电流。如果波形是斜坡，on 和 off 时刻电流可能不同，要分别读取。
-
-## 补充：Ramp waveform 分段积分模板（2017 Q3 第一步）
-
-考试常给斜坡或梯形 current waveform。积分方法：
-
-### 线性段（从 $I_1$ 到 $I_2$，持续 $\Delta t$）
+Reverse recovery loss：
 
 $$
-\int i\,dt = \frac{I_1 + I_2}{2} \cdot \Delta t \quad \text{(trapezoid area)}
+P_{RR}=Q_{RR}V_R f_s
 $$
 
+这里 $V_R$ 是 blocking / reverse voltage，不是 $V_F$。
+
+总损耗：
+
 $$
-\int i^2\,dt = \frac{\Delta t}{3}(I_1^2 + I_1 I_2 + I_2^2) \quad \text{(exact for linear ramp)}
+P_D\approx P_F+P_{RR}
 $$
 
-### 常见波形：平台 + 斜坡 + 零
+## MOSFET conduction loss
 
-若一个周期由若干段组成（如 on-time 平台 + 斜坡下降 + off-time 零），分段求 $\int i\,dt$ 和 $\int i^2\,dt$ 后相加，再除以 $T$。
+先求 MOSFET current 的 RMS。
 
-**2017 Q3 参考值**：$I_{\mathrm{avg}} = 8.75\,\mathrm{A}$，$I_{\mathrm{rms}} \approx 12.4\,\mathrm{A}$（来自 40 ms 周期、on-time 20 ms 的 ramp waveform 分段积分）。
+$$
+P_{cond}=I_{D,rms}^2R_{DS(on)}
+$$
+
+矩形脉冲：
+
+$$
+I_{avg}=DI_m,\\ I_{rms}=I_m\sqrt D
+$$
+
+线性斜坡从 $I_1$ 到 $I_2$，持续 $\Delta t$：
+
+$$
+\int i^2dt=\frac{\Delta t}{3}(I_1^2+I_1I_2+I_2^2)
+$$
+
+再除以完整周期 $T$，开方得到 RMS。
+
+## MOSFET switching loss
+
+题目公式表常给：
+
+$$
+P_{sw}=\frac{f_sV_{DS,off}}{2}\left(t_{on,sw}I_{on}+t_{off,sw}I_{off}\right)
+$$
+
+若题目只给 rise/fall time，也常写：
+
+$$
+P_{sw}\approx\frac12V_{DS}I_D(t_r+t_f)f_s
+$$
+
+注意：这里的 $I_D$ 是 switching instant 的电流，不是平均值，也不是 RMS。
+
+## MOSFET loss 题板书顺序
+
+1. 从图读 $T$、$t_{on}$、$D$。
+2. 分段算 $I_{avg}$。
+3. 分段算 $I_{rms}$。
+4. 算 load/source average power：通常用 $VI_{avg}$。
+5. 算 $P_{cond}=I_{rms}^2R_{DS(on)}$。
+6. 算 $P_{sw}$。
+7. 算 $P_{tot}=P_{cond}+P_{sw}$。
+8. 若问降低 switching frequency：只会明显降低 $P_{sw}$；$P_{cond}$ 主要由 RMS current 和 $R_{DS(on)}$ 决定。
+
+## MOSFET 并联 current sharing
+
+2024/2025 会问。
+
+能并联的原因：
+
+- MOSFET 的 $R_{DS(on)}$ 通常是正温度系数。
+- 某只 MOSFET 变热后，$R_{DS(on)}$ 增大。
+- 它分到的电流会下降，电流转移到其他器件。
+- 这有助于 current sharing。
+
+但考试要补一句：
+
+- 仍需要 matched devices、对称 layout、source resistor、单独 gate resistor、足够 derating。
+
+## 别丢分
+
+- MOSFET conduction loss 用 RMS current，不用 average current。
+- Switching loss 的时间单位 ns、$\mu$s 要换成 s。
+- Reverse recovery loss 用 $V_R$，不是 $V_F$。
+- SOA 要同时讲 voltage、current、power、thermal，不只讲额定电压。
+- SCR 不是 fully-controllable。
+- MOSFET 优点不要只写“fast”；缺点也要写高压大功率时 $R_{DS(on)}$ 和热问题。
+- 总损耗进入第 5 章 thermal，不要把 load power 当 device loss。

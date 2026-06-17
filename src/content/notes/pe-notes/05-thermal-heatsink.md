@@ -1,6 +1,6 @@
 ---
-title: "第5章 Thermal Management and Heatsink"
-description: "整理 thermal resistance chain、junction temperature、heatsink 选择与热设计计算。"
+title: "第5章 Thermal and Heatsink"
+description: "期末热设计题要用的 thermal ladder、heatsink、shared heatsink 和 derating。"
 date: 2026-05-17
 tags: [power-electronics, 电力电子]
 category: "课程学习"
@@ -8,221 +8,145 @@ docGroup: "power-electronic-notes"
 order: 5
 draft: false
 ---
-## 考试要会什么
+## 会怎么考
 
-- 会画 **junction-case-sink-ambient thermal chain**。
-- 会用 thermal resistance 求 $T_S$、$T_C$、$T_J$。
-- 会反推 required heatsink thermal resistance $R_{\theta SA}$。
-- 会处理 **common heatsink**：sink temperature rise 用所有器件总损耗。
-- 会把 MOSFET / IGBT losses 转换成 thermal calculation 的输入功率。
+- 画 junction-case-sink-ambient thermal circuit。
+- 给损耗和热阻，算 $T_S$、$T_C$、$T_J$。
+- 给 $T_{J,max}$，反推需要的 heatsink thermal resistance。
+- 判断不用 heatsink 是否安全。
+- 多个器件共用 heatsink，算每个 junction temperature。
+- 解释 derating。
 
-## 一句话记忆
+## 单个器件 thermal ladder
 
-**电路看电流，热路看功率；thermal resistance 串联，common heatsink 先用总功率升温，再分别加各器件自己的 case 和 junction 温升。**
+热路顺序固定：
 
-## 核心原理
+```text
+T_J ─ R_θJC ─ T_C ─ R_θCS ─ T_S ─ R_θSA ─ T_A
+```
 
-### 1. Thermal circuit 类比
-
-| Electrical circuit | Thermal circuit |
-|---|---|
-| Voltage $V$ | Temperature difference $\Delta T$ |
-| Current $I$ | Power loss $P$ |
-| Resistance $R$ | Thermal resistance $R_\theta$ |
-| Ohm's law $V=IR$ | Thermal law $\Delta T=PR_\theta$ |
-
-Power semiconductor 的损耗最终变成热，从 junction 经过 case、thermal interface、heatsink 到 ambient。
-
-### 2. Thermal chain 顺序
-
-从热源到空气的顺序固定：
+从环境往上算温度：
 
 $$
-\text{junction} \rightarrow \text{case} \rightarrow \text{sink} \rightarrow \text{ambient}
-$$
-
-对应 thermal resistance：
-
-$$
-R_{\theta JC},\quad R_{\theta CS},\quad R_{\theta SA}
-$$
-
-其中：
-
-- $R_{\theta JC}$：junction-to-case，通常由器件封装决定。
-- $R_{\theta CS}$：case-to-sink，受 thermal pad、grease、mounting pressure 影响。
-- $R_{\theta SA}$：sink-to-ambient，由 heatsink 和 airflow 决定。
-
-### 3. Common heatsink 的核心区别
-
-若多个器件共用同一个 heatsink：
-
-1. heatsink 到 ambient 的温升由 **总损耗** 决定：
-
-$$
-T_S=T_A+P_{\mathrm{total,sink}}R_{\theta SA}
-$$
-
-2. 每个器件从 sink 到 case/junction 的温升用 **该器件自己的损耗**：
-
-$$
-T_{C,k}=T_S+P_kR_{\theta CS,k}
+T_S=T_A+P R_{\theta SA}
 $$
 
 $$
-T_{J,k}=T_{C,k}+P_kR_{\theta JC,k}
-$$
-
-考试最容易错在：common heatsink 的 $T_S$ 不能只用某一个器件的损耗。
-
-## 必背公式
-
-### 1. Basic thermal resistance law
-
-$$
-\Delta T=PR_\theta
-$$
-
-单位必须匹配：$P$ 用 $\mathrm{W}$，$R_\theta$ 用 $^\circ\mathrm{C}/\mathrm{W}$ 或 $\mathrm{K}/\mathrm{W}$，得到 $^\circ\mathrm{C}$ 或 $\mathrm{K}$ 的温升。
-
-### 2. Single-device thermal chain
-
-$$
-T_S=T_A+PR_{\theta SA}
+T_C=T_S+P R_{\theta CS}
 $$
 
 $$
-T_C=T_S+PR_{\theta CS}
+T_J=T_C+P R_{\theta JC}
 $$
 
-$$
-T_J=T_C+PR_{\theta JC}
-$$
-
-合并写法：
+合起来：
 
 $$
-T_J=T_A+P\left(R_{\theta JC}+R_{\theta CS}+R_{\theta SA}\right)
+T_J=T_A+P(R_{\theta JC}+R_{\theta CS}+R_{\theta SA})
 $$
 
-### 3. Required heatsink thermal resistance
-
-若给定 $T_{J,\max}$，求 heatsink 需要多好：
-
-$$
-R_{\theta SA}\le \frac{T_{J,\max}-T_A}{P}-R_{\theta JC}-R_{\theta CS}
-$$
-
-判断：
-
-- 结果越小，heatsink 要求越强。
-- 若结果为负，说明单靠普通 heatsink 不够，需要降低损耗、并联器件、强迫风冷或重新选器件。
-
-### 4. 多器件 common heatsink
-
-总 heatsink 功率：
-
-$$
-P_{\mathrm{total,sink}}=P_1+P_2+\cdots+P_n
-$$
-
-heatsink temperature：
-
-$$
-T_S=T_A+P_{\mathrm{total,sink}}R_{\theta SA}
-$$
-
-第 $k$ 个器件：
-
-$$
-T_{J,k}=T_S+P_k\left(R_{\theta CS,k}+R_{\theta JC,k}\right)
-$$
-
-## 图像/波形/拓扑
+这里的 $P$ 是器件损耗，不是负载功率。
 
 ![Thermal chain](./assets/thermal_chain.svg)
 
-考试手画 thermal circuit 时写成：
+## 反推 heatsink
+
+给 $T_{J,max}$ 时：
+
+$$
+R_{\theta SA}\le \frac{T_{J,max}-T_A}{P}-R_{\theta JC}-R_{\theta CS}
+$$
+
+选 heatsink 时选更小的 $R_{\theta SA}$。数值越小，散热越好。
+
+若算出来是负数，说明只靠普通 heatsink 不够：要减小损耗、换器件、并联、风冷，或降低环境温度。
+
+## 不用 heatsink 是否安全
+
+题目给 package thermal resistance，例如 case-to-ambient 或 junction-to-ambient 时：
+
+$$
+T_J=T_A+P R_{\theta JA}
+$$
+
+若 $T_J<T_{J,max}$，可以；否则不可以。
+
+写答案时要给结论：safe / unsafe。
+
+## Shared heatsink
+
+多个器件共用一个 heatsink 时，最容易错。
+
+Sink temperature 用总功耗：
+
+$$
+P_{total}=P_1+P_2+\cdots+P_n
+$$
+
+$$
+T_S=T_A+P_{total}R_{\theta SA}
+$$
+
+每个器件自己的 junction temperature 单独算：
+
+$$
+T_{J,k}=T_S+P_k(R_{\theta CS,k}+R_{\theta JC,k})
+$$
+
+板书顺序：
+
+1. 列每个器件功耗。
+2. 加总，求 $T_S$。
+3. 对 MOSFET 算 $T_{J,M}$。
+4. 对 diode 算 $T_{J,D}$。
+5. 比较哪个更接近 limit。
+
+## Derating 怎么写
+
+Derating 就是不要按 datasheet 极限用器件。
+
+考试短答：
+
+- Datasheet rating usually assumes specified case/ambient temperature.
+- Higher temperature reduces allowable power/current.
+- Use derating to keep junction temperature below limit with margin.
+- Parallel devices still need derating because current sharing is not ideal.
+
+## 常见题型模板
+
+### 给功耗求温度
 
 ```text
-T_J ── R_θJC ── T_C ── R_θCS ── T_S ── R_θSA ── T_A
-        ↑P              ↑P              ↑P
+P = ... W
+T_A = ... °C
+T_S = T_A + P R_θSA
+T_C = T_S + P R_θCS
+T_J = T_C + P R_θJC
+Compare with T_J,max
 ```
 
-common heatsink 手画模板：
+### 给温度限制求 heatsink
 
 ```text
-Device 1: T_J1 ─ R_θJC1 ─ T_C1 ─ R_θCS1 ┐
-                                         ├─ T_S ─ R_θSA ─ T_A
-Device 2: T_J2 ─ R_θJC2 ─ T_C2 ─ R_θCS2 ┘
-
-T_S is set by P_1 + P_2, not by one device only.
+Allowed total Rθ = (T_J,max - T_A) / P
+R_θSA,max = Allowed total Rθ - R_θJC - R_θCS
+Choose heatsink with R_θSA <= this value
 ```
 
-图中必须标：$T_J$、$T_C$、$T_S$、$T_A$、$R_{\theta JC}$、$R_{\theta CS}$、$R_{\theta SA}$、$P$。
+### Common heatsink
 
-## 做题步骤
+```text
+T_S = T_A + (P_MOS + P_Diode + ...) R_θSA
+T_J,MOS = T_S + P_MOS(R_θCS,MOS + R_θJC,MOS)
+T_J,D = T_S + P_D(R_θCS,D + R_θJC,D)
+```
 
-### 1. 给 losses 求 temperatures
+## 别丢分
 
-1. 先确认输入功率是 device dissipated power，不是 load power。
-2. 按顺序写 thermal path：$T_A \rightarrow T_S \rightarrow T_C \rightarrow T_J$。
-3. 算 heatsink：$T_S=T_A+PR_{\theta SA}$。
-4. 算 case：$T_C=T_S+PR_{\theta CS}$。
-5. 算 junction：$T_J=T_C+PR_{\theta JC}$。
-6. 与 $T_{J,\max}$ 比较，写 safe / unsafe。
-
-### 2. 给 temperature limit 求 heatsink
-
-1. 写总允许温升：$T_{J,\max}-T_A$。
-2. 除以 power 得总允许 thermal resistance。
-3. 减去 $R_{\theta JC}$ 和 $R_{\theta CS}$，得到 $R_{\theta SA}$ 上限。
-4. 选择 catalog heatsink 时要选 **smaller** $R_{\theta SA}$。
-
-### 3. Common heatsink 题步骤
-
-1. 列出每个器件损耗：$P_1,P_2,\ldots$。
-2. 求 $P_{\mathrm{total,sink}}$。
-3. 用总功率求 $T_S$。
-4. 对每个器件分别算 $T_C$ 和 $T_J$。
-5. 找最高 $T_J$ 的器件作为 limiting device。
-
-### 4. 和 MOSFET loss 题连接
-
-MOSFET 题常先算：
-
-$$
-P_{\mathrm{loss}}=P_{\mathrm{cond}}+P_{\mathrm{sw}}
-$$
-
-然后把 $P_{\mathrm{loss}}$ 代入 thermal chain。不要把 load power $P_{\mathrm{load}}$ 直接当作 semiconductor loss。
-
-## 高频错误
-
-- 把 $P_{\mathrm{load}}$ 当成器件发热功率；thermal 用的是 dissipated loss。
-- thermal resistance 顺序写反，把 ambient 放在 junction 旁边。
-- 漏写单位 $^\circ\mathrm{C}/\mathrm{W}$ 或 $\mathrm{K}/\mathrm{W}$。
-- common heatsink 只用单个器件功率求 $T_S$。
-- 求 heatsink 时选了更大的 $R_{\theta SA}$；正确是 $R_{\theta SA}$ 越小散热越好。
-- 忘记检查 $T_J<T_{J,\max}$，只算温度不给结论。
-- 把 $R_{\theta CS}$ 误认为可以忽略；除非题目明确忽略 thermal interface。
-
-## Past paper 连接
-
-- **2018 Q3 thermal(a-b)**：给 $R_{\theta JC}=0.2^\circ\mathrm{C}/\mathrm{W}$、$R_{\theta CS}=0.1^\circ\mathrm{C}/\mathrm{W}$、$P=60\,\mathrm{W}$、$R_{\theta SA}=1^\circ\mathrm{C}/\mathrm{W}$、$T_A=25^\circ\mathrm{C}$，要求画 thermal circuit 并求 $T_S$、$T_C$、$T_J$。标准顺序是 $85^\circ\mathrm{C}$、$91^\circ\mathrm{C}$、$103^\circ\mathrm{C}$。
-- **2017 Q3(g)**：MOSFET losses 算完后接 thermal ladder，重点是用 $P_{\mathrm{loss}}$ 而不是 $P_{\mathrm{load}}$。
-- **Exam feedback Q1**：thermal 画图和单位是常见扣分点；必须标完整 thermal path。
-- **高频组合题**：waveform calculation → loss → thermal，是最值得背模板的 25 marks 大题结构。
-
-## 补充：热流方向 vs 计算方向
-
-- **画热流方向**：$T_J \to T_C \to T_S \to T_A$（物理热流从结到环境）
-- **算温度**：从已知 $T_A$ 一步步加温升到 $T_J$
-
-$$
-T_S = T_A + P \cdot \theta_{SA} \\
-T_C = T_S + P \cdot \theta_{CS} \\
-T_J = T_C + P \cdot \theta_{JC}
-$$
-
-不要混淆两个方向：画图时热流从高到低，算温度时从已知环境温度往上加。
+- Thermal 用 device loss，不用 load power。
+- $R_{\theta SA}$ 用总功耗只在 shared heatsink 的 sink-to-ambient 部分。
+- 每个器件的 junction-to-case 温升用自己的功耗。
+- $^\circ\mathrm{C/W}$ 和 W 相乘得到 $^\circ\mathrm{C}$ 温升。
+- 画图方向可以从 junction 到 ambient；计算通常从 ambient 加到 junction。
+- 求 heatsink 时，$R_{\theta SA}$ 越小越好。
+- 最后必须写 safe / unsafe。
