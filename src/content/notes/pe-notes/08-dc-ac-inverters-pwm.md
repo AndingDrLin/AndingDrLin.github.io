@@ -1,6 +1,6 @@
 ---
 title: "第8章 DC-AC Inverters and PWM"
-description: "期末逆变器题要用的 bipolar/unipolar PWM、three-phase line voltage、six-step table 和 shoot-through。"
+description: "从全桥开关状态讲起，整理 PWM、三相线电压和 shoot-through 题。"
 date: 2026-05-17
 tags: [power-electronics, 电力电子]
 category: "课程学习"
@@ -8,16 +8,15 @@ docGroup: "power-electronic-notes"
 order: 8
 draft: false
 ---
-## 会怎么考
+## 先讲清楚
 
-- 单相 full bridge：比较 bipolar PWM 和 unipolar PWM。
-- 写 switching conditions。
-- 画 comparator / carrier / reference signals。
-- 解释 $m_a$、$m_f$ 对输出和 harmonics 的影响。
-- 三相 inverter：根据 switching state 求 $v_{AB}$、$v_{BC}$、$v_{CA}$。
-- 解释 square-wave mode、phase sequence、shoot-through 和 dead time。
+Inverter 的任务是把 DC 变成 AC。它不是连续调电压，而是用开关把 DC bus 电压按某种规律接到负载上。
 
-## PWM 基本量
+Full bridge 有两条桥臂。每条桥臂上管和下管不能同时导通，否则 DC link 会被短路。这叫 shoot-through。
+
+PWM 的基本想法：用 sinusoidal reference 和 triangular carrier 比较，比较结果决定开关开关。
+
+## $m_a$ 和 $m_f$
 
 Amplitude modulation index：
 
@@ -25,72 +24,57 @@ $$
 m_a=\frac{\hat V_{control}}{\hat V_{tri}}
 $$
 
+它主要控制基波幅值。
+
 Frequency modulation index：
 
 $$
 m_f=\frac{f_{carrier}}{f_{control}}
 $$
 
-考试写法：
+它决定 switching harmonics 出现在哪些频率附近。
 
-- $m_a$ 控制基波幅值。
-- $m_f$ 决定主要 switching harmonics 的频率位置。
-- $m_f$ 大，滤波更容易，但 switching loss 增大。
-- $0\le m_a\le1$ 是 linear SPWM 区。
-- $m_a>1$ 进入 overmodulation，最后接近 square wave。
+$m_f$ 大，谐波更高频，更容易滤掉，但 switching loss 也会变大。
 
 ![PWM and SPWM comparator](./assets/pwm_spwm.svg)
 
-## Single-phase full bridge
-
-Full bridge 输出端电压可为：
-
-- Bipolar：$+V_d$ 或 $-V_d$。
-- Unipolar：$+V_d$、0、$-V_d$。
+## Full bridge 输出状态
 
 ![Full-bridge inverter states](./assets/inverter_states.svg)
 
+Full bridge 可以输出：
+
+- $+V_d$
+- $-V_d$
+- 0（unipolar PWM 时会出现）
+
 ## Bipolar PWM
 
-一个 sinusoidal reference 和 triangular carrier 比较。
+Bipolar PWM 只有两个输出电平：$+V_d$ 和 $-V_d$。
 
-常见 switching rule：
+常见规则：
 
-| 条件 | ON 的开关 | 输出 |
+| 条件 | 开关状态 | 输出 |
 |---|---|---|
-| $v_{control}>v_{tri}$ | $S_1$、$S_4$ | $+V_d$ |
-| $v_{control}<v_{tri}$ | $S_2$、$S_3$ | $-V_d$ |
+| $v_{control}>v_{tri}$ | 一组对角开关 ON | $+V_d$ |
+| $v_{control}<v_{tri}$ | 另一组对角开关 ON | $-V_d$ |
 
-实际开关编号按题图。考试先写 rule，再按题图换名字。
+优点：控制简单。
 
-Bipolar 特点：
-
-- 控制简单。
-- 输出只在 $+V_d$ 和 $-V_d$ 间跳。
-- 电压跳变大，低阶谐波/滤波压力比 unipolar 大。
+缺点：输出电压每次在 $+V_d$ 和 $-V_d$ 间跳，谐波较重。
 
 ## Unipolar PWM
 
-两个桥臂分开调制。常用两个 reference：
+Unipolar PWM 每个桥臂单独调制。
 
-$$
-v_{ref,A}=\hat V_m\sin\omega t
-$$
-
-$$
-v_{ref,B}=-\hat V_m\sin\omega t
-$$
-
-每个桥臂各自和同一个 triangular carrier 比较。
-
-常见 rule：
+A leg 用 $v_{ref}$ 和 carrier 比较。B leg 用 $-v_{ref}$ 和 carrier 比较。
 
 | 桥臂 | 条件 | 上管 | 下管 |
 |---|---|---|---|
-| A leg | $v_{ref,A}>v_{tri}$ | ON | OFF |
-| A leg | $v_{ref,A}<v_{tri}$ | OFF | ON |
-| B leg | $v_{ref,B}>v_{tri}$ | ON | OFF |
-| B leg | $v_{ref,B}<v_{tri}$ | OFF | ON |
+| A leg | $v_{ref}>v_{tri}$ | ON | OFF |
+| A leg | $v_{ref}<v_{tri}$ | OFF | ON |
+| B leg | $-v_{ref}>v_{tri}$ | ON | OFF |
+| B leg | $-v_{ref}<v_{tri}$ | OFF | ON |
 
 输出：
 
@@ -98,34 +82,42 @@ $$
 v_o=v_A-v_B
 $$
 
-所以会出现 $+V_d$、0、$-V_d$。
+所以输出可以是 $+V_d$、0、$-V_d$。
 
-Unipolar 特点：
+Unipolar 的谐波更好，但控制更复杂。
 
-- 等效输出 switching frequency 更高。
-- 谐波更容易滤掉。
-- 控制比 bipolar 复杂。
-- 同一桥臂上下管仍必须互补，必须有 dead time。
+## 例题 1：判断 PWM 类型
 
-## Comparator implementation 题
+题目问：想降低 harmonics，又不改变 DC input voltage，single-phase full bridge 选哪种 PWM？
 
-2025 Q4 这种题，图不用漂亮，但必须有这些块：
+答案：选 unipolar PWM。
+
+理由：
+
+- 输出有 $+V_d$、0、$-V_d$ 三个电平。
+- 等效 switching frequency 更高。
+- 输出电压跳变小，滤波更容易。
+- 缺点是控制逻辑比 bipolar 复杂。
+
+## Comparator circuit 怎么画
+
+考试不要求画漂亮电路，但要画清逻辑：
 
 ```text
-sin reference ── comparator ── gate A upper
-triangle carrier ─┘
+sin reference ─┐
+               ├─ comparator ─ gate signal for A upper
+triangle ──────┘
 
-inverted sin reference ─ comparator ─ gate B upper
-triangle carrier ───────┘
+inverted sin reference ─┐
+                        ├─ comparator ─ gate signal for B upper
+triangle ───────────────┘
 
 lower gates = complementary signals with dead time
 ```
 
-写清：comparator output controls gate signals；同一 leg 上下开关不能同时导通。
+## SPWM 基波幅值
 
-## SPWM 输出幅值
-
-Full-bridge bipolar SPWM 在线性区常用：
+Full-bridge bipolar SPWM 在线性区：
 
 $$
 \hat V_{o1}\approx m_aV_d
@@ -135,35 +127,13 @@ $$
 V_{o1,rms}\approx\frac{m_aV_d}{\sqrt2}
 $$
 
-Half-bridge 要减半：
+Half-bridge 要减半。题目问 total RMS、fundamental peak、fundamental RMS 时要看清楚。
 
-$$
-\hat V_{o1}\approx\frac{m_aV_d}{2}
-$$
+## Three-phase inverter
 
-题目问 total RMS、fundamental peak、fundamental RMS 时要分清，不能混用。
+三相 inverter 有 A、B、C 三个桥臂。考试常给每个桥臂上管是否导通，让你算 line voltage。
 
-## Square-wave mode
-
-写优点：
-
-- 控制简单。
-- DC bus 利用率高。
-- switching frequency 低，switching loss 可能低。
-
-写缺点：
-
-- Low-order harmonics 大。
-- 输出幅值不能像 SPWM 那样线性调节。
-- Motor drive 中会增加 torque ripple、heating、noise。
-
-## Three-phase inverter line voltage
-
-三相题先列 pole voltage，再相减。
-
-若上管 ON：该 leg 为 $V_d$；下管 ON：该 leg 为 0。若题图用 $+V_d/2$、$-V_d/2$，就按题图。
-
-必须写：
+先列 pole voltage，再相减：
 
 $$
 v_{AB}=v_A-v_B
@@ -188,29 +158,46 @@ $$
 | $v_{BC}$ | $-V_d$ |
 | $v_{CA}$ | 0 |
 
-每个 60° 区间都这样算。不要背错符号。
+每个 60° 区间都这样算。
 
-## Phase sequence
+## Square-wave mode
 
-改变相序最简单：交换任意两相的 gate signals / reference phases。例如交换 B、C，相序 ABC 变成 ACB，电机转向会反。
+Square-wave mode 就是开关按方波切换，不用 carrier 比较。
+
+优点：控制简单，DC bus 利用率高，switching loss 可能低。
+
+缺点：low-order harmonics 大，电机里会带来 torque ripple、heating 和 noise。
 
 ## Shoot-through
 
-Shoot-through：同一桥臂上管和下管同时导通，DC link 被短路。
+Shoot-through 是同一桥臂上管和下管同时导通，DC link 被短路。
 
 防止方法：
 
-- complementary gating。
+- complementary gate signals。
 - dead time / blanking time。
 - gate driver interlock。
-- hardware protection。
+- protection circuit。
+
+## 固定套路
+
+PWM / inverter 题按这几步：
+
+```text
+1. 判断 single-phase 还是 three-phase
+2. 判断 bipolar、unipolar、square-wave 还是 SPWM
+3. 写 comparator rule
+4. 写 switch state
+5. 算 output voltage 或 line voltage
+6. 解释 harmonics / shoot-through / phase sequence
+```
 
 ## 别丢分
 
-- Bipolar 没有 0 电平，unipolar 有 0 电平。
-- Unipolar 不是简单“对角开关互补”，而是两个桥臂分别比较。
-- $m_a$ 用 peak/peak，不用 RMS，不用 peak-to-peak。
-- $m_f=f_{carrier}/f_{control}$，别写反。
-- Three-phase line voltage 是相减，不是单个 pole voltage。
+- Bipolar 没有 0 电平。
+- Unipolar 是两桥臂分别调制，不是简单对角互补。
+- $m_a$ 用 peak/peak，不用 RMS。
+- $m_f=f_{carrier}/f_{control}$。
+- Three-phase line voltage 要相减。
 - 同一桥臂上下管不能同时 ON。
-- 题目说 neglect high-frequency harmonics，就只写基波/低频分量。
+- 改相序：交换任意两相 gate/reference。

@@ -1,6 +1,6 @@
 ---
-title: "第0章 2022–2025 真题题型索引"
-description: "按 2022–2025 期末题整理 Q1–Q4 题型、必写步骤和对应章节。"
+title: "第0章 期末题型和学习顺序"
+description: "把 2022–2025 期末题拆成学习顺序：先补基础，再练固定题型。"
 date: 2026-05-17
 tags: [power-electronics, 电力电子]
 category: "课程学习"
@@ -8,45 +8,79 @@ docGroup: "power-electronic-notes"
 order: 0
 draft: false
 ---
-## 2022–2025 真题题型
+## 这门课的题不是散的
+
+期末卷看起来有很多电路，但做法其实重复：先看波形和导通区间，再写公式，最后算电压、电流、损耗或温度。
+
+如果第一次学，先把下面这条链走通：
+
+```text
+波形 average/RMS
+→ diode rectifier
+→ SCR phase control
+→ switch loss
+→ thermal
+→ DC-DC converter
+→ inverter/PWM
+```
+
+后面的所有大题都在重复这条链里的某一段。
+
+## 2022–2025 真题怎么分布
 
 | 年份 | Q1 | Q2 | Q3 | Q4 |
 |---|---|---|---|---|
-| 2022 | 波形 average/RMS；电感电压；SOA；diode transient；SCR；centre-tapped rectifier | Bridge rectifier + capacitor ripple + PIV + VA rating | Buck：duty、$i_L$、$v_L$、ripple、linear regulator 对比 | Snubber 作用与计算；thermal ladder |
-| 2023 | Full-wave rectified waveform；diode loss；SCR AC control；bridge rectifier；thermal | MOSFET PWM current、average/RMS、conduction/switching loss | Buck boundary CCM；waveforms；替代 converter | Three-phase PWM inverter；square-wave；phase sequence；shoot-through |
-| 2024 | SCR bridge/DC motor；MOSFET 优缺点；MOSFET 并联；heatsink；centre-tapped rectifier | Rectifier + capacitor + linear regulator + transformer VA | Boost 推导；isolated converter；snubber 选择 | Three-phase six-step table；single-phase unipolar PWM |
-| 2025 | 分段 load current；back-to-back SCR；MOSFET 优缺点；common heatsink；centre-tapped rectifier | Half-wave rectifier + capacitor；diode waveform；SCR half-wave average/RMS | Buck 完整计算；Flyback isolation | Bipolar/unipolar PWM；switching conditions；$m_a$、$m_f$；comparator circuit |
+| 2022 | 波形、SOA、diode transient、SCR、centre-tapped rectifier | Bridge rectifier + capacitor | Buck converter | Snubber + thermal |
+| 2023 | 整流波形、diode loss、SCR、thermal、bridge rectifier | MOSFET PWM loss | Buck boundary CCM | Three-phase PWM inverter |
+| 2024 | SCR bridge、MOSFET、heatsink、centre-tapped rectifier | Rectifier + regulator supply | Boost + flyback + snubber | Three-phase inverter + unipolar PWM |
+| 2025 | 分段电流、SCR、MOSFET、common heatsink、centre-tapped rectifier | Half-wave rectifier + SCR | Buck + flyback isolation | Bipolar / unipolar PWM |
 
-## 按题型查
+## 第一遍该学什么
 
-| 题型 | 常见问法 | 必须写出的东西 | 去哪章 |
+| 顺序 | 先弄懂什么 | 为什么要先学 |
+|---|---|---|
+| 1 | average、RMS、form factor | 后面所有功率、损耗、波形题都靠它 |
+| 2 | diode rectifier | 每年都有输出波形、PIV、ripple |
+| 3 | SCR | 相控题就是整流题加一个 firing angle |
+| 4 | MOSFET / diode loss | thermal 题的输入功率从这里来 |
+| 5 | thermal ladder | 考试常让你从 loss 算 junction temperature |
+| 6 | DC-DC | Buck、Boost 是大题固定来源 |
+| 7 | inverter/PWM | Q4 常考波形、truth table、shoot-through |
+
+## 做题时先问自己四个问题
+
+1. 这是波形题、电路题、损耗题，还是控制题？
+2. 题目要的是 average、RMS、peak，还是 peak-to-peak？
+3. 哪个器件在导通，哪个器件在关断？
+4. 最后答案需要画图、写公式，还是给设计理由？
+
+这四个问题问完，大多数题就知道该翻哪一章。
+
+## 题型索引
+
+| 题型 | 要先懂的基础 | 固定输出 | 对应章节 |
 |---|---|---|---|
-| 分段波形 | average、RMS、form factor | 周期、分段积分、单位；RMS 要平方积分 | 第1章 |
-| 电感电压反推 | given $i_L(t)$, derive/sketch $v_L(t)$ | 每段斜率、$v_L=Ldi/dt$、正负电压、时间轴 | 第1章 |
-| Rectifier 波形 | half-wave / bridge / centre-tapped output | 导通二极管、输出波形、diode drop、peak | 第2章 |
-| PIV | find PIV rating | 关断二极管两端最大反压；bridge 和 centre-tap 分开算 | 第2章 |
-| Capacitor ripple | ripple、required $C$、conduction angle | $\Delta V=I\Delta t/C$；half-wave/full-wave ripple period | 第2章 |
-| Regulated supply | secondary voltage、capacitor rating、PIV、VA | dropout → ripple valley → peak → RMS；diode drop；VA/form factor | 第2章 |
-| SCR 原理 | explain half-controllable | gate turn-on；gate 不能 turn-off；holding current/natural commutation | 第3章 |
-| SCR 相控 | firing angle waveform、average/RMS | 标 $\alpha$；导通区间；积分；RMS 算 power | 第3章 |
-| SOA / diode waveform | label SOA or diode switching curve | voltage/current/power/thermal limits；$V_F,I_F,V_R,I_R$ 等标注 | 第4章 |
-| Diode loss | conduction + reverse recovery loss | $P_D\approx V_F I_{avg}$；$P_{RR}=Q_{RR}V_Rf_s$ | 第4章 |
-| MOSFET loss | PWM current loss calculation | $I_{avg}$、$I_{rms}$、$P_{cond}$、$P_{sw}$、$P_{tot}$ | 第4章 |
-| MOSFET 并联 | why current sharing | $R_{DS(on)}$ 正温度系数；仍需 matched layout/source resistor | 第4章 |
-| Thermal | junction/case/sink temperature | thermal ladder；$T_A,T_S,T_C,T_J$；safe/unsafe | 第5章 |
-| Shared heatsink | common heatsink sizing | $T_S$ 用总功耗；每个 $T_J$ 单独算 | 第5章 |
-| Snubber | choose/draw snubber | 保护对象、能量路径、$di/dt$、ringing frequency、loss | 第6章 |
-| Flyback isolation | choose isolated converter | flyback；turns ratio；duty；不是普通 buck-boost | 第6章、第7章 |
-| Buck | duty、ripple、waveforms | $V_o=DV_{in}$；$v_L$ on/off；$\Delta i_L$；$I_{max/min}$ | 第7章 |
-| Boost | derive output relation | volt-second balance；$V_o=V_{in}/(1-D)$；$I_L=I_{in}$ | 第7章 |
-| Boundary CCM | calculate boundary $L$ | $I_{L,min}=0$；$\Delta I_L=2I_{L,avg}$ | 第7章 |
-| PWM inverter | bipolar/unipolar conditions | comparator rule、switching table、output levels、dead time | 第8章 |
-| Three-phase inverter | line voltage table | $v_{AB}=v_A-v_B$；每 60° 状态；符号 | 第8章 |
+| 分段波形 | 面积和平方积分 | $X_{avg}$、$X_{rms}$、form factor | 第1章 |
+| 电感电压 | 电感电流不能突变 | $v_L=Ldi/dt$ 和电压波形 | 第1章 |
+| 整流输出 | diode 单向导通 | load waveform、diode drop、RMS/average | 第2章 |
+| PIV | diode 关断时承受反压 | each diode PIV | 第2章 |
+| 电容滤波 | capacitor 峰值充电、负载放电 | ripple、required $C$、conduction angle | 第2章 |
+| SCR 相控 | gate 只控制开通 | firing angle、导通区间、积分 | 第3章 |
+| diode / MOSFET loss | 平均电流和 RMS 电流用途不同 | conduction loss、switching loss、total loss | 第4章 |
+| thermal | 热阻像电阻一样串联 | $T_S$、$T_C$、$T_J$、heatsink | 第5章 |
+| snubber | 电感电流不能突然断掉 | current path、$di/dt$、ringing frequency | 第6章 |
+| DC-DC | 电感一周期平均电压为 0 | duty、ripple、$I_{max/min}$ | 第7章 |
+| PWM inverter | 开关状态决定输出电压 | switching condition、line voltage、dead time | 第8章 |
 
-## 图和计算最低要求
+## 例题应该怎么写
 
-- 计算题：公式、代入、单位都写。只写答案容易丢 working marks。
-- 波形题：标 axis、period、peak、zero、导通区间。
-- 电路题：先标导通路径，再写公式。
-- 热题：画 thermal ladder，再算温度。
-- PWM 题：先写 comparator rule，再写 switch state，不要直接跳输出波形。
+考试给分看过程。每个计算题至少写这四行：
+
+```text
+1. 已知量：列出题目给的 V、I、R、L、C、f、D 或 alpha
+2. 公式：写出本题适用公式
+3. 代入：数值带单位代进去
+4. 结论：答案 + 单位 + 简短判断
+```
+
+画图题至少标：axis、peak、zero line、导通区间、关键电压/电流值。

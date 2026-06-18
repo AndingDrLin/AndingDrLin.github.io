@@ -1,6 +1,6 @@
 ---
 title: "第1章 波形计算：Average、RMS、Form Factor"
-description: "期末波形题要用的分段 average、RMS、form factor 和电感电压反推。"
+description: "从面积和平方积分讲起，整理期末波形题的固定做法。"
 date: 2026-05-17
 tags: [power-electronics, 电力电子]
 category: "课程学习"
@@ -8,125 +8,166 @@ docGroup: "power-electronic-notes"
 order: 1
 draft: false
 ---
-## 会怎么考
+## 先讲清楚
 
-- 给一段周期波形，求 average。
-- 给同一段波形，求 RMS。
-- 求 form factor。
-- 给 $i_L(t)$，画或推 $v_L(t)$。
-- 波形可能是三角波、锯齿波、整流波、带平台的分段线性波。
+电力电子里很多电压、电流不是稳定直流，而是一段一段变化的波形。考试问 average、RMS、form factor，其实是在问三个不同问题。
 
-## 分段 average
+**Average** 看一个周期里的净效果。正面积和负面积会抵消。
 
-先选完整周期 $T$，再分段。不要只拿导通区间当周期。
+**RMS** 看发热效果。先平方，所以负半周也会产生正的贡献。
+
+**Form factor** 看波形有多“尖”。它通常用 RMS 除以整流后的平均值。
+
+## 三个公式
+
+Average：
 
 $$
 X_{avg}=\frac{1}{T}\int_0^T x(t)\,dt
 $$
 
-板书写法：
-
-```text
-周期：T = ...
-分段：0 ~ t1, t1 ~ t2, ...
-Average = (每段有符号面积相加) / T
-```
-
-负半周面积要带负号。对称交流的 ordinary average 可以是 0。
-
-## 分段 RMS
-
-RMS 先平方，再平均，再开方。
+RMS：
 
 $$
 X_{rms}=\sqrt{\frac{1}{T}\int_0^T x^2(t)\,dt}
 $$
 
-板书写法：
-
-```text
-RMS^2 = (每段 x(t)^2 的积分相加) / T
-RMS = sqrt(RMS^2)
-```
-
-负值平方后仍贡献热效应。电阻功率、MOSFET conduction loss、heating 都用 RMS。
-
-## Form factor
+Form factor：
 
 $$
 \mathrm{FF}=\frac{X_{rms}}{X_{avg,rectified}}
 $$
 
-这里的分母通常是 $|x(t)|$ 的平均值。普通 average 为 0 时，不能拿 0 做分母。
+这里 $T$ 是完整周期。$X_{avg,rectified}$ 是 $|x(t)|$ 的平均值，不一定等于普通 average。
 
-对称正弦波：
+## 为什么 RMS 要平方
 
-$$
-X_{rms}=\frac{\hat X}{\sqrt{2}},\qquad X_{avg,rectified}=\frac{2\hat X}{\pi}
-$$
+电阻发热功率是：
 
 $$
-\mathrm{FF}=\frac{\pi}{2\sqrt{2}}\approx1.11
+p(t)=i^2(t)R
 $$
 
-## 线性斜坡常用积分
+所以电流为负时，$i^2(t)$ 仍然是正的。RMS 就是把一个变化电流换成“发热效果相同”的直流电流。
 
-电流从 $I_1$ 线性变到 $I_2$，持续 $\Delta t$：
+考试里只要看到 resistor power、MOSFET conduction loss、heating，就用 RMS。
 
-$$
-\int i\,dt=\frac{I_1+I_2}{2}\Delta t
-$$
-
-$$
-\int i^2\,dt=\frac{\Delta t}{3}\left(I_1^2+I_1I_2+I_2^2\right)
-$$
-
-若这段只占周期的一部分，最后还要除以完整周期 $T$。
-
-## 常见波形怎么下手
+## 常见波形
 
 | 波形 | Average | RMS |
 |---|---|---|
-| 幅值 $X_m$、duty $D$ 的矩形脉冲 | $DX_m$ | $X_m\sqrt D$ |
+| duty 为 $D$、幅值为 $X_m$ 的矩形脉冲 | $DX_m$ | $X_m\sqrt D$ |
 | $0$ 到 $X_m$ 的线性斜坡，占满周期 | $X_m/2$ | $X_m/\sqrt3$ |
 | $I_1$ 到 $I_2$ 的线性斜坡，占满周期 | $(I_1+I_2)/2$ | $\sqrt{(I_1^2+I_1I_2+I_2^2)/3}$ |
 | half-wave rectified sine | $\hat V/\pi$ | $\hat V/2$ |
 | full-wave rectified sine | $2\hat V/\pi$ | $\hat V/\sqrt2$ |
 
-## 整流后的锯齿或三角波
+线性斜坡的平方积分常用：
 
-2023 Q1(a) 这种题先画 $|v(t)|$，再积分。
+$$
+\int i^2\,dt=\frac{\Delta t}{3}\left(I_1^2+I_1I_2+I_2^2\right)
+$$
 
-做法：
+## 例题 1：矩形脉冲
 
-1. 找原波形周期。
-2. 全波整流后，负半周翻到正半周。
-3. Average 用整流后面积。
-4. RMS 不受符号影响，原波形平方和整流后平方相同。
-5. Form factor 用整流后的 average 做分母。
+已知电流在一个周期内有 25% 时间为 $8\,\mathrm{A}$，其余时间为 0。求 average 和 RMS。
+
+已知：
+
+$$
+D=0.25,\qquad I_m=8\,\mathrm{A}
+$$
+
+Average：
+
+$$
+I_{avg}=DI_m=0.25\times8=2\,\mathrm{A}
+$$
+
+RMS：
+
+$$
+I_{rms}=I_m\sqrt D=8\sqrt{0.25}=4\,\mathrm{A}
+$$
+
+注意：RMS 不是 $0.25\times8$。这是最常见的错法。
+
+## 例题 2：线性斜坡
+
+电感电流在一个周期内从 $2\,\mathrm{A}$ 线性升到 $6\,\mathrm{A}$，求 average 和 RMS。
+
+Average：
+
+$$
+I_{avg}=\frac{2+6}{2}=4\,\mathrm{A}
+$$
+
+RMS：
+
+$$
+I_{rms}=\sqrt{\frac{2^2+2\times6+6^2}{3}}
+$$
+
+$$
+I_{rms}=\sqrt{\frac{52}{3}}=4.16\,\mathrm{A}
+$$
+
+RMS 比 average 稍大，因为高电流段对平方更敏感。
 
 ## 由电感电流画电感电压
 
-只用一个公式：
+电感公式：
 
 $$
 v_L=L\frac{di_L}{dt}
 $$
 
-板书步骤：
+意思很简单：电流变化越快，电感两端电压越大。
 
-1. 把 $i_L(t)$ 按斜率分段。
+固定做法：
+
+1. 把 $i_L(t)$ 按直线段分开。
 2. 每段算斜率：$\Delta i/\Delta t$。
-3. 乘以 $L$ 得 $v_L$。
-4. 斜率为正，$v_L$ 为正；斜率为负，$v_L$ 为负；电流平坦，$v_L=0$。
-5. 画 $v_L$ 时每段是常数电压，不是三角波。
+3. 每段乘以 $L$。
+4. 斜率为正，$v_L$ 为正；斜率为负，$v_L$ 为负；斜率为 0，$v_L=0$。
+5. 画出的 $v_L$ 是一段一段的常数电压。
+
+## 例题 3：电感电压
+
+已知 $L=100\,\mu\mathrm{H}$。电感电流在 $10\,\mu\mathrm{s}$ 内从 $1\,\mathrm{A}$ 升到 $3\,\mathrm{A}$。求这段 $v_L$。
+
+斜率：
+
+$$
+\frac{di}{dt}=\frac{3-1}{10\times10^{-6}}=2\times10^5\,\mathrm{A/s}
+$$
+
+电压：
+
+$$
+v_L=100\times10^{-6}\times2\times10^5=20\,\mathrm{V}
+$$
+
+所以这一段电感电压是 $+20\,\mathrm{V}$。
+
+## 固定套路
+
+波形题按这几步写：
+
+```text
+1. 选完整周期 T
+2. 按直线段 / 平台段 / 零段分段
+3. Average：有符号面积 / T
+4. RMS：平方积分 / T，再开方
+5. Form factor：RMS / rectified average
+6. 单位写清楚
+```
 
 ## 别丢分
 
 - RMS 不是 average。
-- Pulse 的 RMS 是 $X_m\sqrt D$，不是 $DX_m$。
-- Form factor 的分母看题目要不要 rectified average。
-- 角度积分要用弧度。
-- 分段积分最后除以完整周期。
-- $\Delta I$ 是 peak-to-peak；求最大/最小时用 $\pm\Delta I/2$。
-- ms、$\mu$s、ns 先换成秒。
+- Pulse 的 RMS 是 $X_m\sqrt D$。
+- Form factor 的分母通常是 rectified average。
+- 只算导通区间后，最后仍要除以完整周期。
+- $\Delta I$ 是 peak-to-peak，求最大最小时用 $\Delta I/2$。
+- ms、$\mu$s、ns 一律先换成秒。

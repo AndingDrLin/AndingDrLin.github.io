@@ -1,6 +1,6 @@
 ---
 title: "第6章 Snubber and Flyback"
-description: "期末 snubber 与 flyback 题要用的保护电路、数值计算、画图和隔离型 DC-DC 选择。"
+description: "从电感电流不能突变讲起，整理 snubber 保护、数值题和 flyback 隔离。"
 date: 2026-05-17
 tags: [power-electronics, 电力电子]
 category: "课程学习"
@@ -8,33 +8,28 @@ docGroup: "power-electronic-notes"
 order: 6
 draft: false
 ---
-## 会怎么考
+## 先讲清楚
 
-- 问 snubber 是干什么的。
-- 给感性负载开关，要求选 snubber 并重画电路。
-- 给 $L$、$C$，求 ringing frequency。
-- 给电感电压，求 $di/dt$。
-- 给 snubber resistor / peak current / frequency，估算 power。
-- 问需要 isolation 时选什么 DC-DC converter。
+开关感性负载时，最麻烦的是电感电流不能突然变成 0。开关一关断，电感会想办法维持原来的电流。如果没有通路，电压会被抬得很高，可能击穿开关。
 
-## Snubber 作用
+Snubber 的作用就是给这些瞬态能量一个受控路径，保护开关。
 
-考试直接写：
+## Snubber 要解决什么
 
-- Limit $dv/dt$。
-- Limit $di/dt$。
-- Clamp voltage spike。
-- Damp ringing。
-- Provide a path for inductive current。
-- Keep switch trajectory inside SOA。
+考试常写这几句：
 
-Snubber 通常会增加损耗。它不是提高效率的东西，是保护和抑制 EMI 的东西。
+- limit $dv/dt$。
+- limit $di/dt$。
+- clamp voltage spike。
+- damp ringing。
+- provide path for inductive current。
+- keep switch inside SOA。
 
-## 感性负载关断
+Snubber 会增加损耗。它不是为了提高效率，而是为了保护器件和减小 EMI。
 
-电感电流不能突变。开关突然关断时，电感会抬高电压，直到电流有路可走。
+## 感性负载基本公式
 
-用这个公式：
+电感公式：
 
 $$
 v_L=L\frac{di}{dt}
@@ -46,63 +41,69 @@ $$
 \frac{di}{dt}=\frac{v_L}{L}
 $$
 
-若题目问 current falls from $I$ to 0 in time $\Delta t$：
+如果电压越大，电流变化越快。关断时电感为了让电流继续流，会产生高电压。
 
-$$
-v_L=L\frac{I}{\Delta t}
-$$
+## 常见保护办法
 
-## 常见 snubber / clamp 怎么选
-
-| 场景 | 写什么 | 作用 |
+| 场景 | 常用电路 | 作用 |
 |---|---|---|
-| DC relay / inductive load | Freewheel diode across load | 给电感电流续流路径，限制关断过压 |
-| Switch voltage spike | RCD clamp 或 TVS/Zener clamp | 限制 switch peak voltage |
-| LC ringing | Series RC snubber across switch/diode | damping，降低振铃 |
-| Turn-off $dv/dt$ 太大 | RC/RCD voltage snubber | 让 switch voltage 上升慢一点 |
-| Turn-on $di/dt$ 太大 | series inductor / current snubber | 限制电流上升速度 |
+| DC inductive load | Freewheel diode | 给电感电流续流 |
+| Switch voltage spike | RCD clamp / TVS | 限制 switch peak voltage |
+| LC ringing | Series RC snubber | 阻尼振荡 |
+| Turn-off $dv/dt$ 太大 | RC / RCD snubber | 让电压上升慢一点 |
+| Turn-on $di/dt$ 太大 | Series inductor | 限制电流上升速度 |
 
-画图时必须标出电流路径。只画一个 R 或 C 不够。
+画图时必须画出 transient current path。
 
 ## Ringing frequency
 
-由 stray inductance 和 parasitic capacitance 形成：
+寄生电感和寄生电容会形成振铃：
 
 $$
 f_r=\frac{1}{2\pi\sqrt{LC}}
 $$
 
-单位先换：nH、pF 都要换成 H、F。
+$L$ 用 H，$C$ 用 F。nH、pF 要先换单位。
 
-例如题目给 $L=800\,\mathrm{nH}$，$C=300\,\mathrm{pF}$：
+## 例题 1：ringing frequency
+
+已知 stray inductance $L=800\,\mathrm{nH}$，capacitance $C=300\,\mathrm{pF}$。求 ringing frequency。
+
+换单位：
+
+$$
+L=800\times10^{-9}\,\mathrm{H}
+$$
+
+$$
+C=300\times10^{-12}\,\mathrm{F}
+$$
+
+代入：
 
 $$
 f_r=\frac{1}{2\pi\sqrt{800\times10^{-9}\cdot300\times10^{-12}}}
 $$
 
-## Snubber resistor power
-
-若题目给 resistor 上近似电流波形，按题目波形算平均功率。
-
-常见快速估算：
-
-- resistor 电流近似恒定 $I$、只在一段 duty 内流过：
-
 $$
-P_R\approx I^2RD
+f_r\approx10.3\,\mathrm{MHz}
 $$
 
-- 每次吸收电感能量：
+## Snubber power 怎么估
+
+如果每次吸收电感能量：
 
 $$
 E_L=\frac12LI^2
 $$
 
+平均功率：
+
 $$
 P\approx E_Lf_s
 $$
 
-- 每次 capacitor 充放电：
+如果每次 capacitor 充放电：
 
 $$
 E_C=\frac12CV^2
@@ -112,57 +113,64 @@ $$
 P\approx E_Cf_s
 $$
 
-题目若给指定公式，按题目公式。
+如果题目直接给 resistor 电流波形，就用：
 
-## 2022 Q4 这种计算怎么排版
+$$
+P_R=I_{rms}^2R
+$$
 
-```text
-1. snubber purpose: limit overvoltage/ringing, protect switch.
-2. resistor power: use I^2R with correct waveform/duty, or E f_s if energy per cycle is given.
-3. di/dt: di/dt = V/L.
-4. switch voltage: supply/clamp/reflected voltage + spike,按题图极性相加。
-5. ringing: f = 1/(2πsqrt(LC)).
-```
+## Flyback 为什么常用于隔离
 
-## Flyback isolation
+普通 buck、boost、buck-boost 都没有 galvanic isolation。题目要求 isolation 时，常选 flyback。
 
-题目出现这些词，优先答 flyback：
+Flyback 可以理解成带 transformer / coupled inductor 的 buck-boost：
 
-- isolated DC-DC。
-- galvanic isolation。
-- input range can be below or above output。
-- low/medium power SMPS。
+- Switch on：primary magnetising inductance 储能。
+- Switch off：secondary diode 导通，把能量送到输出。
 
-Flyback 是 buck-boost 思路加 transformer / coupled inductor。
-
-理想关系常写：
+理想幅值关系：
 
 $$
 \frac{V_o}{V_{in}}=\frac{N_s}{N_p}\frac{D}{1-D}
 $$
 
-实际符号看 dot convention 和 diode 方向。考试一般写幅值即可。
+其中 $N_s/N_p$ 是匝比，$D$ 是 duty cycle。
 
-Switch on：primary magnetising inductance 储能，secondary diode 通常 off。
+## 例题 2：flyback 选择题
 
-Switch off：primary 电流转到 secondary，secondary diode on，能量送到输出。
+题目：输入 $16$–$32\,\mathrm{V}$，输出隔离 $24\,\mathrm{V}$，选什么 converter？
 
-## Flyback switch stress
+答案写法：
 
-关断时 MOSFET 看到：
+```text
+Choose a flyback converter.
+Reason: it provides galvanic isolation through the coupled inductor/transformer, and the output voltage can be controlled by duty cycle and turns ratio.
+```
+
+如果题目要求关系式：
 
 $$
-V_{DS,off}\approx V_{in}+\frac{N_p}{N_s}(V_o+V_D)+V_{spike}
+V_o=V_{in}\frac{N_s}{N_p}\frac{D}{1-D}
 $$
 
-$V_{spike}$ 来自 leakage inductance，所以 flyback 常配 RCD clamp / snubber。
+## 固定套路
+
+Snubber 题按这几步：
+
+```text
+1. 判断问题：overvoltage、di/dt、dv/dt、ringing 还是 isolation
+2. 感性负载先找电流关断路径
+3. 计算 di/dt 用 v = L di/dt
+4. 计算 ringing 用 f = 1/(2πsqrt(LC))
+5. 计算 loss 用 E f_s 或 I_rms^2 R
+6. 需要 isolation 就选 flyback
+```
 
 ## 别丢分
 
-- Snubber 不是主 converter 拓扑。
-- 感性负载一定要给电流路径。
-- RC snubber 通常是 series R-C branch，不是单独电容短路。
-- $f_r$ 公式别漏 $2\pi$ 和平方根。
-- Snubber power 别漏 switching frequency。
-- Flyback 有 isolation 和 turns ratio；普通 buck-boost 没有 isolation。
-- Flyback transformer 不是普通同时传能 transformer；它靠 magnetising inductance 先储能再放能。
+- Snubber 不是主功率变换器。
+- 感性负载关断必须给电流路径。
+- RC snubber 通常是 series R-C branch。
+- $f_r$ 公式别漏 $2\pi$。
+- Snubber loss 要乘 switching frequency。
+- Flyback 有 isolation，普通 buck-boost 没有。
