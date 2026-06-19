@@ -1,6 +1,6 @@
 ---
-title: "第6章 Snubber and Flyback"
-description: "从电感电流不能突变讲起，整理 snubber 保护、数值题和 flyback 隔离。"
+title: "第6章 缓冲电路与反激变换器"
+description: "从电感电流不能突变讲起，整理缓冲电路（snubber）保护原理与分类、数值题和反激（flyback）隔离变换器。"
 date: 2026-05-17
 tags: [power-electronics, 电力电子]
 category: "课程学习"
@@ -12,20 +12,61 @@ draft: false
 
 开关感性负载时，最麻烦的是电感电流不能突然变成 0。开关一关断，电感会想办法维持原来的电流。如果没有通路，电压会被抬得很高，可能击穿开关。
 
-Snubber 的作用就是给这些瞬态能量一个受控路径，保护开关。
+缓冲电路（snubber）的作用就是给这些瞬态能量一个受控路径，保护开关。
 
-## Snubber 要解决什么
+## 为什么需要缓冲电路
 
-考试常写这几句：
+实际的开关器件不是理想器件。寄生电感来自 PCB 走线和引线，寄生电容（parasitic capacitance）来自器件端子，它们会形成一个 LC 谐振电路。当开关关断时，储存在杂散电感（stray inductance）中的能量 $\frac{1}{2}LI^2$ 必须有去处。
 
-- limit $dv/dt$。
-- limit $di/dt$。
-- clamp voltage spike。
-- damp ringing。
-- provide path for inductive current。
-- keep switch inside SOA。
+如果没有保护：
 
-Snubber 会增加损耗。它不是为了提高效率，而是为了保护器件和减小 EMI。
+1. 杂散电感中的电流突然被切断，产生很高的电压尖峰。
+2. 电压尖峰可能超过器件额定电压（rated voltage），导致器件损坏。
+3. 杂散电感和寄生电容之间形成 LC 振荡，产生振铃（ringing）——一种阻尼振荡。
+
+振铃频率为：
+
+$$
+f_r=\frac{1}{2\pi\sqrt{LC}}
+$$
+
+$L$ 用 H，$C$ 用 F。nH、pF 要先换单位。
+
+缓冲电路的用途：
+
+- 限制 $dv/dt$
+- 限制 $di/dt$
+- 钳位（clamp）电压尖峰
+- 阻尼（damp）振铃
+- 为电感电流提供通路
+- 保持开关在安全工作区（SOA）内
+
+缓冲电路会增加损耗。它不是为了提高效率，而是为了保护器件和减小电磁干扰（EMI）。
+
+## 缓冲电路分类
+
+### 无极性串联 RC 缓冲电路
+
+用于保护二极管和晶闸管（thyristor），抑制振铃。把串联的 R-C 支路并联在器件两端。
+
+设计规则：
+
+1. $C_{snub}\approx 3\times C_{parasitic}$
+2. $R_{snub}=\sqrt{L_{stray}/C_{parasitic}}$
+
+### 极性 RC 缓冲电路（关断缓冲）
+
+属于 turn-off snubber。用于限制关断时的 $dv/dt$，钳位电压尖峰。电路由二极管 + R + C 构成。
+
+工作过程：开关关断时，二极管导通，电容开始充电，拖慢了开关两端电压的上升速度。原来可能直接加在开关上的高压，转移到了电容上。之后电容储存的能量通过电阻耗散掉。
+
+### 极性 RL 缓冲电路（开通缓冲）
+
+属于 turn-on snubber。用于限制开通时的 $di/dt$。电路由电感 + 二极管 + R 构成。
+
+工作过程：电感串联在开关回路中，开通时电感限制电流上升速度。关断时，二极管和电阻为电感能量提供放电通路。
+
+设计要点：控制关断时的电压尖峰，可能会导致开通时的电流尖峰变大，反之亦然。缓冲电路设计始终是一个权衡（trade-off）。
 
 ## 感性负载基本公式
 
@@ -47,27 +88,17 @@ $$
 
 | 场景 | 常用电路 | 作用 |
 |---|---|---|
-| DC inductive load | Freewheel diode | 给电感电流续流 |
-| Switch voltage spike | RCD clamp / TVS | 限制 switch peak voltage |
-| LC ringing | Series RC snubber | 阻尼振荡 |
-| Turn-off $dv/dt$ 太大 | RC / RCD snubber | 让电压上升慢一点 |
-| Turn-on $di/dt$ 太大 | Series inductor | 限制电流上升速度 |
+| DC 感性负载 | 续流二极管（freewheel diode） | 给电感电流续流 |
+| 开关电压尖峰 | RCD 钳位 / TVS | 限制开关峰值电压 |
+| LC 振铃 | 串联 RC 缓冲电路 | 阻尼振荡 |
+| 关断 $dv/dt$ 太大 | RC / RCD 缓冲电路 | 让电压上升慢一点 |
+| 开通 $di/dt$ 太大 | 串联电感 | 限制电流上升速度 |
 
-画图时必须画出 transient current path。
+画图时必须画出瞬态电流路径（transient current path）。
 
-## Ringing frequency
+## 例题 1：振铃频率
 
-寄生电感和寄生电容会形成振铃：
-
-$$
-f_r=\frac{1}{2\pi\sqrt{LC}}
-$$
-
-$L$ 用 H，$C$ 用 F。nH、pF 要先换单位。
-
-## 例题 1：ringing frequency
-
-已知 stray inductance $L=800\,\mathrm{nH}$，capacitance $C=300\,\mathrm{pF}$。求 ringing frequency。
+已知杂散电感 $L=800\,\mathrm{nH}$，寄生电容 $C=300\,\mathrm{pF}$。求振铃频率。
 
 换单位：
 
@@ -89,9 +120,9 @@ $$
 f_r\approx10.3\,\mathrm{MHz}
 $$
 
-## Snubber power 怎么估
+## Snubber 功率怎么估
 
-如果每次吸收电感能量：
+如果每次开关周期吸收电感能量，那么每个开关周期杂散电感中储存的能量必须被耗散掉：
 
 $$
 E_L=\frac12LI^2
@@ -103,7 +134,7 @@ $$
 P\approx E_Lf_s
 $$
 
-如果每次 capacitor 充放电：
+如果每次电容充放电：
 
 $$
 E_C=\frac12CV^2
@@ -113,39 +144,84 @@ $$
 P\approx E_Cf_s
 $$
 
-如果题目直接给 resistor 电流波形，就用：
+如果题目直接给电阻电流波形，就用：
 
 $$
 P_R=I_{rms}^2R
 $$
 
-## Flyback 为什么常用于隔离
+## 反激（Flyback）为什么常用于隔离
 
-普通 buck、boost、buck-boost 都没有 galvanic isolation。题目要求 isolation 时，常选 flyback。
+普通 buck、boost、buck-boost 都没有电气隔离（galvanic isolation）。题目要求隔离（isolation）时，常选反激（flyback）。
 
-Flyback 可以理解成带 transformer / coupled inductor 的 buck-boost：
+反激变换器可以理解成带耦合电感（coupled inductor）/ 变压器（transformer）的 buck-boost。它用一个变压器代替了独立电感，初级（primary）和次级（secondary）通过磁芯耦合，但直流不导通，所以实现了电气隔离。
 
-- Switch on：primary magnetising inductance 储能。
-- Switch off：secondary diode 导通，把能量送到输出。
+### 同名端标记法
 
-理想幅值关系：
+同名端标记法（dot convention）规定了变压器的极性：
+
+- 当电流从初级的同名端（dotted terminal）流入时，次级同名端为高电位。
+- 即初级和次级的同名端电压极性相同。
+
+这决定了反激的工作模式：开关导通时，初级储能，次级被反向偏置，二极管截止；开关关断时，同名端极性反转，次级二极管正偏导通，能量传送到输出。
+
+### 能量传递过程
+
+1. 开关导通（switch ON）：电流流过初级线圈，磁芯储存能量 $\frac{1}{2}L_m I_p^2$，次级二极管反偏截止。
+2. 开关关断（switch OFF）：磁芯中储存的能量需要释放，次级电压极性反转，二极管正偏导通，能量传送到输出。
+
+这就是"先储能、后释放"的反激工作原理。
+
+### 伏秒平衡推导
+
+对初级电感应用伏秒平衡（volt-second balance）：
 
 $$
-\frac{V_o}{V_{in}}=\frac{N_s}{N_p}\frac{D}{1-D}
+\int v_L\,dt = 0
 $$
 
-其中 $N_s/N_p$ 是匝比，$D$ 是 duty cycle。
+在开关导通期间（$0$ 到 $t_{on}$），初级两端电压为 $V_{in}$：
 
-## 例题 2：flyback 选择题
+$$
+V_{in}\times t_{on}
+$$
 
-题目：输入 $16$–$32\,\mathrm{V}$，输出隔离 $24\,\mathrm{V}$，选什么 converter？
+在开关关断期间（$t_{on}$ 到 $T$），次级二极管导通，输出电压折算到初级为 $\frac{N_1}{N_2}V_{out}$，方向与 $V_{in}$ 相反：
+
+$$
+-\frac{N_1}{N_2}V_{out}\times(T-t_{on})
+$$
+
+伏秒平衡：
+
+$$
+V_{in}\times t_{on}-\frac{N_1}{N_2}V_{out}\times(T-t_{on})=0
+$$
+
+令 $D=t_{on}/T$，解出输出电压：
+
+$$
+V_{out}=V_{in}\times\frac{D}{1-D}\times\frac{N_2}{N_1}
+$$
+
+其中 $N_2/N_1$ 是匝比（turns ratio），$D$ 是占空比（duty cycle）。
+
+### 输出电压纹波
+
+$$
+\frac{\Delta V_{out}}{V_{out}}=\frac{DT}{RC}
+$$
+
+$R$ 是负载（load）电阻，$C$ 是输出滤波电容，$T$ 是开关周期。
+
+## 例题 2：反激选择题
+
+题目：输入 $16$–$32\,\mathrm{V}$，输出隔离 $24\,\mathrm{V}$，选什么变换器？
 
 答案写法：
 
-```text
-Choose a flyback converter.
-Reason: it provides galvanic isolation through the coupled inductor/transformer, and the output voltage can be controlled by duty cycle and turns ratio.
-```
+选用反激变换器（flyback converter）。
+理由：它通过耦合电感 / 变压器提供电气隔离，输出电压可通过占空比和匝比来控制。
 
 如果题目要求关系式：
 
@@ -155,22 +231,22 @@ $$
 
 ## 固定套路
 
-Snubber 题按这几步：
+缓冲电路题按这几步：
 
-```text
-1. 判断问题：overvoltage、di/dt、dv/dt、ringing 还是 isolation
+1. 判断问题：过压（overvoltage）、$di/dt$、$dv/dt$、振铃（ringing）还是隔离（isolation）
 2. 感性负载先找电流关断路径
-3. 计算 di/dt 用 v = L di/dt
-4. 计算 ringing 用 f = 1/(2πsqrt(LC))
-5. 计算 loss 用 E f_s 或 I_rms^2 R
-6. 需要 isolation 就选 flyback
-```
+3. 计算 $di/dt$ 用 $v = L\,di/dt$
+4. 计算振铃频率用 $f = 1/(2\pi\sqrt{LC})$
+5. 计算损耗用 $E\cdot f_s$ 或 $I_{rms}^2 R$
+6. 需要隔离就选反激（flyback）
 
 ## 别丢分
 
-- Snubber 不是主功率变换器。
+- 缓冲电路不是主功率变换器。
 - 感性负载关断必须给电流路径。
-- RC snubber 通常是 series R-C branch。
+- RC 缓冲电路通常是串联 R-C 支路。
 - $f_r$ 公式别漏 $2\pi$。
-- Snubber loss 要乘 switching frequency。
-- Flyback 有 isolation，普通 buck-boost 没有。
+- 缓冲电路损耗要乘开关频率。
+- 缓冲电路设计始终存在权衡：控制关断电压尖峰可能导致开通电流尖峰变大，反之亦然。
+- 杂散电感中储存的能量每个开关周期都会产生，必须每个周期都耗散掉。
+- 反激有隔离，普通 buck-boost 没有。

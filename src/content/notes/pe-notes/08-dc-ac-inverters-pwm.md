@@ -1,6 +1,6 @@
 ---
-title: "第8章 DC-AC Inverters and PWM"
-description: "从全桥开关状态讲起，整理 PWM、三相线电压和 shoot-through 题。"
+title: "第8章 DC-AC 逆变器与 PWM"
+description: "从全桥开关状态讲起，整理 PWM、三相线电压和直通（shoot-through）题。"
 date: 2026-05-17
 tags: [power-electronics, 电力电子]
 category: "课程学习"
@@ -8,17 +8,52 @@ docGroup: "power-electronic-notes"
 order: 8
 draft: false
 ---
+
+## 什么是逆变器
+
+DC-AC 变换器叫做逆变器（inverter）。它的任务是把直流电变成交流电。输入端接直流电源，输出端产生不同频率和幅值的交流信号。
+
+逆变器的典型应用场景包括：
+
+- 新能源发电系统：太阳能板输出直流，需要逆变器转成交流才能并网（grid-tied）或供离网（off-grid）负载使用
+- 电机驱动：控制交流电机的转速和转矩
+- 不间断电源（UPS）：电池供电时将直流逆变成交流输出
+
+逆变器按输出相数分为两类：单相逆变器和三相逆变器。基本构建单元是桥式电路（bridge circuit），由功率开关管组成。
+
+## 功率因数
+
+交流电路中，电压和电流之间可能存在相位差 $\theta$。功率因数（power factor）定义为：
+
+$$
+\text{PF} = \cos\theta
+$$
+
+三种功率的关系构成一个直角三角形：
+
+- 有功功率（active power / true power）：$P = VI\cos\theta$，单位 W，是实际做功的部分
+- 无功功率（reactive power）：$Q = VI\sin\theta$，单位 VAR，在电感和电容之间交换
+- 视在功率（apparent power）：$S = VI$，单位 VA
+
+三者满足：
+
+$$
+S^2 = P^2 + Q^2
+$$
+
+功率因数越接近 1，电源传输效率越高。纯电阻负载 $\theta=0$，$\text{PF}=1$；纯电感或纯电容负载 $\theta=90°$，$\text{PF}=0$。
+
 ## 先讲清楚
 
-Inverter 的任务是把 DC 变成 AC。它不是连续调电压，而是用开关把 DC bus 电压按某种规律接到负载上。
+逆变器的实质是用开关把直流母线电压按某种规律接到负载（load）上，而不是连续地调节电压。
 
-Full bridge 有两条桥臂。每条桥臂上管和下管不能同时导通，否则 DC link 会被短路。这叫 shoot-through。
+全桥逆变器有两条桥臂（leg）。每条桥臂的上管和下管不能同时导通，否则直流母线会被短路，这叫做直通（shoot-through）。
 
-PWM 的基本想法：用 sinusoidal reference 和 triangular carrier 比较，比较结果决定开关开关。
+PWM 的基本想法：用正弦参考信号和三角载波（carrier）通过比较器（comparator）进行比较，比较结果决定开关的通断。
 
 ## $m_a$ 和 $m_f$
 
-Amplitude modulation index：
+幅度调制比（amplitude modulation index）：
 
 $$
 m_a=\frac{\hat V_{control}}{\hat V_{tri}}
@@ -26,31 +61,61 @@ $$
 
 它主要控制基波幅值。
 
-Frequency modulation index：
+频率调制比（frequency modulation index）：
 
 $$
 m_f=\frac{f_{carrier}}{f_{control}}
 $$
 
-它决定 switching harmonics 出现在哪些频率附近。
+它决定开关谐波（switching harmonics）出现在哪些频率附近。
 
-$m_f$ 大，谐波更高频，更容易滤掉，但 switching loss 也会变大。
+$m_f$ 越大，谐波频率越高，越容易滤掉，但开关损耗（switching loss）也会变大。
 
 ![PWM and SPWM comparator](./assets/pwm_spwm.svg)
 
-## Full bridge 输出状态
+## 谐波分析基础
+
+逆变器的输出不是纯正弦波，里面包含谐波（harmonics）——频率为基波频率整数倍的分量。谐波会导致负载发热、产生转矩脉动、引起电磁干扰。
+
+分析谐波的数学工具是傅里叶级数（Fourier series）。对 PWM 调制的逆变器，谐波频率的一般公式为：
+
+$$
+f_h = (j \times m_f \pm k) \times f_1
+$$
+
+其中 $j$、$k$ 为正整数，$f_1$ 为基波频率。
+
+规律是：$j$ 为奇数时 $k$ 必须为偶数；$j$ 为偶数时 $k$ 必须为奇数。
+
+对单极性（unipolar）PWM，$j$ 必须为偶数、$k$ 必须为奇数，这意味着谐波更加集中在高次区域，滤波器设计更容易。
+
+## 全桥输出状态
 
 ![Full-bridge inverter states](./assets/inverter_states.svg)
 
-Full bridge 可以输出：
+全桥逆变器可以输出三种电平：
 
 - $+V_d$
 - $-V_d$
-- 0（unipolar PWM 时会出现）
+- 0（单极性 PWM 时会出现）
 
-## Bipolar PWM
+## 半桥逆变器
 
-Bipolar PWM 只有两个输出电平：$+V_d$ 和 $-V_d$。
+半桥逆变器只有两个开关管（$T_+$ 和 $T_-$）和一个电容分压的直流源。
+
+- $T_+$ 导通时，输出电压为 $+V_{dc}/2$
+- $T_-$ 导通时，输出电压为 $-V_{dc}/2$
+
+PWM 调制方式：将三角波 $v_{tri}$ 和控制信号 $v_{control}$ 送入比较器。
+
+- 当 $v_{tri} > v_{control}$ 时，$T_-$ 导通
+- 当 $v_{tri} < v_{control}$ 时，$T_+$ 导通
+
+半桥逆变器的基波幅值只有全桥的一半，但结构更简单，适用于功率较小的场合。
+
+## 双极性 PWM
+
+双极性（bipolar）PWM 只有两个输出电平：$+V_d$ 和 $-V_d$。
 
 常见规则：
 
@@ -61,20 +126,20 @@ Bipolar PWM 只有两个输出电平：$+V_d$ 和 $-V_d$。
 
 优点：控制简单。
 
-缺点：输出电压每次在 $+V_d$ 和 $-V_d$ 间跳，谐波较重。
+缺点：输出电压每次在 $+V_d$ 和 $-V_d$ 之间跳变，跳变幅度大，谐波较重。
 
-## Unipolar PWM
+## 单极性 PWM
 
-Unipolar PWM 每个桥臂单独调制。
+单极性（unipolar）PWM 每个桥臂单独调制。
 
-A leg 用 $v_{ref}$ 和 carrier 比较。B leg 用 $-v_{ref}$ 和 carrier 比较。
+A 桥臂用 $v_{ref}$ 和载波比较。B 桥臂用 $-v_{ref}$ 和载波比较。
 
 | 桥臂 | 条件 | 上管 | 下管 |
 |---|---|---|---|
-| A leg | $v_{ref}>v_{tri}$ | ON | OFF |
-| A leg | $v_{ref}<v_{tri}$ | OFF | ON |
-| B leg | $-v_{ref}>v_{tri}$ | ON | OFF |
-| B leg | $-v_{ref}<v_{tri}$ | OFF | ON |
+| A 桥臂 | $v_{ref}>v_{tri}$ | ON | OFF |
+| A 桥臂 | $v_{ref}<v_{tri}$ | OFF | ON |
+| B 桥臂 | $-v_{ref}>v_{tri}$ | ON | OFF |
+| B 桥臂 | $-v_{ref}<v_{tri}$ | OFF | ON |
 
 输出：
 
@@ -84,40 +149,42 @@ $$
 
 所以输出可以是 $+V_d$、0、$-V_d$。
 
-Unipolar 的谐波更好，但控制更复杂。
+单极性的谐波更集中在高频，但控制更复杂。
+
+## 死区时间
+
+实际的功率开关管有有限的开关时间，不是理想的瞬间切换。如果上管关断和下管导通之间没有间隔，可能出现两管同时短暂导通的情况，导致直通（shoot-through），直流母线短路——这是灾难性的故障。
+
+解决方案是死区时间（dead time），也叫消隐时间（blanking time）：在切换时刻，让上下两管同时关断一小段时间。
+
+电路实现：使用两个带有偏移量的三角波分别比较上管和下管的门极（gate）信号。正偏移的三角波产生上管信号，负偏移的三角波产生下管信号。偏移量本身就形成了一个自然的时间间隔，保证两管不会同时导通。
+
+这就是为什么上下管的门极信号是互补的（complementary）但不完全重叠——中间总有一小段"空白"。
 
 ## 例题 1：判断 PWM 类型
 
-题目问：想降低 harmonics，又不改变 DC input voltage，single-phase full bridge 选哪种 PWM？
+题目问：想降低谐波，又不改变直流输入电压，单相全桥逆变器选哪种 PWM？
 
-答案：选 unipolar PWM。
+答案：选单极性 PWM。
 
 理由：
 
 - 输出有 $+V_d$、0、$-V_d$ 三个电平。
-- 等效 switching frequency 更高。
-- 输出电压跳变小，滤波更容易。
-- 缺点是控制逻辑比 bipolar 复杂。
+- 等效开关频率更高，谐波集中在更高频区域。
+- 输出电压每次跳变幅度更小，滤波更容易。
+- 缺点是控制逻辑比双极性 PWM 复杂。
 
-## Comparator circuit 怎么画
+## 比较器电路怎么画
 
 考试不要求画漂亮电路，但要画清逻辑：
 
-```text
-sin reference ─┐
-               ├─ comparator ─ gate signal for A upper
-triangle ──────┘
-
-inverted sin reference ─┐
-                        ├─ comparator ─ gate signal for B upper
-triangle ───────────────┘
-
-lower gates = complementary signals with dead time
-```
+1. 正弦参考信号和三角波送入比较器，输出 A 桥臂上门极信号
+2. 反相正弦参考信号和同一三角波送入另一比较器，输出 B 桥臂上门极信号
+3. 下管门极信号 = 上管门极信号取反并加上死区时间
 
 ## SPWM 基波幅值
 
-Full-bridge bipolar SPWM 在线性区：
+全桥双极性 SPWM 在线性区：
 
 $$
 \hat V_{o1}\approx m_aV_d
@@ -127,13 +194,17 @@ $$
 V_{o1,rms}\approx\frac{m_aV_d}{\sqrt2}
 $$
 
-Half-bridge 要减半。题目问 total RMS、fundamental peak、fundamental RMS 时要看清楚。
+半桥逆变器的基波幅值是全桥的一半。题目问总 RMS、基波峰值、基波 RMS 时要看清楚是全桥还是半桥。
 
-## Three-phase inverter
+## 三相逆变器
 
-三相 inverter 有 A、B、C 三个桥臂。考试常给每个桥臂上管是否导通，让你算 line voltage。
+三相逆变器有 A、B、C 三个桥臂（leg），每个桥臂结构和半桥逆变器相同。六个开关管组成三条桥臂，共八种开关状态，其中六个是有效状态（每次只有 1 个或 2 个上管导通），两个是零矢量（全上管关或全上管开）。
 
-先列 pole voltage，再相减：
+六个有效状态的切换遵循格雷码（Gray code）规则：每次只改变一个桥臂的状态。这减少了开关动作次数，降低了开关损耗。
+
+考试常给每个桥臂上管是否导通，让你算线电压（line voltage）。
+
+先列极电压（pole voltage），再相减：
 
 $$
 v_{AB}=v_A-v_B
@@ -147,7 +218,7 @@ $$
 v_{CA}=v_C-v_A
 $$
 
-例：A high，B low，C high。
+例：A 高，B 低，C 高。
 
 | 量 | 值 |
 |---|---|
@@ -158,46 +229,56 @@ $$
 | $v_{BC}$ | $-V_d$ |
 | $v_{CA}$ | 0 |
 
-每个 60° 区间都这样算。
+每个 60 度区间都这样算。
 
-## Square-wave mode
+三相 PWM 调制使用三个相位互差 120 度的正弦参考信号，分别和同一个三角载波比较。
 
-Square-wave mode 就是开关按方波切换，不用 carrier 比较。
+一个有用的结论：当频率调制比 $m_f$ 是 3 的倍数且为奇数时，线电压中的谐波会自动抵消一部分。这是因为三相 120 度对称性使某些谐波分量在相减时消失。
 
-优点：控制简单，DC bus 利用率高，switching loss 可能低。
+## 方波模式
 
-缺点：low-order harmonics 大，电机里会带来 torque ripple、heating 和 noise。
+方波（square-wave）模式就是开关按方波规律切换，不用载波比较。
 
-## Shoot-through
+优点：控制简单，直流母线利用率高，开关损耗低。
 
-Shoot-through 是同一桥臂上管和下管同时导通，DC link 被短路。
+缺点：低次谐波幅值大，在电机中会带来转矩脉动、发热和噪声。
+
+## 直通防护
+
+直通（shoot-through）是同一桥臂上管和下管同时导通，导致直流母线短路。
 
 防止方法：
 
-- complementary gate signals。
-- dead time / blanking time。
-- gate driver interlock。
-- protection circuit。
+- 门极信号互补（complementary gate signals）
+- 死区时间 / 消隐时间（dead time / blanking time）
+- 门极驱动互锁（gate driver interlock）
+- 保护电路（protection circuit）
+
+## 不同方案比较
+
+**半桥 vs 全桥：** 同一直流母线电压下，全桥的输出电压幅值是半桥的 2 倍。全桥能输出 $+V_d$、0、$-V_d$ 三个电平，半桥只有 $+V_d/2$ 和 $-V_d/2$。
+
+**方波 vs PWM：** 方波模式的低次谐波幅值很大，滤波困难；PWM 把谐波推到高次区域，更容易用小尺寸滤波器滤除。PWM 的代价是开关损耗更高。
+
+**单极性 vs 双极性：** 单极性 PWM 等效开关频率是双极性的 2 倍——谐波集中在 $2f_s$ 附近而不是 $f_s$ 附近，滤波器可以做得更小。代价是控制逻辑更复杂，需要独立调制每个桥臂。
 
 ## 固定套路
 
-PWM / inverter 题按这几步：
+PWM / 逆变器题按这几步：
 
-```text
-1. 判断 single-phase 还是 three-phase
-2. 判断 bipolar、unipolar、square-wave 还是 SPWM
-3. 写 comparator rule
-4. 写 switch state
-5. 算 output voltage 或 line voltage
-6. 解释 harmonics / shoot-through / phase sequence
-```
+1. 判断单相还是三相
+2. 判断双极性、单极性、方波还是 SPWM
+3. 写比较器规则
+4. 写开关状态
+5. 算输出电压或线电压
+6. 解释谐波 / 直通 / 相序
 
 ## 别丢分
 
-- Bipolar 没有 0 电平。
-- Unipolar 是两桥臂分别调制，不是简单对角互补。
+- 双极性 PWM 没有 0 电平。
+- 单极性 PWM 是两桥臂分别调制，不是简单对角互补。
 - $m_a$ 用 peak/peak，不用 RMS。
 - $m_f=f_{carrier}/f_{control}$。
-- Three-phase line voltage 要相减。
+- 三相线电压要相减（极电压相减）。
 - 同一桥臂上下管不能同时 ON。
-- 改相序：交换任意两相 gate/reference。
+- 改相序（phase sequence）：交换任意两相的门极 / 参考信号。
