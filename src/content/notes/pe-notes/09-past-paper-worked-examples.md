@@ -14,21 +14,19 @@ draft: false
 
 做题时不要背整段话，只要记住每类题的顺序：先判断题型，再列已知量，再写公式，最后代入和检查单位。
 
-## 1. Waveform average / RMS / form factor
+## 1. 波形 average / RMS / form factor
 
 ### 题目长什么样
 
-给一段周期波形，问 average、RMS、form factor。波形可能是三角波、锯齿波、矩形脉冲或分段线性电流。
+给一段周期波形（waveform），问 average、RMS、form factor。波形可能是三角波、锯齿波、矩形脉冲或分段线性电流。
 
 ### 板书步骤
 
-```text
 1. 写周期 T
 2. 把波形分段
 3. Average = 有符号面积 / T
 4. RMS = sqrt(平方积分 / T)
-5. Form factor = RMS / rectified average
-```
+5. Form factor = RMS / 整流后平均值（rectified average）
 
 公式：
 
@@ -46,26 +44,24 @@ $$
 - Form factor 分母一般不是 ordinary average。
 - 分段后要除以完整周期。
 
-## 2. Rectifier + PIV + ripple
+## 2. 整流器 + PIV + 纹波
 
 ### 题目长什么样
 
-给 half-wave、bridge、centre-tapped rectifier，问 output waveform、PIV、ripple 或 capacitor。
+给 half-wave、bridge、centre-tapped 整流器（rectifier），问输出波形、PIV、纹波（ripple）或电容（capacitor）。
 
 ### 板书步骤
 
-```text
-1. RMS 转 peak
-2. 判断 rectifier topology
-3. 写导通 diode 数
-4. 画 load voltage
-5. 按关断 diode 算 PIV
-6. 有 capacitor：ΔV = IΔt/C
-```
+1. RMS 转峰值（peak）
+2. 判断整流器拓扑（topology）
+3. 写导通二极管（diode）数
+4. 画负载（load）电压
+5. 按关断二极管算 PIV
+6. 有电容：$\Delta V = I\Delta t/C$
 
 常用表：
 
-| 拓扑 | Diode drops | Ripple frequency | PIV |
+| 拓扑 | 二极管压降数 | 纹波频率 | PIV |
 |---|---|---|---|
 | Half-wave | 1 | $f_{line}$ | 无 C 约 $\hat V$，有 C 可到 $2\hat V$ |
 | Bridge | 2 | $2f_{line}$ | $\hat V$ |
@@ -73,15 +69,15 @@ $$
 
 ### 别丢分
 
-- Bridge 有两个 diode drops。
-- Centre-tapped 的 PIV 看半绕组 peak。
-- Half-wave 50 Hz 的 ripple period 是 20 ms，full-wave 是 10 ms。
+- Bridge 有两个二极管压降。
+- Centre-tapped 的 PIV 看半绕组峰值。
+- Half-wave 50 Hz 的纹波周期是 20 ms，full-wave 是 10 ms。
 
-## 3. Regulated supply design
+## 3. 稳压电源设计
 
 ### 题目长什么样
 
-给 linear regulator、bridge rectifier、capacitor、transformer，问 secondary voltage、regulator dissipation、capacitor rating、PIV、VA。
+给线性稳压器（regulator）、桥式整流器、电容、变压器（transformer），问次级（secondary）电压、稳压器功耗、电容额定值、PIV、VA。
 
 ### 板书步骤
 
@@ -103,13 +99,13 @@ $$
 V_{sec,rms}=\frac{\hat V_{sec}}{\sqrt2}
 $$
 
-Regulator loss：
+稳压器损耗：
 
 $$
 P_{reg}=(V_{in,reg}-V_{out})I_{load}
 $$
 
-Transformer VA：
+变压器 VA：
 
 $$
 VA=V_{sec,rms}I_{sec,rms}
@@ -117,29 +113,27 @@ $$
 
 ### 别丢分
 
-- Minimum secondary 看低电网输入。
-- Regulator worst-case heat 看高输入。
-- Capacitor voltage rating 看最高 peak，不看输出 DC。
-- VA 用 RMS current。
+- 最小次级电压看低电网输入。
+- 稳压器最坏情况发热看高输入。
+- 电容电压额定值看最高峰值，不看输出 DC。
+- VA 用 RMS 电流。
 
-## 4. SCR firing angle
+## 4. SCR 触发角
 
 ### 题目长什么样
 
-给 SCR、$\alpha$、R load，问 output waveform、average、RMS、power。
+给 SCR、$\alpha$、R 负载（load），问输出波形、average、RMS、功率。
 
 ### 板书步骤
 
-```text
-1. RMS 转 peak，或确认给的是 peak
-2. 标 alpha，从自然过零点量
-3. 写导通区间 alpha 到 pi
+1. RMS 转峰值，或确认给的是峰值
+2. 标 $\alpha$，从自然过零点量
+3. 写导通区间 $\alpha$ 到 $\pi$
 4. Average 积分
 5. RMS 积分
 6. Power 用 RMS
-```
 
-Half-wave R load：
+Half-wave R 负载：
 
 $$
 V_{avg}=\frac{\hat V_m}{2\pi}(1+\cos\alpha)
@@ -157,17 +151,17 @@ $$
 
 - $\alpha$ 要换弧度。
 - Gate 不能 turn off。
-- 半波 R load 不要套 bridge continuous-current 公式。
+- 半波 R 负载不要套 bridge continuous-current 公式。
 
-## 5. MOSFET / diode loss
+## 5. MOSFET / 二极管损耗
 
 ### 题目长什么样
 
-给 current waveform、$R_{DS(on)}$、switching time、frequency、diode $Q_{RR}$，问 loss。
+给电流波形、$R_{DS(on)}$、开关（switching）时间、频率、二极管 $Q_{RR}$，问损耗。
 
 ### 板书步骤
 
-Diode：
+二极管：
 
 $$
 P_F\approx V_FI_{avg}
@@ -179,26 +173,24 @@ $$
 
 MOSFET：
 
-```text
-1. 从 waveform 求 I_avg
-2. 从 waveform 求 I_rms
-3. P_cond = I_rms^2 R_DS(on)
-4. P_sw = 1/2 V I t f_s
-5. P_total = P_cond + P_sw
-```
+1. 从波形求 $I_{avg}$
+2. 从波形求 $I_{rms}$
+3. $P_{cond} = I_{rms}^2 R_{DS(on)}$
+4. $P_{sw} = \frac{1}{2} V I t f_s$
+5. $P_{total} = P_{cond} + P_{sw}$
 
 ### 别丢分
 
-- Conduction loss 用 RMS。
-- Switching loss 用开关瞬间电流。
-- Reverse recovery 用 $V_R$。
+- 导通损耗（conduction loss）用 RMS。
+- 开关损耗用开关瞬间电流。
+- 反向恢复用 $V_R$。
 - 单位要换：ns、$\mu$s、m$\Omega$。
 
-## 6. Thermal / shared heatsink
+## 6. 热设计 / 共用散热器
 
 ### 题目长什么样
 
-给 loss 和 thermal resistance，问 temperature 或 heatsink rating。
+给损耗和热阻（thermal resistance），问温度或散热器（heatsink）额定值。
 
 ### 板书步骤
 
@@ -208,13 +200,13 @@ $$
 T_J=T_A+P(R_{\theta JC}+R_{\theta CS}+R_{\theta SA})
 $$
 
-选 heatsink：
+选散热器：
 
 $$
 R_{\theta SA}\le\frac{T_{J,max}-T_A}{P}-R_{\theta JC}-R_{\theta CS}
 $$
 
-Shared heatsink：
+共用散热器：
 
 $$
 T_S=T_A+(P_1+P_2+\cdots)R_{\theta SA}
@@ -226,26 +218,24 @@ $$
 
 ### 别丢分
 
-- Thermal 用 device loss。
-- Shared heatsink 的 $T_S$ 用总功耗。
+- 热计算用器件损耗。
+- 共用散热器的 $T_S$ 用总功耗。
 - 每个 $T_J$ 单独算。
 - 最后写 safe / unsafe。
 
-## 7. Snubber calculation
+## 7. 缓冲电路计算
 
 ### 题目长什么样
 
-给 inductive load、snubber、stray $L$、capacitance $C$，问作用、画图、$di/dt$、ringing frequency、power。
+给感性负载、缓冲电路（snubber）、杂散 $L$、电容 $C$，问作用、画图、$di/dt$、振铃（ringing）频率、功率。
 
 ### 板书步骤
 
-```text
-1. 写 snubber purpose
-2. 画 transient current path
-3. di/dt = v_L/L
-4. f_r = 1/(2πsqrt(LC))
-5. Power = E f_s 或 I_rms^2 R
-```
+1. 写缓冲电路用途
+2. 画瞬态电流路径
+3. $di/dt = v_L/L$
+4. $f_r = 1/(2\pi\sqrt{LC})$
+5. $Power = E f_s$ 或 $I_{rms}^2 R$
 
 公式：
 
@@ -261,25 +251,23 @@ $$
 
 - nH、pF 先换单位。
 - $2\pi$ 和平方根不能漏。
-- Snubber 不是主 converter。
+- 缓冲电路不是主变换器（converter）。
 - 画图要画能量路径。
 
-## 8. Buck / Boost / boundary CCM / Flyback
+## 8. Buck / Boost / 边界 CCM / 反激
 
 ### 题目长什么样
 
-给 converter 图和参数，问 duty、ripple、$I_{max/min}$、waveforms、boundary condition、isolation converter。
+给变换器图和参数，问占空比（duty）、纹波、$I_{max/min}$、波形、边界（boundary）条件、隔离（isolation）变换器。
 
 ### 板书步骤
 
-```text
-1. Identify topology
-2. Switch ON: write v_L,on
-3. Switch OFF: write v_L,off
-4. D v_on + (1-D) v_off = 0
-5. Δi_L = v_L Δt/L
-6. I_max/min = I_avg ± Δi/2
-```
+1. 判断拓扑
+2. 开关导通：写 $v_{L,on}$
+3. 开关关断：写 $v_{L,off}$
+4. $D v_{on} + (1-D) v_{off} = 0$
+5. $\Delta i_L = v_L \Delta t/L$
+6. $I_{max/min} = I_{avg} \pm \Delta i/2$
 
 Buck：
 
@@ -293,13 +281,13 @@ $$
 V_o=\frac{V_{in}}{1-D},\qquad I_{L,avg}=I_{in}
 $$
 
-Boundary CCM：
+边界 CCM：
 
 $$
 I_{L,min}=0,\qquad \Delta I_L=2I_{L,avg}
 $$
 
-Flyback：
+反激（Flyback）：
 
 $$
 \frac{V_o}{V_{in}}=\frac{N_s}{N_p}\frac{D}{1-D}
@@ -307,29 +295,27 @@ $$
 
 ### 别丢分
 
-- Boost 的电感平均电流不是输出电流。
+- Boost 的电感（inductor）平均电流不是输出电流。
 - $\Delta i_L$ 是 peak-to-peak。
-- Boundary CCM 用 $2I_{avg}$。
-- Isolation 题选 flyback。
+- 边界 CCM 用 $2I_{avg}$。
+- 隔离题选反激。
 
-## 9. Inverter / PWM
+## 9. 逆变器 / PWM
 
 ### 题目长什么样
 
-给 full bridge 或 three-phase inverter，问 bipolar/unipolar PWM、switching condition、line voltage、$m_a$、$m_f$、shoot-through。
+给全桥或三相逆变器（inverter），问双极性（bipolar）/单极性（unipolar）PWM、开关条件、线电压（line voltage）、$m_a$、$m_f$、直通（shoot-through）。
 
 ### 板书步骤
 
-```text
-1. 判断 topology：single-phase or three-phase
-2. 判断 switching：bipolar / unipolar / square-wave / SPWM
-3. 写 comparator rule
-4. 写 switch state
-5. 算 output voltage 或 line voltage
-6. 写 harmonics 或 shoot-through 解释
-```
+1. 判断拓扑：单相还是三相
+2. 判断开关方式：双极性 / 单极性 / 方波（square-wave）/ SPWM
+3. 写比较器（comparator）规则
+4. 写开关状态
+5. 算输出电压或线电压
+6. 写谐波（harmonics）或直通解释
 
-Three-phase line voltage：
+三相线电压：
 
 $$
 v_{AB}=v_A-v_B
@@ -343,7 +329,7 @@ $$
 v_{CA}=v_C-v_A
 $$
 
-Modulation indices：
+调制（modulation）指数：
 
 $$
 m_a=\frac{\hat V_{control}}{\hat V_{tri}},\qquad m_f=\frac{f_{carrier}}{f_{control}}
@@ -351,18 +337,18 @@ $$
 
 ### 别丢分
 
-- Bipolar 没有 0 电平，unipolar 有 0 电平。
-- Line voltage 要相减。
-- $m_a$ 用 peak，不用 RMS。
+- 双极性没有 0 电平，单极性有 0 电平。
+- 线电压要相减。
+- $m_a$ 用峰值，不用 RMS。
 - 同一桥臂上下管不能同时导通。
 
 ## 交卷前检查
 
 - 所有答案有没有单位。
-- peak、RMS、average 有没有混。
-- diode drop 是一个还是两个。
-- PIV 是否按关断 diode 算。
-- thermal 是否用 device loss。
-- duty 是否在 0 到 1。
+- 峰值、RMS、average 有没有混。
+- 二极管压降是一个还是两个。
+- PIV 是否按关断二极管算。
+- 热计算是否用器件损耗。
+- 占空比是否在 0 到 1。
 - $I_{max/min}$ 是否用了 $\Delta I/2$。
-- PWM truth table 有没有 shoot-through。
+- PWM truth table 有没有直通。

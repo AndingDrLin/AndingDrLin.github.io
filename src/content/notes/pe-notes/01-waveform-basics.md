@@ -1,5 +1,5 @@
 ---
-title: "第1章 波形计算：Average、RMS、Form Factor"
+title: "第1章 波形计算：平均值、RMS、波形因数"
 description: "从面积和平方积分讲起，整理期末波形题的固定做法。"
 date: 2026-05-17
 tags: [power-electronics, 电力电子]
@@ -10,17 +10,17 @@ draft: false
 ---
 ## 先讲清楚
 
-电力电子里很多电压、电流不是稳定直流，而是一段一段变化的波形。考试问 average、RMS、form factor，其实是在问三个不同问题。
+电力电子里很多电压、电流不是稳定直流，而是一段一段变化的波形。考试问平均值、RMS、波形因数，其实是在问三个不同问题。
 
-**Average** 看一个周期里的净效果。正面积和负面积会抵消。
+**平均值（Average）** 看一个周期里的净效果。正面积和负面积会抵消。
 
 **RMS** 看发热效果。先平方，所以负半周也会产生正的贡献。
 
-**Form factor** 看波形有多“尖”。它通常用 RMS 除以整流后的平均值。
+**波形因数（Form Factor）** 看波形有多"尖"。它通常用 RMS 除以整流后的平均值。
 
 ## 三个公式
 
-Average：
+平均值：
 
 $$
 X_{avg}=\frac{1}{T}\int_0^T x(t)\,dt
@@ -32,13 +32,13 @@ $$
 X_{rms}=\sqrt{\frac{1}{T}\int_0^T x^2(t)\,dt}
 $$
 
-Form factor：
+波形因数：
 
 $$
 \mathrm{FF}=\frac{X_{rms}}{X_{avg,rectified}}
 $$
 
-这里 $T$ 是完整周期。$X_{avg,rectified}$ 是 $|x(t)|$ 的平均值，不一定等于普通 average。
+这里 $T$ 是完整周期。$X_{avg,rectified}$ 是 $|x(t)|$ 的平均值，不一定等于普通平均值。
 
 ## 为什么 RMS 要平方
 
@@ -48,19 +48,19 @@ $$
 p(t)=i^2(t)R
 $$
 
-所以电流为负时，$i^2(t)$ 仍然是正的。RMS 就是把一个变化电流换成“发热效果相同”的直流电流。
+所以电流为负时，$i^2(t)$ 仍然是正的。RMS 就是把一个变化电流换成"发热效果相同"的直流电流。
 
-考试里只要看到 resistor power、MOSFET conduction loss、heating，就用 RMS。
+考试里只要看到电阻功率、MOSFET 导通损耗、heating，就用 RMS。
 
 ## 常见波形
 
-| 波形 | Average | RMS |
+| 波形 | 平均值 | RMS |
 |---|---|---|
-| duty 为 $D$、幅值为 $X_m$ 的矩形脉冲 | $DX_m$ | $X_m\sqrt D$ |
+| 占空比为 $D$、幅值为 $X_m$ 的矩形脉冲 | $DX_m$ | $X_m\sqrt D$ |
 | $0$ 到 $X_m$ 的线性斜坡，占满周期 | $X_m/2$ | $X_m/\sqrt3$ |
 | $I_1$ 到 $I_2$ 的线性斜坡，占满周期 | $(I_1+I_2)/2$ | $\sqrt{(I_1^2+I_1I_2+I_2^2)/3}$ |
-| half-wave rectified sine | $\hat V/\pi$ | $\hat V/2$ |
-| full-wave rectified sine | $2\hat V/\pi$ | $\hat V/\sqrt2$ |
+| 半波整流正弦 | $\hat V/\pi$ | $\hat V/2$ |
+| 全波整流正弦 | $2\hat V/\pi$ | $\hat V/\sqrt2$ |
 
 线性斜坡的平方积分常用：
 
@@ -70,7 +70,7 @@ $$
 
 ## 例题 1：矩形脉冲
 
-已知电流在一个周期内有 25% 时间为 $8\,\mathrm{A}$，其余时间为 0。求 average 和 RMS。
+已知电流在一个周期内有 25% 时间为 $8\,\mathrm{A}$，其余时间为 0。求平均值和 RMS。
 
 已知：
 
@@ -78,7 +78,7 @@ $$
 D=0.25,\qquad I_m=8\,\mathrm{A}
 $$
 
-Average：
+平均值：
 
 $$
 I_{avg}=DI_m=0.25\times8=2\,\mathrm{A}
@@ -94,9 +94,9 @@ $$
 
 ## 例题 2：线性斜坡
 
-电感电流在一个周期内从 $2\,\mathrm{A}$ 线性升到 $6\,\mathrm{A}$，求 average 和 RMS。
+电感电流在一个周期内从 $2\,\mathrm{A}$ 线性升到 $6\,\mathrm{A}$，求平均值和 RMS。
 
-Average：
+平均值：
 
 $$
 I_{avg}=\frac{2+6}{2}=4\,\mathrm{A}
@@ -112,7 +112,7 @@ $$
 I_{rms}=\sqrt{\frac{52}{3}}=4.16\,\mathrm{A}
 $$
 
-RMS 比 average 稍大，因为高电流段对平方更敏感。
+RMS 比平均值稍大，因为高电流段对平方更敏感。
 
 ## 由电感电流画电感电压
 
@@ -154,20 +154,18 @@ $$
 
 波形题按这几步写：
 
-```text
 1. 选完整周期 T
 2. 按直线段 / 平台段 / 零段分段
-3. Average：有符号面积 / T
+3. 平均值：有符号面积 / T
 4. RMS：平方积分 / T，再开方
-5. Form factor：RMS / rectified average
+5. 波形因数：RMS / 整流后的平均值
 6. 单位写清楚
-```
 
 ## 别丢分
 
-- RMS 不是 average。
-- Pulse 的 RMS 是 $X_m\sqrt D$。
-- Form factor 的分母通常是 rectified average。
+- RMS 不是平均值。
+- 脉冲的 RMS 是 $X_m\sqrt D$。
+- 波形因数的分母通常是整流后的平均值。
 - 只算导通区间后，最后仍要除以完整周期。
-- $\Delta I$ 是 peak-to-peak，求最大最小时用 $\Delta I/2$。
+- $\Delta I$ 是峰峰值，求最大最小时用 $\Delta I/2$。
 - ms、$\mu$s、ns 一律先换成秒。

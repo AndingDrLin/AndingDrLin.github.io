@@ -10,19 +10,17 @@ draft: false
 ---
 ## 这门课的题不是散的
 
-期末卷看起来有很多电路，但做法其实重复：先看波形和导通区间，再写公式，最后算电压、电流、损耗或温度。
+期末卷看起来有很多电路，但做法其实重复：先看波形（waveform）和导通区间，再写公式，最后算电压、电流、损耗（loss）或温度。
 
 如果第一次学，先把下面这条链走通：
 
-```text
-波形 average/RMS
-→ diode rectifier
-→ SCR phase control
-→ switch loss
-→ thermal
-→ DC-DC converter
-→ inverter/PWM
-```
+1. 波形的平均值（average）/RMS
+2. 二极管（diode）整流（rectifier）
+3. SCR 相控
+4. 开关损耗（switching loss）
+5. 热（thermal）
+6. DC-DC 变换器（converter）
+7. 逆变器（inverter）/PWM
 
 后面的所有大题都在重复这条链里的某一段。
 
@@ -30,27 +28,27 @@ draft: false
 
 | 年份 | Q1 | Q2 | Q3 | Q4 |
 |---|---|---|---|---|
-| 2022 | 波形、SOA、diode transient、SCR、centre-tapped rectifier | Bridge rectifier + capacitor | Buck converter | Snubber + thermal |
-| 2023 | 整流波形、diode loss、SCR、thermal、bridge rectifier | MOSFET PWM loss | Buck boundary CCM | Three-phase PWM inverter |
-| 2024 | SCR bridge、MOSFET、heatsink、centre-tapped rectifier | Rectifier + regulator supply | Boost + flyback + snubber | Three-phase inverter + unipolar PWM |
-| 2025 | 分段电流、SCR、MOSFET、common heatsink、centre-tapped rectifier | Half-wave rectifier + SCR | Buck + flyback isolation | Bipolar / unipolar PWM |
+| 2022 | 波形、SOA、二极管暂态、SCR、中心抽头（centre-tapped）整流 | 桥式（bridge）整流 + 电容（capacitor） | Buck 变换器 | 缓冲电路（snubber）+ 热 |
+| 2023 | 整流波形、二极管损耗、SCR、热、桥式整流 | MOSFET PWM 损耗 | Buck 边界（boundary）连续导通模式（CCM） | 三相 PWM 逆变器 |
+| 2024 | SCR 桥式、MOSFET、散热器（heatsink）、中心抽头整流 | 整流 + 稳压器（regulator）供电 | Boost + 反激（flyback）+ 缓冲电路 | 三相逆变器 + 单极性 PWM |
+| 2025 | 分段电流、SCR、MOSFET、公共散热器、中心抽头整流 | 半波（half-wave）整流 + SCR | Buck + 反激隔离（isolation） | 双极性 / 单极性 PWM |
 
 ## 第一遍该学什么
 
 | 顺序 | 先弄懂什么 | 为什么要先学 |
 |---|---|---|
-| 1 | average、RMS、form factor | 后面所有功率、损耗、波形题都靠它 |
-| 2 | diode rectifier | 每年都有输出波形、PIV、ripple |
-| 3 | SCR | 相控题就是整流题加一个 firing angle |
-| 4 | MOSFET / diode loss | thermal 题的输入功率从这里来 |
-| 5 | thermal ladder | 考试常让你从 loss 算 junction temperature |
+| 1 | 平均值、RMS、波形因数（form factor） | 后面所有功率、损耗、波形题都靠它 |
+| 2 | 二极管整流 | 每年都有输出波形、PIV、纹波（ripple） |
+| 3 | SCR | 相控题就是整流题加一个触发角（firing angle） |
+| 4 | MOSFET / 二极管损耗 | 热题的输入功率从这里来 |
+| 5 | 热阻阶梯 | 考试常让你从损耗算结温（junction temperature） |
 | 6 | DC-DC | Buck、Boost 是大题固定来源 |
-| 7 | inverter/PWM | Q4 常考波形、truth table、shoot-through |
+| 7 | 逆变器/PWM | Q4 常考波形、真值表、直通（shoot-through） |
 
 ## 做题时先问自己四个问题
 
 1. 这是波形题、电路题、损耗题，还是控制题？
-2. 题目要的是 average、RMS、peak，还是 peak-to-peak？
+2. 题目要的是平均值、RMS、峰值（peak），还是峰-峰值？
 3. 哪个器件在导通，哪个器件在关断？
 4. 最后答案需要画图、写公式，还是给设计理由？
 
@@ -60,27 +58,25 @@ draft: false
 
 | 题型 | 要先懂的基础 | 固定输出 | 对应章节 |
 |---|---|---|---|
-| 分段波形 | 面积和平方积分 | $X_{avg}$、$X_{rms}$、form factor | 第1章 |
+| 分段波形 | 面积和平方积分 | $X_{avg}$、$X_{rms}$、波形因数 | 第1章 |
 | 电感电压 | 电感电流不能突变 | $v_L=Ldi/dt$ 和电压波形 | 第1章 |
-| 整流输出 | diode 单向导通 | load waveform、diode drop、RMS/average | 第2章 |
-| PIV | diode 关断时承受反压 | each diode PIV | 第2章 |
-| 电容滤波 | capacitor 峰值充电、负载放电 | ripple、required $C$、conduction angle | 第2章 |
-| SCR 相控 | gate 只控制开通 | firing angle、导通区间、积分 | 第3章 |
-| diode / MOSFET loss | 平均电流和 RMS 电流用途不同 | conduction loss、switching loss、total loss | 第4章 |
-| thermal | 热阻像电阻一样串联 | $T_S$、$T_C$、$T_J$、heatsink | 第5章 |
-| snubber | 电感电流不能突然断掉 | current path、$di/dt$、ringing frequency | 第6章 |
-| DC-DC | 电感一周期平均电压为 0 | duty、ripple、$I_{max/min}$ | 第7章 |
-| PWM inverter | 开关状态决定输出电压 | switching condition、line voltage、dead time | 第8章 |
+| 整流输出 | 二极管单向导通 | 负载（load）波形、二极管压降、RMS/平均值 | 第2章 |
+| PIV | 二极管关断时承受反压 | 每个二极管的 PIV | 第2章 |
+| 电容滤波 | 电容器峰值充电、负载放电 | 纹波、所需电容值 $C$、导通角（conduction angle） | 第2章 |
+| SCR 相控 | 门极（gate）只控制开通 | 触发角、导通区间、积分 | 第3章 |
+| 二极管 / MOSFET 损耗 | 平均电流和 RMS 电流用途不同 | 导通损耗、开关损耗、总损耗 | 第4章 |
+| 热 | 热阻像电阻一样串联 | $T_S$、$T_C$、$T_J$、散热器 | 第5章 |
+| 缓冲电路 | 电感电流不能突然断掉 | 电流路径、$di/dt$、振铃（ringing）频率 | 第6章 |
+| DC-DC | 电感一周期平均电压为 0 | 占空比（duty cycle）、纹波、$I_{max/min}$ | 第7章 |
+| PWM 逆变器 | 开关状态决定输出电压 | 开关条件、线电压、死区时间（dead time） | 第8章 |
 
 ## 例题应该怎么写
 
 考试给分看过程。每个计算题至少写这四行：
 
-```text
-1. 已知量：列出题目给的 V、I、R、L、C、f、D 或 alpha
-2. 公式：写出本题适用公式
-3. 代入：数值带单位代进去
-4. 结论：答案 + 单位 + 简短判断
-```
+1. **已知量**：列出题目给的 V、I、R、L、C、f、D 或 alpha
+2. **公式**：写出本题适用公式
+3. **代入**：数值带单位代进去
+4. **结论**：答案 + 单位 + 简短判断
 
-画图题至少标：axis、peak、zero line、导通区间、关键电压/电流值。
+画图题至少标：坐标轴、峰值、零线、导通区间、关键电压/电流值。
