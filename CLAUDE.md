@@ -70,6 +70,22 @@ Astro v6 静态站点，部署到 GitHub Pages 用户站点。生产 URL：`http
 
 完整流程见 `CONTRIBUTING.md` 和 `scripts/notes-pipeline/PUBLISH_CHECKLIST.md`。可以用 `npm run publish:course <docGroup>` 自动运行发布前校验。
 
+### 电力电子课程工作流
+
+电力电子课程（`pe-notes`）是一个特殊的已发布课程，工作时注意以下几点：
+
+**目录与 docGroup 的命名差异：** 物理目录名是 `pe-notes`，但 docGroup 值和 `NOTE_COURSES` key 都是 `power-electronic-notes`，URL slug 是 `power-electronics`。三者各不相同。路由系统按 `docGroup` 匹配，所以内容能正常路由；但 `validate-content.mjs` 通过 `entry.name`（目录名）查 `REGISTERED_DOC_GROUPS`，`pe-notes` 不在集合中，因此不会触发"docGroup ≠ directory name"的交叉校验，也不会强制要求 README 和 order。
+
+**内容结构惯例：** 每章遵循固定结构——先用直觉性介绍（"先讲清楚"）引入概念，再给出 LaTeX 公式推导和分步例题，然后收成可重复的做题套路（"固定套路"），最后列出常见丢分点（"别丢分"）。编辑现有章节时保持这个结构。
+
+**资产管理：**
+- `assets/` — SVG 波形/拓扑图，用相对路径 `./assets/xxx.svg` 通过 Markdown 图片语法引用
+- `materials/` — 课程 PDF 材料（试卷、作业、tutorial），供读者下载参考
+- `slides/` — 讲座 PDF（Lecture 1–13），`archive/` 子目录存 pptx 源文件
+- 公式统一用 `$$...$$` 块级或 `$...$` 行内 LaTeX；技术术语中英双写，如"占空比(duty cycle)"、"触发角(firing angle)"
+
+**课程 URL 结构：** 章节文件的 `order` 为 0–9，README 的 `order` 为 -1。发布后的 URL 格式为 `/notes/power-electronics/00-exam-strategy/`。
+
 ### 布局与组件
 
 - `BaseLayout.astro` — 根布局：lang、CSS、KaTeX、Mermaid CDN loader、主题闪烁防护、skip-to-content 无障碍链接、Header + Footer + SEO（含 JSON-LD 结构化数据）
@@ -122,6 +138,8 @@ npm run test:watch        # 监听模式
 10. **Quiz 进度仅存 localStorage。** 清除浏览器数据会丢失，没有导出/导入功能。
 11. **`validate-content.mjs` 的常量从 `src/consts.ts` 动态读取。** 修改 CATEGORIES 或 NOTE_COURSES 后校验脚本自动同步，不需要手动更新。
 12. **`sortNoteEntries()` 是 `noteTree.ts` 导出的共享排序函数。** `content.ts` 和 `noteTree.ts` 都使用它，不要在别处重复实现。
+13. **`pe-notes` 目录名 ≠ `power-electronic-notes` docGroup。** 这是已知的命名不一致。路由系统按 docGroup 匹配所以正常工作，但 `validate-content.mjs` 按目录名查找注册状态，会把 pe-notes 当作未注册目录。如果需要修改 PE 课程的 docGroup 或目录名，两者要同步改，并更新 `src/consts.ts` 和所有章节文件的 frontmatter。
+14. **`validate-content.mjs` 只对已注册目录强制要求 README 和 order。** 未注册目录（包括 pe-notes，因目录名不匹配）的 README/order 校验是可选的。新增课程时，务必保证目录名与 `NOTE_COURSES` 的 key 完全一致，否则校验脚本无法正确执行交叉校验。
 
 ## 部署
 
