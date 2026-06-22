@@ -30,7 +30,7 @@
   <!-- ==================== AC SOURCE ==================== -->
   <circle cx="65" cy="260" r="26" class="wire"/>
   <path d="M49,260 Q54,247 59,260 Q64,273 69,260 Q74,247 79,260 Q84,273 89,260" fill="none" stroke="#333" stroke-width="1.5"/>
-  <text x="65" y="300" text-anchor="middle" font-size="14" class="label-gray" font-size="14px">$v_s = \hat{V}_m \sin\theta$</text>
+  <text x="65" y="300" text-anchor="middle" font-size="14" class="label-gray" font-size="14px">v_s = V_m sin θ</text>
 
   <!-- Source to top rail -->
   <line x1="65" y1="234" x2="65" y2="100" class="wire"/>
@@ -64,7 +64,7 @@
   <line x1="212" y1="152" x2="180" y2="152" class="scr-gate"/>
   <text x="175" y="156" text-anchor="end" font-size="14">G</text>
   <!-- Label -->
-  <text x="256" y="148" class="label-red" font-size="14px">SCR$_1$</text>
+  <text x="256" y="148" class="label-red" font-size="14px">SCR₁</text>
   <text x="256" y="163" class="label-gray">正半周</text>
 
   <!-- ==================== SCR2 (lower-left): anode=bottom, cathode=A ==================== -->
@@ -81,7 +81,7 @@
   <line x1="212" y1="378" x2="180" y2="378" class="scr-gate"/>
   <text x="175" y="382" text-anchor="end" font-size="14">G</text>
   <!-- Label -->
-  <text x="256" y="375" class="label-red" font-size="14px">SCR$_2$</text>
+  <text x="256" y="375" class="label-red" font-size="14px">SCR₂</text>
   <text x="256" y="390" class="label-gray">负半周</text>
 
   <!-- ==================== Node A ==================== -->
@@ -103,7 +103,7 @@
   <line x1="558" y1="152" x2="590" y2="152" class="scr-gate"/>
   <text x="595" y="156" font-size="14">G</text>
   <!-- Label -->
-  <text x="460" y="148" class="label-red" font-size="14px">SCR$_4$</text>
+  <text x="460" y="148" class="label-red" font-size="14px">SCR₄</text>
   <text x="460" y="163" class="label-gray">负半周</text>
 
   <!-- ==================== SCR3 (lower-right): anode=B, cathode=bottom ==================== -->
@@ -120,7 +120,7 @@
   <line x1="558" y1="378" x2="590" y2="378" class="scr-gate"/>
   <text x="595" y="382" font-size="14">G</text>
   <!-- Label -->
-  <text x="460" y="375" class="label-red" font-size="14px">SCR$_3$</text>
+  <text x="460" y="375" class="label-red" font-size="14px">SCR₃</text>
   <text x="460" y="390" class="label-gray">正半周</text>
 
   <!-- ==================== Node B ==================== -->
@@ -161,8 +161,8 @@
 
   <!-- Current Path 1 label -->
   <text x="640" y="130" font-size="13" class="label-blue" font-weight="bold">正半周电流路径</text>
-  <text x="640" y="148" font-size="12" class="label-blue">(+): 电源 $\to$ SCR$_1$ $\to$ A $\to$</text>
-  <text x="640" y="164" font-size="12" class="label-blue">负载 $\to$ B $\to$ SCR$_3$ $\to$ 电源(-)</text>
+  <text x="640" y="148" font-size="12" class="label-blue">(+): 电源 → SCR₁ → A →</text>
+  <text x="640" y="164" font-size="12" class="label-blue">负载 → B → SCR₃ → 电源(-)</text>
 
   <!-- ==================== Current Path 2: Negative Half Cycle (green dash) ==================== -->
   <!-- Path: bottom(+) -> SCR2 -> A -> load -> B -> SCR4 -> top(-) -->
@@ -175,8 +175,8 @@
 
   <!-- Current Path 2 label -->
   <text x="640" y="380" font-size="13" class="label-green" font-weight="bold">负半周电流路径</text>
-  <text x="640" y="398" font-size="12" class="label-green">(-): 电源(-) $\to$ SCR$_2$ $\to$ A $\to$</text>
-  <text x="640" y="414" font-size="12" class="label-green">负载 $\to$ B $\to$ SCR$_4$ $\to$ 电源(+)</text>
+  <text x="640" y="398" font-size="12" class="label-green">(-): 电源(-) → SCR₂ → A →</text>
+  <text x="640" y="414" font-size="12" class="label-green">负载 → B → SCR₄ → 电源(+)</text>
 
   <!-- ==================== FWD current path (dashed, during freewheeling) ==================== -->
   <path d="M 365,225 C 365,250 365,260 382,285 C 395,260 395,250 395,225" fill="none" stroke="#2e7d32" stroke-width="1.5" stroke-dasharray="4 3"/>
@@ -185,12 +185,12 @@
   <!-- ==================== Notes box ==================== -->
   <rect x="620" y="180" width="145" height="175" rx="6" fill="none" stroke="#ccc" stroke-width="1" stroke-dasharray="4 2"/>
   <text x="692" y="200" text-anchor="middle" font-size="13" font-weight="bold" fill="#333">触发规则</text>
-  <text x="630" y="220" font-size="12" fill="#555">正半周 ($v_s &gt; 0$):</text>
-  <text x="635" y="236" font-size="12" class="label-red">SCR$_1$ + SCR$_3$ 触发</text>
-  <text x="630" y="260" font-size="12" fill="#555">负半周 ($v_s &lt; 0$):</text>
-  <text x="635" y="276" font-size="12" class="label-red">SCR$_2$ + SCR$_4$ 触发</text>
-  <text x="630" y="300" font-size="12" fill="#555">触发角: $\alpha$</text>
+  <text x="630" y="220" font-size="12" fill="#555">正半周 (v_s &gt; 0):</text>
+  <text x="635" y="236" font-size="12" class="label-red">SCR₁ + SCR₃ 触发</text>
+  <text x="630" y="260" font-size="12" fill="#555">负半周 (v_s &lt; 0):</text>
+  <text x="635" y="276" font-size="12" class="label-red">SCR₂ + SCR₄ 触发</text>
+  <text x="630" y="300" font-size="12" fill="#555">触发角: α</text>
   <text x="630" y="325" font-size="12" fill="#555">FWD: 续流期间</text>
-  <text x="635" y="341" font-size="12" class="label-green">$v_o = 0$</text>
+  <text x="635" y="341" font-size="12" class="label-green">v_o = 0</text>
 
 </svg>
