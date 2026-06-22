@@ -1,0 +1,168 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="480" viewBox="0 0 760 480" role="img" aria-label="Flyback converter circuit topology: transformer with coupled inductor, primary MOSFET switch, secondary diode, output capacitor and load, showing ON and OFF current paths">
+  <style>
+    .w{stroke:#333;stroke-width:2.5;fill:none}
+    .t{font-family:Arial,Helvetica,sans-serif;font-size:14px;fill:#222}
+    .b{font-weight:bold;font-size:15px;fill:#111}
+    .h{font-family:Arial,Helvetica,sans-serif;font-size:17px;fill:#111;font-weight:bold}
+    .s{font-size:12px;fill:#555}
+    .cur{stroke:#c62828;stroke-width:2;fill:none;stroke-dasharray:7 4;marker-end:url(#aR)}
+    .cl{font-family:Arial,Helvetica,sans-serif;font-size:12px;fill:#c62828;font-weight:bold}
+    .dot{fill:#333}
+    .label{font-family:Arial,Helvetica,sans-serif;font-size:13px;fill:#111;font-weight:bold}
+  </style>
+  <defs>
+    <marker id="aR" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto"><path d="M0,0 L7,2.5 L0,5" fill="none" stroke="#c62828" stroke-width="1.5"/></marker>
+  </defs>
+  <rect width="760" height="480" fill="#fff"/>
+  <text class="h" x="170" y="32">Flyback 反激变换器 — 电路拓扑</text>
+  <text class="s" x="195" y="50">带耦合电感（变压器）的隔离型变换器，先储能后释放</text>
+
+  <!--
+    Layout:
+    Top rail: y=110
+    Bottom rail: y=340
+
+    Primary (left): Vin source -> top rail -> primary winding -> MOSFET drain -> MOSFET source -> bottom rail
+    Secondary (right): secondary winding top -> diode -> output node -> C//R -> bottom rail
+    Transformer core in center between windings
+    Isolation boundary dashed line between primary and secondary
+  -->
+
+  <!-- ============ VIN SOURCE ============ -->
+  <text class="label" x="28" y="105">V_in</text>
+  <text class="t" x="30" y="120" fill="#c62828" font-weight="bold">+</text>
+  <text class="t" x="30" y="338" fill="#c62828" font-weight="bold">-</text>
+  <line class="w" x1="68" y1="110" x2="68" y2="340"/>
+
+  <!-- ============ PRIMARY SIDE ============ -->
+
+  <!-- Top rail: Vin+ to primary winding top node -->
+  <line class="w" x1="68" y1="110" x2="240" y2="110"/>
+
+  <!-- Primary winding (vertical): top at y=110, bottom at y=260 -->
+  <line class="w" x1="240" y1="110" x2="240" y2="130"/>
+  <path d="M240,130 C220,130 220,160 240,160 C260,160 260,190 240,190 C220,190 220,220 240,220 C260,220 260,250 240,250" fill="none" stroke="#333" stroke-width="2.5"/>
+  <text class="label" x="258" y="195">N_p</text>
+  <text class="s" x="258" y="212">(初级)</text>
+
+  <!-- Dot on primary top -->
+  <circle cx="227" cy="133" r="6" class="dot"/>
+  <text class="s" x="198" y="130">同名端</text>
+
+  <!-- Primary winding bottom to MOSFET drain -->
+  <line class="w" x1="240" y1="250" x2="240" y2="275"/>
+
+  <!-- MOSFET (drain at top, source at bottom) -->
+  <rect x="220" y="275" width="40" height="45" rx="3" fill="none" stroke="#333" stroke-width="2.5"/>
+  <!-- Gate tab -->
+  <line x1="260" y1="290" x2="290" y2="290" stroke="#333" stroke-width="2.5"/>
+  <text class="label" x="294" y="294">Gate</text>
+  <!-- Channel lines -->
+  <line x1="228" y1="288" x2="252" y2="288" stroke="#333" stroke-width="1.5"/>
+  <line x1="228" y1="297" x2="252" y2="297" stroke="#333" stroke-width="1.5"/>
+  <line x1="228" y1="306" x2="252" y2="306" stroke="#333" stroke-width="1.5"/>
+  <!-- Body diode arrow -->
+  <polygon points="233,297 226,292 226,302" fill="#333"/>
+  <text class="b" x="245" y="335">S</text>
+  <text class="s" x="228" y="350">(MOSFET)</text>
+
+  <!-- MOSFET source to bottom rail -->
+  <line class="w" x1="240" y1="320" x2="240" y2="340"/>
+  <!-- Bottom rail: Vin- to primary GND -->
+  <line class="w" x1="68" y1="340" x2="240" y2="340"/>
+
+  <!-- ============ TRANSFORMER CORE ============ -->
+  <line x1="310" y1="120" x2="310" y2="260" stroke="#666" stroke-width="4"/>
+  <line x1="335" y1="120" x2="335" y2="260" stroke="#666" stroke-width="4"/>
+  <line x1="310" y1="120" x2="335" y2="120" stroke="#666" stroke-width="4"/>
+  <line x1="310" y1="260" x2="335" y2="260" stroke="#666" stroke-width="4"/>
+  <text class="s" x="310" y="280" text-anchor="middle">磁芯</text>
+
+  <!-- ============ ISOLATION BOUNDARY ============ -->
+  <line x1="355" y1="70" x2="355" y2="375" stroke="#999" stroke-width="1" stroke-dasharray="6 4"/>
+  <text class="s" x="335" y="65" fill="#999">隔离边界</text>
+  <text class="s" x="325" y="395" fill="#999">(galvanic isolation)</text>
+
+  <!-- ============ SECONDARY SIDE ============ -->
+
+  <!-- Secondary winding (vertical): top at y=110, bottom at y=250 -->
+  <line class="w" x1="395" y1="110" x2="395" y2="130"/>
+  <path d="M395,130 C375,130 375,160 395,160 C415,160 415,190 395,190 C375,190 375,220 395,220 C415,220 415,250 395,250" fill="none" stroke="#333" stroke-width="2.5"/>
+  <text class="label" x="410" y="195">N_s</text>
+  <text class="s" x="410" y="212">(次级)</text>
+
+  <!-- Dot on secondary top -->
+  <circle cx="408" cy="133" r="6" class="dot"/>
+  <text class="s" x="418" y="130">同名端</text>
+
+  <!-- Secondary top node: winding top connects upward to diode -->
+  <line class="w" x1="395" y1="110" x2="395" y2="90"/>
+  <line class="w" x1="395" y1="90" x2="470" y2="90"/>
+
+  <!-- Diode (horizontal): anode on left (secondary side), cathode on right (output side) -->
+  <line class="w" x1="470" y1="90" x2="500" y2="90"/>
+  <polygon points="500,78 500,102 530,90" fill="none" stroke="#333" stroke-width="2.5"/>
+  <line x1="530" y1="78" x2="530" y2="102" stroke="#333" stroke-width="2.5"/>
+  <text class="b" x="538" y="86">D</text>
+  <text class="s" x="538" y="100">(输出二极管)</text>
+  <line class="w" x1="530" y1="90" x2="580" y2="90"/>
+
+  <!-- Output node -->
+  <circle cx="580" cy="90" r="4" fill="#333"/>
+  <text class="label" x="588" y="86">V_o</text>
+  <text class="t" x="590" y="106" fill="#c62828" font-weight="bold">+</text>
+
+  <!-- Output capacitor C (vertical) -->
+  <line class="w" x1="580" y1="90" x2="580" y2="145"/>
+  <line x1="566" y1="150" x2="566" y2="180" stroke="#333" stroke-width="2.5"/>
+  <line x1="580" y1="150" x2="580" y2="180" stroke="#333" stroke-width="2.5"/>
+  <line class="w" x1="580" y1="145" x2="580" y2="150"/>
+  <text class="b" x="590" y="170">C</text>
+
+  <!-- C bottom to resistor top -->
+  <line class="w" x1="580" y1="180" x2="580" y2="210"/>
+
+  <!-- Load resistor R (zigzag, vertical) -->
+  <path d="M580,210 L562,225 L598,245 L562,265 L598,285 L580,300" fill="none" stroke="#333" stroke-width="2.5"/>
+  <text class="b" x="605" y="260">R</text>
+  <text class="s" x="605" y="277">(负载)</text>
+
+  <!-- R bottom to bottom rail -->
+  <line class="w" x1="580" y1="300" x2="580" y2="340"/>
+  <text class="t" x="583" y="330" fill="#c62828" font-weight="bold">-</text>
+
+  <!-- Secondary winding bottom to bottom rail -->
+  <line class="w" x1="395" y1="250" x2="395" y2="340"/>
+
+  <!-- Bottom rail: connects secondary GND to primary GND -->
+  <line class="w" x1="240" y1="340" x2="395" y2="340"/>
+  <line class="w" x1="395" y1="340" x2="580" y2="340"/>
+
+  <!-- ============ CURRENT PATHS (red dashed) ============ -->
+
+  <!-- ON: Vin+ -> primary winding -> MOSFET -> GND -->
+  <text class="cl" x="75" y="160">ON:</text>
+  <text class="cl" x="75" y="175">原边储能</text>
+  <path class="cur" d="M75,117 L235,117"/>
+  <path class="cur" d="M235,255 L235,335"/>
+  <text class="cl" x="155" y="360">i_p (原边电流)</text>
+
+  <!-- OFF: secondary -> diode -> C//R -> GND -->
+  <text class="cl" x="630" y="130">OFF:</text>
+  <text class="cl" x="630" y="145">副边释放</text>
+  <path class="cur" d="M400,97 L495,97"/>
+  <path class="cur" d="M535,97 L575,97"/>
+  <path class="cur" d="M575,210 L575,335"/>
+  <text class="cl" x="630" y="260">i_s (副边电流)</text>
+
+  <!-- ============ ANNOTATION BOX ============ -->
+  <rect x="625" y="160" width="125" height="170" rx="6" fill="#fff3e0" stroke="#ffb74d" stroke-width="1"/>
+  <text class="t b" x="640" y="183">工作原理</text>
+  <text class="s" x="630" y="205">ON: V_in 加在初级</text>
+  <text class="s" x="630" y="220">磁芯储能 (L_m)</text>
+  <text class="s" x="630" y="235">次级 D 反偏截止</text>
+  <text class="s" x="630" y="260">OFF: 磁芯释放能量</text>
+  <text class="s" x="630" y="275">次级 D 正偏导通</text>
+  <text class="s" x="630" y="290">能量传送到输出</text>
+  <text class="s" x="630" y="315">同名端极性反转</text>
+</svg>

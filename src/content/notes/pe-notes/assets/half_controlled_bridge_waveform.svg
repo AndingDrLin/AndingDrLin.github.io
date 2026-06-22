@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="320" viewBox="0 0 720 320" role="img" aria-label="Half-controlled bridge rectifier output voltage waveform">
+  <style>
+    .axis{stroke:#222;stroke-width:2}
+    .vs{fill:none;stroke:#aaa;stroke-width:2;stroke-dasharray:8 5}
+    .vo{fill:none;stroke:#1565c0;stroke-width:3.5}
+    .vofill{fill:#bbdefb;opacity:0.3;stroke:none}
+    .dash{stroke:#c62828;stroke-width:2;stroke-dasharray:6 5}
+    .dash2{stroke:#7b1fa2;stroke-width:2;stroke-dasharray:6 5}
+    .txt{font-family:Arial,Helvetica,sans-serif;font-size:16px;fill:#222}
+    .small{font-size:13px}
+    .lbl{font-size:14px}
+  </style>
+  <rect width="720" height="320" fill="white"/>
+
+  <!-- Title -->
+  <text class="txt" x="18" y="35" font-weight="bold">Half-Controlled Bridge: v_s vs v_o</text>
+
+  <!-- Axes -->
+  <line class="axis" x1="70" y1="180" x2="680" y2="180"/>
+  <line class="axis" x1="70" y1="45" x2="70" y2="290"/>
+
+  <!-- Input sinusoid v_s (dashed grey) -->
+  <!-- Full cycle from x=70 (theta=0) to x=680 (theta=2pi) -->
+  <!-- Peaks at x=200 (pi/2) and trough at x=475 (3pi/2) -->
+  <path class="vs" d="M70,180 C95,100 120,80 145,72 Q170,65 200,65 C230,65 255,72 275,110 Q295,150 320,180 C345,210 370,255 395,280 Q420,295 445,295 C470,295 495,290 515,255 Q535,220 555,180 C575,140 600,95 625,78 Q645,65 665,65 L680,68"/>
+
+  <!-- Output voltage v_o (blue solid, thick) -->
+  <!-- Two half-wave pulses:
+       Pulse 1: alpha (~135deg) to pi (~320x)
+       Pulse 2: pi+alpha (~410deg) to 2pi (~680x)
+       Alpha ~ 45 degrees from start of each half cycle -->
+
+  <!-- alpha position: ~x=162 (about 45 deg from 0) -->
+  <!-- pi position: ~x=320 (180 deg) -->
+  <!-- pi+alpha: ~x=432 -->
+  <!-- 2pi: ~x=680 -->
+
+  <!-- First pulse: alpha to pi (positive half) -->
+  <path class="vofill" d="M162,180 Q185,130 200,90 Q225,65 245,65 C265,65 285,80 300,120 L320,180 Z"/>
+  <path class="vo" d="M162,180 Q185,130 200,90 Q225,65 245,65 C265,65 285,80 300,120 L320,180"/>
+
+  <!-- Zero region: pi to pi+alpha -->
+  <line class="vo" x1="320" y1="180" x2="432" y2="180"/>
+
+  <!-- Second pulse: pi+alpha to 2pi (negative half flipped positive) -->
+  <path class="vofill" d="M432,180 Q455,230 475,260 Q495,295 515,295 C535,295 555,280 570,240 L580,210 Q600,180 620,160 Q640,140 660,135 Q670,132 680,130 L680,180 Z"/>
+  <path class="vo" d="M432,180 Q455,230 475,260 Q495,295 515,295 C535,295 555,280 570,240 L580,210 Q600,180 620,160 Q640,140 660,135 Q670,132 680,130"/>
+
+  <!-- Vertical dashed lines for key angles -->
+  <!-- alpha -->
+  <line class="dash" x1="162" y1="50" x2="162" y2="290"/>
+  <text class="lbl" x="148" y="62" fill="#c62828">alpha</text>
+
+  <!-- pi -->
+  <line class="dash" x1="320" y1="50" x2="320" y2="290"/>
+  <text class="lbl" x="307" y="62" fill="#c62828">pi</text>
+
+  <!-- pi+alpha -->
+  <line class="dash2" x1="432" y1="50" x2="432" y2="290"/>
+  <text class="lbl" x="412" y="62" fill="#7b1fa2">pi+alpha</text>
+
+  <!-- 2pi -->
+  <line x1="680" y1="50" x2="680" y2="290" stroke="#888" stroke-width="1" stroke-dasharray="4 4"/>
+  <text class="lbl" x="658" y="285" fill="#888">2pi</text>
+
+  <!-- 0 label -->
+  <text class="small" x="62" y="195" fill="#222">0</text>
+
+  <!-- V_m arrow and label -->
+  <line x1="220" y1="65" x2="220" y2="180" stroke="#888" stroke-width="1" marker-end="url(#arrowB)"/>
+  <text class="small" x="200" y="130" fill="#888">V_m</text>
+
+  <!-- Region annotations -->
+  <!-- Alpha to pi: SCR conduction -->
+  <rect x="162" y="50" width="158" height="10" fill="#bbdefb" opacity="0.4" rx="2"/>
+  <text class="small" x="195" y="100" fill="#1565c0">SCR_1 + D_4 on</text>
+
+  <!-- Pi to pi+alpha: zero region -->
+  <rect x="320" y="50" width="112" height="10" fill="#eeeeee" opacity="0.6" rx="2"/>
+  <text class="small" x="335" y="170" fill="#888">v_o = 0</text>
+
+  <!-- pi+alpha to 2pi: SCR2 conduction -->
+  <rect x="432" y="50" width="248" height="10" fill="#c8e6c9" opacity="0.4" rx="2"/>
+  <text class="small" x="500" y="220" fill="#2e7d32">D_3 + SCR_2 on</text>
+
+  <!-- Axis label -->
+  <text class="txt" x="660" y="200">theta</text>
+
+  <!-- Bottom annotation -->
+  <text class="txt" x="70" y="310" fill="#1565c0">alpha to pi: v_o = V_m sin(theta)</text>
+  <text class="txt" x="340" y="310" fill="#888">|  pi to pi+alpha: v_o = 0  |  pi+alpha to 2pi: v_o = |V_m sin(theta)|</text>
+
+  <!-- Arrow marker definition -->
+  <defs>
+    <marker id="arrowB" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#888"/>
+    </marker>
+  </defs>
+</svg>

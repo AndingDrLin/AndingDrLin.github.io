@@ -1,0 +1,192 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 520" font-family="Times New Roman, serif" font-size="15">
+  <style>
+    text { font-family: 'Times New Roman', serif; }
+    .wire { stroke: #333; stroke-width: 1.6; fill: none; }
+    .thick { stroke-width: 2.2; }
+    .scr-body { fill: none; stroke: #c0392b; stroke-width: 1.6; }
+    .scr-gate { fill: none; stroke: #c0392b; stroke-width: 1.2; }
+    .scr-label { fill: #c0392b; font-weight: bold; }
+    .diode-body { fill: #e8f4fd; stroke: #1565c0; stroke-width: 1.6; }
+    .diode-bar { fill: none; stroke: #1565c0; stroke-width: 2; }
+    .diode-label { fill: #1565c0; font-weight: bold; }
+    .fwd { fill: #2e7d32; fill-opacity: 0.1; stroke: #2e7d32; stroke-width: 1.6; }
+    .fwd-wire { fill: none; stroke: #2e7d32; stroke-width: 1.6; }
+    .fwd-label { fill: #2e7d32; font-weight: bold; }
+    .label-gray { fill: #666; font-size: 13px; }
+    .current-path { fill: none; stroke: #1565c0; stroke-width: 2.8; stroke-dasharray: 8 4; }
+    .current-path2 { fill: none; stroke: #c0392b; stroke-width: 2.8; stroke-dasharray: 8 4; }
+  </style>
+  <defs>
+    <marker id="arrB" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <path d="M0,0.5 L8,3.5 L0,6.5" fill="none" stroke="#1565c0" stroke-width="1.2"/>
+    </marker>
+    <marker id="arrR" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <path d="M0,0.5 L8,3.5 L0,6.5" fill="none" stroke="#c0392b" stroke-width="1.2"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="390" y="32" text-anchor="middle" font-size="18" font-weight="bold">半控桥式整流电路 (Half-Controlled Bridge)</text>
+  <text x="390" y="54" text-anchor="middle" font-size="13" fill="#666">上半桥: 2 SCR (T$_1$, T$_3$) &nbsp;&nbsp; 下半桥: 2 二极管 (D$_2$, D$_4$) &nbsp;&nbsp; RL 负载 + 续流二极管</text>
+
+  <!-- ==================== AC SOURCE ==================== -->
+  <circle cx="65" cy="260" r="26" class="wire"/>
+  <path d="M49,260 Q54,247 59,260 Q64,273 69,260 Q74,247 79,260 Q84,273 89,260" fill="none" stroke="#333" stroke-width="1.5"/>
+  <text x="65" y="300" text-anchor="middle" font-size="14" fill="#666">$v_s = \hat{V}_m \sin\theta$</text>
+
+  <!-- Source to top rail -->
+  <line x1="65" y1="234" x2="65" y2="100" class="wire"/>
+  <line x1="65" y1="100" x2="190" y2="100" class="wire"/>
+  <text x="48" y="105" font-size="13" fill="#888">+</text>
+
+  <!-- Source to bottom rail -->
+  <line x1="65" y1="286" x2="65" y2="430" class="wire"/>
+  <line x1="65" y1="430" x2="190" y2="430" class="wire"/>
+  <text x="48" y="435" font-size="13" fill="#888">-</text>
+
+  <!-- Top rail continues across -->
+  <line x1="190" y1="100" x2="230" y2="100" class="wire"/>
+  <line x1="540" y1="100" x2="600" y2="100" class="wire"/>
+
+  <!-- Bottom rail continues across -->
+  <line x1="190" y1="430" x2="230" y2="430" class="wire"/>
+  <line x1="540" y1="430" x2="600" y2="430" class="wire"/>
+
+  <!-- ==================== T1 (upper-left SCR): anode=top rail, cathode=A ==================== -->
+  <line x1="230" y1="100" x2="230" y2="135" class="wire"/>
+  <!-- Anode bars (top) -->
+  <line x1="212" y1="135" x2="248" y2="135" class="scr-body"/>
+  <!-- Triangle body -->
+  <polygon points="212,135 248,135 230,170" class="scr-body"/>
+  <!-- Cathode bar (bottom) -->
+  <line x1="212" y1="170" x2="248" y2="170" class="wire" stroke="#c0392b" stroke-width="2.2"/>
+  <!-- Cathode wire to node A -->
+  <line x1="230" y1="170" x2="230" y2="265" class="wire"/>
+  <!-- Gate -->
+  <line x1="212" y1="152" x2="178" y2="152" class="scr-gate"/>
+  <text x="172" y="156" text-anchor="end" font-size="13" fill="#c0392b">G</text>
+  <!-- Label -->
+  <text x="260" y="148" class="scr-label" font-size="14">T$_1$</text>
+  <text x="260" y="163" class="label-gray">SCR</text>
+
+  <!-- ==================== T3 (upper-right SCR): anode=top rail, cathode=B ==================== -->
+  <line x1="540" y1="100" x2="540" y2="135" class="wire"/>
+  <!-- Anode bars (top) -->
+  <line x1="522" y1="135" x2="558" y2="135" class="scr-body"/>
+  <!-- Triangle body -->
+  <polygon points="522,135 558,135 540,170" class="scr-body"/>
+  <!-- Cathode bar (bottom) -->
+  <line x1="522" y1="170" x2="558" y2="170" class="wire" stroke="#c0392b" stroke-width="2.2"/>
+  <!-- Cathode wire to node B -->
+  <line x1="540" y1="170" x2="540" y2="265" class="wire"/>
+  <!-- Gate -->
+  <line x1="558" y1="152" x2="592" y2="152" class="scr-gate"/>
+  <text x="598" y="156" font-size="13" fill="#c0392b">G</text>
+  <!-- Label -->
+  <text x="460" y="148" class="scr-label" font-size="14">T$_3$</text>
+  <text x="460" y="163" class="label-gray">SCR</text>
+
+  <!-- ==================== D2 (lower-left diode): anode=bottom rail, cathode=A ==================== -->
+  <line x1="230" y1="430" x2="230" y2="395" class="wire"/>
+  <!-- Triangle body (pointing up, anode at bottom) -->
+  <polygon points="215,395 245,395 230,360" class="diode-body"/>
+  <!-- Cathode bar (top) -->
+  <line x1="215" y1="360" x2="245" y2="360" class="diode-bar"/>
+  <!-- Anode bar (bottom) -->
+  <line x1="215" y1="395" x2="245" y2="395" class="diode-bar"/>
+  <!-- Wire to node A -->
+  <line x1="230" y1="360" x2="230" y2="265" class="wire"/>
+  <!-- Label -->
+  <text x="260" y="380" class="diode-label" font-size="14">D$_2$</text>
+  <text x="260" y="395" class="label-gray">二极管</text>
+
+  <!-- ==================== D4 (lower-right diode): anode=bottom rail, cathode=B ==================== -->
+  <line x1="540" y1="430" x2="540" y2="395" class="wire"/>
+  <!-- Triangle body (pointing up, anode at bottom) -->
+  <polygon points="525,395 555,395 540,360" class="diode-body"/>
+  <!-- Cathode bar (top) -->
+  <line x1="525" y1="360" x2="555" y2="360" class="diode-bar"/>
+  <!-- Anode bar (bottom) -->
+  <line x1="525" y1="395" x2="555" y2="395" class="diode-bar"/>
+  <!-- Wire to node B -->
+  <line x1="540" y1="360" x2="540" y2="265" class="wire"/>
+  <!-- Label -->
+  <text x="460" y="380" class="diode-label" font-size="14">D$_4$</text>
+  <text x="460" y="395" class="label-gray">二极管</text>
+
+  <!-- ==================== Node A ==================== -->
+  <circle cx="230" cy="265" r="3.5" fill="#333"/>
+  <text x="218" y="260" font-size="16" font-weight="bold" fill="#333">A</text>
+
+  <!-- ==================== Node B ==================== -->
+  <circle cx="540" cy="265" r="3.5" fill="#333"/>
+  <text x="548" y="260" font-size="16" font-weight="bold" fill="#333">B</text>
+
+  <!-- ==================== RL Load ==================== -->
+  <line x1="230" y1="265" x2="295" y2="265" class="wire"/>
+  <rect x="295" y="240" width="175" height="55" rx="8" fill="#fff8e1" stroke="#333" stroke-width="1.6"/>
+  <!-- Inductor symbol (zigzag) -->
+  <path d="M310,265 Q318,250 326,265 Q334,250 342,265 Q350,250 358,265" fill="none" stroke="#333" stroke-width="1.4"/>
+  <text x="334" y="255" text-anchor="middle" font-size="12" fill="#555">L</text>
+  <!-- Resistor symbol -->
+  <path d="M368,265 L375,253 L385,277 L395,253 L405,277 L415,253 L422,265" fill="none" stroke="#333" stroke-width="1.4"/>
+  <text x="395" y="255" text-anchor="middle" font-size="12" fill="#555">R</text>
+  <!-- Load label -->
+  <text x="382" y="236" text-anchor="middle" font-size="14" fill="#333" font-weight="bold">RL 负载</text>
+  <line x1="470" y1="265" x2="540" y2="265" class="wire"/>
+
+  <!-- ==================== Freewheeling Diode Df ==================== -->
+  <!-- Df across load: cathode at A (left/top), anode at B (right/bottom) -->
+  <!-- Drawn above the load -->
+  <line x1="230" y1="265" x2="230" y2="200" class="fwd-wire"/>
+  <line x1="230" y1="200" x2="358" y2="200" class="fwd-wire"/>
+  <line x1="406" y1="200" x2="540" y2="200" class="fwd-wire"/>
+  <line x1="540" y1="200" x2="540" y2="265" class="fwd-wire"/>
+  <!-- Diode triangle pointing left (anode at right/B, cathode at left/A) -->
+  <polygon points="406,190 406,210 381,200" class="fwd"/>
+  <!-- Cathode bar at left -->
+  <line x1="406" y1="190" x2="406" y2="210" class="fwd-wire" stroke-width="2.2"/>
+  <!-- Anode bar at right (open) -->
+  <line x1="381" y1="190" x2="381" y2="210" class="fwd-wire" stroke-width="1"/>
+  <!-- FWD label -->
+  <text x="382" y="190" text-anchor="middle" font-size="13" class="fwd-label">D$_f$ (续流二极管)</text>
+
+  <!-- ==================== Current Path 1: Positive Half Cycle (blue dash) ==================== -->
+  <!-- Path: top(+) -> T1 -> A -> load -> B -> D4 -> bottom(-) -->
+  <path d="M 250,100 C 260,100 260,140 248,170" class="current-path" marker-end="url(#arrB)"/>
+  <path d="M 250,258 L 300,258 L 300,265 L 470,265 L 520,265" class="current-path" marker-end="url(#arrB)"/>
+  <path d="M 520,270 C 515,310 515,360 525,395" class="current-path" marker-end="url(#arrB)"/>
+
+  <!-- Current Path 1 label -->
+  <text x="640" y="120" font-size="13" class="label-blue" font-weight="bold">正半周电流路径</text>
+  <text x="640" y="140" font-size="12" fill="#1565c0">(+): 电源 $\to$ T$_1$ $\to$ A $\to$</text>
+  <text x="640" y="156" font-size="12" fill="#1565c0">负载 $\to$ B $\to$ D$_4$ $\to$ 电源(-)</text>
+  <text x="640" y="176" font-size="12" fill="#1565c0">T$_1$ + D$_4$ 导通</text>
+
+  <!-- ==================== Current Path 2: Negative Half Cycle (red dash) ==================== -->
+  <!-- Path: bottom(+) -> D2 -> A -> load -> B -> T3 -> top(-) -->
+  <path d="M 250,430 C 260,430 260,400 250,360" class="current-path2" marker-end="url(#arrR)"/>
+  <path d="M 250,272 L 300,272 L 300,265 L 470,265 L 520,265" class="current-path2" marker-end="url(#arrR)"/>
+  <path d="M 520,260 C 515,230 515,170 525,135" class="current-path2" marker-end="url(#arrR)"/>
+
+  <!-- Current Path 2 label -->
+  <text x="640" y="380" font-size="13" fill="#c0392b" font-weight="bold">负半周电流路径</text>
+  <text x="640" y="400" font-size="12" fill="#c0392b">(-): 电源(-) $\to$ D$_2$ $\to$ A $\to$</text>
+  <text x="640" y="416" font-size="12" fill="#c0392b">负载 $\to$ B $\to$ T$_3$ $\to$ 电源(+)</text>
+  <text x="640" y="436" font-size="12" fill="#c0392b">T$_3$ + D$_2$ 导通</text>
+
+  <!-- ==================== FWD current path (green dashed, during freewheeling) ==================== -->
+  <path d="M 370,210 C 370,240 370,260 382,285 C 400,260 400,240 406,210" fill="none" stroke="#2e7d32" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <text x="382" y="218" text-anchor="middle" font-size="11" class="fwd-label">续流回路</text>
+
+  <!-- ==================== Notes box ==================== -->
+  <rect x="620" y="195" width="150" height="160" rx="6" fill="none" stroke="#ccc" stroke-width="1" stroke-dasharray="4 2"/>
+  <text x="695" y="215" text-anchor="middle" font-size="13" font-weight="bold" fill="#333">臂位构成</text>
+  <text x="630" y="240" font-size="12" fill="#555">上半桥 (可控):</text>
+  <text x="635" y="256" font-size="12" class="scr-label">T$_1$, T$_3$ (SCR)</text>
+  <text x="630" y="280" font-size="12" fill="#555">下半桥 (不可控):</text>
+  <text x="635" y="296" font-size="12" class="diode-label">D$_2$, D$_4$ (二极管)</text>
+  <text x="630" y="320" font-size="12" fill="#555">续流二极管:</text>
+  <text x="635" y="336" font-size="12" class="fwd-label">D$_f$ (负载并联)</text>
+
+</svg>
