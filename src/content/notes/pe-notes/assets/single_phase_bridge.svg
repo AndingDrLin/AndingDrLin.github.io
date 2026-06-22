@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="620" height="420" viewBox="0 0 620 420" role="img" aria-label="Single-phase full-bridge inverter topology">
+  <style>
+    .wire{stroke:#333;stroke-width:2.5;fill:none}
+    .switch-on{fill:#c8e6c9;stroke:#2e7d32;stroke-width:2}
+    .switch-off{fill:#f5f5f5;stroke:#888;stroke-width:2}
+    .load{fill:#fff3e0;stroke:#ef6c00;stroke-width:3}
+    .src-pos{stroke:#c62828;stroke-width:3}
+    .src-neg{stroke:#1565c0;stroke-width:3}
+    .diode{fill:none;stroke:#555;stroke-width:1.5}
+    .txt{font-family:Arial,Helvetica,sans-serif;font-size:15px;fill:#222}
+    .label{font-family:Arial,Helvetica,sans-serif;font-size:14px;fill:#222;font-weight:bold}
+    .small{font-family:Arial,Helvetica,sans-serif;font-size:12px;fill:#666}
+    .annotation{font-family:Arial,Helvetica,sans-serif;font-size:13px;fill:#555}
+    .title-txt{font-family:Arial,Helvetica,sans-serif;font-size:17px;fill:#222;font-weight:bold}
+  </style>
+  <rect width="620" height="420" fill="white"/>
+  <text class="title-txt" x="140" y="30">Single-phase full-bridge inverter (H-bridge)</text>
+
+  <!-- DC bus + wire -->
+  <!-- Top rail (Vd+) -->
+  <line class="wire" x1="80" y1="70" x2="540" y2="70"/>
+  <!-- Bottom rail (Vd-) -->
+  <line class="wire" x1="80" y1="340" x2="540" y2="340"/>
+
+  <!-- DC source -->
+  <line class="src-pos" x1="140" y1="70" x2="140" y2="130"/>
+  <line class="wire" x1="120" y1="130" x2="160" y2="130"/>
+  <line class="src-pos" x1="140" y1="130" x2="140" y2="138"/>
+  <line class="src-neg" x1="140" y1="168" x2="140" y2="340"/>
+  <line class="wire" x1="125" y1="168" x2="155" y2="168"/>
+  <!-- + sign -->
+  <text class="label" x="165" y="120" fill="#c62828">+</text>
+  <!-- - sign -->
+  <text class="label" x="165" y="185" fill="#1565c0">−</text>
+  <text class="label" x="100" y="255">V_d</text>
+
+  <!-- A leg -->
+  <!-- TA+ (upper switch) -->
+  <line class="wire" x1="280" y1="70" x2="280" y2="100"/>
+  <rect class="switch-on" x="255" y="100" width="50" height="55" rx="6"/>
+  <text class="label" x="261" y="122">T_A+</text>
+  <text class="small" x="263" y="145">ON</text>
+  <line class="wire" x1="280" y1="155" x2="280" y2="190"/>
+
+  <!-- node A -->
+  <circle cx="280" cy="205" r="6" fill="#333"/>
+  <text class="label" x="290" y="210">A</text>
+
+  <!-- TA- (lower switch) -->
+  <line class="wire" x1="280" y1="220" x2="280" y2="250"/>
+  <rect class="switch-off" x="255" y="250" width="50" height="55" rx="6"/>
+  <text class="label" x="261" y="272">T_A−</text>
+  <text class="small" x="265" y="295">OFF</text>
+  <line class="wire" x1="280" y1="305" x2="280" y2="340"/>
+
+  <!-- B leg -->
+  <!-- TB+ (upper switch) -->
+  <line class="wire" x1="440" y1="70" x2="440" y2="100"/>
+  <rect class="switch-off" x="415" y="100" width="50" height="55" rx="6"/>
+  <text class="label" x="421" y="122">T_B+</text>
+  <text class="small" x="425" y="145">OFF</text>
+  <line class="wire" x1="440" y1="155" x2="440" y2="190"/>
+
+  <!-- node B -->
+  <circle cx="440" cy="205" r="6" fill="#333"/>
+  <text class="label" x="450" y="210">B</text>
+
+  <!-- TB- (lower switch) -->
+  <line class="wire" x1="440" y1="220" x2="440" y2="250"/>
+  <rect class="switch-on" x="415" y="250" width="50" height="55" rx="6"/>
+  <text class="label" x="421" y="272">T_B−</text>
+  <text class="small" x="423" y="295">ON</text>
+  <line class="wire" x1="440" y1="305" x2="440" y2="340"/>
+
+  <!-- Load between A and B -->
+  <line class="wire" x1="280" y1="205" x2="320" y2="205"/>
+  <line class="wire" x1="400" y1="205" x2="440" y2="205"/>
+  <rect class="load" x="320" y="185" width="80" height="40" rx="10"/>
+  <text class="label" x="339" y="210">Load</text>
+
+  <!-- Current arrow -->
+  <line x1="320" y1="175" x2="400" y2="175" stroke="#1565c0" stroke-width="2" marker-end="url(#arr2)"/>
+  <text class="annotation" x="340" y="170">i_o</text>
+  <text class="annotation" x="310" y="240">v_o = v_A − v_B</text>
+  <defs><marker id="arr2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#1565c0"/></marker></defs>
+
+  <!-- Annotations -->
+  <rect x="60" y="360" width="500" height="45" rx="6" fill="#f5f5f5" stroke="#ddd"/>
+  <text class="annotation" x="75" y="380">Shown state: TA+ and TB− ON → v_o = +Vd.  Swap to TA− and TB+ ON → v_o = −Vd.</text>
+  <text class="annotation" x="75" y="397">Each leg: upper and lower switches are complementary (never both ON). Dead time inserted at transitions.</text>
+</svg>

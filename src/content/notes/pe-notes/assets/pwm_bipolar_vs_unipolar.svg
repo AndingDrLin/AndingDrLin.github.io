@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="780" height="680" viewBox="0 0 780 680" role="img" aria-label="Bipolar vs Unipolar PWM gate signals and output waveforms">
+  <style>
+    .axis{stroke:#444;stroke-width:1.5}
+    .tri{fill:none;stroke:#1565c0;stroke-width:2}
+    .ref{fill:none;stroke:#c62828;stroke-width:2.5}
+    .ref-neg{fill:none;stroke:#c62828;stroke-width:2;stroke-dasharray:5 3}
+    .gate-high{stroke:#2e7d32;stroke-width:2.5}
+    .gate-low{stroke:#7b1fa2;stroke-width:2.5}
+    .out{stroke:#ef6c00;stroke-width:2.5}
+    .grid{stroke:#e8e8e8;stroke-width:1}
+    .txt{font-family:Arial,Helvetica,sans-serif;font-size:14px;fill:#222}
+    .title-txt{font-family:Arial,Helvetica,sans-serif;font-size:16px;fill:#222;font-weight:bold}
+    .label{font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:bold}
+    .small{font-family:Arial,Helvetica,sans-serif;font-size:12px;fill:#666}
+    .divider{stroke:#bbb;stroke-width:1.5;stroke-dasharray:6 4}
+  </style>
+  <rect width="780" height="680" fill="white"/>
+  <text class="title-txt" x="180" y="28">Bipolar PWM vs Unipolar PWM — gate signals and output</text>
+
+  <!-- Divider line between two sections -->
+  <line class="divider" x1="30" y1="340" x2="750" y2="340"/>
+
+  <!-- ============================================ -->
+  <!-- BIPOLAR PWM (top half) -->
+  <!-- ============================================ -->
+  <text class="label" x="30" y="55" fill="#1565c0" font-size="16px">Bipolar PWM</text>
+
+  <!-- Panel 1: vtri + vref -->
+  <g transform="translate(0, 60)">
+    <text class="txt" x="15" y="30">v_ref, v_tri</text>
+    <line class="axis" x1="60" y1="15" x2="60" y2="85"/>
+    <line class="axis" x1="60" y1="50" x2="750" y2="50"/>
+    <!-- carrier: triangle wave (approx 3 full cycles) -->
+    <path class="tri" d="M60,50 L90,20 L120,50 L150,80 L180,50 L210,20 L240,50 L270,80 L300,50 L330,20 L360,50 L390,80 L420,50 L450,20 L480,50 L510,80 L540,50 L570,20 L600,50 L630,80 L660,50 L690,20 L720,50 L750,80"/>
+    <!-- reference: sine -->
+    <path class="ref" d="M60,50 C90,20 130,15 180,28 C230,42 270,58 330,65 C390,72 430,75 480,68 C530,60 570,48 630,35 C680,25 720,22 750,30"/>
+    <text class="small" x="530" y="22" fill="#1565c0">v_tri</text>
+    <text class="small" x="530" y="78" fill="#c62828">v_ref</text>
+  </g>
+
+  <!-- Panel 2: TA+ gate signal (bipolar) -->
+  <g transform="translate(0, 150)">
+    <text class="txt" x="15" y="30" fill="#2e7d32">T_A+ gate</text>
+    <line class="axis" x1="60" y1="15" x2="60" y2="55"/>
+    <line class="axis" x1="60" y1="35" x2="750" y2="35"/>
+    <!-- Bipolar TA+: ON when vref > vtri, OFF when vref < vtri -->
+    <!-- approx: ON in intervals where sine > triangle -->
+    <path class="gate-high" d="M60,15 L90,15 L90,55 L115,55 L115,15 L155,15 L155,55 L185,55 L185,15 L225,15 L225,55 L250,55 L250,15 L290,15 L290,55 L315,55 L315,15 L360,15 L360,55 L385,55 L385,15 L435,15 L435,55 L460,55 L460,15 L510,15 L510,55 L535,55 L535,15 L585,15 L585,55 L610,55 L610,15 L660,15 L660,55 L690,55 L690,15 L730,15 L730,55 L750,55"/>
+    <text class="small" x="760" y="19">ON</text>
+    <text class="small" x="760" y="53">OFF</text>
+  </g>
+
+  <!-- Panel 3: TB- gate signal (bipolar) — same as TA+ -->
+  <g transform="translate(0, 210)">
+    <text class="txt" x="15" y="30" fill="#2e7d32">T_B− gate</text>
+    <line class="axis" x1="60" y1="15" x2="60" y2="55"/>
+    <line class="axis" x1="60" y1="35" x2="750" y2="35"/>
+    <!-- Same as TA+ in bipolar mode -->
+    <path class="gate-high" d="M60,15 L90,15 L90,55 L115,55 L115,15 L155,15 L155,55 L185,55 L185,15 L225,15 L225,55 L250,55 L250,15 L290,15 L290,55 L315,55 L315,15 L360,15 L360,55 L385,55 L385,15 L435,15 L435,55 L460,55 L460,15 L510,15 L510,55 L535,55 L535,15 L585,15 L585,55 L610,55 L610,15 L660,15 L660,55 L690,55 L690,15 L730,15 L730,55 L750,55"/>
+    <text class="small" x="200" y="55" fill="#555">= T_A+ (diagonal pair)</text>
+  </g>
+
+  <!-- Panel 4: Output vo (bipolar) — only +Vd and -Vd -->
+  <g transform="translate(0, 270)">
+    <text class="txt" x="15" y="20" fill="#ef6c00">v_o (bipolar)</text>
+    <line class="axis" x1="60" y1="10" x2="60" y2="60"/>
+    <line class="axis" x1="60" y1="35" x2="750" y2="35"/>
+    <text class="small" x="30" y="14">+Vd</text>
+    <text class="small" x="35" y="60">-Vd</text>
+    <!-- bipolar: two-level output, follows TA+ pattern -->
+    <path class="out" d="M60,10 L90,10 L90,60 L115,60 L115,10 L155,10 L155,60 L185,60 L185,10 L225,10 L225,60 L250,60 L250,10 L290,10 L290,60 L315,60 L315,10 L360,10 L360,60 L385,60 L385,10 L435,10 L435,60 L460,60 L460,10 L510,10 L510,60 L535,60 L535,10 L585,10 L585,60 L610,60 L610,10 L660,10 L660,60 L690,60 L690,10 L730,10 L730,60 L750,60"/>
+    <text class="small" x="170" y="30" fill="#ef6c00">2 levels: jumps 2Vd each transition</text>
+  </g>
+
+  <!-- ============================================ -->
+  <!-- UNIPOLAR PWM (bottom half) -->
+  <!-- ============================================ -->
+  <text class="label" x="30" y="370" fill="#1565c0" font-size="16px">Unipolar PWM</text>
+
+  <!-- Panel 1: vtri + vref + (-vref) -->
+  <g transform="translate(0, 375)">
+    <text class="txt" x="15" y="30">v_ref, -v_ref, v_tri</text>
+    <line class="axis" x1="60" y1="15" x2="60" y2="85"/>
+    <line class="axis" x1="60" y1="50" x2="750" y2="50"/>
+    <!-- carrier -->
+    <path class="tri" d="M60,50 L90,20 L120,50 L150,80 L180,50 L210,20 L240,50 L270,80 L300,50 L330,20 L360,50 L390,80 L420,50 L450,20 L480,50 L510,80 L540,50 L570,20 L600,50 L630,80 L660,50 L690,20 L720,50 L750,80"/>
+    <!-- +vref -->
+    <path class="ref" d="M60,50 C90,20 130,15 180,28 C230,42 270,58 330,65 C390,72 430,75 480,68 C530,60 570,48 630,35 C680,25 720,22 750,30"/>
+    <!-- -vref (dashed) -->
+    <path class="ref-neg" d="M60,50 C90,80 130,85 180,72 C230,58 270,42 330,35 C390,28 430,25 480,32 C530,40 570,52 630,65 C680,75 720,78 750,70"/>
+    <text class="small" x="530" y="15" fill="#c62828">v_ref</text>
+    <text class="small" x="530" y="82" fill="#c62828">-v_ref</text>
+  </g>
+
+  <!-- Panel 2: TA+ gate signal (unipolar) — follows vref vs vtri -->
+  <g transform="translate(0, 465)">
+    <text class="txt" x="15" y="30" fill="#2e7d32">T_A+ gate</text>
+    <line class="axis" x1="60" y1="15" x2="60" y2="55"/>
+    <line class="axis" x1="60" y1="35" x2="750" y2="35"/>
+    <path class="gate-high" d="M60,15 L90,15 L90,55 L115,55 L115,15 L155,15 L155,55 L185,55 L185,15 L225,15 L225,55 L250,55 L250,15 L290,15 L290,55 L315,55 L315,15 L360,15 L360,55 L385,55 L385,15 L435,15 L435,55 L460,55 L460,15 L510,15 L510,55 L535,55 L535,15 L585,15 L585,55 L610,55 L610,15 L660,15 L660,55 L690,55 L690,15 L730,15 L730,55 L750,55"/>
+    <text class="small" x="200" y="55" fill="#555">v_ref &gt; v_tri → ON (same rule as bipolar)</text>
+  </g>
+
+  <!-- Panel 3: TB+ gate signal (unipolar) — follows -vref vs vtri -->
+  <g transform="translate(0, 525)">
+    <text class="txt" x="15" y="30" fill="#7b1fa2">T_B+ gate</text>
+    <line class="axis" x1="60" y1="15" x2="60" y2="55"/>
+    <line class="axis" x1="60" y1="35" x2="750" y2="35"/>
+    <!-- TB+ ON when -vref > vtri (mostly in negative half-cycle of vref) -->
+    <path class="gate-low" d="M60,55 L90,55 L90,55 L115,55 L115,55 L155,55 L155,55 L185,55 L185,55 L225,55 L225,55 L250,55 L250,55 L290,55 L290,55 L315,55 L315,55 L360,55 L360,15 L385,15 L385,55 L435,55 L435,15 L460,15 L460,55 L510,55 L510,15 L535,15 L535,15 L585,15 L585,15 L610,15 L610,55 L660,55 L660,55 L690,55 L690,55 L730,55 L730,55 L750,55"/>
+    <text class="small" x="200" y="55" fill="#555">-v_ref &gt; v_tri → ON (mostly negative half-cycle)</text>
+  </g>
+
+  <!-- Panel 4: Output vo (unipolar) — +Vd, 0, -Vd -->
+  <g transform="translate(0, 585)">
+    <text class="txt" x="15" y="20" fill="#ef6c00">v_o (unipolar)</text>
+    <line class="axis" x1="60" y1="10" x2="60" y2="65"/>
+    <line class="axis" x1="60" y1="37" x2="750" y2="37"/>
+    <text class="small" x="30" y="14">+Vd</text>
+    <text class="small" x="38" y="40">0</text>
+    <text class="small" x="35" y="68">-Vd</text>
+    <!-- Simplified: three-level output -->
+    <path class="out" d="M60,10 L80,10 L80,37 L100,37 L100,10 L130,10 L130,37 L160,37 L160,10 L190,10 L190,37 L210,37 L210,10 L250,10 L250,37 L270,37 L270,10 L310,10 L310,37 L340,37 L340,10 L380,10 L380,37 L395,37 L395,65 L410,65 L410,37 L430,37 L430,10 L460,10 L460,37 L480,37 L480,65 L500,65 L500,37 L520,37 L520,65 L545,65 L545,37 L560,37 L560,10 L590,10 L590,37 L610,37 L610,65 L630,65 L630,37 L660,37 L660,65 L690,65 L690,37 L710,37 L710,10 L730,10 L730,37 L750,37"/>
+    <text class="small" x="170" y="28" fill="#ef6c00">3 levels: jumps only Vd per transition</text>
+  </g>
+</svg>
