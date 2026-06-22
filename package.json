@@ -19,10 +19,10 @@
     "publish:course": "node scripts/publish-course.mjs"
   },
   "dependencies": {
-    "@astrojs/mdx": "^5.0.4",
+    "@astrojs/mdx": "^6.0.3",
     "@astrojs/react": "^5.0.7",
     "@astrojs/rss": "^4.0.18",
-    "@astrojs/sitemap": "^3.7.2",
+    "@astrojs/sitemap": "^3.7.3",
     "astro": "^6.1.9",
     "katex": "^0.16.45",
     "react": "^19.2.7",
