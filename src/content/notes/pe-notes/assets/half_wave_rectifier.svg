@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="380" viewBox="0 0 720 380" role="img" aria-label="Half-wave rectifier waveform">
+  <style>.axis{stroke:#222;stroke-width:2}.wave{fill:none;stroke:#1565c0;stroke-width:3}.out{fill:rgba(21,101,192,0.12);stroke:#1565c0;stroke-width:3}.zero{stroke:#777;stroke-width:1.5;stroke-dasharray:6 5}.dash{stroke:#c62828;stroke-width:2;stroke-dasharray:5 4}.txt{font-family:Arial,Helvetica,sans-serif;font-size:17px;fill:#222}.small{font-size:14px}.tiny{font-size:13px;fill:#555}.annot{font-size:15px;fill:#c62828;font-weight:bold}</style>
+  <rect width="720" height="380" fill="white"/>
+  <!-- axes -->
+  <line class="axis" x1="60" y1="300" x2="680" y2="300"/>
+  <line class="axis" x1="60" y1="40" x2="60" y2="320"/>
+  <!-- axis labels -->
+  <text class="txt" x="665" y="325">θ</text>
+  <text class="txt" x="20" y="55">v</text>
+  <!-- tick marks on time axis -->
+  <line class="zero" x1="220" y1="295" x2="220" y2="305"/>
+  <text class="small" x="210" y="322">π</text>
+  <line class="zero" x1="380" y1="295" x2="380" y2="305"/>
+  <text class="small" x="370" y="322">2π</text>
+  <!-- zero line for reference -->
+  <line class="zero" x1="60" y1="190" x2="680" y2="190"/>
+  <!-- input sine wave -->
+  <path class="wave" d="M60,190 Q100,190 140,95 Q180,5 220,95 Q260,190 300,190 Q340,190 380,285 Q420,375 460,285 Q500,190 540,190" fill="none" opacity="0.35"/>
+  <!-- half-wave output: positive half only -->
+  <path class="out" d="M60,190 Q100,190 140,102 Q180,16 220,102 Q260,190 300,190 L300,190 L380,190 L460,190 L540,190"/>
+  <!-- peak annotation -->
+  <line class="dash" x1="180" y1="16" x2="180" y2="190"/>
+  <path d="M177 22 L180 16 L183 22" stroke="#c62828" fill="none" stroke-width="2"/>
+  <path d="M177 184 L180 190 L183 184" stroke="#c62828" fill="none" stroke-width="2"/>
+  <text class="annot" x="188" y="105">V_peak - V_f</text>
+  <!-- conduction region annotation -->
+  <text class="annot" x="130" y="270">导通区间</text>
+  <line class="dash" x1="80" y1="275" x2="280" y2="275"/>
+  <!-- zero output region -->
+  <text class="small" x="340" y="180" fill="#777">输出 = 0</text>
+  <!-- diode blocking region -->
+  <text class="small" x="330" y="270" fill="#777">D 反偏关断</text>
+  <!-- vf offset marker -->
+  <line class="dash" x1="60" y1="102" x2="110" y2="102"/>
+  <line class="dash" x1="60" y1="90" x2="110" y2="90"/>
+  <text class="tiny" x="45" y="99">V_f偏移</text>
+  <!-- frequency note -->
+  <text class="small" x="100" y="355" fill="#555">输出频率 = f_line（一个脉冲/周期）</text>
+</svg>

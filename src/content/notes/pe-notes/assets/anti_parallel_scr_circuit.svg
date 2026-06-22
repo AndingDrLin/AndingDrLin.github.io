@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="380" viewBox="0 0 720 380" role="img" aria-label="Anti-parallel SCR AC voltage controller circuit">
+  <style>
+    .wire{stroke:#333;stroke-width:2.2;fill:none}
+    .scr-body{stroke:#c62828;stroke-width:2.5;fill:none}
+    .gate-line{stroke:#e65100;stroke-width:2;fill:none}
+    .txt{font-family:Arial,Helvetica,sans-serif;font-size:15px;fill:#222}
+    .label{font-family:Arial,Helvetica,sans-serif;font-size:13px;fill:#555}
+    .accent{font-family:Arial,Helvetica,sans-serif;font-size:15px;fill:#c62828}
+    .blue{font-family:Arial,Helvetica,sans-serif;font-size:15px;fill:#1565c0}
+    .note{font-family:Arial,Helvetica,sans-serif;font-size:12px;fill:#666}
+    .loadbox{stroke:#1565c0;stroke-width:2;fill:#e8f0fe;rx:4}
+    .node{fill:#333}
+    .arrowhead{fill:#e65100}
+  </style>
+
+  <rect width="720" height="380" fill="white"/>
+
+  <!-- Title -->
+  <text class="txt" x="220" y="32" font-size="17px" text-anchor="middle">Anti-parallel SCR AC Voltage Controller</text>
+  <text class="note" x="220" y="50" text-anchor="middle">fan bing lian SCR jiao liu tiao ya</text>
+
+  <!-- ====== AC Source ====== -->
+  <circle cx="80" cy="190" r="28" class="wire"/>
+  <path d="M62,190 Q72,175 80,190 Q88,205 98,190" fill="none" stroke="#1565c0" stroke-width="2"/>
+  <text class="blue" x="65" y="228">v_s</text>
+
+  <!-- Source to top rail -->
+  <line x1="80" y1="162" x2="80" y2="95" class="wire"/>
+  <!-- Top rail -->
+  <line x1="80" y1="95" x2="340" y2="95" class="wire"/>
+
+  <!-- ====== SCR1 (vertical, anode=top, cathode=bottom) ====== -->
+  <!-- SCR1 top wire from rail to cathode bar -->
+  <line x1="180" y1="95" x2="180" y2="130" class="wire"/>
+
+  <!-- SCR1: cathode bar (horizontal line at top) -->
+  <line x1="160" y1="130" x2="200" y2="130" class="scr-body"/>
+  <!-- SCR1: anode triangle (pointing upward toward cathode) -->
+  <polygon points="165,210 195,210 180,140" class="scr-body"/>
+  <!-- SCR1: anode bar at bottom (optional, just the triangle base is enough) -->
+
+  <!-- SCR1 gate lead -->
+  <line x1="195" y1="170" x2="240" y2="170" class="gate-line"/>
+  <!-- Gate arrow head -->
+  <polygon points="235,166 240,170 235,174" class="arrowhead"/>
+  <text class="label" x="244" y="174" fill="#e65100">G1</text>
+
+  <!-- SCR1 label -->
+  <text class="accent" x="205" y="180">SCR1</text>
+
+  <!-- K/A labels -->
+  <text class="label" x="203" y="135" fill="#888">K</text>
+  <text class="label" x="203" y="218" fill="#888">A</text>
+
+  <!-- SCR1 bottom wire to node B -->
+  <line x1="180" y1="210" x2="180" y2="285" class="wire"/>
+
+  <!-- ====== SCR2 (parallel path, reversed: cathode=top, anode=bottom) ====== -->
+  <!-- Top rail to SCR2 cathode -->
+  <line x1="340" y1="95" x2="340" y2="130" class="wire"/>
+
+  <!-- SCR2: cathode bar at top -->
+  <line x1="320" y1="130" x2="360" y2="130" class="scr-body"/>
+  <!-- SCR2: anode triangle (pointing upward, anode at bottom) -->
+  <polygon points="325,210 355,210 340,140" class="scr-body"/>
+
+  <!-- SCR2 gate lead -->
+  <line x1="325" y1="170" x2="280" y2="170" class="gate-line"/>
+  <polygon points="285,166 280,170 285,174" class="arrowhead"/>
+  <text class="label" x="260" y="174" fill="#e65100">G2</text>
+
+  <!-- SCR2 label -->
+  <text class="accent" x="290" y="205">SCR2</text>
+
+  <!-- K/A labels -->
+  <text class="label" x="312" y="135" fill="#888">K</text>
+  <text class="label" x="312" y="218" fill="#888">A</text>
+
+  <!-- SCR2 bottom wire to node B -->
+  <line x1="340" y1="210" x2="340" y2="285" class="wire"/>
+
+  <!-- ====== Bottom rail (node B) ====== -->
+  <line x1="180" y1="285" x2="340" y2="285" class="wire"/>
+  <!-- Node B label -->
+  <circle cx="260" cy="285" r="3" class="node"/>
+  <text class="txt" x="252" y="305">B</text>
+
+  <!-- Top node A label -->
+  <circle cx="260" cy="95" r="3" class="node"/>
+  <text class="txt" x="252" y="82">A</text>
+
+  <!-- ====== Load ====== -->
+  <line x1="340" y1="285" x2="460" y2="285" class="wire"/>
+  <rect x="460" y="262" width="90" height="46" class="loadbox"/>
+  <text class="blue" x="480" y="290">R Load</text>
+  <!-- Load return to source bottom -->
+  <line x1="550" y1="285" x2="620" y2="285" class="wire"/>
+  <line x1="620" y1="285" x2="620" y2="190" class="wire"/>
+  <line x1="620" y1="190" x2="108" y2="190" class="wire"/>
+
+  <!-- ====== Annotations ====== -->
+  <!-- Positive half annotation -->
+  <rect x="50" y="325" width="280" height="45" rx="4" fill="#fff3e0" stroke="#e65100" stroke-width="1"/>
+  <text class="label" x="60" y="343" fill="#e65100">+ half cycle: v_s > 0</text>
+  <text class="label" x="60" y="362" fill="#e65100">SCR1 forward biased, fires at alpha</text>
+
+  <!-- Negative half annotation -->
+  <rect x="370" y="325" width="280" height="45" rx="4" fill="#e3f2fd" stroke="#1565c0" stroke-width="1"/>
+  <text class="label" x="380" y="343" fill="#1565c0">- half cycle: v_s &lt; 0</text>
+  <text class="label" x="380" y="362" fill="#1565c0">SCR2 forward biased, fires at pi + alpha</text>
+
+  <!-- Current flow arrows for positive half -->
+  <text class="note" x="95" y="145">I</text>
+  <line x1="95" y1="148" x2="95" y2="162" stroke="#c62828" stroke-width="1.5" marker-end="none"/>
+  <polygon points="92,160 95,168 98,160" fill="#c62828"/>
+
+  <!-- Key note -->
+  <text class="note" x="470" y="60">SCR1: anode(+), cathode(-)</text>
+  <text class="note" x="470" y="76">   conducts during positive half</text>
+  <text class="note" x="470" y="96">SCR2: reversed</text>
+  <text class="note" x="470" y="112">   conducts during negative half</text>
+</svg>

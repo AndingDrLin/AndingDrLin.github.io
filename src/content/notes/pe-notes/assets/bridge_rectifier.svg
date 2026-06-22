@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="400" viewBox="0 0 720 400" role="img" aria-label="Bridge rectifier waveform">
+  <style>.axis{stroke:#222;stroke-width:2}.wave{fill:none;stroke:#1565c0;stroke-width:3}.out{fill:rgba(21,101,192,0.12);stroke:#1565c0;stroke-width:3}.zero{stroke:#777;stroke-width:1.5;stroke-dasharray:6 5}.dash{stroke:#c62828;stroke-width:2;stroke-dasharray:5 4}.txt{font-family:Arial,Helvetica,sans-serif;font-size:17px;fill:#222}.small{font-size:14px}.tiny{font-size:13px;fill:#555}.annot{font-size:15px;fill:#c62828;font-weight:bold}</style>
+  <rect width="720" height="400" fill="white"/>
+  <!-- axes -->
+  <line class="axis" x1="60" y1="310" x2="680" y2="310"/>
+  <line class="axis" x1="60" y1="40" x2="60" y2="330"/>
+  <!-- axis labels -->
+  <text class="txt" x="665" y="335">θ</text>
+  <text class="txt" x="20" y="55">v</text>
+  <!-- tick marks -->
+  <line class="zero" x1="220" y1="305" x2="220" y2="315"/>
+  <text class="small" x="210" y="332">π</text>
+  <line class="zero" x1="380" y1="305" x2="380" y2="315"/>
+  <text class="small" x="370" y="332">2π</text>
+  <!-- zero line -->
+  <line class="zero" x1="60" y1="200" x2="680" y2="200"/>
+  <!-- input sine (faded for reference) -->
+  <path class="wave" d="M60,200 Q100,200 140,105 Q180,15 220,105 Q260,200 300,200 Q340,200 380,295 Q420,385 460,295 Q500,200 540,200" fill="none" opacity="0.25"/>
+  <!-- bridge output: both half-cycles flipped positive -->
+  <path class="out" d="M60,200 Q100,200 140,112 Q180,24 220,112 Q260,200 300,200 Q340,200 380,112 Q420,24 460,112 Q500,200 540,200"/>
+  <!-- peak annotation 1 -->
+  <line class="dash" x1="180" y1="24" x2="180" y2="200"/>
+  <path d="M177 30 L180 24 L183 30" stroke="#c62828" fill="none" stroke-width="2"/>
+  <path d="M177 194 L180 200 L183 194" stroke="#c62828" fill="none" stroke-width="2"/>
+  <text class="annot" x="190" y="65">V_peak - 2V_f</text>
+  <!-- peak annotation 2 -->
+  <line class="dash" x1="420" y1="24" x2="420" y2="200"/>
+  <path d="M417 30 L420 24 L423 30" stroke="#c62828" fill="none" stroke-width="2"/>
+  <path d="M417 194 L420 200 L423 194" stroke="#c62828" fill="none" stroke-width="2"/>
+  <!-- conduction region annotations -->
+  <text class="annot" x="130" y="280">D1,D2 导通</text>
+  <line class="dash" x1="80" y1="285" x2="280" y2="285"/>
+  <text class="annot" x="370" y="280">D3,D4 导通</text>
+  <line class="dash" x1="320" y1="285" x2="480" y2="285"/>
+  <!-- vf offset marker -->
+  <line class="dash" x1="60" y1="112" x2="110" y2="112"/>
+  <line class="dash" x1="60" y1="96" x2="110" y2="96"/>
+  <text class="tiny" x="32" y="108">2V_f偏移</text>
+  <!-- 2x frequency note -->
+  <text class="small" x="100" y="370" fill="#555">输出频率 = 2 * f_line（每半周一个脉冲，两个二极管交替导通）</text>
+</svg>

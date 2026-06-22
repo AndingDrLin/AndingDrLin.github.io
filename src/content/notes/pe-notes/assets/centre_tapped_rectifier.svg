@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="400" viewBox="0 0 720 400" role="img" aria-label="Centre-tapped full-wave rectifier waveform">
+  <style>.axis{stroke:#222;stroke-width:2}.wave1{fill:none;stroke:#1565c0;stroke-width:2.5;opacity:0.3}.wave2{fill:none;stroke:#7b1fa2;stroke-width:2.5;opacity:0.3}.out{fill:rgba(21,101,192,0.10);stroke:#1565c0;stroke-width:3}.out2{fill:rgba(123,31,162,0.10);stroke:#7b1fa2;stroke-width:3}.zero{stroke:#777;stroke-width:1.5;stroke-dasharray:6 5}.dash{stroke:#c62828;stroke-width:2;stroke-dasharray:5 4}.txt{font-family:Arial,Helvetica,sans-serif;font-size:17px;fill:#222}.small{font-size:14px}.tiny{font-size:13px;fill:#555}.annot{font-size:15px;fill:#c62828;font-weight:bold}.lbl1{font-size:13px;fill:#1565c0}.lbl2{font-size:13px;fill:#7b1fa2}</style>
+  <rect width="720" height="400" fill="white"/>
+  <!-- axes -->
+  <line class="axis" x1="60" y1="310" x2="680" y2="310"/>
+  <line class="axis" x1="60" y1="40" x2="60" y2="330"/>
+  <text class="txt" x="665" y="335">θ</text>
+  <text class="txt" x="20" y="55">v</text>
+  <!-- tick marks -->
+  <line class="zero" x1="220" y1="305" x2="220" y2="315"/>
+  <text class="small" x="210" y="332">π</text>
+  <line class="zero" x1="380" y1="305" x2="380" y2="315"/>
+  <text class="small" x="370" y="332">2π</text>
+  <!-- zero line -->
+  <line class="zero" x1="60" y1="200" x2="680" y2="200"/>
+  <!-- upper half-winding sine (faded) -->
+  <path class="wave1" d="M60,200 Q100,200 140,105 Q180,15 220,105 Q260,200 300,200 Q340,200 380,295 Q420,385 460,295 Q500,200 540,200"/>
+  <!-- lower half-winding sine (faded, 180 deg shifted) -->
+  <path class="wave2" d="M60,200 Q100,200 140,295 Q180,385 220,295 Q260,200 300,200 Q340,200 380,105 Q420,15 460,105 Q500,200 540,200"/>
+  <!-- output: D1 conducts positive half, D2 conducts negative half -->
+  <!-- D1 path: positive half, blue -->
+  <path class="out" d="M60,200 Q100,200 140,112 Q180,28 220,112 Q260,200 300,200"/>
+  <!-- D2 path: flipped negative half, purple -->
+  <path class="out2" d="M300,200 Q340,200 380,112 Q420,28 460,112 Q500,200 540,200"/>
+  <!-- peak annotation -->
+  <line class="dash" x1="180" y1="28" x2="180" y2="200"/>
+  <path d="M177 34 L180 28 L183 34" stroke="#c62828" fill="none" stroke-width="2"/>
+  <path d="M177 194 L180 200 L183 194" stroke="#c62828" fill="none" stroke-width="2"/>
+  <text class="annot" x="190" y="65">V_half_peak - V_f</text>
+  <!-- D1 conduction label -->
+  <text class="lbl1" x="130" y="270">D1 导通</text>
+  <text class="lbl1" x="130" y="288">（上方绕组）</text>
+  <line class="dash" x1="80" y1="293" x2="270" y2="293" stroke="#1565c0" opacity="0.5"/>
+  <!-- D2 conduction label -->
+  <text class="lbl2" x="370" y="270">D2 导通</text>
+  <text class="lbl2" x="370" y="288">（下方绕组）</text>
+  <line class="dash" x1="330" y1="293" x2="480" y2="293" stroke="#7b1fa2" opacity="0.5"/>
+  <!-- vf offset marker -->
+  <line class="dash" x1="60" y1="112" x2="110" y2="112"/>
+  <line class="dash" x1="60" y1="100" x2="110" y2="100"/>
+  <text class="tiny" x="42" y="110">V_f偏移</text>
+  <!-- frequency note -->
+  <text class="small" x="100" y="370" fill="#555">输出频率 = 2 * f_line（D1、D2 交替导通，每半周一个脉冲）</text>
+</svg>

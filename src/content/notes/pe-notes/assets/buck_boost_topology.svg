@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="400" viewBox="0 0 720 400" role="img" aria-label="Buck-Boost converter circuit topology: input source, MOSFET switch, inductor, diode, output capacitor and load, with inverted output polarity">
+  <style>
+    .w{stroke:#333;stroke-width:2.5;fill:none}
+    .t{font-family:Arial,Helvetica,sans-serif;font-size:14px;fill:#222}
+    .b{font-weight:bold;font-size:15px;fill:#111}
+    .h{font-family:Arial,Helvetica,sans-serif;font-size:17px;fill:#111;font-weight:bold}
+    .s{font-size:12px;fill:#555}
+    .cur{stroke:#c62828;stroke-width:2;fill:none;stroke-dasharray:7 4;marker-end:url(#aR)}
+    .cl{font-family:Arial,Helvetica,sans-serif;font-size:12px;fill:#c62828;font-weight:bold}
+    .inv{font-family:Arial,Helvetica,sans-serif;font-size:13px;fill:#d32f2f;font-weight:bold}
+  </style>
+  <defs><marker id="aR" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto"><path d="M0,0 L7,2.5 L0,5" fill="none" stroke="#c62828" stroke-width="1.5"/></marker></defs>
+  <rect width="720" height="400" fill="#fff"/>
+  <text class="h" x="170" y="30">Buck-Boost 升降压变换器 — 电路拓扑</text>
+  <text class="inv" x="250" y="50">输出极性与输入相反！</text>
+
+  <!-- Top rail y=110, bottom rail y=290 -->
+
+  <!-- Vin source (left) -->
+  <text class="t b" x="25" y="105">V_in</text>
+  <text class="t" x="28" y="120" fill="#c62828" font-weight="bold">+</text>
+  <text class="t" x="28" y="288" fill="#c62828" font-weight="bold">−</text>
+  <line class="w" x1="55" y1="110" x2="90" y2="110"/>
+  <line class="w" x1="55" y1="290" x2="580" y2="290"/>
+  <line class="w" x1="55" y1="110" x2="55" y2="290"/>
+
+  <!-- Switch S: on top rail, from Vin+ to node A -->
+  <line class="w" x1="90" y1="110" x2="120" y2="110"/>
+  <rect x="120" y="90" width="55" height="40" rx="4" fill="none" stroke="#333" stroke-width="2.5"/>
+  <text class="t b" x="137" y="116">S</text>
+  <text class="s" x="180" y="116">开关</text>
+  <line class="w" x1="175" y1="110" x2="240" y2="110"/>
+
+  <!-- Node A: junction of switch output, inductor input -->
+  <circle cx="240" cy="110" r="4" fill="#333"/>
+
+  <!-- Inductor L: from node A downward to node B (vertical inductor) -->
+  <line class="w" x1="240" y1="110" x2="240" y2="145"/>
+  <!-- Inductor symbol (vertical, 3 bumps going down) -->
+  <path d="M240,145 C225,145 225,165 240,165 C255,165 255,185 240,185 C225,185 225,205 240,205" fill="none" stroke="#333" stroke-width="2.5"/>
+  <text class="t b" x="252" y="180">L</text>
+  <line class="w" x1="240" y1="205" x2="240" y2="240"/>
+
+  <!-- Node B: junction of inductor output, diode anode -->
+  <circle cx="240" cy="240" r="4" fill="#333"/>
+  <text class="s" x="210" y="255">B (节点)</text>
+
+  <!-- Diode D: from node B rightward to output (horizontal) -->
+  <!-- Triangle pointing right, bar at right = cathode toward output -->
+  <line class="w" x1="240" y1="240" x2="300" y2="240"/>
+  <polygon points="300,228 300,252 330,240" fill="none" stroke="#333" stroke-width="2"/>
+  <line x1="330" y1="228" x2="330" y2="252" stroke="#333" stroke-width="2.5"/>
+  <text class="t b" x="338" y="235">D</text>
+  <text class="s" x="338" y="250">续流二极管</text>
+  <line class="w" x1="330" y1="240" x2="390" y2="240"/>
+
+  <!-- Output capacitor C -->
+  <line x1="390" y1="225" x2="390" y2="255" stroke="#333" stroke-width="2.5"/>
+  <line x1="400" y1="225" x2="400" y2="255" stroke="#333" stroke-width="2.5"/>
+  <text class="t b" x="405" y="246">C</text>
+  <line class="w" x1="395" y1="240" x2="450" y2="240"/>
+
+  <!-- Load resistor R -->
+  <path d="M450,240 L460,220 L475,260 L490,220 L505,260 L520,220 L530,240" fill="none" stroke="#333" stroke-width="2.5"/>
+  <text class="t b" x="480" y="212">R (负载)</text>
+  <!-- Output polarity: INVERTED -->
+  <text class="t" x="455" y="265" fill="#d32f2f" font-weight="bold">−</text>
+  <text class="t" x="515" y="215" fill="#d32f2f" font-weight="bold">+</text>
+  <text class="t b" x="470" y="280" fill="#d32f2f">|V_o|</text>
+  <text class="s" x="455" y="295">（输出为负！）</text>
+
+  <!-- Wire from load top to bottom rail -->
+  <line class="w" x1="530" y1="240" x2="530" y2="290"/>
+
+  <!-- Current flow: ON period -->
+  <path class="cur" d="M100,117 L115,117"/>
+  <path class="cur" d="M180,117 L235,117"/>
+  <path class="cur" d="M234,115 L234,140"/>
+  <text class="cl" x="85" y="132">ON: i_in=i_L</text>
+
+  <!-- Current flow: OFF period -->
+  <path class="cur" d="M234,210 L234,235"/>
+  <path class="cur" d="M245,247 L295,247"/>
+  <path class="cur" d="M335,247 L385,247"/>
+  <text class="cl" x="250" y="270">OFF: i_L→D→负载</text>
+
+  <!-- Key difference annotation box -->
+  <rect x="570" y="70" width="140" height="230" rx="6" fill="#fff3e0" stroke="#ffb74d" stroke-width="1"/>
+  <text class="t b" x="585" y="92">关键区别</text>
+  <text class="s" x="575" y="115">电感 L 在中间</text>
+  <text class="s" x="575" y="135">（一端接开关</text>
+  <text class="s" x="575" y="150"> 一端接二极管）</text>
+  <text class="s" x="575" y="175">ON: V_in→S→L</text>
+  <text class="s" x="575" y="190">L 储能, D 截止</text>
+  <text class="s" x="575" y="215">OFF: L→D→C//R</text>
+  <text class="s" x="575" y="230">L 释放能量</text>
+  <text class="s" x="575" y="255">|V_o| = D/(1−D)·V_in</text>
+  <text class="s" x="575" y="275">可升可降</text>
+  <text class="inv" x="575" y="295">输出极性反相</text>
+</svg>
