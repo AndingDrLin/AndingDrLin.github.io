@@ -8,3 +8,5 @@ dist/
 virtual-venus/
 _archive/
 final_review/
+mc-dietbot-web/
+src/content/notes/pe-notes/_*.md
