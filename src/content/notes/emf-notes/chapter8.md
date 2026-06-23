@@ -1639,7 +1639,226 @@ $$
 
 ---
 
-## 13. 本章学习路线
+## 13. 期末考试点：第8章做题套路
+
+第8章是期末考试的**重头戏**：Q3（Ch7-8）和 Q4（Ch8 反射/透射）合计 20 分。5 年真题中，本章题型最稳定、套路最明确。
+
+### 13.1 考试高频题型一览
+
+| 题型 | 出现频率 | 考试位置 |
+|---|---|---|
+| 平面波基本参数 (λ, f, β, η) | ★★★★★ | Q3 |
+| 有耗介质传播 (α, β, δ, η_c) | ★★★★★ | Q3 |
+| 极化判断 | ★★★★★ | Q3 |
+| Poynting 矢量与平均功率 | ★★★★ | Q3 |
+| 正入射反射/透射 | ★★★★★ | Q4 |
+| 驻波比 SWR | ★★★★★ | Q4 |
+| 完美导体反射 | ★★★★ | Q4 |
+| Smith 圆图 | ★★★★ | Q3/Q10 |
+| 矩形波导 | ★★★★ | Q9 |
+| 1/4 波长变换器 | ★★★ | Q10 |
+
+### 13.2 做题套路：平面波基本参数（必背公式组）
+
+给定介质参数 $(\varepsilon, \mu)$ 和频率 $f$，一步到位求所有参数：
+
+$$\omega=2\pi f, \quad k=\omega\sqrt{\mu\varepsilon}=\beta, \quad \lambda=\frac{2\pi}{\beta}, \quad v_p=\frac{\omega}{\beta}=\frac{1}{\sqrt{\mu\varepsilon}}, \quad \eta=\sqrt{\frac{\mu}{\varepsilon}}$$
+
+**真空中特例：** $v_p=c=3\times10^8$ m/s，$\eta_0=120\pi\approx377\ \Omega$
+
+**真题（2022 Q10）：** $f=100$ MHz，$\varepsilon_r=9$，$\mu_r=1$
+
+$$\omega=2\pi\times10^8, \quad k=\frac{\omega}{c}\sqrt{\varepsilon_r}=\frac{2\pi\times10^8}{3\times10^8}\times3=2\pi \text{ rad/m}$$
+
+$$\lambda=\frac{2\pi}{k}=1\text{ m}, \quad v_p=\frac{c}{3}=10^8\text{ m/s}, \quad \eta=\frac{120\pi}{3}=40\pi\ \Omega$$
+
+### 13.3 做题套路：有耗介质（Q3 大计算题核心）
+
+**这是 Q3 最常见的大题。** 给定 $(\varepsilon, \mu, \sigma, f)$，求波的传播特性。
+
+**步骤：**
+
+1. **计算复介电常数：** $\varepsilon_c=\varepsilon-j\sigma/\omega$
+2. **计算复波数：** $k_c=\omega\sqrt{\mu\varepsilon_c}=\beta-j\alpha$
+3. **分离 α 和 β**
+4. **趋肤深度：** $\delta=1/\alpha$
+5. **复波阻抗：** $\eta_c=\sqrt{\mu/\varepsilon_c}=|\eta_c|e^{j\phi}$
+
+**良导体近似（$\sigma\gg\omega\varepsilon$）——必背：**
+
+$$\alpha\approx\beta\approx\sqrt{\pi f\mu\sigma}, \quad \delta=\frac{1}{\sqrt{\pi f\mu\sigma}}, \quad \eta_c\approx\sqrt{\frac{j\omega\mu}{\sigma}}=(1+j)\sqrt{\frac{\pi f\mu}{\sigma}}$$
+
+**良介质近似（$\sigma\ll\omega\varepsilon$）：**
+
+$$\beta\approx\omega\sqrt{\mu\varepsilon}, \quad \alpha\approx\frac{\sigma}{2}\sqrt{\frac{\mu}{\varepsilon}}, \quad \eta\approx\sqrt{\frac{\mu}{\varepsilon}}$$
+
+**真题（2022 Q6 / 2025 Q6）：** 海水 $\sigma=4$ S/m，$\varepsilon_r=81$，$\mu_r=1$，求传播 1 m 衰减到某值所需的频率。
+
+### 13.4 做题套路：极化判断（必考，5年每年都考）
+
+**标准步骤：**
+
+1. **写出两个正交分量的幅值和相位：**
+   - $E_x = E_{x0}\cos(\omega t - kz + \phi_x)$
+   - $E_y = E_{y0}\cos(\omega t - kz + \phi_y)$
+
+2. **比较相位差 $\Delta\phi=\phi_y-\phi_x$：**
+   - $\Delta\phi=0$ 或 $\pi$：**线极化**
+   - $\Delta\phi=\pm\pi/2$ 且 $E_{x0}=E_{y0}$：**圆极化**
+   - 其他：**椭圆极化**
+
+3. **判断旋向（沿传播方向看）：**
+   - $\Delta\phi>0$（y 超前 x）：**左旋**
+   - $\Delta\phi<0$（x 超前 y）：**右旋**
+
+**考试常见陷阱：**
+
+| 写法 | 极化方向 | 传播方向 |
+|---|---|---|
+| $(\vec a_x+j\vec a_y)e^{-j\beta z}$ | 右旋 | $+z$ |
+| $(\vec a_x-j\vec a_y)e^{-j\beta z}$ | 左旋 | $+z$ |
+| $\vec a_x\cos(\omega t-\beta z)+\vec a_y\sin(\omega t-\beta z)$ | 右旋 | $+z$ |
+| $\vec a_x\cos(\omega t-\beta z)-\vec a_y\sin(\omega t-\beta z)$ | 左旋 | $+z$ |
+
+**真题举例（2024 Q7 / 2025 Q7）：**
+
+- $\vec E=(\vec a_x 2+\vec a_y 3)e^{-j\beta z}$：$\Delta\phi=0$，线极化
+- $\vec E=(\vec a_x-j\vec a_y)e^{-j\beta z}$：$\Delta\phi=-\pi/2$，左旋圆极化
+- $\vec E=(\vec a_x+j\vec a_y)e^{-j\beta z}$：$\Delta\phi=+\pi/2$，右旋圆极化
+- $\vec E=\vec a_x E_0\cos(\omega t-kz)+\vec a_y E_0\sin(\omega t-kz)$：右旋圆极化
+
+### 13.5 做题套路：正入射反射与透射（Q4 核心）
+
+**这是 Q4 必考的大计算题。**
+
+**步骤：**
+
+1. **计算两侧波阻抗：** $\eta_1=\sqrt{\mu_1/\varepsilon_1}$，$\eta_2=\sqrt{\mu_2/\varepsilon_2}$
+2. **计算反射/透射系数：**
+   $$\Gamma=\frac{\eta_2-\eta_1}{\eta_2+\eta_1}, \quad \tau=\frac{2\eta_2}{\eta_2+\eta_1}=1+\Gamma$$
+3. **写反射/透射场：**
+   $$\vec E_r=\Gamma\vec E_i, \quad \vec E_t=\tau\vec E_i$$
+   $$\vec H_r=-\frac{\Gamma}{\eta_1}\vec e_z\times\vec E_i, \quad \vec H_t=\frac{\tau}{\eta_2}\vec e_z\times\vec E_t$$
+4. **总场（入射侧 $z<0$）：** $\vec E_{\text{total}}=\vec E_i+\vec E_r$
+5. **驻波比：** $S=\frac{1+|\Gamma|}{1-|\Gamma|}$
+
+**完美导体特殊情况：** $\Gamma=-1$，$\tau=0$，$S=\infty$
+
+**真题（2022 Q7 / 2024 Q10 / Mock Q4）：** 空气→介质（$\varepsilon_r=2.5$ 或 $\varepsilon_r=4$），入射波 $\vec E_i=\vec a_x 10e^{-j6z}$。
+
+**2025 特殊题型：** 降低界面驻波比的方法——用 1/4 波长匹配层。
+
+### 13.6 做题套路：Smith 圆图（Q8/Q10）
+
+**5 年真题中 4 年考了 Smith 圆图。** 题型非常固定：
+
+**题型一：归一化阻抗 ↔ 导纳转换**
+
+1. 在圆图上找到 $z_L=Z_L/Z_0$ 点
+2. 沿等 $|\Gamma|$ 圆旋转 180° 得到 $y_L$
+3. 读出 $y_L=g+jb$，乘以 $Y_0=1/Z_0$ 得 $Y_L$
+
+**题型二：求 VSWR 和电压最小点位置**
+
+1. 以 $z_L$ 为圆心画等 VSWR 圆
+2. VSWR = 圆与正实轴交点的 $r$ 值
+3. 电压最小点在负实轴方向，从 $z_L$ 顺时针旋到负实轴
+
+**题型三：单短截线匹配（2024 Q8 考过）**
+
+1. 在 Smith 圆图上找到归一化负载 $z_L$
+2. 沿等 VSWR 圆旋转到 $g=1$ 圆上（有两个交点）
+3. 从负载到匹配点的距离就是 stub 位置 $d$
+4. 从匹配点读出 $jb$，stub 需要提供 $-jb$，由此算 stub 长度
+
+**题型四：已知 VSWR 和 V_max 位置反推 Z_in（2025 Q8 考过）**
+
+1. 由 VSWR 画等 VSWR 圆
+2. 电压最大点在正实轴上，由此确定负载在圆上的位置
+3. 沿传输线旋转 $l/\lambda$ 得到 $Z_{in}$
+
+### 13.7 做题套路：矩形波导（Q9）
+
+**5 年真题中 4 年考了矩形波导。** 核心公式：
+
+**截止频率：**
+
+$$f_{c,mn}=\frac{1}{2\sqrt{\mu\varepsilon}}\sqrt{\left(\frac{m}{a}\right)^2+\left(\frac{n}{b}\right)^2}$$
+
+**传播条件：** $f>f_{c,mn}$
+
+**TE₁₀ 主模（$a>b$）：**
+
+$$f_{c,10}=\frac{1}{2a\sqrt{\mu\varepsilon}}, \quad \lambda_c=2a$$
+
+**波导参数（$f>f_c$）：**
+
+$$\beta=\omega\sqrt{\mu\varepsilon}\sqrt{1-(f_c/f)^2}, \quad \lambda_g=\frac{\lambda}{\sqrt{1-(f_c/f)^2}}$$
+
+$$v_p=\frac{v}{\sqrt{1-(f_c/f)^2}}, \quad v_g=v\sqrt{1-(f_c/f)^2}, \quad v_pv_g=v^2$$
+
+**波阻抗：**
+
+$$Z_{TE}=\frac{\eta}{\sqrt{1-(f_c/f)^2}}, \quad Z_{TM}=\eta\sqrt{1-(f_c/f)^2}$$
+
+**真题（2022 Q8 / 2023 Q9 / 2024 Q9 / 2025 Q9）：** 都是给 $a$, $b$, $f$，求各模式截止频率和主模参数。
+
+**考试常用波导尺寸（近 4 年真题统计）：**
+
+| 尺寸 | 出现年份 | 说明 |
+|---|---|---|
+| $a=6$ cm, $b=4$ cm, $f=6$ GHz | 2022, 2023 | 最常见 |
+| $a=7$ cm, $b=3$ cm | 2023 | |
+| $a=7.2$ cm, $b=3.4$ cm | 2024 | |
+| $a=2.286$ cm, $b=1.016$ cm | 2025 | 标准 X 波段 |
+
+**最大传输功率（2022 Q8d / 2024 Q9c）：**
+
+$$P_{\max}=\frac{a b}{4 Z_{TE}} E_{\max}^2$$
+
+其中 $E_{\max}$ 是波导内允许的最大电场强度（通常给 $3\times10^6$ V/m）。
+
+### 13.8 做题套路：1/4 波长变换器
+
+**条件：** $l=\lambda/4$，$Z_{in}=\sqrt{Z_0 Z_L}$（或 $Z_0'=\sqrt{Z_1 Z_2}$）
+
+**真题（2024 Q10 / 2025 Q10）：** 给 $Z_0$ 和 $Z_L$，求 $\lambda/4$ 变换器的输入阻抗。
+
+$$Z_{in}=\frac{Z_0^2}{Z_L}$$
+
+**降低 SWR 的方法（2026 Mock Q4d）：** 在界面处插入 $\lambda/4$ 阻抗匹配层，其波阻抗为 $\eta_{match}=\sqrt{\eta_1\eta_2}$。
+
+### 13.9 真题逐题索引
+
+| 年份 | 题号 | 考点 |
+|---|---|---|
+| 2022 | Q5 | 极化判断（3个小题） |
+| 2022 | Q6 | 有耗介质、海水传播、趋肤深度 |
+| 2022 | Q7 | 正入射反射/透射、驻波比 |
+| 2022 | Q8 | 矩形波导 TE₁₀ 全参数 |
+| 2022 | Q10 | 平面波参数、极化、完美导体反射、波导 |
+| 2023 | Q5 | 有耗介质、趋肤深度 |
+| 2023 | Q6 | 极化判断 |
+| 2023 | Q7 | 正入射、反射/透射、驻波比 |
+| 2023 | Q8 | Smith 圆图、VSWR |
+| 2023 | Q9 | 矩形波导截止频率、TE₁₀ 参数 |
+| 2023 | Q10 | 微波网络矩阵、定向耦合器、Magic Tee |
+| 2024 | Q6 | 良导体 α, β, δ, 波阻抗 |
+| 2024 | Q7 | 极化判断、圆极化反射 |
+| 2024 | Q8 | Smith 圆图、单短截线匹配 |
+| 2024 | Q9 | 矩形波导 TE₁₀、截止频率、最大功率 |
+| 2024 | Q10 | 传输线输入阻抗、λ/4 变换器 |
+| 2025 | Q6 | 波阻抗、趋肤深度、平均功率密度 |
+| 2025 | Q7 | 平面波参数、极化判断 |
+| 2025 | Q8 | Smith 圆图、λ/4 变换器 |
+| 2025 | Q9 | 矩形波导 TE₁₀、截止频率、基本参数 |
+| 2025 | Q10 | Smith 圆图、输入阻抗推导 |
+| Mock | Q3 | 平面波参数、极化 |
+| Mock | Q4 | 正入射、反射/透射、降低 SWR |
+
+---
+
+## 14. 本章学习路线
 
 1. 先掌握相量约定：$e^{j\omega t}$、$e^{-jkz}$ 沿 $+z$、$e^{+jkz}$ 沿 $-z$。
 2. 背熟均匀平面波三件套：$\vec E\perp\vec H\perp\vec k$，$\vec H=(1/\eta)\vec e_n\times\vec E$，$\eta=\sqrt{\mu/\varepsilon}$。
@@ -1661,7 +1880,7 @@ $$
 
 ---
 
-## 14. 和前后章节的关系
+## 15. 和前后章节的关系
 
 - 第7章给出时谐 Maxwell 方程、Helmholtz 方程和相量法；第8章就是把这些方程具体解成平面波，并研究传播、能量和边界反射。
 - 第7章的边界条件在第8章正入射问题中直接使用：切向 $E$ 连续、切向 $H$ 连续；理想导体表面切向 $E=0$。

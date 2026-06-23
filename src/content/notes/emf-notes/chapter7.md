@@ -794,7 +794,119 @@ $$\boxed{\vec E_m(z)=\left(\vec e_xE_{xm}e^{j\phi_x}-j\vec e_yE_{ym}e^{j\phi_y}\
 
 ---
 
-## 13. 考试复习路线
+## 13. 期末考试点：第7章做题套路
+
+期末 Q1（综合题）和 Q3（Ch7-8 合卷）都会考第7章内容。5 年真题中，本章概念题多、大计算题少，但 Faraday 定律和位移电流是必考内容。
+
+### 13.1 考试高频题型一览
+
+| 题型 | 出现频率 | 典型问法 |
+|---|---|---|
+| Faraday 定律求感应电动势 | ★★★★★ | 矩形线圈在时变磁场中、螺线管线圈 |
+| 变压器电动势 vs 运动电动势 | ★★★★ | 区分两种 EMF 并写出公式 |
+| 位移电流 | ★★★ | 给 E 求 J_d，与传导电流比较 |
+| Maxwell 方程默写 | ★★★★ | 微分/积分形式、物理意义 |
+| 边界条件 | ★★★★ | 理想导体表面、两介质界面 |
+| 波动方程推导 | ★★★ | 从 Maxwell 方程推出 Helmholtz 方程 |
+| 位函数与规范 | ★★ | 磁矢位 A、标量电位 φ、Lorentz 规范 |
+| 相量法 | ★★★ | 瞬时场 ↔ 相量互换 |
+
+### 13.2 做题套路：Faraday 定律求感应电动势
+
+**三种情况，考试都可能考：**
+
+**情况一：静止回路，时变磁场（变压器电动势）**
+
+$$\mathcal{E}=-\int_S \frac{\partial\vec B}{\partial t}\cdot d\vec S$$
+
+**真题（2022 Q9c / 2024 Q5）：** 矩形线圈 $a\times b$ 在 $\vec B=\vec a_z B_0\cos(\omega t)$ 中。
+
+$$\mathcal{E}=-\frac{d}{dt}(B_0\cos(\omega t)\cdot ab)=abB_0\omega\sin(\omega t)$$
+
+**情况二：运动回路，静磁场（运动电动势）**
+
+$$\mathcal{E}=\oint_C (\vec v\times\vec B)\cdot d\vec l$$
+
+**情况三：两者都有**
+
+$$\mathcal{E}=\oint_C (\vec v\times\vec B)\cdot d\vec l-\int_S \frac{\partial\vec B}{\partial t}\cdot d\vec S$$
+
+**符号关键：** 负号表示 Lenz 定律——感应效应总是反抗磁通变化，不是简单地"反抗磁场"。
+
+### 13.3 做题套路：位移电流
+
+**定义：**
+
+$$\vec J_d = \frac{\partial\vec D}{\partial t} = \varepsilon\frac{\partial\vec E}{\partial t}$$
+
+**相量形式：** $\vec J_d = j\omega\varepsilon\vec E$
+
+**真题（2022 Q9a）：** 给定 $\vec H=\vec a_x H_0\sin(\pi y)e^{-jkz}$，求位移电流密度和电场。
+
+步骤：$\vec J_d=\nabla\times\vec H$（在无源区），然后 $\vec E=\vec J_d/(j\omega\varepsilon)$。
+
+### 13.4 做题套路：Maxwell 方程默写
+
+**四个方程必须能默写：**
+
+| 方程 | 微分形式 | 积分形式 |
+|---|---|---|
+| Faraday | $\nabla\times\vec E=-\frac{\partial\vec B}{\partial t}$ | $\oint_C\vec E\cdot d\vec l=-\int_S\frac{\partial\vec B}{\partial t}\cdot d\vec S$ |
+| Ampere-Maxwell | $\nabla\times\vec H=\vec J+\frac{\partial\vec D}{\partial t}$ | $\oint_C\vec H\cdot d\vec l=\int_S(\vec J+\frac{\partial\vec D}{\partial t})\cdot d\vec S$ |
+| 磁通连续 | $\nabla\cdot\vec B=0$ | $\oint_S\vec B\cdot d\vec S=0$ |
+| Gauss | $\nabla\cdot\vec D=\rho$ | $\oint_S\vec D\cdot d\vec S=\int_V\rho\,dV$ |
+
+**本构关系（线性各向同性介质）：** $\vec D=\varepsilon\vec E$，$\vec B=\mu\vec H$，$\vec J=\sigma\vec E$
+
+### 13.5 做题套路：边界条件
+
+**两理想介质界面：**
+
+| 分量 | 条件 |
+|---|---|
+| $\vec D$ 法向 | $D_{1n}=D_{2n}$（无自由面电荷） |
+| $\vec B$ 法向 | $B_{1n}=B_{2n}$（永远连续） |
+| $\vec E$ 切向 | $E_{1t}=E_{2t}$（永远连续） |
+| $\vec H$ 切向 | $H_{1t}=H_{2t}$（无自由面电流） |
+
+**理想导体表面：** $\vec e_n\times\vec E=0$，$\vec e_n\cdot\vec B=0$，$\vec e_n\times\vec H=\vec J_s$，$\vec e_n\cdot\vec D=\rho_s$
+
+### 13.6 做题套路：从 Maxwell 方程到波动方程
+
+**步骤（必须会推）：**
+
+1. 无源区（$\vec J=0, \rho=0$）取 $\nabla\times\vec E=-\partial\vec B/\partial t$
+2. 两边取旋度：$\nabla\times(\nabla\times\vec E)=-\frac{\partial}{\partial t}(\nabla\times\vec B)$
+3. 用恒等式 $\nabla\times(\nabla\times\vec E)=\nabla(\nabla\cdot\vec E)-\nabla^2\vec E$
+4. 无源区 $\nabla\cdot\vec E=0$，得 $\nabla^2\vec E=\mu\varepsilon\frac{\partial^2\vec E}{\partial t^2}$
+
+**时谐场相量形式：** $\nabla^2\vec E+k^2\vec E=0$，$k=\omega\sqrt{\mu\varepsilon}$
+
+### 13.7 做题套路：有损介质复参数
+
+| 参数 | 公式 | 说明 |
+|---|---|---|
+| 复介电常数 | $\varepsilon_c=\varepsilon-j\sigma/\omega$ | 把传导电流效应并入介电常数 |
+| 复波数 | $k_c=\omega\sqrt{\mu\varepsilon_c}$ | 有损介质中的波数 |
+| 损耗正切 | $\tan\delta_\sigma=\sigma/(\omega\varepsilon)$ | 传导电流与位移电流之比 |
+
+**判断标准：** $\tan\delta_\sigma\ll1$ 是良介质，$\tan\delta_\sigma\gg1$ 是良导体。
+
+### 13.8 真题逐题索引
+
+| 年份 | 题号 | 考点 |
+|---|---|---|
+| 2022 | Q9(a) | 位移电流密度、感应电场 |
+| 2022 | Q9(c) | Faraday 定律求感应电动势 |
+| 2023 | Q3 | 变压器电动势、螺线管互感 |
+| 2024 | Q5 | Faraday 定律、两种 EMF、Lenz 定律 |
+| 2024 | Q5(5) | Maxwell 方程求磁场 |
+| 2025 | Q6 | 波阻抗、趋肤深度推导 |
+| Mock | Q1(a,b) | 矢量位/标量位引入、规范 |
+
+---
+
+## 14. 考试复习路线
 
 1. 背熟 Faraday 定律三种情况和符号约定。
 2. 用连续性方程推一遍位移电流。
