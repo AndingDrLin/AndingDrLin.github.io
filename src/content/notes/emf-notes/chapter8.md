@@ -1,1889 +1,876 @@
 ---
-title: "第8章 平面电磁波"
-description: "电磁场与波第8章：均匀平面波、极化、有损介质、Poynting矢量、正入射反射与透射。"
-date: 2026-05-18
-tags: [electromagnetics, fields]
+title: "第8章 平面电磁波：Q3 传播与 Q4 反射透射"
+description: "面向 Q3/Q4 的平面电磁波应试模板：无耗/有耗传播、良导体、Poynting 矢量、极化、法向入射反射透射。"
+date: 2026-06-25
+tags: [electromagnetics-and-fields, 电磁场与波, 平面电磁波]
 category: "课程学习"
 docGroup: "emf-notes"
 order: 10
 draft: false
 ---
 
-## 1. 本章主线
+## 本章对应哪些考试题
 
-第7章已经把 Maxwell 方程写成时谐场形式，并得到 Helmholtz 方程。本章继续问：**这些方程的“波”解长什么样？遇到有损介质、导体边界、介质边界时会发生什么？电磁能量怎样传播？**
+本章是 **Q3 和 Q4 的主战场**。
 
-一句话理解：
+- **Q3：CH7–CH8 平面波传播。** 常见问法是：给定 $\mathbf E$ 或 $\mathbf H$ 的相量，求另一个场、传播方向、波长、频率、平均 Poynting 矢量；或者给有耗媒质参数，求 $\alpha,\beta,\delta,\eta_c$。
+- **Q4：CH8 反射与透射。** 常见问法是：空气到无耗介质法向入射，求 $\Gamma,\tau,SWR$，写总电场和总磁场；或者理想导体边界形成驻波。
 
-- 在无限均匀介质中，均匀平面波的 $\vec E$、$\vec H$、传播方向互相垂直，按右手关系组成 TEM 波。
-- 无损介质中波只改变相位，不衰减；有损介质中波一边传播一边按 $e^{-\alpha z}$ 衰减。
-- 能量流方向由 Poynting 矢量 $\vec S=\vec E\times\vec H$ 描述。
-- 正入射到理想导体时全反射，形成纯驻波；正入射到理想介质界面时部分反射、部分透射，形成行驻波。
+往年题型证据很强：2022 Q6/Q7/Q10、2023 Q5/Q7、2024 Q6/Q7、2025 Q6/Q7、mock 2026 Q3/Q4 都在这章范围内。
 
-考试优先级：均匀平面波表达式、$\vec E/\vec H/\vec k$ 方向、波阻抗 $\eta$、极化判断、有损介质 $\gamma=\alpha+j\beta$、趋肤深度、Poynting 平均功率、正入射反射/透射系数、导体边界驻波、介质边界驻波比。
+## 先用人话理解本章在讲什么
 
-> 本章默认采用第7章相同的相量时间因子 $e^{j\omega t}$，因此 $\partial/\partial t\to j\omega$。所有瞬时场都由 $\operatorname{Re}[\text{相量}\cdot e^{j\omega t}]$ 得到。
+第7章告诉我们 Maxwell 方程能推出波动方程。本章的问题是：这些波在介质里到底长什么样？
 
----
+最核心的直觉只有三条：
 
-## 2. 符号表
+1. **均匀平面波里 $\mathbf E$、$\mathbf H$、传播方向互相垂直。** 它们组成右手系，能量沿 $\mathbf E\times\mathbf H$ 方向传播。
+2. **无耗介质只改变相位，不衰减；有耗介质一边传播一边衰减。** 衰减由 $e^{-\alpha z}$ 描述。
+3. **波遇到边界时，反射和透射由波阻抗决定。** 阻抗差越大，反射越强。
+
+考试最容易丢分的不是公式本身，而是方向符号：特别是反射波的 $\mathbf H_r$。不要凭直觉写，统一用
+
+$$
+\boxed{\mathbf H={1\over\eta}\hat{\mathbf k}\times\mathbf E}
+$$
+
+判断。
+
+## 必背符号和单位
 
 | 符号 | 含义 | 单位/说明 |
 |---|---|---|
-| $\vec E,\vec H$ | 电场强度、磁场强度 | V/m, A/m |
-| $\vec E_m,\vec H_m$ | 电场、磁场复振幅矢量 | 含幅值和初相位 |
-| $\omega,f,T$ | 角频率、频率、周期 | $\omega=2\pi f$, $T=1/f$ |
-| $\vec k=k\vec e_n$ | 波矢量 | 指向传播方向，$k$ 为波数 |
-| $k$ | 无损介质相位常数/波数 | $k=\omega\sqrt{\mu\varepsilon}=\beta$ |
-| $k_c$ | 有损介质复波数 | 本章记为 $k_c=\beta-j\alpha$ |
-| $\gamma$ | 传播常数 | $\gamma=jk_c=\alpha+j\beta$ |
-| $\alpha$ | 衰减常数 | Np/m，控制 $e^{-\alpha z}$ |
-| $\beta$ | 相位常数 | rad/m，控制 $e^{-j\beta z}$ |
+| $\hat{\mathbf k}$ | 传播方向单位矢量 | 指向能量传播方向 |
+| $\beta$ | 相位常数 | rad/m |
+| $\alpha$ | 衰减常数 | Np/m |
+| $\gamma$ | 传播常数 | $\gamma=\alpha+j\beta$ |
 | $\lambda$ | 波长 | $\lambda=2\pi/\beta$ |
 | $v_p$ | 相速度 | $v_p=\omega/\beta$ |
-| $\eta$ | 无损介质本征阻抗/波阻抗 | $\eta=\sqrt{\mu/\varepsilon}$ |
-| $\eta_c$ | 有损介质复本征阻抗 | $\eta_c=\sqrt{\mu/\varepsilon_c}=|\eta_c|e^{j\phi}$ |
-| $\varepsilon_c$ | 复介电常数 | $\varepsilon_c=\varepsilon-j\sigma/\omega$ |
+| $\eta$ | 无耗媒质波阻抗 | $\eta=\sqrt{\mu/\varepsilon}$ |
+| $\eta_c$ | 有耗媒质复波阻抗 | 复数 |
 | $\delta$ | 趋肤深度 | $\delta=1/\alpha$ |
-| $\vec S$ | Poynting 矢量 | $\vec S=\vec E\times\vec H$, W/m$^2$ |
-| $\Gamma$ | 电场反射系数 | $\Gamma=E_{rm}/E_{im}$ |
-| $\tau$ | 电场透射系数 | $\tau=E_{tm}/E_{im}$ |
-| $S$ | 驻波比 SWR | $S=E_{\max}/E_{\min}$，注意不要和 Poynting 矢量混淆 |
+| $\mathbf S$ | Poynting 矢量 | W/m$^2$ |
+| $\Gamma$ | 电场反射系数 | $E_r/E_i$ |
+| $\tau$ | 电场透射系数 | $E_t/E_i$ |
+| $SWR$ | 驻波比 | $(1+|\Gamma|)/(1-|\Gamma|)$ |
 
-说明：后文若界面在 $z=0$，默认介质1在 $z<0$，入射波沿 $+z$ 方向传播，反射波沿 $-z$ 方向传播，透射波沿 $+z$ 方向传播。
+本章默认使用 $e^{j\omega t}$ 相量约定。沿 $+z$ 传播的波写作 $e^{-j\beta z}$，沿 $-z$ 传播的波写作 $e^{+j\beta z}$。
 
----
+## 核心概念
 
-## 3. 均匀平面波在无损介质中的形式
+### 均匀平面波
 
-### 3.1 什么是均匀平面波
+**直觉解释：** 同一时刻相位相同的点构成平面，而且在这个平面上场强大小不变。
 
-**平面波**：任意时刻等相位面是平面。
-**均匀**：同一个等相位面上，电磁场幅值不随位置变化。
-
-所以均匀平面波的特点是：
-
-1. 等相位面与等幅面重合或平行。
-2. 在同一个波前平面内，$\vec E$ 和 $\vec H$ 的幅值相同；方向在同一均匀平面波中固定。
-3. 场量只沿传播方向变化。例如沿 $+z$ 传播时，$\vec E=\vec E(z)$。
-
-沿 $+z$ 传播的电场相量一般写成
+沿 $+z$ 传播的电场相量可写为
 
 $$
-\boxed{\vec E(z)=\vec E_m e^{-jkz}}
+\boxed{\mathbf E(z)=\mathbf E_0 e^{-j\beta z}}
 $$
 
-对应瞬时场为
+瞬时场为
 
 $$
-\boxed{\vec E(z,t)=\operatorname{Re}[\vec E_m e^{-jkz}e^{j\omega t}]}
+\mathbf E(z,t)=\operatorname{Re}\left[\mathbf E_0 e^{-j\beta z}e^{j\omega t}\right]
 $$
 
-若某一分量 $E_x$ 的复振幅为 $E_{xm}e^{j\phi_x}$，则
+相位为 $\omega t-\beta z$。固定相位不变时，$z$ 随 $t$ 增大，所以波沿 $+z$ 传播。
+
+### $\mathbf E$、$\mathbf H$、$\hat{\mathbf k}$ 的关系
+
+无耗介质中：
 
 $$
-E_x(z,t)=E_{xm}\cos(\omega t-kz+\phi_x)
+\boxed{\mathbf H={1\over\eta}\hat{\mathbf k}\times\mathbf E}
 $$
 
-**为什么 $e^{-jkz}$ 表示沿 $+z$ 传播？**
-相位为 $\omega t-kz+\phi$。令相位为常数：
+等价地：
 
 $$
-\omega t-kz+\phi=C
+\boxed{\mathbf E=\eta\mathbf H\times\hat{\mathbf k}}
 $$
 
-两边微分：
+这两条比死背方向更可靠。检查结果时用：
 
 $$
-\omega dt-kdz=0
+\mathbf E\times\mathbf H \parallel \hat{\mathbf k}
 $$
 
-所以
+### 波阻抗
+
+无耗媒质中：
 
 $$
-\frac{dz}{dt}=\frac{\omega}{k}>0
+\boxed{\eta=\sqrt{\mu\over\varepsilon}}
 $$
 
-等相位面随时间向 $+z$ 方向移动，因此是沿 $+z$ 传播。反过来，$e^{+jkz}$ 对应 $\cos(\omega t+kz)$，沿 $-z$ 传播。
-
-### 3.2 任意方向传播
-
-若传播方向单位矢量为 $\vec e_n$，位置矢量为 $\vec r$，波矢量定义为
+空气/真空中：
 
 $$
-\boxed{\vec k=k\vec e_n}
+\boxed{\eta_0=\sqrt{\mu_0\over\varepsilon_0}=120\pi\ \Omega\approx377\ \Omega}
 $$
 
-均匀平面波可写成
+如果 $\mu_r=1$，$\varepsilon_r=4$：
 
 $$
-\boxed{\vec E(\vec r)=\vec E_m e^{-j\vec k\cdot\vec r}},\qquad
-\boxed{\vec H(\vec r)=\vec H_m e^{-j\vec k\cdot\vec r}}
+\eta={\eta_0\over\sqrt{4}}={\eta_0\over2}
 $$
 
-其中 $\vec k\cdot\vec r$ 是空间相位。若 $\vec k=4\pi\vec e_x+3\pi\vec e_z$，则空间相位就是 $4\pi x+3\pi z$。
+### Poynting 矢量
 
-### 3.3 TEM 横电磁波关系
-
-无源、均匀、无损介质中 Maxwell 方程推出
+瞬时功率流密度：
 
 $$
-\vec k\cdot\vec E_m=0,\qquad \vec k\cdot\vec H_m=0
+\boxed{\mathbf S(t)=\mathbf E(t)\times\mathbf H(t)}
 $$
 
-说明 $\vec E$ 和 $\vec H$ 都垂直于传播方向，所以均匀平面波是 TEM 波。
-
-电场和磁场关系为
+相量峰值表示下的平均功率流密度：
 
 $$
-\boxed{\vec H=\frac{1}{\eta}\vec e_n\times\vec E}
+\boxed{\langle\mathbf S\rangle={1\over2}\operatorname{Re}(\mathbf E\times\mathbf H^*)}
 $$
 
-等价地
+无耗媒质中若电场峰值幅度为 $E_0$：
 
 $$
-\boxed{\vec E=-\eta\vec e_n\times\vec H=\eta\vec H\times\vec e_n}
+\boxed{\langle S\rangle={E_0^2\over2\eta}={\eta H_0^2\over2}}
 $$
 
-其中
+这里默认 $E_0,H_0$ 是峰值相量幅度。如果题目给的是 RMS 值，平均功率公式中不要再乘 $1/2$。
+
+### 极化
+
+极化描述电场矢量端点随时间怎么运动。
+
+假设波沿 $+z$ 传播，电场有两个正交分量：
 
 $$
-\boxed{\eta=\sqrt{\frac{\mu}{\varepsilon}}}
+\mathbf E=\hat{\mathbf x}E_x+\hat{\mathbf y}E_y
 $$
 
-是真实数，称为介质本征阻抗或波阻抗。真空中
-
-$$
-\boxed{\eta_0=\sqrt{\frac{\mu_0}{\varepsilon_0}}\approx 377\ \Omega=120\pi\ \Omega}
-$$
-
-**方向判断模板：**
-
-- 已知传播方向 $\vec e_n$ 和 $\vec E$：用 $\vec H=(1/\eta)\vec e_n\times\vec E$。
-- 已知传播方向 $\vec e_n$ 和 $\vec H$：用 $\vec E=\eta\vec H\times\vec e_n$。
-- $\vec E\times\vec H$ 指向能量传播方向，也就是 $\vec e_n$。
-
-**常见错误：**把 $\vec H=(1/\eta)\vec E\times\vec e_n$ 写反。叉乘顺序反了方向会反。
-
-### 3.4 无损介质传播参数
-
-| 物理量 | 公式 | 含义 |
-|---|---|---|
-| 角频率 | $\omega=2\pi f$ | 时间相位每秒变化多少 rad |
-| 周期 | $T=2\pi/\omega=1/f$ | 固定位置相位变化 $2\pi$ 的时间 |
-| 相位常数 | $k=\beta=\omega\sqrt{\mu\varepsilon}$ | 空间相位每米变化多少 rad |
-| 波长 | $\lambda=2\pi/k=1/(f\sqrt{\mu\varepsilon})$ | 相位差 $2\pi$ 的空间距离 |
-| 相速度 | $v_p=\omega/k=1/\sqrt{\mu\varepsilon}$ | 等相位面移动速度 |
-| 真空波速 | $c=1/\sqrt{\mu_0\varepsilon_0}=3\times10^8\,\text{m/s}$ | 电磁波在真空速度 |
-
-无损理想介质中 $v_p$ 与频率无关；相速度随频率变化称为色散。
-
----
-
-## 4. 极化：看固定点处电场矢量端点怎么转
-
-极化研究的是：**在空间某一点固定不动，随着时间变化，电场矢量 $\vec E(t)$ 的端点画出什么轨迹。**
-
-设波沿 $+z$ 传播，只考虑横向分量：
-
-$$
-\vec E(z,t)=\vec e_xE_{xm}\cos(\omega t-kz+\phi_x)+\vec e_yE_{ym}\cos(\omega t-kz+\phi_y)
-$$
-
-固定某一点，例如 $z=0$，判断极化只需要看：
-
-1. 两个分量幅值 $E_{xm},E_{ym}$；
-2. 初相位差
-
-$$
-\boxed{\Delta\phi=\phi_y-\phi_x}
-$$
-
-### 4.1 线极化
-
-条件：
-
-$$
-\boxed{\Delta\phi=0\quad\text{或}\quad \Delta\phi=\pm\pi}
-$$
-
-此时 $E_x,E_y$ 同相或反相，电场矢量端点沿一条直线来回运动。
-
-若 $\Delta\phi=0$，则
-
-$$
-\frac{E_y}{E_x}=\frac{E_{ym}}{E_{xm}}=\tan\alpha
-$$
-
-方向角 $\alpha$ 为常数，所以轨迹是直线。
-
-### 4.2 圆极化
-
-条件：
-
-$$
-\boxed{E_{xm}=E_{ym},\qquad \Delta\phi=\pm\frac{\pi}{2}}
-$$
-
-对于沿 $+z$ 方向传播的波，本章约定：
+判断规则：
 
 | 条件 | 极化 |
 |---|---|
-| $\Delta\phi=+\pi/2$ | 左旋圆极化 LHCP |
-| $\Delta\phi=-\pi/2$ | 右旋圆极化 RHCP |
+| 两分量同相或反相 | 线极化 |
+| 两分量等幅，相位差 $\pm90^\circ$ | 圆极化 |
+| 两分量不等幅且相位差 $\pm90^\circ$ | 椭圆极化 |
+| 一般相位差 | 椭圆极化 |
 
-例如若 $\phi_y=\phi_x-\pi/2$，则
+往年极化题很多，通常不要求很深的旋向判断；先把类型判断稳住。
 
-$$
-E_x=E_m\cos(\omega t+\phi_x),\qquad E_y=E_m\sin(\omega t+\phi_x)
-$$
+若题目进一步问 RHCP/LHCP 或旋向，按这个低优先级模板处理：
 
-于是
+1. 先声明观察方向，例如“沿传播方向看”。
+2. 取固定空间点，让 $t$ 增大，看电场端点从哪个轴转向哪个轴。
+3. 按课程约定判断右旋/左旋；如果课件约定不明，答案里写清“沿传播方向观察时顺/逆时针”。
 
-$$
-E_x^2+E_y^2=E_m^2
-$$
+不同教材对 RHCP/LHCP 的观察方向约定可能不同，考试时优先跟老师课件。
 
-电场端点轨迹为圆。
+## 核心公式与推导
 
-### 4.3 椭圆极化
-
-一般情况下是椭圆极化：
+### 无耗媒质传播参数
 
 $$
-\boxed{\frac{E_x^2}{E_{xm}^2}+\frac{E_y^2}{E_{ym}^2}-\frac{2E_xE_y}{E_{xm}E_{ym}}\cos\Delta\phi=\sin^2\Delta\phi}
+\boxed{\eta=\sqrt{\mu\over\varepsilon}}
 $$
 
-判断口诀：
-
-| 条件 | 极化类型 |
-|---|---|
-| $\Delta\phi=0,\pm\pi$ | 线极化 |
-| $\Delta\phi=\pm\pi/2$ 且 $E_{xm}=E_{ym}$ | 圆极化 |
-| 其他一般情况 | 椭圆极化 |
-
-对于沿 $+z$ 传播的波，本章采用约定：$0<\Delta\phi<\pi$ 为左旋，$-\pi<\Delta\phi<0$ 为右旋。
-
-对于沿 $-z$ 传播的波，左右旋判断会反过来：$0<\Delta\phi<\pi$ 为右旋，$-\pi<\Delta\phi<0$ 为左旋。原因是“旋向”必须沿传播方向观察，观察方向反了，顺/逆时针也会反。
-
-### 4.4 极化分解与任意方向判断（考试了解）
-
-还有两个常用结论：
-
-1. 任意均匀平面波的极化都可分解成两个互相垂直的线极化分量。
-2. 任意线极化波也可分解成等幅的左旋圆极化与右旋圆极化之和。例如
-
 $$
-\vec E=\vec e_xE_me^{-jkz}
-=\frac{E_m}{2}(\vec e_x+j\vec e_y)e^{-jkz}+\frac{E_m}{2}(\vec e_x-j\vec e_y)e^{-jkz}
+\boxed{\beta=\omega\sqrt{\mu\varepsilon}}
 $$
 
-其中两项分别对应一对相反旋向的圆极化分量。
-
-若传播方向不是 $+z$，不要直接套 $x,y$ 相位差口诀。可以用一种更通用的判断模板：把复振幅写成实部向量 $\vec E_{mr}$ 和虚部向量 $\vec E_{mi}$，再看
-
 $$
-\vec k\cdot(\vec E_{mi}\times\vec E_{mr})
+\boxed{v_p={\omega\over\beta}={1\over\sqrt{\mu\varepsilon}}}
 $$
 
-在本章约定下：大于 0 为右旋，小于 0 为左旋，等于 0 为线极化。若还要判断圆/椭圆，再检查 $|\vec E_{mr}|=|\vec E_{mi}|$ 且 $\vec E_{mr}\cdot\vec E_{mi}=0$；满足则为圆极化，否则为椭圆极化。
-
-**直观理解：** 这个任意方向判据本质上是在“沿着传播方向看电场端点转动”。固定 $+z$ 口诀只是它的特殊情况。
-
-**易错点：**若题目给的是 $\sin$，要先转成 $\cos$。例如
-
 $$
-\sin\theta=\cos(\theta-\pi/2)
+\boxed{\lambda={2\pi\over\beta}}
 $$
 
-所以 $E_x=E_m\sin(\omega t-kz)$ 的相位是 $-\pi/2$，不是 $0$。
-
----
-
-## 5. 有损介质中的均匀平面波
-
-### 5.1 复介电常数、复波数和传播常数
-
-导电介质中
-
 $$
-\varepsilon_c=\varepsilon-j\frac{\sigma}{\omega}
+\boxed{f={\omega\over2\pi}={v_p\over\lambda}}
 $$
 
-其中 $\sigma$ 是电导率。定义复波数
+空气中常用：
 
 $$
-\boxed{k_c=\omega\sqrt{\mu\varepsilon_c}=\beta-j\alpha}
-$$
-
-又定义传播常数
-
-$$
-\boxed{\gamma=jk_c=\alpha+j\beta}
-$$
-
-沿 $+z$ 传播时
-
-$$
-\boxed{\vec E(z)=\vec E_m e^{-jk_cz}=\vec E_m e^{-\gamma z}=\vec E_m e^{-\alpha z}e^{-j\beta z}}
-$$
-
-瞬时值为
-
-$$
-\boxed{\vec E(z,t)=\vec E_m e^{-\alpha z}\cos(\omega t-\beta z+\phi_E)}
-$$
-
-其中 $e^{-\alpha z}$ 表示幅值随传播距离指数衰减。
-
-### 5.2 有损介质传播参数
-
-由
-
-$$
-k_c^2=(\beta-j\alpha)^2=\beta^2-\alpha^2-j2\alpha\beta
-$$
-
-又
-
-$$
-k_c^2=\omega^2\mu\left(\varepsilon-j\frac{\sigma}{\omega}\right)=\omega^2\mu\varepsilon-j\omega\mu\sigma
-$$
-
-比较实部和虚部：
-
-$$
-\boxed{\beta^2-\alpha^2=\omega^2\mu\varepsilon},
+\beta_0={\omega\over c},
 \qquad
-\boxed{2\alpha\beta=\omega\mu\sigma}
+\lambda_0={2\pi\over\beta_0},
+\qquad
+f={c\over\lambda_0}
 $$
 
-解得
+### 有耗媒质传播参数
+
+有耗媒质中：
+
+考场决策流程：
+
+1. 先算或比较 $\sigma$ 和 $\omega\varepsilon$。
+2. 若 $\sigma=0$：无耗介质，$\alpha=0$，$\beta=\omega\sqrt{\mu\varepsilon}$。
+3. 若 $\sigma\ll\omega\varepsilon$：低损耗介质，优先用完整 $\gamma$ 和 $\eta_c$，除非题目给近似公式。
+4. 若 $\sigma\gg\omega\varepsilon$：良导体，直接用 $\alpha\approx\beta\approx\sqrt{\omega\mu\sigma/2}$。
+5. 不要把良导体公式套到普通介质。
+
+完整传播常数为：
 
 $$
-\boxed{\alpha=\omega\sqrt{\frac{\mu\varepsilon}{2}\left[\sqrt{1+\left(\frac{\sigma}{\omega\varepsilon}\right)^2}-1\right]}}
-$$
-
-$$
-\boxed{\beta=\omega\sqrt{\frac{\mu\varepsilon}{2}\left[\sqrt{1+\left(\frac{\sigma}{\omega\varepsilon}\right)^2}+1\right]}}
-$$
-
-波长和相速度：
-
-$$
-\boxed{\lambda=\frac{2\pi}{\beta}},\qquad
-\boxed{v_p=\frac{\omega}{\beta}}
-$$
-
-在有损介质中，$\beta$ 与频率有关，所以相速度通常与频率有关，这就是色散。
-
-### 5.3 有损介质中的复波阻抗
-
-$$
-\boxed{\eta_c=\sqrt{\frac{\mu}{\varepsilon_c}}=|\eta_c|e^{j\phi}}
-$$
-
-磁场关系仍写为
-
-$$
-\boxed{\vec H=\frac{1}{\eta_c}\vec e_n\times\vec E}
-$$
-
-但因为 $\eta_c$ 是复数，$\vec E$ 和 $\vec H$ 不再同相。若
-
-$$
-\eta_c=|\eta_c|e^{j\phi}
-$$
-
-则 $1/\eta_c=(1/|\eta_c|)e^{-j\phi}$，所以磁场相位相对电场滞后 $\phi$。
-
-### 5.4 低损耗介质近似
-
-当
-
-$$
-\frac{\sigma}{\omega\varepsilon}\ll1
-$$
-
-称为低损耗介质。近似为：
-
-$$
-\boxed{\alpha\approx\frac{\sigma}{2}\sqrt{\frac{\mu}{\varepsilon}}}
-$$
-
-$$
-\boxed{\beta\approx\omega\sqrt{\mu\varepsilon}}
-$$
-
-$$
-\boxed{\eta_c\approx\sqrt{\frac{\mu}{\varepsilon}}\left(1+j\frac{\sigma}{2\omega\varepsilon}\right)}
-$$
-
-重点：低损耗介质的相位常数几乎等于理想介质，主要多了小衰减。
-
-### 5.5 良导体近似、趋肤深度、表面阻抗
-
-当
-
-$$
-\frac{\sigma}{\omega\varepsilon}\gg1
-$$
-
-称为良导体。近似为：
-
-$$
-\boxed{\alpha\approx\beta\approx\sqrt{\pi f\mu\sigma}=\sqrt{\frac{\omega\mu\sigma}{2}}}
-$$
-
-$$
-\boxed{v_p=\frac{\omega}{\beta}\approx\sqrt{\frac{2\omega}{\mu\sigma}}}
-$$
-
-$$
-\boxed{\lambda=\frac{2\pi}{\beta}\approx2\sqrt{\frac{\pi}{f\mu\sigma}}}
+\boxed{\gamma=\alpha+j\beta=\sqrt{j\omega\mu(\sigma+j\omega\varepsilon)}}
 $$
 
 复波阻抗：
 
 $$
-\boxed{\eta_c\approx(1+j)\sqrt{\frac{\pi f\mu}{\sigma}}=\sqrt{\frac{\omega\mu}{\sigma}}e^{j\pi/4}}
+\boxed{\eta_c=\sqrt{{j\omega\mu\over\sigma+j\omega\varepsilon}}}
 $$
 
-所以良导体中磁场相对电场滞后 $45^\circ$。
+沿 $+z$ 传播时，场可写成
 
-趋肤深度定义为场强衰减到表面值 $1/e$ 的深度：
-
-$$
-E(\delta)=E(0)e^{-1}
-$$
-
-因此
-
-$$
-\boxed{\delta=\frac{1}{\alpha}\approx\frac{1}{\sqrt{\pi f\mu\sigma}}}
-$$
-
-频率越高，$\delta$ 越小，高频电流越集中在导体表层，这就是趋肤效应。
-
-工程上可以这样理解：高频导线常不用一根很粗的实心线，而用多股细导线或表面镀银/镀金来增加有效导电表面、降低交流电阻；高频发射机线圈可做成空心铜管，因为电流主要在表面流动，内部铜对高频导电贡献很小。这些属于趋肤效应应用，考试重点仍是 $\delta=1/\alpha$ 的计算。
-
-表面阻抗：
-
-$$
-\boxed{Z_s=R_s+jX_s=(1+j)\frac{1}{\sigma\delta}=(1+j)\sqrt{\frac{\pi f\mu}{\sigma}}}
-$$
-
-**常见错误：**
-
-- $\delta$ 不是“完全没有场”的深度，而是衰减到 $1/e\approx36.8\%$ 的深度。
-- 良导体中 $\alpha\approx\beta$，但它们含义不同：$\alpha$ 管衰减，$\beta$ 管相位。
-- 有损介质中不能直接说 $E$ 和 $H$ 同相。
-- 判断损耗大小时统一使用无量纲判据 $\sigma/(\omega\varepsilon)$，不要把分母写成 $\omega\mu$。
-
-### 5.6 色散与群速度（了解）
-
-**色散 dispersion**：相速度 $v_p=\omega/\beta$ 随频率变化。理想无损介质中 $\beta=\omega\sqrt{\mu\varepsilon}$，所以
-
-$$
-v_p=\frac{1}{\sqrt{\mu\varepsilon}}
-$$
-
-与频率无关，称为无色散。导电介质中 $\beta$ 的公式含 $\sigma/(\omega\varepsilon)$，通常随频率变，所以是色散介质。
-
-**群速度 group velocity**：实际信号常由一小段频带组成，包络或信息传播速度近似为
-
-$$
-\boxed{v_g=\frac{d\omega}{d\beta}}
-$$
-
-群速度也可写成等价关系
-
-$$
-\boxed{v_g=\frac{v_p}{1-\dfrac{\omega}{v_p}\dfrac{dv_p}{d\omega}}}
-$$
-
-考试若只问概念，记住：无色散时 $dv_p/d\omega=0$，因此 $v_g=v_p$；有色散时二者一般不同。
-
-### 5.7 有损介质应用例子（了解，不作为主推导）
-
-- 煤矿/地下通信：高频信号在有损介质中按 $e^{-\alpha z}$ 快速衰减，若规定接收阈值为 $E/E_0=10^{-6}$，最大距离由 $e^{-\alpha z}=10^{-6}$ 给出，即 $z=6\ln 10/\alpha$。降低频率通常可减小 $\alpha$，增加传播距离。
-- 海水通信：海水 $\sigma\approx4$ S/m，常可视作良导体。频率越高，$\alpha$ 越大，海水中通信距离越短，所以潜艇通信常用很低频率。
-- 屏蔽室：铜板厚度常按若干个趋肤深度估算。若要求厚度至少 $5\delta$，且频率范围从 $f_L$ 到 $f_H$，由于 $\delta\propto1/\sqrt f$，应按最低频率 $f_L$ 的最大趋肤深度设计。
-
----
-
-## 6. Poynting 矢量与电磁功率流
-
-### 6.1 Poynting 定理
-
-电磁场能量密度为
-
-$$
-\boxed{w=\frac12\vec E\cdot\vec D+\frac12\vec H\cdot\vec B}
-$$
-
-Poynting 矢量定义为
-
-$$
-\boxed{\vec S=\vec E\times\vec H\quad(\text{W/m}^2)}
-$$
-
-它表示单位面积上电磁能量流过的功率密度，方向就是能量传播方向。
-
-Poynting 定理微分形式：
-
-$$
-\boxed{-\nabla\cdot(\vec E\times\vec H)=\frac{\partial}{\partial t}\left(\frac12\vec E\cdot\vec D+\frac12\vec H\cdot\vec B\right)+\vec E\cdot\vec J}
-$$
-
-含义：流入某体积的电磁功率 = 体内电磁场储能增加率 + 体内焦耳损耗。
-
-积分形式：
-
-$$
-\boxed{-\oint_S\vec S\cdot d\vec S=\frac{d}{dt}\int_V w\,dV+\int_V\vec E\cdot\vec J\,dV}
-$$
-
-### 6.2 瞬时量必须用实数场
-
-瞬时 Poynting 矢量：
-
-$$
-\boxed{\vec S(t)=\vec E(t)\times\vec H(t)}
-$$
-
-这里必须用真实瞬时场，不能直接把相量相乘。
-
-例如
-
-$$
-\vec E(t)=\operatorname{Re}[\vec E e^{j\omega t}],\qquad
-\vec H(t)=\operatorname{Re}[\vec H e^{j\omega t}]
-$$
-
-则
-
-$$
-\vec S(t)=\operatorname{Re}[\vec E e^{j\omega t}]\times\operatorname{Re}[\vec H e^{j\omega t}]
-$$
-
-### 6.3 平均功率密度相量公式
-
-时谐场最常用的是平均 Poynting 矢量：
-
-$$
-\boxed{\vec S_{av}=\frac12\operatorname{Re}(\vec E\times\vec H^*)}
-$$
-
-其中 $^*$ 表示复共轭。
-
-平均电场能量密度：
-
-$$
-\boxed{w_{E,av}=\frac14\operatorname{Re}(\vec D\cdot\vec E^*)}
-$$
-
-若介质无损且 $\varepsilon$ 为实数：
-
-$$
-\boxed{w_{E,av}=\frac14\varepsilon |\vec E|^2}
-$$
-
-平均磁场能量密度：
-
-$$
-\boxed{w_{M,av}=\frac14\operatorname{Re}(\vec B\cdot\vec H^*)}
-$$
-
-无损时：
-
-$$
-\boxed{w_{M,av}=\frac14\mu |\vec H|^2}
-$$
-
-平均焦耳损耗密度：
-
-$$
-\boxed{p_{J,av}=\frac12\sigma |\vec E|^2}
-$$
-
-对于无损均匀平面波，$E=\eta H$，所以
-
-$$
-\boxed{\vec S_{av}=\vec e_n\frac{E_m^2}{2\eta}=\vec e_n\frac{\eta H_m^2}{2}}
-$$
-
-对于有损介质若 $\eta_c=|\eta_c|e^{j\phi}$，沿 $+z$ 传播且电场幅值为 $E_m e^{-\alpha z}$：
-
-$$
-\boxed{\vec S_{av}=\vec e_z\frac{E_m^2e^{-2\alpha z}}{2|\eta_c|}\cos\phi}
-$$
-
----
-
-## 7. 正入射到理想导体边界
-
-设理想导体平面在 $z=0$，介质1为无损介质，位于 $z<0$。入射波沿 $+z$ 传播，电场沿 $x$ 方向：
-
-$$
-\vec E_i=\vec e_xE_{im}e^{-j\beta z},\qquad
-\vec H_i=\vec e_y\frac{E_{im}}{\eta_1}e^{-j\beta z}
-$$
-
-理想导体等效为 $\eta_2=0$，所以
-
-$$
-\boxed{\Gamma=-1},\qquad \boxed{\tau=0}
-$$
-
-即电场全反射且反相，没有透射波。
-
-反射波为
-
-$$
-\vec E_r=-\vec e_xE_{im}e^{j\beta z}
-$$
-
-反射波沿 $-z$ 传播，磁场方向要用传播方向 $-\vec e_z$ 判断：
-
-$$
-\vec H_r=\vec e_y\frac{E_{im}}{\eta_1}e^{j\beta z}
-$$
-
-总场：
-
-$$
-\boxed{\vec E_1=\vec E_i+\vec E_r=-j2\vec e_xE_{im}\sin(\beta z)}
-$$
-
-$$
-\boxed{\vec H_1=\vec H_i+\vec H_r=\vec e_y\frac{2E_{im}}{\eta_1}\cos(\beta z)}
-$$
-
-瞬时场：
-
-$$
-\boxed{\vec E_1(z,t)=\vec e_x2E_{im}\sin(\beta z)\sin(\omega t)}
-$$
-
-$$
-\boxed{\vec H_1(z,t)=\vec e_y\frac{2E_{im}}{\eta_1}\cos(\beta z)\cos(\omega t)}
-$$
-
-注意：在导体表面 $z=0$，$\sin0=0$，所以切向电场为零，满足理想导体边界条件。
-
-### 7.1 驻波特点
-
-- 电场和磁场时间相位差 $90^\circ$。
-- 电场和磁场空间位置差 $\lambda/4$。
-- 平均 Poynting 矢量为 0，说明没有净功率向导体内部传播。
-
-电场波腹位置：
-
-$$
-\boxed{z_{\max}=-\frac{(2n+1)\lambda_1}{4},\quad n=0,1,2,\dots}
-$$
-
-电场波节位置：
-
-$$
-\boxed{z_{\min}=-\frac{n\lambda_1}{2},\quad n=0,1,2,\dots}
-$$
-
-这里 $z<0$，所以位置写成负数，表示在导体左侧。
-
-导体表面感应面电流密度：若导体外侧法向取从导体指向介质，即 $\vec e_n=-\vec e_z$，则
-
-$$
-\boxed{\vec J_s=\vec e_n\times\vec H_1|_{z=0}}
-$$
-
-代入本例：
-
 $$
-\vec J_s=(-\vec e_z)\times\left(\vec e_y\frac{2E_{im}}{\eta_1}\right)=\vec e_x\frac{2E_{im}}{\eta_1}
+\boxed{\mathbf E(z)=\mathbf E_0e^{-\gamma z}=\mathbf E_0e^{-\alpha z}e^{-j\beta z}}
 $$
-
----
 
-## 8. 正入射到理想介质边界
+其中：
 
-设介质1在 $z<0$，介质2在 $z>0$，两者均无损：
+- $e^{-\alpha z}$ 控制幅度衰减；
+- $e^{-j\beta z}$ 控制相位变化。
 
-$$
-\eta_1=\sqrt{\frac{\mu_1}{\varepsilon_1}},\qquad
-\eta_2=\sqrt{\frac{\mu_2}{\varepsilon_2}}
-$$
+### 良导体近似
 
-入射波、反射波、透射波为
+判断条件：
 
 $$
-\vec E_i=\vec e_xE_{im}e^{-j\beta_1z}
+\boxed{\sigma\gg\omega\varepsilon}
 $$
 
-$$
-\vec E_r=\vec e_xE_{rm}e^{j\beta_1z}
-$$
+近似公式：
 
 $$
-\vec E_t=\vec e_xE_{tm}e^{-j\beta_2z}
+\boxed{\alpha\approx\beta\approx\sqrt{\pi f\mu\sigma}=\sqrt{\omega\mu\sigma\over2}}
 $$
 
-边界处切向 $E$、$H$ 连续：
-
 $$
-E_{im}+E_{rm}=E_{tm}
+\boxed{\delta={1\over\alpha}=\sqrt{2\over\omega\mu\sigma}}
 $$
 
 $$
-\frac{E_{im}}{\eta_1}-\frac{E_{rm}}{\eta_1}=\frac{E_{tm}}{\eta_2}
+\boxed{\eta_c\approx(1+j)\sqrt{\omega\mu\over2\sigma}}
 $$
 
-解得电场反射系数和透射系数：
+直觉：良导体中波很快衰减，只能进入表面附近一个趋肤深度量级。
 
-$$
-\boxed{\Gamma=\frac{E_{rm}}{E_{im}}=\frac{\eta_2-\eta_1}{\eta_2+\eta_1}}
-$$
+### 法向入射反射透射
 
-$$
-\boxed{\tau=\frac{E_{tm}}{E_{im}}=\frac{2\eta_2}{\eta_2+\eta_1}=1+\Gamma}
-$$
+设界面为 $z=0$，介质 1 在 $z<0$，介质 2 在 $z>0$，入射波沿 $+z$ 方向传播。
 
-判断相位：
+指数符号先固定：
 
-| 条件 | $\Gamma$ 符号 | 反射电场相位 |
+| 波 | 传播方向 | 指数因子 |
 |---|---|---|
-| $\eta_2>\eta_1$ | $\Gamma>0$ | 与入射电场同相 |
-| $\eta_2<\eta_1$ | $\Gamma<0$ | 与入射电场反相 |
-| $\eta_2=\eta_1$ | $\Gamma=0$ | 无反射，阻抗匹配 |
+| 入射波 | $+z$ | $e^{-j\beta_1z}$ |
+| 反射波 | $-z$ | $e^{+j\beta_1z}$ |
+| 透射波 | $+z$ | $e^{-j\beta_2z}$ |
 
-介质1中总电场：
+$\mathbf H_r$ 的符号不要照抄 $\mathbf E_r$，必须由 $(-\hat{\mathbf z})\times\mathbf E_r$ 决定。
 
-$$
-\boxed{\vec E_1(z)=\vec e_xE_{im}\left(e^{-j\beta_1z}+\Gamma e^{j\beta_1z}\right)}
-$$
-
-介质2中透射电场：
+电场反射系数：
 
 $$
-\boxed{\vec E_2(z)=\vec e_x\tau E_{im}e^{-j\beta_2z}}
+\boxed{\Gamma={E_r\over E_i}={\eta_2-\eta_1\over\eta_2+\eta_1}}
 $$
 
-### 8.1 介质1中的行驻波
-
-总电场幅值为
+电场透射系数：
 
 $$
-\boxed{|E_1(z)|=E_{im}\sqrt{1+\Gamma^2+2\Gamma\cos(2\beta_1z)}}
+\boxed{\tau={E_t\over E_i}=1+\Gamma={2\eta_2\over\eta_1+\eta_2}}
 $$
 
-当 $|\Gamma|<1$ 时，既有行波成分又有驻波成分，称为行驻波。
-
-也可把总场拆成“行波部分 + 驻波部分”：
+注意：这里的 $\tau$ 是电场幅度透射系数，不是功率透射率。无耗介质法向入射时，平均功率反射率为
 
 $$
-E_1=E_{im}\left(e^{-j\beta_1z}+\Gamma e^{j\beta_1z}\right)
-=E_{im}\left[(1+\Gamma)e^{-j\beta_1z}+\Gamma(e^{j\beta_1z}-e^{-j\beta_1z})\right]
+\boxed{R=|\Gamma|^2}
 $$
 
-第一项随 $+z$ 传播，第二项与 $\sin(\beta_1z)$ 有关，表现为驻波起伏。这解释了为什么介质边界前不是纯行波，也不是纯驻波。
-
-最大、最小幅值：
+功率透射率为
 
 $$
-\boxed{E_{\max}=E_{im}(1+|\Gamma|)},\qquad
-\boxed{E_{\min}=E_{im}(1-|\Gamma|)}
+\boxed{T={\eta_1\over\eta_2}|\tau|^2}
 $$
+
+并满足 $R+T=1$。例如空气到 $\varepsilon_r=4$ 时，$\Gamma=-1/3$、$\tau=2/3$，功率反射率是 $1/9$，功率透射率是 $8/9$，不是 $4/9$。
 
 驻波比：
 
 $$
-\boxed{S=\frac{E_{\max}}{E_{\min}}=\frac{1+|\Gamma|}{1-|\Gamma|}}
+\boxed{SWR={1+|\Gamma|\over1-|\Gamma|}}
 $$
 
-反过来：
+若 $\eta_1=\eta_2$，则 $\Gamma=0$，无反射。
 
-$$
-\boxed{|\Gamma|=\frac{S-1}{S+1}}
-$$
-
-若直接写 $S=(1+\Gamma)/(1-\Gamma)$，必须先确定 $\Gamma$ 为正；通用计算建议先用 $|\Gamma|$。
-
-**最大/最小位置也要看 $\Gamma$ 的正负：**
-
-- 若 $\Gamma>0$（轻薄介质，或 $\eta_2>\eta_1$），界面 $z=0$ 处 $\cos(2\beta_1z)=1$，所以是电场最大点；最大点 $z=-n\lambda_1/2$，最小点 $z=-(2n+1)\lambda_1/4$。
-- 若 $\Gamma<0$（光密介质，或 $\eta_2<\eta_1$），界面 $z=0$ 处反射电场反相，所以是电场最小点；最小点 $z=-n\lambda_1/2$，最大点 $z=-(2n+1)\lambda_1/4$。
-
-**弱基础记忆：**先看界面处入射电场和反射电场同相还是反相。同相就界面最大，反相就界面最小。
-
-### 8.2 平均功率守恒
-
-入射平均功率密度：
-
-$$
-\vec S_{i,av}=\vec e_z\frac{E_{im}^2}{2\eta_1}
-$$
-
-反射平均功率密度：
-
-$$
-\vec S_{r,av}=-\vec e_z\frac{|\Gamma|^2E_{im}^2}{2\eta_1}
-$$
-
-介质1净平均功率密度：
-
-$$
-\boxed{\vec S_{1,av}=\vec e_z\frac{E_{im}^2}{2\eta_1}(1-|\Gamma|^2)}
-$$
-
-透射平均功率密度：
-
-$$
-\boxed{\vec S_{2,av}=\vec e_z\frac{|\tau|^2E_{im}^2}{2\eta_2}}
-$$
-
-无损介质边界无损耗，所以 $\vec S_{1,av}=\vec S_{2,av}$。
-
-### 8.3 反射板与信号叠加（了解）
-
-金属反射板可以用来理解反射和相位叠加：金属板近似理想导体，反射电场相对入射电场反相；但波从天线到反射板再回到天线/目标点还会多走路程，路程差也会带来相位差。
-
-如果金属板放在天线后方约 $\lambda/4$ 处：
-
-1. 天线到金属板再返回，多走路程 $2(\lambda/4)=\lambda/2$，产生 $180^\circ$ 相位差；
-2. 理想导体反射再产生 $180^\circ$ 相位反转；
-3. 总相位差约 $360^\circ$，可在前向相长叠加。
-
-如果距离约 $\lambda/2$，路程相位差为 $360^\circ$，再加反射 $180^\circ$，反而可能相消。实际环境有多径、天线方向图和损耗，所以“增强三倍”不可靠；理论上单个理想反射板主要是把原本向后辐射的能量重定向，幅值理想上最多约加倍，且位置不当会减弱。
-
-### 8.4 雷达测距与低空盲区（了解）
-
-雷达测距利用往返时间：若电磁波近似以 $c$ 传播，发射到收到回波的时间间隔为 $t$，目标距离
-
-$$
-\boxed{s=\frac{ct}{2}}
-$$
-
-低空目标可能出现盲区：直接反射波和地面反射后的波到达雷达时可能近似等幅反相，导致回波减弱。斜入射 Fresnel 反射系数可以解释这个现象，但完整推导超出本章正入射主线；如果题目未特别说明，掌握“反射会导致相消/相长”即可。
-
----
-
-## 9. 关键图像
-
-### 图1：均匀平面波中 $\vec E,\vec H,\vec k$ 的方向关系
-
-![均匀平面波中电场磁场传播方向关系](assets/chapter8_fig1_e_h_k_orientation.png)
-
-图中看什么：
-
-- $\vec E$、$\vec H$、传播方向互相垂直。
-- $\vec E\times\vec H$ 指向传播方向。
-- 无损介质中 $E$ 与 $H$ 同相，幅值相差 $\eta$ 倍。
-
-### 图2：圆极化的电场端点轨迹
-
-![圆极化电场端点轨迹](assets/chapter8_fig2_circular_polarization.png)
-
-图中看什么：
-
-- 固定空间点观察，电场矢量端点绕圆转动。
-- $E_x,E_y$ 幅值相等。
-- 相位差 $\pm\pi/2$ 决定左旋或右旋。
-
-### 图3：有损介质中 $E$ 与 $H$ 不同相
-
-![有损介质中电场磁场相位差](assets/chapter8_fig3_lossy_medium_phase.png)
-
-图中看什么：
-
-- 有损介质中 $\eta_c$ 是复数。
-- $E$ 和 $H$ 的相位不再完全一致。
-- 波传播时幅值按 $e^{-\alpha z}$ 衰减。
-
-### 图4：Poynting 矢量表示能量流
-
-![Poynting矢量与能量流方向](assets/chapter8_fig4_poynting_vector.png)
-
-图中看什么：
-
-- $\vec S=\vec E\times\vec H$。
-- $\vec S$ 的方向是电磁能量传播方向。
-- $|\vec S|$ 表示单位面积功率密度。
-
-### 图5：理想导体边界前的驻波
-
-![理想导体边界前电场磁场驻波](assets/chapter8_fig5_conductor_standing_wave.png)
-
-图中看什么：
-
-- 入射波和反射波叠加形成驻波。
-- 导体表面电场切向为零，是电场波节。
-- 电场波腹和磁场波腹相差 $\lambda/4$。
-
-### 图6：介质边界前的行驻波幅度分布
-
-![介质边界前行驻波幅度分布](assets/chapter8_fig6_dielectric_swr_pattern.png)
-
-图中看什么：
-
-- 介质边界不是全反射，所以总场不是纯驻波。
-- 总场幅度随 $z$ 呈周期性起伏。
-- 起伏强弱由 $|\Gamma|$ 或 SWR 决定。
-
----
-
-## 10. 典型例题
-
-### 例1：由磁场相量求传播参数和电场相量
-
-**题目：**空气中均匀平面波磁场为
-
-$$
-\vec H=(-A\vec e_x+2\vec e_y+4\vec e_z)e^{-j\pi(4x+3z)}\ \text{A/m}
-$$
-
-求：$\vec k$、波长 $\lambda$、频率 $f$、常数 $A$、电场相量 $\vec E$。
-
-**解题思路：**先从指数相位读出 $\vec k$；再用横波条件 $\vec k\cdot\vec H_m=0$ 求 $A$；最后用 $\vec E=\eta_0\vec H\times\vec e_n$。
-
-**解答：**
-
-相量标准形式为 $\vec H=\vec H_m e^{-j\vec k\cdot\vec r}$。题中
-
-$$
-\vec k\cdot\vec r=4\pi x+3\pi z
-$$
-
-所以
-
-$$
-\boxed{\vec k=4\pi\vec e_x+3\pi\vec e_z\ \text{rad/m}}
-$$
-
-大小：
-
-$$
-k=\sqrt{(4\pi)^2+(3\pi)^2}=5\pi\ \text{rad/m}
-$$
-
-波长：
-
-$$
-\lambda=\frac{2\pi}{k}=\frac{2\pi}{5\pi}=0.4\ \text{m}
-$$
-
-空气中近似 $v=c=3\times10^8$ m/s：
-
-$$
-f=\frac{c}{\lambda}=\frac{3\times10^8}{0.4}=7.5\times10^8\ \text{Hz}
-$$
-
-横波条件：
-
-$$
-\vec k\cdot\vec H_m=0
-$$
-
-代入：
-
-$$
-(4\pi)(-A)+0\cdot2+(3\pi)(4)=0
-$$
-
-$$
--4\pi A+12\pi=0
-$$
-
-$$
-\boxed{A=3}
-$$
-
-传播方向单位矢量：
-
-$$
-\vec e_n=\frac{\vec k}{k}=\frac45\vec e_x+\frac35\vec e_z
-$$
-
-空气中 $\eta_0=120\pi\ \Omega$。电场：
-
-$$
-\vec E=\eta_0\vec H\times\vec e_n
-$$
-
-先算复振幅叉乘：
-
-$$
-(-3\vec e_x+2\vec e_y+4\vec e_z)\times\left(\frac45\vec e_x+\frac35\vec e_z\right)
-$$
-
-逐项：
-
-$$
-(-3\vec e_x)\times\frac35\vec e_z=\frac95\vec e_y
-$$
-
-$$
-(2\vec e_y)\times\frac45\vec e_x=-\frac85\vec e_z
-$$
-
-$$
-(2\vec e_y)\times\frac35\vec e_z=\frac65\vec e_x
-$$
-
-$$
-(4\vec e_z)\times\frac45\vec e_x=\frac{16}{5}\vec e_y
-$$
-
-合并：
-
-$$
-\frac65\vec e_x+\left(\frac95+\frac{16}{5}\right)\vec e_y-\frac85\vec e_z
-=1.2\vec e_x+5\vec e_y-1.6\vec e_z
-$$
-
-所以
-
-$$
-\boxed{\vec E=120\pi(1.2\vec e_x+5\vec e_y-1.6\vec e_z)e^{-j\pi(4x+3z)}\ \text{V/m}}
-$$
-
-**易错提醒：**不能用 $\vec E=\eta\vec e_n\times\vec H$，那会反号；本题已知 $\vec H$，应使用 $\vec E=\eta\vec H\times\vec e_n$。
-
-### 例2：判断极化方式
-
-**题目：**判断下列沿 $+z$ 传播的波的极化：
-
-$$
-\vec E=(\vec e_xE_m-j\vec e_yE_m)e^{-jkz}
-$$
-
-**解答：**
-
-写出两个分量的相位：
-
-$$
-E_x=E_me^{-jkz}\quad\Rightarrow\quad \phi_x=0
-$$
-
-$$
-E_y=-jE_me^{-jkz}=E_me^{-j\pi/2}e^{-jkz}\quad\Rightarrow\quad \phi_y=-\frac\pi2
-$$
-
-相位差：
-
-$$
-\Delta\phi=\phi_y-\phi_x=-\frac\pi2
-$$
-
-且两个分量幅值相等：
-
-$$
-E_{xm}=E_{ym}=E_m
-$$
-
-沿 $+z$ 传播时，$\Delta\phi=-\pi/2$ 对应右旋圆极化。
-
-**答案：**
-
-$$
-\boxed{\text{右旋圆极化 RHCP}}
-$$
-
-**易错提醒：**$-j=e^{-j\pi/2}$，不是 $+\pi/2$。
-
-### 例3：海水中的衰减与趋肤深度
-
-**题目：**海水参数为 $\varepsilon_r=81,\mu_r=1,\sigma=4\ \text{S/m}$。电磁波角频率 $\omega=10^7\pi\ \text{rad/s}$，沿 $+z$ 传播。判断是否可视为良导体，并求 $\alpha,\beta,\eta_c,\delta$ 的近似值。
-
-**解题思路：**先算 $\sigma/(\omega\varepsilon)$。若远大于 1，用良导体近似。
-
-**解答：**
-
-频率：
-
-$$
-f=\frac{\omega}{2\pi}=\frac{10^7\pi}{2\pi}=5\times10^6\ \text{Hz}
-$$
-
-介电常数：
-
-$$
-\varepsilon=81\varepsilon_0=81\times\frac{1}{36\pi}\times10^{-9}\ \text{F/m}
-$$
-
-计算判据：
-
-$$
-\frac{\sigma}{\omega\varepsilon}=\frac{4}{10^7\pi\cdot81\cdot\frac{1}{36\pi}\times10^{-9}}
-$$
-
-分母：
-
-$$
-10^7\pi\cdot81\cdot\frac{1}{36\pi}\times10^{-9}=10^{-2}\cdot\frac{81}{36}=0.0225
-$$
-
-所以
-
-$$
-\frac{\sigma}{\omega\varepsilon}=\frac{4}{0.0225}\approx177.8\gg1
-$$
+### 反射波磁场符号
 
-可视为良导体。
+假设入射电场沿 $\hat{\mathbf x}$：
 
-良导体中
-
 $$
-\alpha\approx\beta\approx\sqrt{\pi f\mu\sigma}
+\mathbf E_i=\hat{\mathbf x}E_0e^{-j\beta_1z}
 $$
 
-代入 $\mu=\mu_0=4\pi\times10^{-7}$：
-
-$$
-\alpha=\beta\approx\sqrt{\pi(5\times10^6)(4\pi\times10^{-7})(4)}
-$$
+入射波传播方向 $\hat{\mathbf k}_i=\hat{\mathbf z}$，所以
 
 $$
-=\sqrt{8\pi^2}\approx8.89\ \text{m}^{-1}
+\mathbf H_i={1\over\eta_1}\hat{\mathbf z}\times\hat{\mathbf x}E_0e^{-j\beta_1z}
+=\hat{\mathbf y}{E_0\over\eta_1}e^{-j\beta_1z}
 $$
-
-复波阻抗：
 
-$$
-\eta_c\approx(1+j)\sqrt{\frac{\pi f\mu}{\sigma}}
-$$
+反射波传播方向 $\hat{\mathbf k}_r=-\hat{\mathbf z}$，电场
 
 $$
-\sqrt{\frac{\pi(5\times10^6)(4\pi\times10^{-7})}{4}}=\sqrt{\frac{2\pi^2}{4}}=\frac{\pi}{\sqrt2}
+\mathbf E_r=\hat{\mathbf x}\Gamma E_0e^{+j\beta_1z}
 $$
 
 因此
 
 $$
-\eta_c=(1+j)\frac{\pi}{\sqrt2}=\pi e^{j\pi/4}\ \Omega
+\mathbf H_r={1\over\eta_1}(-\hat{\mathbf z})\times\hat{\mathbf x}\Gamma E_0e^{+j\beta_1z}
+=-\hat{\mathbf y}{\Gamma E_0\over\eta_1}e^{+j\beta_1z}
 $$
 
-趋肤深度：
+所以入射区总场为
 
 $$
-\delta=\frac{1}{\alpha}=\frac{1}{8.89}=0.112\ \text{m}
+\boxed{\mathbf E_1=\hat{\mathbf x}E_0\left(e^{-j\beta_1z}+\Gamma e^{+j\beta_1z}\right)}
 $$
 
-**答案：**
-
 $$
-\boxed{\alpha\approx\beta\approx8.89\ \text{m}^{-1},\quad \eta_c\approx\pi e^{j\pi/4}\ \Omega,\quad \delta\approx0.112\ \text{m}}
+\boxed{\mathbf H_1=\hat{\mathbf y}{E_0\over\eta_1}\left(e^{-j\beta_1z}-\Gamma e^{+j\beta_1z}\right)}
 $$
 
-**易错提醒：**$\eta_c$ 的相角是 $45^\circ$，所以求磁场瞬时式时要让 $H$ 相位比 $E$ 滞后 $\pi/4$。
-
-### 例4：自由空间中平均功率穿过圆面
-
-**题目：**自由空间中
+透射区：
 
 $$
-\vec E=\vec e_x50\cos(\omega t-kz)\ \text{V/m}
+\boxed{\mathbf E_2=\hat{\mathbf x}\tau E_0e^{-j\beta_2z}}
 $$
 
-求垂直穿过半径 $R=2.5$ m 的圆面的平均功率。
-
-**解答：**
-
-相量为
-
 $$
-\vec E=\vec e_x50e^{-jkz}
+\boxed{\mathbf H_2=\hat{\mathbf y}{\tau E_0\over\eta_2}e^{-j\beta_2z}}
 $$
 
-自由空间 $\eta_0=120\pi\ \Omega$，传播方向为 $+z$，所以
+### PEC 反射
+
+理想导体表面切向电场为零。法向入射到 PEC 时：
 
 $$
-\vec H=\vec e_y\frac{50}{120\pi}e^{-jkz}=\vec e_y\frac{5}{12\pi}e^{-jkz}\ \text{A/m}
+\boxed{\Gamma_E=-1}
 $$
 
-平均 Poynting 矢量：
+所以导体表面处入射电场和反射电场相消。磁场反射等效为同相叠加，形成驻波。
+
+## 固定做题模板
+
+### 模板 1：给 $\mathbf H$ 求 $\mathbf E$（mock 2026 Q3 类型）
+
+题目特征：给空气中平面波
 
 $$
-\vec S_{av}=\frac12\operatorname{Re}(\vec E\times\vec H^*)
+\mathbf H=A\hat{\mathbf x}e^{-jky}
 $$
 
-因为两者同相：
+求 $\mathbf E$、波长、频率、平均 Poynting 矢量。
+
+步骤：
+
+1. 由 $e^{-jky}$ 判断传播方向：$+y$。
+2. 传播方向 $\hat{\mathbf k}=\hat{\mathbf y}$。
+3. 用
 
 $$
-\vec S_{av}=\vec e_z\frac12\cdot50\cdot\frac{5}{12\pi}=\vec e_z\frac{125}{12\pi}\ \text{W/m}^2
+\mathbf E=\eta_0\mathbf H\times\hat{\mathbf k}
 $$
 
-圆面积：
+4. 因 $\hat{\mathbf x}\times\hat{\mathbf y}=\hat{\mathbf z}$，所以
 
 $$
-A=\pi R^2=\pi(2.5)^2=6.25\pi
+\boxed{\mathbf E=\eta_0A\hat{\mathbf z}e^{-jky}}
 $$
 
-平均功率：
+5. 波长和频率：
 
 $$
-P_{av}=S_{av}A=\frac{125}{12\pi}\cdot6.25\pi=65.1\ \text{W}
+\boxed{\lambda={2\pi\over k}},
+\qquad
+\boxed{f={ck\over2\pi}}
 $$
 
-**答案：**
+如果题目写成 $e^{+jky}$，则传播方向改为 $-y$，此时 $\hat{\mathbf k}=-\hat{\mathbf y}$，叉乘方向必须重新算，不能照搬本例。
+
+6. 平均 Poynting 矢量：
 
 $$
-\boxed{P_{av}=65.1\ \text{W}}
+\boxed{\langle\mathbf S\rangle={1\over2}\eta_0|A|^2\hat{\mathbf y}}
 $$
 
-### 例5：理想介质界面的反射与透射
+如果题目还问 $A$ 的数值，必须使用题干给出的场强幅值或功率条件；mock 原始提取稿缺少图片信息，不能凭空确定 $A$。
 
-**题目：**空气中均匀平面波正入射到无损介质界面。介质2满足 $\mu_{r2}=1,\varepsilon_{r2}=4$。入射电场幅值 $E_{im}=10$ V/m。求 $\Gamma,\tau$ 和透射电场幅值。
+### 模板 2：无耗媒质中由 $\mathbf E$ 求 $\mathbf H$
 
-**解答：**
-
-空气中
+题目特征：给
 
 $$
-\eta_1=\eta_0=120\pi\ \Omega
+\mathbf E=\hat{\mathbf x}E_0e^{-j\beta z}
 $$
 
-介质2中
+媒质参数 $\varepsilon,\mu$ 已知。
+
+步骤：
+
+1. $e^{-j\beta z}$ 表示沿 $+z$ 传播。
+2. $\eta=\sqrt{\mu/\varepsilon}$。
+3. 用 $\mathbf H=(1/\eta)\hat{\mathbf z}\times\mathbf E$。
+4. $\hat{\mathbf z}\times\hat{\mathbf x}=\hat{\mathbf y}$。
+
+答案：
 
 $$
-\eta_2=\eta_0\sqrt{\frac{\mu_{r2}}{\varepsilon_{r2}}}=120\pi\sqrt{\frac14}=60\pi\ \Omega
+\boxed{\mathbf H=\hat{\mathbf y}{E_0\over\eta}e^{-j\beta z}}
 $$
 
-反射系数：
+### 模板 3：良导体传播题
+
+题目特征：给 $f,\mu,\varepsilon,\sigma$，且 $\sigma\gg\omega\varepsilon$。
+
+步骤：
+
+1. 算 $\omega=2\pi f$。
+2. 检查 $\sigma\gg\omega\varepsilon$。
+3. 用良导体近似：
 
 $$
-\Gamma=\frac{\eta_2-\eta_1}{\eta_2+\eta_1}=\frac{60\pi-120\pi}{60\pi+120\pi}=-\frac13
+\alpha\approx\beta\approx\sqrt{\omega\mu\sigma/2}
 $$
 
-透射系数：
+4. 趋肤深度：
 
 $$
-\tau=\frac{2\eta_2}{\eta_2+\eta_1}=\frac{120\pi}{180\pi}=\frac23
+\delta=1/\alpha
 $$
 
-透射电场幅值：
+5. 复波阻抗：
 
 $$
-E_{tm}=\tau E_{im}=\frac23\times10=6.67\ \text{V/m}
+\eta_c\approx(1+j)\sqrt{\omega\mu/(2\sigma)}
 $$
 
-**答案：**
+6. 场随距离衰减：
 
 $$
-\boxed{\Gamma=-\frac13,\quad \tau=\frac23,\quad E_{tm}=6.67\ \text{V/m}}
+|E(z)|=|E_0|e^{-\alpha z}
 $$
 
-**易错提醒：**$\tau$ 是电场幅值透射系数，不是功率透射比例。功率还要除以对应介质的 $\eta$。
+### 模板 4：极化判断
 
-### 例6：由 SWR 和波长比反推介质参数
-
-**题目：**自由空间中的均匀平面波正入射到半无限无损介质。已知自由空间中的驻波比 $S=3$，介质中的波长为自由空间波长的 $1/6$，且电场最小值点在界面上。求介质的 $\mu_r$ 和 $\varepsilon_r$。
-
-**解题思路：**$S$ 只能给出 $|\Gamma|$；“最小值在界面”决定 $\Gamma$ 的符号；波长比给出 $\mu_r\varepsilon_r$；阻抗比给出 $\mu_r/\varepsilon_r$。
-
-**解答：**
-
-由驻波比
+题目特征：给两个正交分量，如
 
 $$
-S=\frac{1+|\Gamma|}{1-|\Gamma|}=3
+\mathbf E=\hat{\mathbf x}E_x+\hat{\mathbf y}E_ye^{j\phi}
+$$
+
+步骤：
+
+1. 看两个分量是否同方向传播、是否正交。
+2. 比较幅值 $|E_x|$ 和 $|E_y|$。
+3. 看相位差 $\phi$。
+4. 套表判断：同相/反相线极化；等幅 $90^\circ$ 圆极化；不等幅或一般相位差椭圆极化。
+
+### 模板 5：法向入射完整场表达
+
+题目特征：空气或介质 1 入射到介质 2，界面 $z=0$，求反射/透射场。
+
+步骤：
+
+1. 求 $\eta_1,\eta_2$。
+2. 求 $\beta_1,\beta_2$。
+3. 算
+
+$$
+\Gamma={\eta_2-\eta_1\over\eta_2+\eta_1},
+\qquad
+\tau={2\eta_2\over\eta_1+\eta_2}
+$$
+
+4. 写 $\mathbf E_i,\mathbf E_r,\mathbf E_t$。
+5. 用 $\mathbf H=(1/\eta)\hat{\mathbf k}\times\mathbf E$ 写 $\mathbf H_i,\mathbf H_r,\mathbf H_t$。
+6. 入射区总场 = 入射 + 反射；透射区只有透射。
+7. 若问驻波比，用 $SWR=(1+|\Gamma|)/(1-|\Gamma|)$。
+
+## 往年考试例题
+
+### 例题 1：空气中给 $\mathbf H$ 求 $\mathbf E$（mock 2026 Q3 类型）
+
+空气中均匀平面波磁场相量为
+
+$$
+\mathbf H=A\hat{\mathbf x}e^{-jky}
+$$
+
+求电场、波长、频率和平均 Poynting 矢量。
+
+**解：**
+
+指数项 $e^{-jky}$ 表示沿 $+y$ 传播，所以
+
+$$
+\hat{\mathbf k}=\hat{\mathbf y}
+$$
+
+空气中波阻抗 $\eta_0=120\pi\ \Omega$。由
+
+$$
+\mathbf E=\eta_0\mathbf H\times\hat{\mathbf k}
 $$
 
 得
 
 $$
-3(1-|\Gamma|)=1+|\Gamma|
+\mathbf E=\eta_0A(\hat{\mathbf x}\times\hat{\mathbf y})e^{-jky}
+$$
+
+$$
+\boxed{\mathbf E=\eta_0A\hat{\mathbf z}e^{-jky}}
+$$
+
+波长：
+
+$$
+\boxed{\lambda={2\pi\over k}}
+$$
+
+空气中 $k=\omega/c=2\pi f/c$，所以
+
+$$
+\boxed{f={ck\over2\pi}}
+$$
+
+平均 Poynting 矢量：
+
+$$
+\langle\mathbf S\rangle={1\over2}\operatorname{Re}(\mathbf E\times\mathbf H^*)
+$$
+
+$$
+\mathbf E\times\mathbf H^*=\eta_0|A|^2(\hat{\mathbf z}\times\hat{\mathbf x})=\eta_0|A|^2\hat{\mathbf y}
 $$
 
 所以
 
 $$
-\boxed{|\Gamma|=\frac12}
+\boxed{\langle\mathbf S\rangle={1\over2}\eta_0|A|^2\hat{\mathbf y}}
 $$
 
-界面 $z=0$ 处电场最小，说明入射电场和反射电场在界面处反相，因此
+### 例题 2：良导体趋肤深度（2023 Q5 / 2025 Q6 类型）
+
+某良导体参数为 $\mu,\sigma$，频率为 $f$。求衰减常数、相位常数、趋肤深度和复波阻抗。
+
+**解：**
+
+良导体条件：$\sigma\gg\omega\varepsilon$。取 $\omega=2\pi f$。
+
+衰减常数和相位常数：
 
 $$
-\boxed{\Gamma=-\frac12}
+\boxed{\alpha\approx\beta\approx\sqrt{\pi f\mu\sigma}}
 $$
 
-又
+趋肤深度：
 
 $$
-\Gamma=\frac{\eta_2-\eta_0}{\eta_2+\eta_0}=-\frac12
+\boxed{\delta={1\over\alpha}=\sqrt{2\over\omega\mu\sigma}}
 $$
 
-解得
+复波阻抗：
 
 $$
-2(\eta_2-\eta_0)=-(\eta_2+\eta_0)
+\boxed{\eta_c\approx(1+j)\sqrt{\omega\mu\over2\sigma}}
+$$
+
+若问传播 $z$ 后幅度变为多少：
+
+$$
+\boxed{|E(z)|=|E_0|e^{-\alpha z}}
+$$
+
+### 例题 3：空气到 $\varepsilon_r=4$ 介质法向入射（mock 2026 Q4 / 2023 Q7 类型）
+
+空气中入射电场为
+
+$$
+\mathbf E_i=\hat{\mathbf x}E_0e^{-j\beta_0z}
+$$
+
+波从 $z<0$ 的空气入射到 $z>0$ 的无耗介质，介质参数 $\mu_r=1,\varepsilon_r=4$。求反射/透射系数、两侧总场和驻波比。
+
+**解：**
+
+空气：
+
+$$
+\eta_1=\eta_0,
+\qquad \beta_1=\beta_0
+$$
+
+介质 2：
+
+$$
+\eta_2={\eta_0\over\sqrt{\varepsilon_r}}={\eta_0\over2}
 $$
 
 $$
-3\eta_2=\eta_0
+\beta_2=\beta_0\sqrt{\varepsilon_r}=2\beta_0
+$$
+
+反射系数：
+
+$$
+\Gamma={\eta_2-\eta_1\over\eta_2+\eta_1}={{\eta_0/2}-\eta_0\over{\eta_0/2}+\eta_0}=-{1\over3}
+$$
+
+透射系数：
+
+$$
+\tau=1+\Gamma={2\over3}
+$$
+
+入射区总电场：
+
+$$
+\boxed{\mathbf E_1=\hat{\mathbf x}E_0\left(e^{-j\beta_0z}-{1\over3}e^{+j\beta_0z}\right)}
+$$
+
+入射区总磁场：
+
+$$
+\mathbf H_1=\hat{\mathbf y}{E_0\over\eta_0}\left(e^{-j\beta_0z}-\Gamma e^{+j\beta_0z}\right)
+$$
+
+代入 $\Gamma=-1/3$：
+
+$$
+\boxed{\mathbf H_1=\hat{\mathbf y}{E_0\over\eta_0}\left(e^{-j\beta_0z}+{1\over3}e^{+j\beta_0z}\right)}
+$$
+
+透射区总电场：
+
+$$
+\boxed{\mathbf E_2=\hat{\mathbf x}{2E_0\over3}e^{-j2\beta_0z}}
+$$
+
+透射区总磁场：
+
+$$
+\mathbf H_2=\hat{\mathbf y}{\tau E_0\over\eta_2}e^{-j\beta_2z}
+=\hat{\mathbf y}{(2/3)E_0\over\eta_0/2}e^{-j2\beta_0z}
 $$
 
 $$
-\boxed{\eta_2=\frac{\eta_0}{3}}
+\boxed{\mathbf H_2=\hat{\mathbf y}{4E_0\over3\eta_0}e^{-j2\beta_0z}}
 $$
 
-无损介质中
+驻波比：
 
 $$
-\eta_2=\eta_0\sqrt{\frac{\mu_r}{\varepsilon_r}}
+\boxed{SWR={1+|\Gamma|\over1-|\Gamma|}={1+1/3\over1-1/3}=2}
+$$
+
+**易错提醒：** 反射波电场系数是 $-1/3$，但反射波磁场在总场表达里出现的是 $-\Gamma$，所以变成 $+1/3$。
+
+### 例题 4：PEC 反射（2022 Q10 / 2024 Q7 类型）
+
+一均匀平面波法向入射到理想导体平面 $z=0$，入射区为 $z<0$。若
+
+$$
+\mathbf E_i=\hat{\mathbf x}E_0e^{-j\beta z}
+$$
+
+求反射电场。
+
+**解：**
+
+PEC 表面切向总电场为零：
+
+$$
+\mathbf E_t(z=0)=\mathbf E_i(0)+\mathbf E_r(0)=0
+$$
+
+因此电场反射系数
+
+$$
+\Gamma_E=-1
+$$
+
+反射波沿 $-z$ 传播，所以
+
+$$
+\boxed{\mathbf E_r=-\hat{\mathbf x}E_0e^{+j\beta z}}
+$$
+
+总电场：
+
+$$
+\mathbf E=\hat{\mathbf x}E_0(e^{-j\beta z}-e^{+j\beta z})
+=-2j\hat{\mathbf x}E_0\sin(\beta z)
+$$
+
+这表示入射区形成驻波，导体表面 $z=0$ 处电场节点。
+
+## 重点难点总结
+
+1. $e^{-j\beta z}$ 在 $e^{j\omega t}$ 约定下表示沿 $+z$ 传播。
+2. $\mathbf E,\mathbf H,\hat{\mathbf k}$ 组成右手系；方向不确定时用叉乘。
+3. 平均 Poynting 矢量用 $\frac12\operatorname{Re}(\mathbf E\times\mathbf H^*)$，别漏 $1/2$。
+4. 良导体中 $\alpha\approx\beta$，但它不是无耗波，会按 $e^{-\alpha z}$ 衰减。
+5. 法向入射先算波阻抗，再算 $\Gamma,\tau$。
+6. 反射波磁场符号最容易错：$\mathbf H_r=(1/\eta)(-\hat{\mathbf z})\times\mathbf E_r$。
+7. 空气到 $\varepsilon_r=4$、$\mu_r=1$ 的介质：$\eta_2=\eta_0/2$，$\Gamma=-1/3$，$\tau=2/3$，$SWR=2$。
+
+## 自测题与答案
+
+### 题 1
+
+空气中平面波
+
+$$
+\mathbf E=30\pi\hat{\mathbf x}e^{-j\beta z}\ \text{V/m}
+$$
+
+求 $\mathbf H$。
+
+**答案：**
+
+沿 $+z$ 传播，$\eta_0=120\pi\ \Omega$。
+
+$$
+\mathbf H={1\over\eta_0}\hat{\mathbf z}\times\mathbf E
+$$
+
+$$
+\hat{\mathbf z}\times\hat{\mathbf x}=\hat{\mathbf y}
 $$
 
 所以
 
 $$
-\sqrt{\frac{\mu_r}{\varepsilon_r}}=\frac13
+\boxed{\mathbf H={30\pi\over120\pi}\hat{\mathbf y}e^{-j\beta z}=0.25\hat{\mathbf y}e^{-j\beta z}\ \text{A/m}}
 $$
 
-即
+### 题 2
 
-$$
-\boxed{\frac{\mu_r}{\varepsilon_r}=\frac19}
-$$
+若某波相量中含 $e^{+j\beta z}$，在 $e^{j\omega t}$ 约定下传播方向是什么？
 
-波长关系为
+**答案：**
 
-$$
-\lambda_2=\frac{\lambda_0}{\sqrt{\mu_r\varepsilon_r}}=\frac{\lambda_0}{6}
-$$
+瞬时相位为 $\omega t+\beta z$。令相位常数不变，$z$ 随 $t$ 增大而减小，所以波沿 $-z$ 传播。
 
-因此
+### 题 3
 
-$$
-\boxed{\mu_r\varepsilon_r=36}
-$$
-
-联立
-
-$$
-\mu_r=\frac{\varepsilon_r}{9},\qquad \mu_r\varepsilon_r=36
-$$
-
-得到
-
-$$
-\frac{\varepsilon_r^2}{9}=36
-$$
-
-$$
-\varepsilon_r=18,\qquad \mu_r=2
-$$
+良导体中 $\alpha=20$ Np/m，求趋肤深度。传播 $z=0.1$ m 后幅度变为原来的多少？
 
 **答案：**
 
 $$
-\boxed{\mu_r=2,\qquad \varepsilon_r=18}
+\delta={1\over\alpha}={1\over20}=0.05\ \text{m}
 $$
 
-**易错提醒：**只由 $S=3$ 不能判断 $\Gamma=+1/2$ 还是 $-1/2$；必须用“界面是最大还是最小”判断符号。
-
----
-
-## 11. 常见错误总结
-
-| 易错点 | 错误写法/想法 | 正确理解 | 检查方法 |
-|---|---|---|---|
-| 传播方向 | $e^{-jkz}$ 以为沿 $-z$ | 在 $e^{j\omega t}$ 约定下，$e^{-jkz}$ 沿 $+z$ | 令 $\omega t-kz=C$ |
-| $E/H$ 方向 | $\vec H=(1/\eta)\vec E\times\vec e_n$ | $\vec H=(1/\eta)\vec e_n\times\vec E$ | 看 $\vec E\times\vec H$ 是否指向传播方向 |
-| 横波条件 | 忘记 $\vec k\cdot\vec E=0$ | 均匀平面波为 TEM | 用来求未知分量 |
-| 极化判断 | 直接看 $j$，不转相位 | $j=e^{j\pi/2}$，$-j=e^{-j\pi/2}$ | 先统一成余弦相位 |
-| 有损介质 | 仍认为 $E,H$ 同相 | $\eta_c$ 为复数，$E,H$ 有相位差 | 写 $\eta_c=|\eta_c|e^{j\phi}$ |
-| 趋肤深度 | 认为 $\delta$ 后场为 0 | $\delta$ 处幅值为 $1/e$ | $E(\delta)=E_0e^{-1}$ |
-| Poynting 瞬时量 | 用相量直接叉乘 | 瞬时量必须用实数场 | 平均量才用 $\frac12\operatorname{Re}(E\times H^*)$ |
-| 导体反射 | 忘记 $\Gamma=-1$ | 理想导体切向 $E=0$，电场反相全反射 | 表面总 $E_t$ 应为 0 |
-| 反射波磁场 | 磁场也跟电场同样反号 | 反射波传播方向反了，$H$ 方向要重新叉乘 | 分别用传播方向算 $H$ |
-| SWR | 不取 $|\Gamma|$ 导致小于 1 | $S=E_{\max}/E_{\min}\ge1$ | 用 $S=(1+|\Gamma|)/(1-|\Gamma|)$ |
-| 透射系数 | 把 $\tau$ 当成功率比例 | $\tau$ 是电场幅度系数 | 功率用 $E^2/(2\eta)$ |
-| 驻波最大/最小位置 | 只背一套位置 | 介质边界前要看 $\Gamma$ 正负；导体边界 $\Gamma=-1$ | 界面处同相为最大，反相为最小 |
-| 群速度 | 误以为总等于相速度 | 只有无色散时 $v_g=v_p$ | 看 $v_p$ 是否随频率变化 |
-| 反射板增强信号 | 以为一定增强三倍 | 相位合适才增强，位置不当会减弱；理想单反射板幅值最多约加倍 | 算路程相位差 + 反射相位差 |
-
----
-
-## 12. 自测题
-
-### 题目
-
-1. 在 $e^{j\omega t}$ 约定下，$e^{-jkz}$ 和 $e^{+jkz}$ 分别表示沿哪个方向传播？说明理由。
-2. 写出无损介质中均匀平面波 $\vec E,\vec H,\vec e_n$ 的关系和波阻抗。
-3. 已知波沿 $+z$ 传播，$\vec E=\vec e_xE_0e^{-jkz}$，求 $\vec H$。
-4. 均匀平面波为什么是 TEM 波？用点乘关系说明。
-5. 频率 $f=100$ MHz、介质 $\varepsilon_r=4,\mu_r=1$，求 $v_p,\lambda,\eta$。
-6. 判断 $\vec E=(\vec e_xE_m+j\vec e_yE_m)e^{-jkz}$ 沿 $+z$ 传播时的极化。
-7. 写出有损介质中 $k_c,\gamma,\alpha,\beta$ 的关系，并说明 $e^{-\alpha z}$ 的意义。
-8. 什么条件下可用良导体近似？写出 $\alpha,\beta,\delta,\eta_c$。
-9. 铜在 $f=10$ kHz 时若 $\sigma=5.8\times10^7$ S/m、$\mu=\mu_0$，估算趋肤深度。
-10. 写出 Poynting 定理微分形式，并解释三项物理意义。
-11. 已知相量 $\vec E=\vec e_x20e^{-jkz}$ V/m 在自由空间传播，求平均 Poynting 矢量。
-12. 正入射到理想导体时，电场反射系数是多少？为什么表面切向电场为零？
-13. 理想导体边界前总场 $\vec E_1=-j2\vec e_xE_{im}\sin\beta z$，求瞬时电场。
-14. 正入射到无损介质界面，写出 $\Gamma,\tau$。若 $\eta_2=3\eta_1$，求 $\Gamma,\tau$。
-15. 驻波比 $S=3$，求 $|\Gamma|$。若入射幅值为 4 V/m，求 $E_{\max},E_{\min}$。
-16. 为什么介质界面前是行驻波，而理想导体前是纯驻波？
-17. 任意方向传播时，若 $\vec k\cdot(\vec E_{mi}\times\vec E_{mr})>0$，按本章约定是什么旋向？若 $|\vec E_{mr}|=|\vec E_{mi}|$ 且 $\vec E_{mr}\cdot\vec E_{mi}=0$，极化类型是什么？
-18. 无色散介质中群速度和相速度有什么关系？为什么？
-19. 用反射板增强 WiFi 时，为什么距离约 $\lambda/4$ 可能增强，而约 $\lambda/2$ 可能减弱？
-20. 自由空间正入射到无损介质，已知 $S=3$ 且界面为电场最小点，求 $\Gamma$。
-
-### 自测题答案
-
-1. $e^{-jkz}$ 表示沿 $+z$ 传播。瞬时相位为 $\omega t-kz$，令 $\omega t-kz=C$，得 $dz/dt=\omega/k>0$。$e^{+jkz}$ 的相位为 $\omega t+kz$，令其为常数得 $dz/dt=-\omega/k<0$，所以沿 $-z$ 传播。
-
-2. 无损介质中
-   $$
-   \vec H=\frac1\eta\vec e_n\times\vec E,
-   \qquad
-   \vec E=\eta\vec H\times\vec e_n
-   $$
-   其中
-   $$
-   \eta=\sqrt{\frac{\mu}{\varepsilon}}.
-   $$
-   $\vec E,\vec H,\vec e_n$ 互相垂直，且 $\vec E\times\vec H$ 指向传播方向。
-
-3. 传播方向 $\vec e_n=\vec e_z$，所以
-   $$
-   \vec H=\frac1\eta\vec e_z\times(\vec e_xE_0e^{-jkz})
-   $$
-   用 $\vec e_z\times\vec e_x=\vec e_y$：
-   $$
-   \boxed{\vec H=\vec e_y\frac{E_0}{\eta}e^{-jkz}}.
-   $$
-
-4. 无源均匀介质中 Maxwell 方程给出
-   $$
-   \vec k\cdot\vec E_m=0,
-   \qquad
-   \vec k\cdot\vec H_m=0.
-   $$
-   点乘为零表示垂直，所以 $\vec E$ 和 $\vec H$ 都垂直于传播方向 $\vec k$，因此是横电磁波 TEM。
-
-5. 介质参数：$\varepsilon=4\varepsilon_0,\mu=\mu_0$。
-   $$
-   v_p=\frac{c}{\sqrt{\mu_r\varepsilon_r}}=\frac{3\times10^8}{\sqrt4}=1.5\times10^8\ \text{m/s}
-   $$
-   $$
-   \lambda=\frac{v_p}{f}=\frac{1.5\times10^8}{100\times10^6}=1.5\ \text{m}
-   $$
-   $$
-   \eta=\eta_0\sqrt{\frac{\mu_r}{\varepsilon_r}}=120\pi\sqrt{\frac14}=60\pi\ \Omega.
-   $$
-
-6. $j=e^{j\pi/2}$，所以 $\phi_x=0,\phi_y=+\pi/2$。两分量幅值相等，且
-   $$
-   \Delta\phi=\phi_y-\phi_x=+\frac\pi2.
-   $$
-   沿 $+z$ 传播时，本章约定 $+\pi/2$ 为左旋圆极化，所以答案为
-   $$
-   \boxed{\text{LHCP}}.
-   $$
-
-7. 本章采用
-   $$
-   k_c=\beta-j\alpha,
-   \qquad
-   \gamma=jk_c=\alpha+j\beta.
-   $$
-   沿 $+z$ 传播：
-   $$
-   \vec E(z)=\vec E_m e^{-jk_cz}=\vec E_m e^{-\alpha z}e^{-j\beta z}.
-   $$
-   $e^{-\alpha z}$ 表示幅值随距离指数衰减；$e^{-j\beta z}$ 表示相位随距离变化。
-
-8. 良导体条件：
-   $$
-   \frac{\sigma}{\omega\varepsilon}\gg1.
-   $$
-   近似公式：
-   $$
-   \alpha\approx\beta\approx\sqrt{\pi f\mu\sigma},
-   $$
-   $$
-   \delta=\frac1\alpha\approx\frac{1}{\sqrt{\pi f\mu\sigma}},
-   $$
-   $$
-   \eta_c\approx(1+j)\sqrt{\frac{\pi f\mu}{\sigma}}=\sqrt{\frac{\omega\mu}{\sigma}}e^{j\pi/4}.
-   $$
-
-9. 用良导体趋肤深度：
-   $$
-   \delta=\frac{1}{\sqrt{\pi f\mu\sigma}}
-   $$
-   代入：
-   $$
-   \delta=\frac{1}{\sqrt{\pi(10^4)(4\pi\times10^{-7})(5.8\times10^7)}}
-   $$
-   中间乘积：
-   $$
-   \pi\cdot10^4\cdot4\pi\times10^{-7}\cdot5.8\times10^7\approx2.29\times10^6
-   $$
-   $$
-   \delta\approx\frac{1}{1515}=6.6\times10^{-4}\ \text{m}=0.66\ \text{mm}.
-   $$
-
-10. Poynting 定理微分形式：
-   $$
-   -\nabla\cdot(\vec E\times\vec H)=\frac{\partial}{\partial t}\left(\frac12\vec E\cdot\vec D+\frac12\vec H\cdot\vec B\right)+\vec E\cdot\vec J.
-   $$
-   左边表示单位体积净流入的电磁功率；第一项表示电磁场储能增加率；第二项表示焦耳损耗功率密度。
-
-11. 自由空间 $\eta_0=120\pi\ \Omega$，沿 $+z$ 传播：
-   $$
-   \vec H=\vec e_y\frac{20}{120\pi}e^{-jkz}=\vec e_y\frac{1}{6\pi}e^{-jkz}.
-   $$
-   平均 Poynting 矢量：
-   $$
-   \vec S_{av}=\frac12\operatorname{Re}(\vec E\times\vec H^*)
-   =\vec e_z\frac12\cdot20\cdot\frac{1}{6\pi}
-   $$
-   $$
-   \boxed{\vec S_{av}=\vec e_z\frac{5}{3\pi}\ \text{W/m}^2\approx0.531\vec e_z\ \text{W/m}^2}.
-   $$
-
-12. 理想导体中 $\eta_2=0$，所以
-   $$
-   \Gamma=\frac{\eta_2-\eta_1}{\eta_2+\eta_1}=-1.
-   $$
-   反射电场与入射电场等幅反相，表面 $z=0$ 处
-   $$
-   E_i(0)+E_r(0)=E_{im}-E_{im}=0,
-   $$
-   因此满足理想导体表面切向电场为零。
-
-13. 相量总场为
-   $$
-   \vec E_1=-j2\vec e_xE_{im}\sin\beta z.
-   $$
-   瞬时场：
-   $$
-   \vec E_1(z,t)=\operatorname{Re}[-j2\vec e_xE_{im}\sin\beta z\,e^{j\omega t}].
-   $$
-   因为 $\operatorname{Re}[-je^{j\omega t}]=\sin\omega t$，所以
-   $$
-   \boxed{\vec E_1(z,t)=2\vec e_xE_{im}\sin\beta z\sin\omega t}.
-   $$
-
-14. 正入射无损介质界面：
-   $$
-   \Gamma=\frac{\eta_2-\eta_1}{\eta_2+\eta_1},
-   \qquad
-   \tau=\frac{2\eta_2}{\eta_2+\eta_1}.
-   $$
-   若 $\eta_2=3\eta_1$：
-   $$
-   \Gamma=\frac{3\eta_1-\eta_1}{3\eta_1+\eta_1}=\frac12,
-   $$
-   $$
-   \tau=\frac{2(3\eta_1)}{3\eta_1+\eta_1}=\frac32.
-   $$
-   $\tau>1$ 不代表能量增加，因为透射介质阻抗也变了。
-
-15. 驻波比
-   $$
-   S=\frac{1+|\Gamma|}{1-|\Gamma|}
-   $$
-   所以
-   $$
-   |\Gamma|=\frac{S-1}{S+1}=\frac{3-1}{3+1}=\frac12.
-   $$
-   若 $E_{im}=4$ V/m：
-   $$
-   E_{\max}=E_{im}(1+|\Gamma|)=4(1+0.5)=6\ \text{V/m},
-   $$
-   $$
-   E_{\min}=E_{im}(1-|\Gamma|)=4(1-0.5)=2\ \text{V/m}.
-   $$
-
-16. 理想导体边界 $\Gamma=-1$，反射波与入射波等幅，净平均功率为零，叠加后形成纯驻波。普通理想介质界面通常 $|\Gamma|<1$，只有部分能量反射，另一部分透射；入射波和较小的反射波叠加后既有行波成分又有驻波起伏，所以是行驻波。
-
-17. 按本章约定，若
-    $$
-    \vec k\cdot(\vec E_{mi}\times\vec E_{mr})>0
-    $$
-    则为右旋。若同时满足
-    $$
-    |\vec E_{mr}|=|\vec E_{mi}|,
-    \qquad
-    \vec E_{mr}\cdot\vec E_{mi}=0,
-    $$
-    则两个正交分量等幅且相差 $90^\circ$，所以是圆极化；结合前一判断，为右旋圆极化。
-
-18. 无色散介质中 $v_p$ 不随频率变化，所以
-    $$
-    \frac{dv_p}{d\omega}=0.
-    $$
-    代入群速度关系
-    $$
-    v_g=\frac{v_p}{1-\dfrac{\omega}{v_p}\dfrac{dv_p}{d\omega}}
-    $$
-    得
-    $$
-    \boxed{v_g=v_p}.
-    $$
-    理想无损介质中 $v_p=1/\sqrt{\mu\varepsilon}$，与频率无关，因此无色散。
-
-19. 金属板近似理想导体，反射电场相对入射电场多 $180^\circ$ 相位反转。若反射板距天线约 $\lambda/4$，往返多走 $2\times\lambda/4=\lambda/2$，路程又带来 $180^\circ$ 相位差；总相位差约 $360^\circ$，与前向波相长叠加。若距离约 $\lambda/2$，往返路程差为 $\lambda$，路程相位差为 $360^\circ$，再加反射相位 $180^\circ$，总相位差为 $180^\circ$，可能相消减弱。
-
-20. 由
-    $$
-    S=\frac{1+|\Gamma|}{1-|\Gamma|}=3
-    $$
-    得 $|\Gamma|=1/2$。界面为电场最小点，说明界面处反射电场与入射电场反相，所以 $\Gamma<0$。因此
-    $$
-    \boxed{\Gamma=-\frac12}.
-    $$
-
----
-
-## 13. 期末考试点：第8章做题套路
-
-第8章是期末考试的**重头戏**：Q3（Ch7-8）和 Q4（Ch8 反射/透射）合计 20 分。5 年真题中，本章题型最稳定、套路最明确。
-
-### 13.1 考试高频题型一览
-
-| 题型 | 出现频率 | 考试位置 |
-|---|---|---|
-| 平面波基本参数 (λ, f, β, η) | ★★★★★ | Q3 |
-| 有耗介质传播 (α, β, δ, η_c) | ★★★★★ | Q3 |
-| 极化判断 | ★★★★★ | Q3 |
-| Poynting 矢量与平均功率 | ★★★★ | Q3 |
-| 正入射反射/透射 | ★★★★★ | Q4 |
-| 驻波比 SWR | ★★★★★ | Q4 |
-| 完美导体反射 | ★★★★ | Q4 |
-| Smith 圆图 | ★★★★ | Q3/Q10 |
-| 矩形波导 | ★★★★ | Q9 |
-| 1/4 波长变换器 | ★★★ | Q10 |
-
-### 13.2 做题套路：平面波基本参数（必背公式组）
-
-给定介质参数 $(\varepsilon, \mu)$ 和频率 $f$，一步到位求所有参数：
-
-$$\omega=2\pi f, \quad k=\omega\sqrt{\mu\varepsilon}=\beta, \quad \lambda=\frac{2\pi}{\beta}, \quad v_p=\frac{\omega}{\beta}=\frac{1}{\sqrt{\mu\varepsilon}}, \quad \eta=\sqrt{\frac{\mu}{\varepsilon}}$$
-
-**真空中特例：** $v_p=c=3\times10^8$ m/s，$\eta_0=120\pi\approx377\ \Omega$
-
-**真题（2022 Q10）：** $f=100$ MHz，$\varepsilon_r=9$，$\mu_r=1$
-
-$$\omega=2\pi\times10^8, \quad k=\frac{\omega}{c}\sqrt{\varepsilon_r}=\frac{2\pi\times10^8}{3\times10^8}\times3=2\pi \text{ rad/m}$$
-
-$$\lambda=\frac{2\pi}{k}=1\text{ m}, \quad v_p=\frac{c}{3}=10^8\text{ m/s}, \quad \eta=\frac{120\pi}{3}=40\pi\ \Omega$$
-
-### 13.3 做题套路：有耗介质（Q3 大计算题核心）
-
-**这是 Q3 最常见的大题。** 给定 $(\varepsilon, \mu, \sigma, f)$，求波的传播特性。
-
-**步骤：**
-
-1. **计算复介电常数：** $\varepsilon_c=\varepsilon-j\sigma/\omega$
-2. **计算复波数：** $k_c=\omega\sqrt{\mu\varepsilon_c}=\beta-j\alpha$
-3. **分离 α 和 β**
-4. **趋肤深度：** $\delta=1/\alpha$
-5. **复波阻抗：** $\eta_c=\sqrt{\mu/\varepsilon_c}=|\eta_c|e^{j\phi}$
-
-**良导体近似（$\sigma\gg\omega\varepsilon$）——必背：**
-
-$$\alpha\approx\beta\approx\sqrt{\pi f\mu\sigma}, \quad \delta=\frac{1}{\sqrt{\pi f\mu\sigma}}, \quad \eta_c\approx\sqrt{\frac{j\omega\mu}{\sigma}}=(1+j)\sqrt{\frac{\pi f\mu}{\sigma}}$$
-
-**良介质近似（$\sigma\ll\omega\varepsilon$）：**
-
-$$\beta\approx\omega\sqrt{\mu\varepsilon}, \quad \alpha\approx\frac{\sigma}{2}\sqrt{\frac{\mu}{\varepsilon}}, \quad \eta\approx\sqrt{\frac{\mu}{\varepsilon}}$$
-
-**真题（2022 Q6 / 2025 Q6）：** 海水 $\sigma=4$ S/m，$\varepsilon_r=81$，$\mu_r=1$，求传播 1 m 衰减到某值所需的频率。
-
-### 13.4 做题套路：极化判断（必考，5年每年都考）
-
-**标准步骤：**
-
-1. **写出两个正交分量的幅值和相位：**
-   - $E_x = E_{x0}\cos(\omega t - kz + \phi_x)$
-   - $E_y = E_{y0}\cos(\omega t - kz + \phi_y)$
-
-2. **比较相位差 $\Delta\phi=\phi_y-\phi_x$：**
-   - $\Delta\phi=0$ 或 $\pi$：**线极化**
-   - $\Delta\phi=\pm\pi/2$ 且 $E_{x0}=E_{y0}$：**圆极化**
-   - 其他：**椭圆极化**
-
-3. **判断旋向（沿传播方向看）：**
-   - $\Delta\phi>0$（y 超前 x）：**左旋**
-   - $\Delta\phi<0$（x 超前 y）：**右旋**
-
-**考试常见陷阱：**
-
-| 写法 | 极化方向 | 传播方向 |
-|---|---|---|
-| $(\vec a_x+j\vec a_y)e^{-j\beta z}$ | 右旋 | $+z$ |
-| $(\vec a_x-j\vec a_y)e^{-j\beta z}$ | 左旋 | $+z$ |
-| $\vec a_x\cos(\omega t-\beta z)+\vec a_y\sin(\omega t-\beta z)$ | 右旋 | $+z$ |
-| $\vec a_x\cos(\omega t-\beta z)-\vec a_y\sin(\omega t-\beta z)$ | 左旋 | $+z$ |
-
-**真题举例（2024 Q7 / 2025 Q7）：**
-
-- $\vec E=(\vec a_x 2+\vec a_y 3)e^{-j\beta z}$：$\Delta\phi=0$，线极化
-- $\vec E=(\vec a_x-j\vec a_y)e^{-j\beta z}$：$\Delta\phi=-\pi/2$，左旋圆极化
-- $\vec E=(\vec a_x+j\vec a_y)e^{-j\beta z}$：$\Delta\phi=+\pi/2$，右旋圆极化
-- $\vec E=\vec a_x E_0\cos(\omega t-kz)+\vec a_y E_0\sin(\omega t-kz)$：右旋圆极化
-
-### 13.5 做题套路：正入射反射与透射（Q4 核心）
-
-**这是 Q4 必考的大计算题。**
-
-**步骤：**
-
-1. **计算两侧波阻抗：** $\eta_1=\sqrt{\mu_1/\varepsilon_1}$，$\eta_2=\sqrt{\mu_2/\varepsilon_2}$
-2. **计算反射/透射系数：**
-   $$\Gamma=\frac{\eta_2-\eta_1}{\eta_2+\eta_1}, \quad \tau=\frac{2\eta_2}{\eta_2+\eta_1}=1+\Gamma$$
-3. **写反射/透射场：**
-   $$\vec E_r=\Gamma\vec E_i, \quad \vec E_t=\tau\vec E_i$$
-   $$\vec H_r=-\frac{\Gamma}{\eta_1}\vec e_z\times\vec E_i, \quad \vec H_t=\frac{\tau}{\eta_2}\vec e_z\times\vec E_t$$
-4. **总场（入射侧 $z<0$）：** $\vec E_{\text{total}}=\vec E_i+\vec E_r$
-5. **驻波比：** $S=\frac{1+|\Gamma|}{1-|\Gamma|}$
-
-**完美导体特殊情况：** $\Gamma=-1$，$\tau=0$，$S=\infty$
-
-**真题（2022 Q7 / 2024 Q10 / Mock Q4）：** 空气→介质（$\varepsilon_r=2.5$ 或 $\varepsilon_r=4$），入射波 $\vec E_i=\vec a_x 10e^{-j6z}$。
-
-**2025 特殊题型：** 降低界面驻波比的方法——用 1/4 波长匹配层。
-
-### 13.6 做题套路：Smith 圆图（Q8/Q10）
-
-**5 年真题中 4 年考了 Smith 圆图。** 题型非常固定：
-
-**题型一：归一化阻抗 ↔ 导纳转换**
-
-1. 在圆图上找到 $z_L=Z_L/Z_0$ 点
-2. 沿等 $|\Gamma|$ 圆旋转 180° 得到 $y_L$
-3. 读出 $y_L=g+jb$，乘以 $Y_0=1/Z_0$ 得 $Y_L$
-
-**题型二：求 VSWR 和电压最小点位置**
-
-1. 以 $z_L$ 为圆心画等 VSWR 圆
-2. VSWR = 圆与正实轴交点的 $r$ 值
-3. 电压最小点在负实轴方向，从 $z_L$ 顺时针旋到负实轴
-
-**题型三：单短截线匹配（2024 Q8 考过）**
-
-1. 在 Smith 圆图上找到归一化负载 $z_L$
-2. 沿等 VSWR 圆旋转到 $g=1$ 圆上（有两个交点）
-3. 从负载到匹配点的距离就是 stub 位置 $d$
-4. 从匹配点读出 $jb$，stub 需要提供 $-jb$，由此算 stub 长度
-
-**题型四：已知 VSWR 和 V_max 位置反推 Z_in（2025 Q8 考过）**
-
-1. 由 VSWR 画等 VSWR 圆
-2. 电压最大点在正实轴上，由此确定负载在圆上的位置
-3. 沿传输线旋转 $l/\lambda$ 得到 $Z_{in}$
-
-### 13.7 做题套路：矩形波导（Q9）
-
-**5 年真题中 4 年考了矩形波导。** 核心公式：
-
-**截止频率：**
-
-$$f_{c,mn}=\frac{1}{2\sqrt{\mu\varepsilon}}\sqrt{\left(\frac{m}{a}\right)^2+\left(\frac{n}{b}\right)^2}$$
-
-**传播条件：** $f>f_{c,mn}$
-
-**TE₁₀ 主模（$a>b$）：**
-
-$$f_{c,10}=\frac{1}{2a\sqrt{\mu\varepsilon}}, \quad \lambda_c=2a$$
-
-**波导参数（$f>f_c$）：**
-
-$$\beta=\omega\sqrt{\mu\varepsilon}\sqrt{1-(f_c/f)^2}, \quad \lambda_g=\frac{\lambda}{\sqrt{1-(f_c/f)^2}}$$
-
-$$v_p=\frac{v}{\sqrt{1-(f_c/f)^2}}, \quad v_g=v\sqrt{1-(f_c/f)^2}, \quad v_pv_g=v^2$$
-
-**波阻抗：**
-
-$$Z_{TE}=\frac{\eta}{\sqrt{1-(f_c/f)^2}}, \quad Z_{TM}=\eta\sqrt{1-(f_c/f)^2}$$
-
-**真题（2022 Q8 / 2023 Q9 / 2024 Q9 / 2025 Q9）：** 都是给 $a$, $b$, $f$，求各模式截止频率和主模参数。
-
-**考试常用波导尺寸（近 4 年真题统计）：**
-
-| 尺寸 | 出现年份 | 说明 |
-|---|---|---|
-| $a=6$ cm, $b=4$ cm, $f=6$ GHz | 2022, 2023 | 最常见 |
-| $a=7$ cm, $b=3$ cm | 2023 | |
-| $a=7.2$ cm, $b=3.4$ cm | 2024 | |
-| $a=2.286$ cm, $b=1.016$ cm | 2025 | 标准 X 波段 |
-
-**最大传输功率（2022 Q8d / 2024 Q9c）：**
-
-$$P_{\max}=\frac{a b}{4 Z_{TE}} E_{\max}^2$$
-
-其中 $E_{\max}$ 是波导内允许的最大电场强度（通常给 $3\times10^6$ V/m）。
-
-### 13.8 做题套路：1/4 波长变换器
-
-**条件：** $l=\lambda/4$，$Z_{in}=\sqrt{Z_0 Z_L}$（或 $Z_0'=\sqrt{Z_1 Z_2}$）
-
-**真题（2024 Q10 / 2025 Q10）：** 给 $Z_0$ 和 $Z_L$，求 $\lambda/4$ 变换器的输入阻抗。
-
-$$Z_{in}=\frac{Z_0^2}{Z_L}$$
-
-**降低 SWR 的方法（2026 Mock Q4d）：** 在界面处插入 $\lambda/4$ 阻抗匹配层，其波阻抗为 $\eta_{match}=\sqrt{\eta_1\eta_2}$。
-
-### 13.9 真题逐题索引
-
-| 年份 | 题号 | 考点 |
-|---|---|---|
-| 2022 | Q5 | 极化判断（3个小题） |
-| 2022 | Q6 | 有耗介质、海水传播、趋肤深度 |
-| 2022 | Q7 | 正入射反射/透射、驻波比 |
-| 2022 | Q8 | 矩形波导 TE₁₀ 全参数 |
-| 2022 | Q10 | 平面波参数、极化、完美导体反射、波导 |
-| 2023 | Q5 | 有耗介质、趋肤深度 |
-| 2023 | Q6 | 极化判断 |
-| 2023 | Q7 | 正入射、反射/透射、驻波比 |
-| 2023 | Q8 | Smith 圆图、VSWR |
-| 2023 | Q9 | 矩形波导截止频率、TE₁₀ 参数 |
-| 2023 | Q10 | 微波网络矩阵、定向耦合器、Magic Tee |
-| 2024 | Q6 | 良导体 α, β, δ, 波阻抗 |
-| 2024 | Q7 | 极化判断、圆极化反射 |
-| 2024 | Q8 | Smith 圆图、单短截线匹配 |
-| 2024 | Q9 | 矩形波导 TE₁₀、截止频率、最大功率 |
-| 2024 | Q10 | 传输线输入阻抗、λ/4 变换器 |
-| 2025 | Q6 | 波阻抗、趋肤深度、平均功率密度 |
-| 2025 | Q7 | 平面波参数、极化判断 |
-| 2025 | Q8 | Smith 圆图、λ/4 变换器 |
-| 2025 | Q9 | 矩形波导 TE₁₀、截止频率、基本参数 |
-| 2025 | Q10 | Smith 圆图、输入阻抗推导 |
-| Mock | Q3 | 平面波参数、极化 |
-| Mock | Q4 | 正入射、反射/透射、降低 SWR |
-
----
-
-## 14. 本章学习路线
-
-1. 先掌握相量约定：$e^{j\omega t}$、$e^{-jkz}$ 沿 $+z$、$e^{+jkz}$ 沿 $-z$。
-2. 背熟均匀平面波三件套：$\vec E\perp\vec H\perp\vec k$，$\vec H=(1/\eta)\vec e_n\times\vec E$，$\eta=\sqrt{\mu/\varepsilon}$。
-3. 练极化判断：先把所有分量改成余弦，再比较 $E_{xm},E_{ym},\Delta\phi$；任意方向题再用 $\vec k\cdot(\vec E_{mi}\times\vec E_{mr})$ 判旋向。
-4. 学有损介质：区分 $\alpha$ 和 $\beta$，会用低损耗/良导体近似，知道趋肤深度和色散/群速度的基本概念。
-5. 学 Poynting：瞬时用实数场，平均用 $\frac12\operatorname{Re}(\vec E\times\vec H^*)$。
-6. 练理想导体正入射：$\Gamma=-1$、驻波、表面电流。
-7. 练理想介质正入射：$\Gamma,\tau$、总场、SWR、最大/最小位置、功率守恒。
-
-如果时间紧张，优先掌握：
-
-- $\vec H=(1/\eta)\vec e_n\times\vec E$ 和方向判断；
-- $\lambda=2\pi/\beta$，$v_p=\omega/\beta$，$\eta=\sqrt{\mu/\varepsilon}$；
-- 极化条件：线、圆、椭圆；任意方向题会用 $\vec E_{mr},\vec E_{mi}$ 判旋向；
-- 有损介质 $\gamma=\alpha+j\beta$，良导体 $\alpha\approx\beta\approx\sqrt{\pi f\mu\sigma}$，$\delta=1/\alpha$；
-- $\vec S_{av}=\frac12\operatorname{Re}(\vec E\times\vec H^*)$；
-- 正入射 $\Gamma=(\eta_2-\eta_1)/(\eta_2+\eta_1)$，$\tau=2\eta_2/(\eta_2+\eta_1)$；
-- 理想导体 $\Gamma=-1$，表面切向 $E=0$。
-
----
-
-## 15. 和前后章节的关系
-
-- 第7章给出时谐 Maxwell 方程、Helmholtz 方程和相量法；第8章就是把这些方程具体解成平面波，并研究传播、能量和边界反射。
-- 第7章的边界条件在第8章正入射问题中直接使用：切向 $E$ 连续、切向 $H$ 连续；理想导体表面切向 $E=0$。
-- 第6章的磁场方向、叉乘、边界法向经验在本章判断 $\vec E,\vec H,\vec k$ 方向和表面电流时继续使用。
-- 后续若进入导波、传输线或天线，都会反复用到本章的波阻抗、反射系数、驻波比、Poynting 功率流和极化概念。
+幅度衰减因子：
 
+$$
+e^{-\alpha z}=e^{-20\times0.1}=e^{-2}\approx0.135
+$$
+
+即约为原来的 13.5%。
+
+### 题 4
+
+介质 1 的波阻抗 $\eta_1=300\ \Omega$，介质 2 的波阻抗 $\eta_2=100\ \Omega$，法向入射。求 $\Gamma$ 和 $SWR$。
+
+**答案：**
+
+$$
+\Gamma={\eta_2-\eta_1\over\eta_2+\eta_1}={100-300\over100+300}=-{1\over2}
+$$
+
+$$
+SWR={1+|\Gamma|\over1-|\Gamma|}={1+1/2\over1-1/2}=3
+$$
+
+### 题 5
+
+电场两个正交分量等幅，相位差 $90^\circ$。极化类型是什么？
+
+**答案：**
+
+等幅、正交、相位差 $\pm90^\circ$，所以是圆极化。若题目进一步要求左旋/右旋，需要结合传播方向和相位超前关系判断。
+
+## 学习路线
+
+1. 先练传播方向判断：$e^{-j\beta z}$、$e^{+j\beta z}$、$e^{-jky}$。
+2. 再练 $\mathbf E$ 和 $\mathbf H$ 互求，统一用叉乘。
+3. 然后背无耗媒质参数：$\eta,\beta,\lambda,v_p$。
+4. 再背良导体三公式：$\alpha\approx\beta$、$\delta$、$\eta_c$。
+5. 最后练法向入射完整场表达。
+
+## 和前后章节的关系
+
+本章所有传播公式来自第7章的 Maxwell 方程相量形式。反射透射部分则回到边界条件：切向 $\mathbf E$ 和切向 $\mathbf H$ 在无表面源界面连续。没有新的物理定律，只是把边界条件应用到波上。
+
+## 一页考前速记
+
+无耗媒质：
+
+$$
+\eta=\sqrt{\mu/\varepsilon},
+\quad \beta=\omega\sqrt{\mu\varepsilon},
+\quad \lambda={2\pi\over\beta},
+\quad v_p={1\over\sqrt{\mu\varepsilon}}
+$$
+
+场方向：
+
+$$
+\mathbf H={1\over\eta}\hat{\mathbf k}\times\mathbf E,
+\qquad \mathbf E=\eta\mathbf H\times\hat{\mathbf k}
+$$
+
+平均功率：
+
+$$
+\langle\mathbf S\rangle={1\over2}\operatorname{Re}(\mathbf E\times\mathbf H^*)
+$$
+
+良导体：
+
+$$
+\alpha\approx\beta\approx\sqrt{\pi f\mu\sigma},
+\quad \delta={1\over\alpha},
+\quad \eta_c\approx(1+j)\sqrt{\omega\mu\over2\sigma}
+$$
+
+法向入射：
+
+$$
+\Gamma={\eta_2-\eta_1\over\eta_2+\eta_1},
+\qquad
+\tau={2\eta_2\over\eta_1+\eta_2},
+\qquad
+SWR={1+|\Gamma|\over1-|\Gamma|}
+$$
+
+空气到 $\varepsilon_r=4$：
+
+$$
+\eta_2={\eta_0\over2},
+\quad \Gamma=-{1\over3},
+\quad \tau={2\over3},
+\quad SWR=2
+$$
+
+反射波磁场符号不背，用叉乘算。
