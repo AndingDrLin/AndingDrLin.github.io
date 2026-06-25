@@ -1,5 +1,7 @@
 # CLAUDE.md
 
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
 本文件为 Claude Code (claude.ai/code) 提供项目指引。
 
 **交流语言：请始终使用中文与用户交流。**
@@ -16,11 +18,12 @@ npm run validate:blog   # 只校验博客
 npm run validate:notes  # 只校验笔记
 npm run check        # Astro 类型检查 (astro check)
 npm run test         # 运行 Vitest 测试
+npm run test -- src/utils/__tests__/noteTree.test.ts  # 运行单个测试文件
 npm run test:watch   # Vitest 监听模式
 npm run publish:course <docGroup>  # 课程发布前的完整校验流程
 ```
 
-TypeScript strict mode 通过 `tsconfig.json` 启用。
+Node 版本要求为 `>=22.12.0`。TypeScript strict mode 通过 `tsconfig.json` 启用。
 
 ### CI 工作流
 
@@ -85,6 +88,22 @@ Astro v6 静态站点，部署到 GitHub Pages 用户站点。生产 URL：`http
 - 公式统一用 `$$...$$` 块级或 `$...$` 行内 LaTeX；技术术语中英双写，如"占空比(duty cycle)"、"触发角(firing angle)"
 
 **课程 URL 结构：** 章节文件的 `order` 为 0–9，README 的 `order` 为 -1。发布后的 URL 格式为 `/notes/power-electronics/00-exam-strategy/`。
+
+### 电磁场与波课程工作流
+
+电磁场与波课程（`emf-notes`）目前是期末复习重点，来源材料和已发布内容分开管理：
+
+**课程映射：** 物理目录、`docGroup` 和 `NOTE_COURSES` key 都是 `emf-notes`，URL slug 是 `electromagnetics-and-fields`。发布后的章节 URL 格式为 `/notes/electromagnetics-and-fields/chapter6/`。
+
+**已发布内容：** `src/content/notes/emf-notes/` 下有 README、chapter2–chapter8、`important_problems.md`、`emt-midterm-mock-test-2.md`，以及 `assets/` PNG 图和 `slides/` 课件。README 的 `order: -1`，章节 order 当前从 2 开始；不要为了“补齐”order 随意重排，否则课程页排序和已有链接会变化。
+
+**期末原始材料：** `raw_materials/emf-final/` 存放 2022、2023、2024、2025 四套期末 PDF、对应提取的 Markdown（`202204-exam.md` 等）和 `mock-test-2026.md` / `Final Mock Test 2026.doc`。这些是工作源材料，不是发布内容；用于整理期末题型、补全 chapter6–8 与后续微波/传输线/波导内容时，先在 `raw_materials/emf-final/*.md` 查题干，再决定是否转写到 `src/content/notes/emf-notes/`。
+
+**出题范围观察：** 期末真题覆盖矢量分析、静电/恒定电流、静磁场、时变场与平面波，也反复出现 Smith chart、传输线和矩形波导。现有章节只到 chapter8（平面波）；若根据期末材料新增传输线/波导复习页，需要同步更新 `README.md` 目录，并保持 `docGroup: "emf-notes"`、`category: "课程学习"`、`draft: false`。
+
+**写作风格：** 这门课的笔记更偏考试复习而不是研究随笔。编辑时保持“主线/符号表/核心公式/典型题/易错点”的结构，用中文解释直觉，公式用块级 LaTeX；题干、公式和标准术语可以保留英文。不要把整份真题原样搬进课程目录，应该抽象成题型模板、解题步骤和易错点。
+
+**资产与课件：** 图片用相对路径 `assets/xxx.png` 引用。`slides/` 中 PDF/PPTX 已在仓库中，用作课程材料来源；新增大文件前先确认是否确实需要发布到站点。`raw_materials/emf-final/` 中的 PDF/DOC/提取稿已经是仓库内源材料，但其它临时提取文本、review 日志仍应放到 `_archive/` 或仓库外。
 
 ### 布局与组件
 
