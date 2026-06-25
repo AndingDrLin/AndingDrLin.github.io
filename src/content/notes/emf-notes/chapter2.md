@@ -1,291 +1,440 @@
 ---
-title: "第2章 矢量分析"
-description: "电磁场与波第2章：标量场与矢量场、坐标系、梯度散度旋度、散度定理与Stokes定理。"
-date: 2026-04-30
-tags: [electromagnetics, fields]
+title: "第2章 矢量分析：Q1 小计算工具箱"
+description: "面向 Q1 小计算的梯度、散度、旋度、通量、环量、Gauss 定理与 Stokes 定理速成。"
+date: 2026-06-25
+tags: [electromagnetics-and-fields, 电磁场与波, 矢量分析]
 category: "课程学习"
 docGroup: "emf-notes"
 order: 2
 draft: false
 ---
 
-## 1. 基础：标量、矢量、场
+## 本章对应哪些考试题
 
-- **标量**：只有大小的量（温度、能量）。**矢量**：有大小和方向的量（力、电场 $\vec E$）。矢量大小记为 $A=|\vec A|$，方向用单位矢量 $\vec e_A=\frac{\vec A}{A}$ 表示。
-- **场**：物理量在空间中每一点的分布。标量场如 $T(x,y,z)$，矢量场如 $\vec E(x,y,z)$。不含 $t$ 叫静态场，含 $t$ 叫时变场。
-- **矢量基本运算**（直接算，不考推导）：
+本章主要服务 **Q1 概念题和小计算题**。往年题里，矢量分析通常不会单独出很长的大题，但会以这些形式出现：
 
-| 运算 | 公式 | 结果 |
+- 给一个矢量场，算 $\nabla\cdot\mathbf A$ 或 $\nabla\times\mathbf A$。
+- 给一个标量场，算 $\nabla V$ 或 $\nabla^2V$。
+- 问 Gauss 定理、Stokes 定理的物理意义。
+- 用散度/旋度判断场是不是源场、涡旋场。
+- 在圆柱坐标中算散度，最容易漏掉 $1/\rho$。
+
+这章的目标不是学会所有数学细节，而是在考场看到算子题时能稳定拿分。
+
+## 先用人话理解本章在讲什么
+
+电磁场是“空间每一点都有一个物理量”。如果这个物理量是电势，就是标量场；如果是电场、磁场，就是矢量场。
+
+矢量分析里最重要的三个运算可以这样理解：
+
+- **梯度 gradient**：标量场变化最快的方向。电场和电势的关系就是 $\mathbf E=-\nabla V$。
+- **散度 divergence**：看一个矢量场在某点像不像“源”或“汇”。电荷是电场的源，所以 $\nabla\cdot\mathbf D=\rho_v$。
+- **旋度 curl**：看一个矢量场在某点有没有“打转”。电流让磁场打转，所以静磁场里 $\nabla\times\mathbf H=\mathbf J$。
+
+考试里常见错误不是概念完全不会，而是坐标系公式用错，尤其是圆柱坐标。
+
+## 必背符号和单位
+
+| 符号 | 含义 | 考试用途 |
 |---|---|---|
-| 加减 | $\vec A\pm\vec B=\vec e_x(A_x\pm B_x)+\vec e_y(A_y\pm B_y)+\vec e_z(A_z\pm B_z)$ | 矢量 |
-| 数乘 | $k\vec A=\vec e_x kA_x+\vec e_y kA_y+\vec e_z kA_z$ | 矢量 |
-| 点乘 | $\vec A\cdot\vec B=AB\cos\theta=A_xB_x+A_yB_y+A_zB_z$ | 标量 |
-| 叉乘 | $\vec A\times\vec B=\vec e_n AB\sin\theta$（$\vec e_n\perp\vec A,\vec B$，方向右手定则） | 矢量 |
+| $\nabla V$ | 标量场的梯度 | 由电势求电场 |
+| $\nabla\cdot\mathbf A$ | 矢量场的散度 | 由 $\mathbf D$ 求 $\rho_v$，判断源 |
+| $\nabla\times\mathbf A$ | 矢量场的旋度 | 由 $\mathbf H$ 求 $\mathbf J$，判断涡旋 |
+| $\nabla^2V$ | 标量场的 Laplacian | Poisson/Laplace 方程 |
+| $d\mathbf l$ | 线元 | 环量、Stokes 定理 |
+| $d\mathbf S$ | 有向面元 | 通量、Gauss 定理 |
+| $dV$ | 体元 | 体积分 |
 
-分量式：
+## 核心概念
 
-$$
-\vec A=\vec e_xA_x+\vec e_yA_y+\vec e_zA_z,\quad A_x=A\cos\alpha,\;A_y=A\cos\beta,\;A_z=A\cos\gamma
-$$
+### 标量场与矢量场
 
-其中 $\cos\alpha,\cos\beta,\cos\gamma$ 是 $\vec A$ 与 $x,y,z$ 轴的方向余弦，满足 $\cos^2\alpha+\cos^2\beta+\cos^2\gamma=1$（因为 $(\cos\alpha,\cos\beta,\cos\gamma)=\vec e_A$ 是单位矢量，长度平方=1）。
+**直觉解释：** 标量场只给大小，矢量场给大小和方向。
 
-## 2. 三种坐标系
+**正式定义：**
 
-选择原则：面对称→直角坐标，轴对称→圆柱坐标，点对称→球坐标。
+- 标量场：$V(x,y,z)$。
+- 矢量场：$\mathbf A(x,y,z)=A_x\hat{\mathbf x}+A_y\hat{\mathbf y}+A_z\hat{\mathbf z}$。
 
-### 2.1 直角坐标 (Cartesian)
+**考场问法：** 电势 $V$ 是标量场，电场 $\mathbf E$ 是矢量场；温度是标量场，速度是矢量场。
 
-变量 $x,y,z$，单位矢量 $\vec e_x,\vec e_y,\vec e_z$（方向固定，是常矢量）。
+### 通量与环量
 
-| 要素 | 表达式 |
-|---|---|
-| 位置矢量 | $\vec r=\vec e_x x+\vec e_y y+\vec e_z z$ |
-| 线元 | $d\vec l=\vec e_x dx+\vec e_y dy+\vec e_z dz$ |
-| 面元 | $d\vec S_x=\vec e_x\,dy\,dz,\; d\vec S_y=\vec e_y\,dx\,dz,\; d\vec S_z=\vec e_z\,dx\,dy$ |
-| 体元 | $dV=dx\,dy\,dz$ |
-
-![直角坐标线元面元体元](assets/chapter2_fig2_cartesian_elements.png)
-
-### 2.2 圆柱坐标 (Cylindrical)
-
-变量 $\rho,\phi,z$，单位矢量 $\vec e_\rho,\vec e_\phi,\vec e_z$。**注意：$\vec e_\rho,\vec e_\phi$ 方向随 $\phi$ 变化，不是常矢量。**
-
-| 要素 | 表达式 |
-|---|---|
-| 位置矢量 | $\vec r=\vec e_\rho\rho+\vec e_z z$ |
-| 线元 | $d\vec l=\vec e_\rho d\rho+\vec e_\phi\,\rho d\phi+\vec e_z dz$ |
-| 面元（常用） | $d\vec S_\rho=\vec e_\rho\,\rho d\phi dz$（侧面），$d\vec S_z=\vec e_z\,\rho d\rho d\phi$（底面） |
-| 体元 | $dV=\rho\,d\rho\,d\phi\,dz$ |
-
-**为什么多出 $\rho$：** 沿 $\phi$ 走 $d\phi$，弧长 = 半径 × 角度 = $\rho d\phi$，不是 $d\phi$。
-
-![圆柱坐标线元面元体元](assets/chapter2_fig3_cylindrical_elements.png)
-
-### 2.3 球坐标 (Spherical)
-
-变量 $r,\theta,\phi$。$\theta$ 是从 $+z$ 轴量的极角（0 到 $\pi$），$\phi$ 是绕 $z$ 轴的方位角（0 到 $2\pi$）。单位矢量 $\vec e_r,\vec e_\theta,\vec e_\phi$ 方向都随位置变化。
-
-| 要素 | 表达式 |
-|---|---|
-| 位置矢量 | $\vec r=\vec e_r r$（只有一个分量！从原点出发天然沿 $\vec e_r$） |
-| 线元 | $d\vec l=\vec e_r dr+\vec e_\theta\,r d\theta+\vec e_\phi\,r\sin\theta d\phi$ |
-| 面元（常用） | $d\vec S_r=\vec e_r\,r^2\sin\theta d\theta d\phi$（球面） |
-| 体元 | $dV=r^2\sin\theta\,dr\,d\theta\,d\phi$ |
-
-**易错：** 球面面元一定带 $\sin\theta$，不能漏。
-
-![球坐标线元面元体元](assets/chapter2_fig4_spherical_elements.png)
-
-## 3. $\nabla$ 算符与三大运算
-
-$\nabla$（del / nabla）是一个"带方向的求导算符"。直角坐标中定义为：
+通量看“穿过多少”：
 
 $$
-\nabla=\vec e_x\frac{\partial}{\partial x}+\vec e_y\frac{\partial}{\partial y}+\vec e_z\frac{\partial}{\partial z}
+\Phi=\int_S\mathbf A\cdot d\mathbf S
 $$
 
-三种作用方式：
+环量看“沿闭合曲线绕一圈累积多少”：
 
-| 作用方式 | 运算 | 记号 | 输入→输出 |
-|---|---|---|---|
-| 乘标量 $u$ | 梯度 | $\nabla u$ | 标量→矢量 |
-| 点乘矢量 $\vec F$ | 散度 | $\nabla\cdot\vec F$ | 矢量→标量 |
-| 叉乘矢量 $\vec F$ | 旋度 | $\nabla\times\vec F$ | 矢量→矢量 |
+$$
+\oint_C\mathbf A\cdot d\mathbf l
+$$
 
-下面逐一展开。**三个运算在三种坐标系中的公式必须记住**，考试附录只给坐标系线面体元，不给算子公式。
+电磁场里：
 
-### 3.1 梯度 Gradient
+- $\oint_S\mathbf D\cdot d\mathbf S=Q$ 是电通量和电荷的关系。
+- $\oint_C\mathbf H\cdot d\mathbf l=I$ 是磁场环量和电流的关系。
 
-**干什么：** 标量场 $u$ 变化最快的方向和速率。结果是矢量——方向指向 $u$ 增加最快方向，大小等于最大方向导数。
+### Gauss 定理
 
-**直角坐标：**
-$$\nabla u=\vec e_x\frac{\partial u}{\partial x}+\vec e_y\frac{\partial u}{\partial y}+\vec e_z\frac{\partial u}{\partial z}$$
+$$
+\boxed{\oint_S\mathbf A\cdot d\mathbf S=\int_V\nabla\cdot\mathbf A\,dV}
+$$
 
-**圆柱坐标：**
-$$\nabla u=\vec e_\rho\frac{\partial u}{\partial\rho}+\vec e_\phi\frac{1}{\rho}\frac{\partial u}{\partial\phi}+\vec e_z\frac{\partial u}{\partial z}$$
+人话：闭合面流出去多少，等于体内每一点“源强度”的总和。
 
-**球坐标：**
-$$\nabla u=\vec e_r\frac{\partial u}{\partial r}+\vec e_\theta\frac{1}{r}\frac{\partial u}{\partial\theta}+\vec e_\phi\frac{1}{r\sin\theta}\frac{\partial u}{\partial\phi}$$
+电磁场里最重要的应用是：
 
-**运算法则：** $\nabla C=0$，$\nabla(Cu)=C\nabla u$，$\nabla(uv)=u\nabla v+v\nabla u$，$\nabla f(u)=f'(u)\nabla u$
+$$
+\oint_S\mathbf D\cdot d\mathbf S=\int_V\rho_v\,dV=Q
+$$
 
-#### 配套例题
+### Stokes 定理
 
-**题目：** 求 $\varphi(x,y,z)=2x^2+y-5z^2$ 在点 $P(1,0,3)$ 处的梯度。
+$$
+\boxed{\oint_C\mathbf A\cdot d\mathbf l=\int_S(\nabla\times\mathbf A)\cdot d\mathbf S}
+$$
 
-**解：**
-$$\nabla\varphi=\vec e_x\frac{\partial\varphi}{\partial x}+\vec e_y\frac{\partial\varphi}{\partial y}+\vec e_z\frac{\partial\varphi}{\partial z}=\vec e_x(4x)+\vec e_y(1)+\vec e_z(-10z)$$
+人话：沿边界绕一圈的环量，等于面内每一点旋转强度的总和。
 
-代入 $P(1,0,3)$：
-$$\boxed{\left.\nabla\varphi\right|_P=4\vec e_x+\vec e_y-30\vec e_z}$$
+电磁场里最重要的应用是：
 
-（这是考试 Q1(c) 同类题）
+$$
+\oint_C\mathbf H\cdot d\mathbf l=\int_S\mathbf J\cdot d\mathbf S=I
+$$
 
-**方向导数：** 沿方向 $\vec e_l$ 的变化率 = 梯度在该方向的投影：$\frac{\partial u}{\partial l}=\nabla u\cdot\vec e_l$。最大方向导数 = $|\nabla u|$（当 $\vec e_l$ 与 $\nabla u$ 同向时）。
+## 核心公式与推导
 
-**直观理解：** 梯度方向 $\perp$ 等值面，指向 $u$ 增加最快方向，就像爬山时最陡的上坡方向。
+### 直角坐标公式
 
-![梯度垂直于等值面](assets/chapter2_fig7_gradient_normal_to_level_surface.png)
+考前优先级：直角坐标的梯度、散度、Laplacian 必背；圆柱坐标散度必背；圆柱坐标旋度会查即可；球坐标完整公式低优先，本章只保留径向散度常用形式。
 
-### 3.2 通量与散度 Flux & Divergence
+对 $V=V(x,y,z)$：
 
-**干什么：** 通量数穿过一个面的"场线"多少；散度判断一点是"源"（往外冒）还是"汇"（往里吸）。
+$$
+\boxed{\nabla V={\partial V\over\partial x}\hat{\mathbf x}+{\partial V\over\partial y}\hat{\mathbf y}+{\partial V\over\partial z}\hat{\mathbf z}}
+$$
 
-**通量定义：** 矢量场 $\vec F$ 穿过曲面 $S$ 的通量
-$$\psi=\int_S \vec F\cdot d\vec S=\int_S \vec F\cdot\vec e_n\,dS$$
+对 $\mathbf A=A_x\hat{\mathbf x}+A_y\hat{\mathbf y}+A_z\hat{\mathbf z}$：
 
-闭合曲面取**外法线**方向：
-$$\psi=\oint_S \vec F\cdot d\vec S$$
-$\psi>0$：净流出（内含源），$\psi<0$：净流入（内含汇），$\psi=0$：进出平衡。
+$$
+\boxed{\nabla\cdot\mathbf A={\partial A_x\over\partial x}+{\partial A_y\over\partial y}+{\partial A_z\over\partial z}}
+$$
 
-![闭合曲面通量三种情况](assets/chapter2_fig8_flux_physical_meaning.png)
+$$
+\boxed{
+\nabla\times\mathbf A=
+\begin{vmatrix}
+\hat{\mathbf x} & \hat{\mathbf y} & \hat{\mathbf z}\\
+\partial/\partial x & \partial/\partial y & \partial/\partial z\\
+A_x & A_y & A_z
+\end{vmatrix}}
+$$
 
-**散度定义：** 单位体积的净流出通量（一点附近的局部性质）
-$$\operatorname{div}\vec F=\nabla\cdot\vec F=\lim_{\Delta V\to0}\frac{\oint_S\vec F\cdot d\vec S}{\Delta V}$$
+$$
+\boxed{\nabla^2V={\partial^2V\over\partial x^2}+{\partial^2V\over\partial y^2}+{\partial^2V\over\partial z^2}}
+$$
 
-**直角坐标：**
-$$\nabla\cdot\vec F=\frac{\partial F_x}{\partial x}+\frac{\partial F_y}{\partial y}+\frac{\partial F_z}{\partial z}$$
+### 圆柱坐标公式
 
-**圆柱坐标：**
-$$\nabla\cdot\vec F=\frac{1}{\rho}\frac{\partial(\rho F_\rho)}{\partial\rho}+\frac{1}{\rho}\frac{\partial F_\phi}{\partial\phi}+\frac{\partial F_z}{\partial z}$$
+圆柱坐标 $\rho,\phi,z$ 最适合同轴线、无限长直线、圆柱电荷。
 
-**球坐标：**
-$$\nabla\cdot\vec F=\frac{1}{r^2}\frac{\partial(r^2F_r)}{\partial r}+\frac{1}{r\sin\theta}\frac{\partial(\sin\theta F_\theta)}{\partial\theta}+\frac{1}{r\sin\theta}\frac{\partial F_\phi}{\partial\phi}$$
+线元、面元、体元：
 
-**运算法则：** $\nabla\cdot(\vec C f)=\vec C\cdot\nabla f$，$\nabla\cdot(f\vec F)=f\nabla\cdot\vec F+\vec F\cdot\nabla f$，常矢量散度为零。
+$$
+d\mathbf l=\hat{\boldsymbol\rho}\,d\rho+\hat{\boldsymbol\phi}\,\rho d\phi+\hat{\mathbf z}\,dz
+$$
 
-#### 配套例题
+$$
+dS_\rho=\rho d\phi dz,\qquad dS_z=\rho d\rho d\phi,
+\qquad dV=\rho d\rho d\phi dz
+$$
 
-**题目：** 在半径为 1、高为 $h$ 的圆柱侧面上，计算 $\int_S(3\rho z\vec e_\rho+\phi\vec e_z)\cdot d\vec S$。
+梯度：
 
-**解：** 侧面 $\rho=1$，外法向 $=\vec e_\rho$，面元 $d\vec S=\vec e_\rho\,d\phi dz$（$\rho=1$）。
-$$(3\rho z\vec e_\rho+\phi\vec e_z)\cdot(\vec e_\rho d\phi dz)=3z\,d\phi dz$$
-$$\int_0^{2\pi}\int_0^h 3z\,dz\,d\phi=2\pi\cdot\frac{3h^2}{2}=\boxed{3\pi h^2}$$
+$$
+\boxed{\nabla V={\partial V\over\partial \rho}\hat{\boldsymbol\rho}+{1\over\rho}{\partial V\over\partial \phi}\hat{\boldsymbol\phi}+{\partial V\over\partial z}\hat{\mathbf z}}
+$$
 
-**散度定理（Gauss 定理）：** 闭合曲面通量 = 内部散度积分
-$$\boxed{\oint_S\vec F\cdot d\vec S=\int_V\nabla\cdot\vec F\,dV}$$
+散度：
 
-直观：把体积切成小块，内部相邻面通量抵消，只剩外边界。
-
-![散度定理体积划分](assets/chapter2_fig9_divergence_theorem_subdivision.png)
-
-### 3.3 环流与旋度 Circulation & Curl
-
-**干什么：** 环流看沿闭合回路绕一圈"推着转"的总效果；旋度看一点附近单位面积的环流趋势。
-
-**环流定义：** 矢量场 $\vec F$ 沿闭合曲线 $C$ 的线积分
-$$\Gamma=\oint_C \vec F\cdot d\vec l$$
-
-**旋度定义：** 取法向为 $\vec e_n$ 的小面积 $\Delta S$，环流面密度的极限
-$$\operatorname{rot}_n\vec F=\lim_{\Delta S\to0}\frac{1}{\Delta S}\oint_C\vec F\cdot d\vec l$$
-
-旋度矢量取最大环流面密度的方向和大小（$\operatorname{rot}\vec F=\operatorname{curl}\vec F=\nabla\times\vec F$，三种写法等价）。
-
-**直角坐标：**
-$$\nabla\times\vec F=\vec e_x\left(\frac{\partial F_z}{\partial y}-\frac{\partial F_y}{\partial z}\right)+\vec e_y\left(\frac{\partial F_x}{\partial z}-\frac{\partial F_z}{\partial x}\right)+\vec e_z\left(\frac{\partial F_y}{\partial x}-\frac{\partial F_x}{\partial y}\right)$$
-
-记忆：行列式展开（注意 $\vec e_y$ 项有负号）
-$$\nabla\times\vec F=\begin{vmatrix}\vec e_x&\vec e_y&\vec e_z\\ \frac{\partial}{\partial x}&\frac{\partial}{\partial y}&\frac{\partial}{\partial z}\\ F_x&F_y&F_z\end{vmatrix}$$
-
-**圆柱坐标：**
-$$\nabla\times\vec F=\frac{1}{\rho}\begin{vmatrix}\vec e_\rho&\rho\vec e_\phi&\vec e_z\\ \frac{\partial}{\partial\rho}&\frac{\partial}{\partial\phi}&\frac{\partial}{\partial z}\\ F_\rho&\rho F_\phi&F_z\end{vmatrix}$$
-
-**球坐标：**
-$$\nabla\times\vec F=\frac{1}{r^2\sin\theta}\begin{vmatrix}\vec e_r&r\vec e_\theta&r\sin\theta\vec e_\phi\\ \frac{\partial}{\partial r}&\frac{\partial}{\partial\theta}&\frac{\partial}{\partial\phi}\\ F_r&rF_\theta&r\sin\theta F_\phi\end{vmatrix}$$
-
-**两个关键恒等式（考试常用）：**
-$$\boxed{\nabla\times(\nabla u)=0}\quad\text{（梯度场一定无旋）}$$
-$$\boxed{\nabla\cdot(\nabla\times\vec F)=0}\quad\text{（旋度场一定无散）}$$
-
-#### 配套例题
-
-**题目：** $\vec A=2z^2\vec e_x+3x\vec e_y$，求 $\nabla\cdot\vec A$ 和 $\nabla\times\vec A$。
-
-**解：** $A_x=2z^2,A_y=3x,A_z=0$
-
-散度：$\nabla\cdot\vec A=\frac{\partial(2z^2)}{\partial x}+\frac{\partial(3x)}{\partial y}+0=0+0+0=\boxed{0}$
+$$
+\boxed{\nabla\cdot\mathbf A={1\over\rho}{\partial(\rho A_\rho)\over\partial\rho}+{1\over\rho}{\partial A_\phi\over\partial\phi}+{\partial A_z\over\partial z}}
+$$
 
 旋度：
-- $x$ 分量：$\frac{\partial0}{\partial y}-\frac{\partial(3x)}{\partial z}=0$
-- $y$ 分量：$\frac{\partial(2z^2)}{\partial z}-\frac{\partial0}{\partial x}=4z$
-- $z$ 分量：$\frac{\partial(3x)}{\partial x}-\frac{\partial(2z^2)}{\partial y}=3$
 
-$$\boxed{\nabla\times\vec A=4z\vec e_y+3\vec e_z}$$
+$$
+\boxed{
+\nabla\times\mathbf A=\left({1\over\rho}{\partial A_z\over\partial\phi}-{\partial A_\phi\over\partial z}\right)\hat{\boldsymbol\rho}
++\left({\partial A_\rho\over\partial z}-{\partial A_z\over\partial\rho}\right)\hat{\boldsymbol\phi}
++{1\over\rho}\left({\partial(\rho A_\phi)\over\partial\rho}-{\partial A_\rho\over\partial\phi}\right)\hat{\mathbf z}}
+$$
 
-**Stokes 定理：** 闭合曲线环流 = 曲面上旋度通量
-$$\boxed{\oint_C\vec F\cdot d\vec l=\int_S(\nabla\times\vec F)\cdot d\vec S}$$
+标量 Laplacian：
 
-直观：把曲面分成小面元，相邻边线积分方向相反抵消，只剩外边界。
+$$
+\boxed{\nabla^2V={1\over\rho}{\partial\over\partial\rho}\left(\rho{\partial V\over\partial\rho}\right)+{1\over\rho^2}{\partial^2V\over\partial\phi^2}+{\partial^2V\over\partial z^2}}
+$$
 
-**直观理解旋度：** 把小水轮放进水流——水轮转动说明旋度不为零。注意：场线弯曲 ≠ 有旋度。
+### 球坐标最常用项
 
-![散度和旋度区别](assets/chapter2_fig11_divergence_and_curl_difference.png)
+球坐标最常用于点电荷、带电球：
 
-### 3.4 Laplacian 运算
+$$
+dS_r=r^2\sin\theta\,d\theta d\phi,
+\qquad dV=r^2\sin\theta\,drd\theta d\phi
+$$
 
-**定义：** 梯度再散度（标量场求梯度得矢量，再求散度得回标量）
-$$\nabla^2u=\nabla\cdot(\nabla u)$$
+若场只有径向分量 $\mathbf A=A_r(r)\hat{\mathbf r}$，散度可简化为：
 
-**直角坐标：** $\displaystyle\nabla^2u=\frac{\partial^2u}{\partial x^2}+\frac{\partial^2u}{\partial y^2}+\frac{\partial^2u}{\partial z^2}$
+$$
+\boxed{\nabla\cdot\mathbf A={1\over r^2}{d\over dr}(r^2A_r)}
+$$
 
-**圆柱坐标：** $\displaystyle\nabla^2u=\frac{1}{\rho}\frac{\partial}{\partial\rho}\left(\rho\frac{\partial u}{\partial\rho}\right)+\frac{1}{\rho^2}\frac{\partial^2u}{\partial\phi^2}+\frac{\partial^2u}{\partial z^2}$
+这个公式足够处理大多数带电球/点电荷的 Q1 小题。
 
-**球坐标：** $\displaystyle\nabla^2u=\frac{1}{r^2}\frac{\partial}{\partial r}\left(r^2\frac{\partial u}{\partial r}\right)+\frac{1}{r^2\sin\theta}\frac{\partial}{\partial\theta}\left(\sin\theta\frac{\partial u}{\partial\theta}\right)+\frac{1}{r^2\sin^2\theta}\frac{\partial^2u}{\partial\phi^2}$
+## 固定做题模板
 
-Laplacian 后续在泊松方程 $\nabla^2\varphi=-\rho_v/\varepsilon$ 和拉普拉斯方程 $\nabla^2\varphi=0$ 中反复出现。
+### 模板 1：给 $V$ 求 $\mathbf E$ 和 $\rho_v$
 
-## 4. 场的分类
+题目特征：给一个电势 $V(x,y,z)$，让求电场或电荷密度。
 
-| 类型 | 条件 | 等价形式 | 电磁场例子 |
-|---|---|---|---|
-| 无旋场（保守场） | $\nabla\times\vec F=0$ | $\vec F=-\nabla\varphi$ | 静电场 $\vec E=-\nabla\varphi$ |
-| 无散场（管量场） | $\nabla\cdot\vec F=0$ | $\vec F=\nabla\times\vec A$ | 静磁场 $\vec B=\nabla\times\vec A$ |
+步骤：
 
-- **无旋 ≠ 场为零**，只是闭合环流为零，线积分与路径无关。
-- **无散 ≠ 没有场线**，只是没有净流出源，场线形成闭合回路。
+1. 先看变量是直角坐标 $x,y,z$，还是圆柱坐标 $\rho,\phi,z$。如果是圆柱坐标，梯度中的 $\phi$ 项有 $1/\rho$，散度也不能直接用直角坐标公式。
+2. 用 $\mathbf E=-\nabla V$。
+3. 用 $\mathbf D=\varepsilon\mathbf E$。
+4. 用 $\rho_v=\nabla\cdot\mathbf D$。
+5. 若 $\varepsilon$ 为常数，也可以直接用 $\rho_v=-\varepsilon\nabla^2V$。
 
-**Helmholtz 定理（定性理解）：** 一个矢量场由它的散度（源/汇分布）和旋度（旋涡分布）共同决定，加上边界条件就能唯一确定。这就是 Maxwell 方程组能定义电磁场的数学基础——四个方程正给出了 $\vec E,\vec B$（或 $\vec D,\vec H$）的散度和旋度。
+易错点：$\mathbf E$ 前面有负号；$\rho_v$ 是 $\nabla\cdot\mathbf D$，不是 $\nabla\cdot\mathbf E$，除非再乘 $\varepsilon$。
 
-## 5. 自测题
+### 模板 2：给 $\mathbf D$ 求总电荷
 
-### 题目
+题目特征：给 $\mathbf D$，让求某体积内总电荷。
 
-1. 写出通量和散度的定义及数学表达式。
-2. 写出环流和旋度的定义及数学表达式。
-3. 求 $\varphi(x,y,z)=2x^2+y-5z^2$ 在 $P(1,0,3)$ 处的梯度。
-4. 写出圆柱坐标的线元 $d\vec l$ 和体元 $dV$。
-5. 写出球面 $r=R$ 的外法向面元 $d\vec S$。
-6. 已知 $\vec A=2z^2\vec e_x+3x\vec e_y$，求 $\nabla\cdot\vec A$ 和 $\nabla\times\vec A$。
-7. $\vec A=2\vec e_x+3\vec e_y+4\vec e_z$，求 $\nabla\cdot\vec A$ 和 $\nabla\times\vec A$。
-8. $\vec A=2x\vec e_x+3y\vec e_y+4z^2\vec e_z$，求 $\nabla\cdot\vec A$ 和 $\nabla\times\vec A$。
-9. 写出散度定理和 Stokes 定理的数学表达式。
-10. 判断正误并说理由：(a) "无旋场就是场强处处为零" (b) "无散场就是没有场线"
-11. 求证：$\nabla\times(\nabla u)=0$，$\nabla\cdot(\nabla\times\vec F)=0$。
-12. 写出圆柱坐标和球坐标中的梯度、散度、旋度公式。
+两种方法：
 
-### 答案
+- 如果闭合面简单：直接算 $Q=\oint_S\mathbf D\cdot d\mathbf S$。
+- 如果体积分简单：先算 $\rho_v=\nabla\cdot\mathbf D$，再算 $Q=\int_V\rho_v dV$。
 
-1. **通量：** $\psi=\int_S \vec F\cdot d\vec S$，闭合面取外法向 $\psi=\oint_S \vec F\cdot d\vec S$。**散度：** $\nabla\cdot\vec F=\lim_{\Delta V\to0}\frac{\oint_S\vec F\cdot d\vec S}{\Delta V}$。散度是单位体积净流出通量，正值=源，负值=汇。
+两种方法理论上一样，选更省事的。
 
-2. **环流：** $\Gamma=\oint_C \vec F\cdot d\vec l$。**旋度：** $\operatorname{rot}_n\vec F=\lim_{\Delta S\to0}\frac{1}{\Delta S}\oint_C\vec F\cdot d\vec l$，旋度是最大环流面密度。
+### 模板 3：给 $\mathbf A$ 判断源和旋
 
-3. $\nabla\varphi=4x\vec e_x+\vec e_y-10z\vec e_z$，在 $P(1,0,3)$：$\boxed{\nabla\varphi|_P=4\vec e_x+\vec e_y-30\vec e_z}$
+题目特征：问“该场是否 solenoidal/irrotational”。
 
-4. $d\vec l=\vec e_\rho d\rho+\vec e_\phi\rho d\phi+\vec e_z dz$，$dV=\rho d\rho d\phi dz$
+- Solenoidal 无散场：$\nabla\cdot\mathbf A=0$。
+- Irrotational 无旋场：$\nabla\times\mathbf A=0$。
 
-5. $d\vec S=\vec e_r R^2\sin\theta d\theta d\phi$
+电磁场对应：
 
-6. $\boxed{\nabla\cdot\vec A=0}$，$\boxed{\nabla\times\vec A=4z\vec e_y+3\vec e_z}$
+- $\nabla\cdot\mathbf B=0$：磁场无散。
+- 静电场 $\nabla\times\mathbf E=0$：静电场无旋。
 
-7. 常矢量：$\boxed{\nabla\cdot\vec A=0}$，$\boxed{\nabla\times\vec A=\vec 0}$
+## 往年考试例题
 
-8. $\nabla\cdot\vec A=2+3+8z=\boxed{5+8z}$；$\nabla\times\vec A=\vec e_x(0-0)+\vec e_y(0-0)+\vec e_z(0-0)=\boxed{\vec 0}$。虽然各分量随位置变化，但各分量只沿自己的方向变化，没有交叉项产生环流。
+### 例题 1：柱坐标散度（2024 Q1 类型）
 
-9. 散度定理：$\oint_S\vec F\cdot d\vec S=\int_V\nabla\cdot\vec F\,dV$（面通量→体散度积分）。Stokes 定理：$\oint_C\vec F\cdot d\vec l=\int_S(\nabla\times\vec F)\cdot d\vec S$（线环流→面旋度通量）。
+给定圆柱坐标矢量场
 
-10. (a) 错误。无旋场 $\nabla\times\vec F=0$ 是说没有旋涡源，场本身可以很强。如点电荷的静电场无旋但场强不为零。(b) 错误。无散场 $\nabla\cdot\vec F=0$ 是说没有发散源，场线可以存在且形成闭合回路，如磁感应线。
+$$
+\mathbf D=\rho^2\hat{\boldsymbol\rho}\quad \text{C/m}^2
+$$
 
-11. (a) $\nabla\times(\nabla u)$：$x$ 分量 $=\frac{\partial}{\partial y}\frac{\partial u}{\partial z}-\frac{\partial}{\partial z}\frac{\partial u}{\partial y}=0$（混合偏导可交换）。同理 $y,z$ 分量也为零。(b) $\nabla\cdot(\nabla\times\vec F)=\frac{\partial}{\partial x}(\frac{\partial F_z}{\partial y}-\frac{\partial F_y}{\partial z})+\frac{\partial}{\partial y}(\frac{\partial F_x}{\partial z}-\frac{\partial F_z}{\partial x})+\frac{\partial}{\partial z}(\frac{\partial F_y}{\partial x}-\frac{\partial F_x}{\partial y})$，展开每对混合偏导互相抵消=0。
+求体电荷密度 $\rho_v$。
 
-12. 见正文 3.1-3.4 节各坐标系公式。重点记忆直角坐标，理解圆柱/球坐标多出的尺度因子（$\frac{1}{\rho},\frac{1}{r},\frac{1}{r\sin\theta}$ 等）。
+**解：**
+
+用圆柱坐标散度公式：
+
+$$
+\rho_v=\nabla\cdot\mathbf D={1\over\rho}{\partial(\rho D_\rho)\over\partial\rho}+{1\over\rho}{\partial D_\phi\over\partial\phi}+{\partial D_z\over\partial z}
+$$
+
+这里 $D_\rho=\rho^2$，$D_\phi=0$，$D_z=0$，所以
+
+$$
+\rho_v={1\over\rho}{\partial(\rho^3)\over\partial\rho}=3\rho
+$$
+
+答案：
+
+$$
+\boxed{\rho_v=3\rho\ \text{C/m}^3}
+$$
+
+**易错提醒：** 不能写成 $\partial D_\rho/\partial\rho=2\rho$，因为圆柱坐标散度有 $\frac1\rho\frac{\partial(\rho D_\rho)}{\partial\rho}$。
+
+### 例题 2：由电势求电场和电荷密度（2023/2024 Q1 类型）
+
+均匀介质中
+
+$$
+V=x^2+2y^2-3z
+$$
+
+求 $\mathbf E$ 和 $\rho_v$。
+
+**解：**
+
+先求梯度：
+
+$$
+\nabla V=2x\hat{\mathbf x}+4y\hat{\mathbf y}-3\hat{\mathbf z}
+$$
+
+所以
+
+$$
+\boxed{\mathbf E=-2x\hat{\mathbf x}-4y\hat{\mathbf y}+3\hat{\mathbf z}}
+$$
+
+若介电常数为 $\varepsilon$，则
+
+$$
+\rho_v=-\varepsilon\nabla^2V
+$$
+
+而
+
+$$
+\nabla^2V={\partial^2V\over\partial x^2}+{\partial^2V\over\partial y^2}+{\partial^2V\over\partial z^2}=2+4+0=6
+$$
+
+所以
+
+$$
+\boxed{\rho_v=-6\varepsilon}
+$$
+
+**易错提醒：** $V$ 中的 $-3z$ 对电场有贡献，对 Laplacian 没贡献，因为二阶导为 0。
+
+### 例题 3：Stokes 定理的物理意义（2025 Q2 类型）
+
+说明 Stokes 定理在静磁场中的意义。
+
+**答题框架：**
+
+Stokes 定理为
+
+$$
+\oint_C\mathbf H\cdot d\mathbf l=\int_S(\nabla\times\mathbf H)\cdot d\mathbf S
+$$
+
+静磁场中
+
+$$
+\nabla\times\mathbf H=\mathbf J
+$$
+
+因此
+
+$$
+\oint_C\mathbf H\cdot d\mathbf l=\int_S\mathbf J\cdot d\mathbf S=I_{\rm enc}
+$$
+
+物理意义：磁场沿闭合路径的环量等于穿过该路径所围曲面的总电流。这就是安培环路定律。
+
+## 重点难点总结
+
+1. 圆柱坐标最容易漏 $\rho$：线元有 $\rho d\phi$，面元和体元也有 $\rho$。
+2. 散度是源强度，旋度是打转强度；不要只背公式。
+3. 静电场无旋：$\nabla\times\mathbf E=0$，所以可写 $\mathbf E=-\nabla V$。
+4. 磁场无散：$\nabla\cdot\mathbf B=0$，所以磁力线闭合。
+5. Gauss 定理是“闭合面通量 ↔ 体内散度”，Stokes 定理是“边界环量 ↔ 面内旋度”。
+
+## 自测题与答案
+
+### 题 1
+
+在圆柱坐标中，$\mathbf A={1\over\rho}\hat{\boldsymbol\rho}$。求 $\nabla\cdot\mathbf A$（$\rho\ne0$）。
+
+**答案：**
+
+$$
+\nabla\cdot\mathbf A={1\over\rho}{\partial(\rho A_\rho)\over\partial\rho}={1\over\rho}{\partial(1)\over\partial\rho}=0
+$$
+
+注意 $\rho=0$ 处有奇异性，常对应线源；普通小计算若说明 $\rho\ne0$，答案就是 0。
+
+### 题 2
+
+给 $V=5x-2y+z^2$，求 $\mathbf E$。
+
+**答案：**
+
+$$
+\nabla V=5\hat{\mathbf x}-2\hat{\mathbf y}+2z\hat{\mathbf z}
+$$
+
+$$
+\boxed{\mathbf E=-5\hat{\mathbf x}+2\hat{\mathbf y}-2z\hat{\mathbf z}}
+$$
+
+### 题 3
+
+若 $\nabla\times\mathbf E=0$，能否一定说 $\mathbf E=0$？
+
+**答案：**不能。$\nabla\times\mathbf E=0$ 只表示电场无旋、保守，可以写成 $\mathbf E=-\nabla V$。电场本身可以不为零，例如均匀静电场 $\mathbf E=E_0\hat{\mathbf x}$，旋度为零但场不为零。
+
+### 题 4
+
+写出 Gauss 定理，并说明它和电场高斯定律的关系。
+
+**答案：**
+
+Gauss 定理：
+
+$$
+\oint_S\mathbf A\cdot d\mathbf S=\int_V\nabla\cdot\mathbf A\,dV
+$$
+
+令 $\mathbf A=\mathbf D$，再用 Maxwell 方程 $\nabla\cdot\mathbf D=\rho_v$，得到
+
+$$
+\oint_S\mathbf D\cdot d\mathbf S=\int_V\rho_v dV=Q
+$$
+
+这就是电场高斯定律。
+
+## 学习路线
+
+如果你基础弱，本章按这个顺序学：
+
+1. 先记住梯度、散度、旋度分别在问什么。
+2. 只背直角坐标和圆柱坐标公式；球坐标先背径向散度简式。
+3. 做 3 个小题：由 $V$ 求 $\mathbf E$，由 $\mathbf D$ 求 $\rho_v$，由 $\mathbf A$ 求旋度。
+4. 再去第3章用这些工具处理电场问题。
+
+## 和后续章节的关系
+
+- 第3章用 $\nabla\cdot\mathbf D=\rho_v$ 和 $\mathbf E=-\nabla V$。
+- 第5章用 $\nabla\cdot\mathbf J=0$ 描述稳恒电流。
+- 第6章用 $\nabla\times\mathbf H=\mathbf J$ 求磁场。
+- 第7章把这些算子组合成 Maxwell 方程。
+
+## 一页考前速记
+
+$$
+\nabla V=\left({\partial V\over\partial x},{\partial V\over\partial y},{\partial V\over\partial z}\right)
+$$
+
+$$
+\nabla\cdot\mathbf A={\partial A_x\over\partial x}+{\partial A_y\over\partial y}+{\partial A_z\over\partial z}
+$$
+
+$$
+\nabla^2V={\partial^2V\over\partial x^2}+{\partial^2V\over\partial y^2}+{\partial^2V\over\partial z^2}
+$$
+
+圆柱坐标散度一定写成：
+
+$$
+\nabla\cdot\mathbf A={1\over\rho}{\partial(\rho A_\rho)\over\partial\rho}+{1\over\rho}{\partial A_\phi\over\partial\phi}+{\partial A_z\over\partial z}
+$$
+
+Gauss 定理：闭合面通量 = 体内散度积分。Stokes 定理：闭合线环量 = 面内旋度积分。
