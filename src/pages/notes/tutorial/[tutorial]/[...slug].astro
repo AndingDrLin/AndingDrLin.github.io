@@ -3,13 +3,14 @@ import { getCollection, render } from 'astro:content';
 import PostLayout from '../../../../layouts/PostLayout.astro';
 import { NOTE_TUTORIALS } from '../../../../consts';
 import { getReadingTime } from '../../../../utils/readingTime';
+import { isReadmeEntry } from '../../../../utils/noteTree';
 
 export async function getStaticPaths() {
   const notes = await getCollection('notes', ({ data }) => (import.meta.env.PROD ? !data.draft : true));
 
   return notes.flatMap((entry) => {
     const tutorial = NOTE_TUTORIALS[entry.data.docGroup as keyof typeof NOTE_TUTORIALS];
-    if (!tutorial || /\/readme$/i.test(entry.id)) return [];
+    if (!tutorial || isReadmeEntry(entry)) return [];
 
     return [{
       params: {
@@ -24,7 +25,7 @@ export async function getStaticPaths() {
 const { entry, tutorial } = Astro.props;
 const slug = entry.id.replace(/^[^/]+\//, '');
 const { Content, headings, remarkPluginFrontmatter } = await render(entry);
-const readingTime = getReadingTime(String(remarkPluginFrontmatter?.readingTime ?? entry.body));
+const readingTime = getReadingTime(String(remarkPluginFrontmatter?.readingTime ?? entry.body ?? ''));
 ---
 
 <PostLayout

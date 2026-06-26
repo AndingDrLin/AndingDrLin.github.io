@@ -1,5 +1,5 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
-import { sortNoteEntries } from './noteTree';
+import { isReadmeEntry, sortNoteEntries } from './noteTree';
 
 export type ContentKind = 'blog' | 'notes';
 
@@ -10,12 +10,8 @@ export type EntryWithKind = {
   kind: ContentKind;
 };
 
-function sortByDateDesc<T extends { data: { date: Date } }>(entries: T[]) {
-  return [...entries].sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
-}
-
-function sortWrappedByDateDesc<T extends { entry: { data: { date: Date } } }>(entries: T[]) {
-  return [...entries].sort((a, b) => b.entry.data.date.getTime() - a.entry.data.date.getTime());
+function sortByDateDesc<T>(items: T[], getDate: (item: T) => Date): T[] {
+  return [...items].sort((a, b) => getDate(b).getTime() - getDate(a).getTime());
 }
 
 function isPublished<T extends { data: { draft?: boolean } }>(entry: T) {
@@ -26,7 +22,9 @@ export async function getPublishedCollection(type: 'blog'): Promise<CollectionEn
 export async function getPublishedCollection(type: 'notes'): Promise<CollectionEntry<'notes'>[]>;
 export async function getPublishedCollection(type: ContentKind) {
   const entries = await getCollection(type, isPublished);
-  return type === 'notes' ? sortNoteEntries(entries as CollectionEntry<'notes'>[]) : sortByDateDesc(entries);
+  return type === 'notes'
+    ? sortNoteEntries(entries as CollectionEntry<'notes'>[])
+    : sortByDateDesc(entries, (e) => e.data.date);
 }
 
 export async function getLatestEntries(type: ContentKind, count: number) {
@@ -37,7 +35,10 @@ export async function getLatestEntries(type: ContentKind, count: number) {
 export async function getLatestNotes(count: number) {
   const entries = await getCollection('notes', isPublished);
 
-  return sortByDateDesc(entries.filter((entry) => !/\/readme$/i.test(entry.id))).slice(0, count);
+  return sortByDateDesc(
+    entries.filter((entry) => !isReadmeEntry(entry)),
+    (e) => e.data.date
+  ).slice(0, count);
 }
 
 export async function getFeedEntries() {
@@ -46,10 +47,13 @@ export async function getFeedEntries() {
     getPublishedCollection('notes')
   ]);
 
-  return sortWrappedByDateDesc([
-    ...blog.map((entry) => ({ entry, kind: 'blog' as const })),
-    ...notes.map((entry) => ({ entry, kind: 'notes' as const }))
-  ]);
+  return sortByDateDesc(
+    [
+      ...blog.map((entry) => ({ entry, kind: 'blog' as const })),
+      ...notes.map((entry) => ({ entry, kind: 'notes' as const }))
+    ],
+    (item) => item.entry.data.date
+  );
 }
 
 export function formatDate(date: Date) {

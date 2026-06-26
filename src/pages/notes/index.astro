@@ -3,25 +3,26 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PostCard from '../../components/PostCard.astro';
 import { NOTE_COURSES, NOTE_TUTORIALS, NOTES_PAGE } from '../../consts';
 import { getPublishedCollection } from '../../utils/content';
+import { isReadmeEntry } from '../../utils/noteTree';
 import { subjects } from '../../data/question-banks/subjects';
 
 const allNotes = await getPublishedCollection('notes');
 
 const courses = Object.entries(NOTE_COURSES).map(([group, course]) => ({
   ...course,
-  count: allNotes.filter((entry) => entry.data.docGroup === group && !/\/readme$/i.test(entry.id)).length
+  count: allNotes.filter((entry) => entry.data.docGroup === group && !isReadmeEntry(entry)).length
 }));
 
 const tutorials = Object.entries(NOTE_TUTORIALS).map(([group, tutorial]) => ({
   ...tutorial,
-  count: allNotes.filter((entry) => entry.data.docGroup === group && !/\/readme$/i.test(entry.id)).length
+  count: allNotes.filter((entry) => entry.data.docGroup === group && !isReadmeEntry(entry)).length
 }));
 
 const otherNotes = allNotes.filter((entry) => {
   const group = entry.data.docGroup;
   if (group && group in NOTE_COURSES) return false;
   if (group && group in NOTE_TUTORIALS) return false;
-  return !/\/readme$/i.test(entry.id);
+  return !isReadmeEntry(entry);
 });
 ---
 

@@ -1,10 +1,9 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import NoteDirectoryList from '../../../components/NoteDirectoryList.astro';
 import { NOTE_COURSES } from '../../../consts';
 import { getPublishedCollection } from '../../../utils/content';
-import { getNoteDirectoryListing } from '../../../utils/noteTree';
+import { getNoteDirectoryListing, isReadmeEntry } from '../../../utils/noteTree';
 
 export async function getStaticPaths() {
   return Object.values(NOTE_COURSES).map((course) => ({
@@ -16,8 +15,8 @@ export async function getStaticPaths() {
 const { course } = Astro.props;
 const allNotes = await getPublishedCollection('notes');
 const group = Object.entries(NOTE_COURSES).find(([, value]) => value.slug === course.slug)?.[0];
-const entries = allNotes.filter((entry) => entry.data.docGroup === group && !/\/readme$/i.test(entry.id));
-const readme = (await getCollection('notes')).find((entry) => entry.data.docGroup === group && /\/readme$/i.test(entry.id));
+const entries = allNotes.filter((entry) => entry.data.docGroup === group && !isReadmeEntry(entry));
+const readme = allNotes.find((entry) => entry.data.docGroup === group && isReadmeEntry(entry));
 const { directories, entries: currentEntries } = getNoteDirectoryListing(entries);
 ---
 

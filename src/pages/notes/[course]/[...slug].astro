@@ -1,5 +1,5 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import PostLayout from '../../../layouts/PostLayout.astro';
 import NoteDirectoryList from '../../../components/NoteDirectoryList.astro';
@@ -11,7 +11,9 @@ import {
   getNoteDirectoryListing,
   getNoteDirectoryPrefixes,
   getNoteSlug,
-  isReadmeEntry
+  isReadmeEntry,
+  type NoteDirectory,
+  type NoteBreadcrumb
 } from '../../../utils/noteTree';
 
 export async function getStaticPaths() {
@@ -50,14 +52,14 @@ const course = props.course;
 const isDirectoryPage = 'directoryPrefix' in props;
 
 let entry = props.entry;
-let Content;
-let headings = [];
+let Content: Awaited<ReturnType<typeof render>>['Content'] | undefined;
+let headings: Awaited<ReturnType<typeof render>>['headings'] = [];
 let readingTime = '';
 let slug = '';
 let directoryTitle = '';
-let breadcrumbs = [];
-let directories = [];
-let currentEntries = [];
+let breadcrumbs: NoteBreadcrumb[] = [];
+let directories: NoteDirectory[] = [];
+let currentEntries: CollectionEntry<'notes'>[] = [];
 
 if (isDirectoryPage) {
   directoryTitle = formatDirectoryTitle(props.directoryPrefix);
@@ -70,7 +72,7 @@ if (isDirectoryPage) {
   const rendered = await render(entry);
   Content = rendered.Content;
   headings = rendered.headings;
-  readingTime = getReadingTime(String(rendered.remarkPluginFrontmatter?.readingTime ?? entry.body)).text;
+  readingTime = getReadingTime(String(rendered.remarkPluginFrontmatter?.readingTime ?? entry.body ?? '')).text;
 }
 ---
 

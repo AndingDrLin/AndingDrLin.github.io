@@ -1,4 +1,5 @@
 import type { CollectionEntry } from 'astro:content';
+import { NOTE_COURSES, NOTE_TUTORIALS } from '../consts';
 
 export type NoteDirectory = {
   name: string;
@@ -111,4 +112,19 @@ export function getNoteDirectoryListing(entries: CollectionEntry<'notes'>[], pre
     directories: [...directories.values()].sort((a, b) => a.path.localeCompare(b.path)),
     entries: sortNoteEntries(currentEntries)
   };
+}
+
+export function getNoteUrl(entry: CollectionEntry<'notes'>) {
+  const course = NOTE_COURSES[entry.data.docGroup as keyof typeof NOTE_COURSES];
+  const tutorial = NOTE_TUTORIALS[entry.data.docGroup as keyof typeof NOTE_TUTORIALS];
+  const slug = getNoteSlug(entry);
+
+  if (isReadmeEntry(entry)) {
+    if (course) return `/notes/${course.slug}/`;
+    if (tutorial) return `/notes/tutorial/${tutorial.slug}/`;
+  }
+
+  if (course) return `/notes/${course.slug}/${slug}/`;
+  if (tutorial) return `/notes/tutorial/${tutorial.slug}/${slug}/`;
+  return `/notes/${slug}/`;
 }

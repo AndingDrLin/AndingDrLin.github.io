@@ -1,9 +1,9 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import PostCard from '../../../../components/PostCard.astro';
 import { NOTE_TUTORIALS } from '../../../../consts';
 import { getPublishedCollection } from '../../../../utils/content';
+import { isReadmeEntry } from '../../../../utils/noteTree';
 
 export async function getStaticPaths() {
   return Object.values(NOTE_TUTORIALS).map((tutorial) => ({
@@ -15,8 +15,8 @@ export async function getStaticPaths() {
 const { tutorial } = Astro.props;
 const allNotes = await getPublishedCollection('notes');
 const group = Object.entries(NOTE_TUTORIALS).find(([, value]) => value.slug === tutorial.slug)?.[0];
-const entries = allNotes.filter((entry) => entry.data.docGroup === group && !/\/readme$/i.test(entry.id));
-const readme = (await getCollection('notes')).find((entry) => entry.data.docGroup === group && /\/readme$/i.test(entry.id));
+const entries = allNotes.filter((entry) => entry.data.docGroup === group && !isReadmeEntry(entry));
+const readme = allNotes.find((entry) => entry.data.docGroup === group && isReadmeEntry(entry));
 ---
 
 <BaseLayout title={tutorial.title} description={tutorial.description} path={`/notes/tutorial/${tutorial.slug}/`}>
