@@ -19,6 +19,8 @@
     button.setAttribute('aria-pressed', String(isDark));
     button.setAttribute('aria-label', isDark ? '切换到浅色模式' : '切换到深色模式');
     label.textContent = isDark ? '浅色' : '深色';
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content',
+      isDark ? '#121315' : '#f7f5f0');
   }
 
   syncThemeButton();

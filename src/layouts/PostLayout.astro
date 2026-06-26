@@ -4,6 +4,8 @@ import TOC from '../components/TOC.astro';
 import { ARTICLE_META } from '../consts';
 import { formatDate } from '../utils/content';
 
+type PostKind = '课程笔记' | '教程' | '博客' | '笔记';
+
 interface Heading {
   depth: number;
   slug: string;
@@ -19,7 +21,7 @@ interface Props {
   readingTime: string;
   headings: Heading[];
   path: string;
-  kind: string;
+  kind: PostKind;
   source?: string;
   tags?: string[];
 }
@@ -36,6 +38,31 @@ const { title, description, date, updated, category, readingTime, headings, path
   modifiedTime={updated?.toISOString()}
   tags={tags}
 >
+  <div class="reading-progress" aria-hidden="true">
+    <div class="reading-progress-bar" data-reading-progress></div>
+  </div>
+
+  <script is:inline>
+    (function() {
+      const bar = document.querySelector('[data-reading-progress]');
+      if (!bar) return;
+      let ticking = false;
+      function onScroll() {
+        if (!ticking) {
+          requestAnimationFrame(function() {
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
+            bar.style.width = Math.min(pct, 100) + '%';
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+  </script>
+
   <article class="article-layout">
     <TOC headings={headings} />
     <div class="article-main">

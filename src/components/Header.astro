@@ -18,7 +18,7 @@ function isActive(href: string) {
       <ul class="nav-list">
         {NAV_LINKS.map((link) => (
           <li>
-            <a href={link.href} data-active={isActive(link.href) ? 'true' : undefined}>
+            <a href={link.href} data-active={isActive(link.href) ? 'true' : undefined} aria-current={isActive(link.href) ? 'page' : undefined}>
               {link.label}
             </a>
           </li>

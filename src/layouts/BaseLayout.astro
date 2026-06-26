@@ -38,7 +38,10 @@ const imageUrl = new URL(image, baseUrl).toString();
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="generator" content={Astro.generator} />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="preconnect" href="https://avatars.githubusercontent.com" crossorigin />
+    <meta name="theme-color" content="#f7f5f0" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#121315" media="(prefers-color-scheme: dark)" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="alternate" type="application/rss+xml" title={SITE_TITLE} href="/rss.xml" />
     <script is:inline>
@@ -76,5 +79,79 @@ const imageUrl = new URL(image, baseUrl).toString();
       <slot />
     </main>
     <Footer />
+
+    <button id="back-to-top" class="back-to-top" aria-label="回到顶部">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m18 15-6-6-6 6"/>
+      </svg>
+    </button>
+
+    <div id="lightbox-overlay" class="lightbox-overlay" role="dialog" aria-label="图片放大">
+      <button class="lightbox-close" aria-label="关闭">&times;</button>
+      <img src="" alt="" />
+    </div>
+
+    <script is:inline>
+      // Back to top
+      (function() {
+        const btn = document.getElementById('back-to-top');
+        if (!btn) return;
+        let ticking = false;
+        function onScroll() {
+          if (!ticking) {
+            requestAnimationFrame(function() {
+              btn.classList.toggle('is-visible', window.scrollY > 300);
+              ticking = false;
+            });
+            ticking = true;
+          }
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        btn.addEventListener('click', function() {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      })();
+
+      // Lightbox
+      (function() {
+        const overlay = document.getElementById('lightbox-overlay');
+        if (!overlay) return;
+        const overlayImg = overlay.querySelector('img');
+        const closeBtn = overlay.querySelector('.lightbox-close');
+
+        function openLightbox(src, alt) {
+          overlayImg.src = src;
+          overlayImg.alt = alt || '';
+          overlay.classList.add('is-active');
+          document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+          overlay.classList.remove('is-active');
+          overlayImg.src = '';
+          document.body.style.overflow = '';
+        }
+
+        document.addEventListener('click', function(e) {
+          const img = e.target;
+          if (img instanceof HTMLImageElement && img.closest('.prose') && !img.closest('.lightbox-overlay')) {
+            e.preventDefault();
+            openLightbox(img.src, img.alt);
+          }
+        });
+
+        overlay.addEventListener('click', function(e) {
+          if (e.target === overlay || e.target === closeBtn || closeBtn.contains(e.target)) {
+            closeLightbox();
+          }
+        });
+
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape' && overlay.classList.contains('is-active')) {
+            closeLightbox();
+          }
+        });
+      })();
+    </script>
   </body>
 </html>

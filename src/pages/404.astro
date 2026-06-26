@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="404 - 页面未找到" description="您访问的页面不存在">
+  <section class="error-page">
+    <h1 class="error-code">404</h1>
+    <p class="error-title">页面未找到</p>
+    <p class="error-description">
+      您访问的页面不存在，可能已被移动或删除。
+    </p>
+    <div class="error-actions">
+      <a class="error-link primary" href="/">返回首页</a>
+      <span class="error-hint">
+        也可以按 <kbd>⌘K</kbd> / <kbd>Ctrl+K</kbd> 搜索内容
+      </span>
+    </div>
+  </section>
+</BaseLayout>
