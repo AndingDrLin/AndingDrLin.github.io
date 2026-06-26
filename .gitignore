@@ -5,8 +5,5 @@ dist/
 .env
 .env.production
 .DS_Store
-virtual-venus/
 _archive/
-final_review/
-mc-dietbot-web/
 src/content/notes/pe-notes/_*.md

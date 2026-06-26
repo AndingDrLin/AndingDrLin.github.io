@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'src/**'
+      - 'public/**'
       - 'astro.config.mjs'
       - 'package.json'
       - 'package-lock.json'
@@ -14,6 +15,7 @@ on:
     branches: [main]
     paths:
       - 'src/**'
+      - 'public/**'
       - 'astro.config.mjs'
       - 'package.json'
       - 'package-lock.json'
@@ -37,6 +39,9 @@ jobs:
 
       - name: Type check
         run: npx astro check
+
+      - name: Run tests
+        run: npm run test
 
       - name: Build check
         if: github.event_name == 'pull_request'

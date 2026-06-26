@@ -1,3 +1,9 @@
+/**
+ * Claude Code 工作流脚本 —— 不能用 `node` 直接运行。
+ * 由 Claude Code Workflow 引擎注入 phase/agent/parallel/pipeline/log 等全局函数。
+ * 如需运行，请在 Claude Code 会话中通过 Workflow 工具调用。
+ */
+
 export const meta = {
   name: 'pe-notes-phase3-targeted-fixes',
   description: 'Phase 3: 针对性修复 4 个薄弱章节，目标从 79% 提升到 90%+',

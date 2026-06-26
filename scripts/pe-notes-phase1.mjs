@@ -1,3 +1,9 @@
+/**
+ * Claude Code 工作流脚本 —— 不能用 `node` 直接运行。
+ * 由 Claude Code Workflow 引擎注入 phase/agent/parallel/pipeline/log 等全局函数。
+ * 如需运行，请在 Claude Code 会话中通过 Workflow 工具调用。
+ */
+
 export const meta = {
   name: 'pe-notes-phase1-analysis',
   description: 'Phase 1: 分析 7 个章节与四年真题的差距，生成优先级排序的修改计划',

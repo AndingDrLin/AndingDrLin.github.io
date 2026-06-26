@@ -76,6 +76,11 @@ if (CATEGORIES.length === 0) {
   process.exit(2);
 }
 
+if (NOTE_COURSES.length === 0) {
+  console.error('⚠ Could not read NOTE_COURSES from src/consts.ts. Check the file format.');
+  process.exit(2);
+}
+
 // ── CLI args ─────────────────────────────────────────────────────
 
 const args = process.argv.slice(2);

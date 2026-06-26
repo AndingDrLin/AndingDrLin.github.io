@@ -1,3 +1,9 @@
+/**
+ * Claude Code 工作流脚本 —— 不能用 `node` 直接运行。
+ * 由 Claude Code Workflow 引擎注入 phase/agent/parallel/pipeline/log 等全局函数。
+ * 如需运行，请在 Claude Code 会话中通过 Workflow 工具调用。
+ */
+
 export const meta = {
   name: 'pe-notes-final-verify',
   description: '最终验证：逐题评分电力电子笔记，输出预估考试得分',

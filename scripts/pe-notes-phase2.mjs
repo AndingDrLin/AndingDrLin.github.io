@@ -1,3 +1,9 @@
+/**
+ * Claude Code 工作流脚本 —— 不能用 `node` 直接运行。
+ * 由 Claude Code Workflow 引擎注入 phase/agent/parallel/pipeline/log 等全局函数。
+ * 如需运行，请在 Claude Code 会话中通过 Workflow 工具调用。
+ */
+
 export const meta = {
   name: 'pe-notes-iterate',
   description: 'Phase 2: 持续迭代改进电力电子笔记 (10h+, 连续5轮零问题才停)',
