@@ -11,11 +11,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ```bash
 npm install          # 安装依赖
 npm run dev          # 本地开发服务器
-npm run build        # 生产构建 + Pagefind 搜索索引
+npm run build        # 生产构建 + Pagefind 搜索索引（含 --force-language zh 中文优化）
 npm run preview      # 预览生产构建
 npm run validate     # 校验所有内容的 frontmatter
 npm run validate:blog   # 只校验博客
 npm run validate:notes  # 只校验笔记
+node scripts/validate-content.mjs --dir src/content/notes/<docGroup>  # 校验单个课程目录
 npm run check        # Astro 类型检查 (astro check)
 npm run test         # 运行 Vitest 测试
 npm run test -- src/utils/__tests__/noteTree.test.ts  # 运行单个测试文件
@@ -30,7 +31,7 @@ Node 版本要求为 `>=22.12.0`。TypeScript strict mode 通过 `tsconfig.json`
 | 文件 | 触发条件 | 作用 |
 |---|---|---|
 | `.github/workflows/deploy.yml` | push to `main`（内容/配置相关路径）/ 手动 | 构建 + 部署到 GitHub Pages |
-| `.github/workflows/check.yml` | PR + push to `main` | validation → type check → build check (PR only) |
+| `.github/workflows/check.yml` | PR + push to `main` | validation → type check → build check（仅 PR，push 时由 deploy.yml 负责构建） |
 | `.github/workflows/links.yml` | 每周一 / 手动 | 构建后用 lychee 检查断链 |
 | `.github/dependabot.yml` | 自动 | npm + GitHub Actions 依赖更新 |
 
@@ -88,6 +89,8 @@ Astro v6 静态站点，部署到 GitHub Pages 用户站点。生产 URL：`http
 - 公式统一用 `$$...$$` 块级或 `$...$` 行内 LaTeX；技术术语中英双写，如"占空比(duty cycle)"、"触发角(firing angle)"
 
 **课程 URL 结构：** 章节文件的 `order` 为 0–9，README 的 `order` 为 -1。发布后的 URL 格式为 `/notes/power-electronics/00-exam-strategy/`。
+
+**原始材料：** `raw_materials/pe-final/` 存放 2022–2025 期末 PDF 和提取的 Markdown；`raw_materials/pe-materials/` 存放 tutorial 和作业；`raw_materials/pe-slides/` 存放 Lecture PDF。这些是源材料，不是发布内容，与 EMF 课程的 `raw_materials/emf-final/` 同理。
 
 ### 电磁场与波课程工作流
 
@@ -150,7 +153,7 @@ npm run test:watch        # 监听模式
 3. **`PostCard` 的链接逻辑很复杂。** 它检查 README 状态、课程归属和教程归属。修改路由结构必须同步修改这里。
 4. **`getPublishedCollection('notes')` 包含 README；`getLatestNotes()` 不包含。** 根据页面需求选择正确的函数。
 5. **`notes/[...slug].astro` 只处理不属于任何课程/教程的笔记。** 它会显式过滤掉 `docGroup` 匹配已注册 key 的条目。
-6. **`unist-util-visit` 在 `astro.config.mjs` 中使用但不在 `package.json` 中。** 作为 remark 的传递依赖可以工作。如果直接使用，需要加入 `package.json`。
+6. **`unist-util-visit` 已在 `package.json` 的 `dependencies` 中。** `astro.config.mjs` 和自定义 remark 插件都依赖它，可以直接 `import` 使用。
 7. **Pagefind 是构建后步骤**，不是 Astro 集成。如果 `astro build` 失败，搜索索引会过期。
 8. **没有定时发布。** `isPublished` 只检查 `draft`，不检查 `date`。
 9. **不要将源课件或工作文档提交到内容目录。** 开发笔记、提取的文本文件、review 日记和原始素材放在仓库之外。`draft: true` 只用于真正未完成的内容。工作制品放在 `_archive/`（已 gitignore）。
@@ -221,6 +224,8 @@ npm run test:watch        # 监听模式
 | `scripts/validate-content.mjs` | 统一 frontmatter 校验脚本（动态读取 consts） |
 | `scripts/publish-course.mjs` | 课程发布自动化校验（validate → typecheck → build → link check） |
 | `scripts/notes-pipeline/` | 课程发布流水线（checklist、review prompt） |
+| `scripts/pe-notes-phase*.mjs` | PE 课程自动化改进流水线（gap analysis → improvement → fixes → polish → verify） |
+| `.claude/workflows/` | Claude Code 多 agent 工作流（review-course-notes、improve-course-notes） |
 | `.claude/commands/review-notes.md` | Claude Code slash command：课程笔记生成与审查 |
 | `.editorconfig` | 编辑器统一配置 |
 | `.github/CODEOWNERS` | 代码所有权 |
