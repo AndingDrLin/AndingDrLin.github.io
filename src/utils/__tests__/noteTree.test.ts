@@ -3,35 +3,35 @@ import { describe, it, expect } from 'vitest';
 // Test the pure string/data functions from noteTree.ts
 // by replicating their logic (avoiding Astro CollectionEntry imports)
 
-function trimSlashes(value) {
+function trimSlashes(value: string) {
   return value.replace(/^\/+|\/+$/g, '');
 }
 
-function isReadmeEntry(id) {
+function isReadmeEntry(id: string) {
   return /(^|\/)readme$/i.test(id);
 }
 
-function getNoteSlug(id) {
+function getNoteSlug(id: string) {
   return id.replace(/^[^/]+\//, '');
 }
 
-function formatDirectoryTitle(value) {
+function formatDirectoryTitle(value: string) {
   const name = value.split('/').filter(Boolean).at(-1) ?? value;
   return name
     .replace(/([a-z])([A-Z])/g, '$1 $2')
     .replace(/[-_]+/g, ' ')
-    .replace(/\b\w/g, (letter) => letter.toUpperCase());
+    .replace(/\b\w/g, (letter: string) => letter.toUpperCase());
 }
 
-function getNoteBreadcrumbs(prefix) {
+function getNoteBreadcrumbs(prefix: string) {
   const parts = trimSlashes(prefix).split('/').filter(Boolean);
-  return parts.map((part, index) => ({
+  return parts.map((part: string, index: number) => ({
     title: formatDirectoryTitle(part),
     path: parts.slice(0, index + 1).join('/')
   }));
 }
 
-function sortNoteEntries(entries) {
+function sortNoteEntries(entries: Array<{ id: string; order?: number }>) {
   return [...entries].sort((a, b) => {
     const orderA = a.order ?? Number.POSITIVE_INFINITY;
     const orderB = b.order ?? Number.POSITIVE_INFINITY;

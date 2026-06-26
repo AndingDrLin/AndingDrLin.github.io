@@ -20,6 +20,7 @@ function isPublished<T extends { data: { draft?: boolean } }>(entry: T) {
 
 export async function getPublishedCollection(type: 'blog'): Promise<CollectionEntry<'blog'>[]>;
 export async function getPublishedCollection(type: 'notes'): Promise<CollectionEntry<'notes'>[]>;
+export async function getPublishedCollection(type: ContentKind): Promise<SiteEntry[]>;
 export async function getPublishedCollection(type: ContentKind) {
   const entries = await getCollection(type, isPublished);
   return type === 'notes'

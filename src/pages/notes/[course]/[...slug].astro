@@ -51,7 +51,8 @@ const props = Astro.props;
 const course = props.course;
 const isDirectoryPage = 'directoryPrefix' in props;
 
-let entry = props.entry;
+// For article pages, entry is always defined (from getStaticPaths)
+const entry = isDirectoryPage ? undefined : props.entry as CollectionEntry<'notes'>;
 let Content: Awaited<ReturnType<typeof render>>['Content'] | undefined;
 let headings: Awaited<ReturnType<typeof render>>['headings'] = [];
 let readingTime = '';
@@ -62,12 +63,13 @@ let directories: NoteDirectory[] = [];
 let currentEntries: CollectionEntry<'notes'>[] = [];
 
 if (isDirectoryPage) {
-  directoryTitle = formatDirectoryTitle(props.directoryPrefix);
-  breadcrumbs = getNoteBreadcrumbs(props.directoryPrefix);
-  const listing = getNoteDirectoryListing(props.entries, props.directoryPrefix);
+  const dirPrefix = props.directoryPrefix as string;
+  directoryTitle = formatDirectoryTitle(dirPrefix);
+  breadcrumbs = getNoteBreadcrumbs(dirPrefix);
+  const listing = getNoteDirectoryListing(props.entries as CollectionEntry<'notes'>[], dirPrefix);
   directories = listing.directories;
   currentEntries = listing.entries;
-} else {
+} else if (entry) {
   slug = getNoteSlug(entry);
   const rendered = await render(entry);
   Content = rendered.Content;
@@ -106,7 +108,7 @@ if (isDirectoryPage) {
         />
       </section>
     </BaseLayout>
-  ) : (
+  ) : entry && Content ? (
     <PostLayout
       title={entry.data.title}
       description={entry.data.description}
@@ -122,5 +124,5 @@ if (isDirectoryPage) {
     >
       <Content />
     </PostLayout>
-  )
+  ) : null
 }
