@@ -48,6 +48,11 @@ export const NOTE_TUTORIALS = {
     slug: 'ai-agent',
     title: 'AI Agent 从零到精通',
     description: '面向纯新手的 AI Agent 开发教程，从 LLM 基础到生产级 Multi-Agent 系统。'
+  },
+  'world-model-vla-tutorial': {
+    slug: 'world-model-vla-agent',
+    title: '世界模型 + VLA + 具身智能',
+    description: '面向求职者的具身智能实战教程，覆盖视觉-语言-动作模型、世界模型和具身 Agent。'
   }
 } as const;
 
