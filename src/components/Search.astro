@@ -46,7 +46,7 @@ import { SEARCH } from '../consts';
   (function() {
     const hint = document.querySelector('[data-shortcut-hint]');
     if (!hint) return;
-    const isMac = /^Mac/.test(navigator.platform || '');
+    const isMac = /Mac|iPhone|iPad|iPod/.test(navigator.userAgent || '');
     if (!isMac) hint.textContent = 'Ctrl+K';
   })();
 

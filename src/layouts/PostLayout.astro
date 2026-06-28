@@ -89,10 +89,20 @@ const { title, description, date, updated, category, readingTime, headings, path
             </>
           )}
         </div>
+        {tags && tags.length > 0 && (
+          <div class="article-tags" aria-label="文章标签">
+            {tags.map((tag) => <span>{tag}</span>)}
+          </div>
+        )}
       </header>
       <div class="prose">
         <slot />
       </div>
+      <footer class="article-footer-nav" aria-label="文章结束导航">
+        <a href="/notes/">浏览全部笔记</a>
+        <a href="/notes/quiz/">打开自测</a>
+        <a href="#main-content">回到顶部</a>
+      </footer>
     </div>
   </article>
 </BaseLayout>

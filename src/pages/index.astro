@@ -1,26 +1,92 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PostCard from '../components/PostCard.astro';
-import { SITE_DESCRIPTION, SITE_TITLE, TOPIC_CHIPS, HOME } from '../consts';
-import { getLatestEntries, getLatestNotes } from '../utils/content';
+import { SITE_DESCRIPTION, SITE_TITLE, TOPIC_CHIPS, HOME, NOTE_COURSES, NOTE_TUTORIALS } from '../consts';
+import { getLatestEntries, getLatestNotes, getPublishedCollection } from '../utils/content';
+import { isReadmeEntry } from '../utils/noteTree';
 
-const [latestPosts, latestNotes] = await Promise.all([
+const [latestPosts, latestNotes, allPosts, allNotes] = await Promise.all([
   getLatestEntries('blog', 3),
-  getLatestNotes(3)
+  getLatestNotes(4),
+  getPublishedCollection('blog'),
+  getPublishedCollection('notes')
 ]);
+
+const noteCount = allNotes.filter((entry) => !isReadmeEntry(entry)).length;
+const courseCount = Object.keys(NOTE_COURSES).length;
+const tutorialCount = Object.keys(NOTE_TUTORIALS).length;
+
+const homeStats = [
+  { value: noteCount, label: '已发布笔记' },
+  { value: courseCount, label: '课程体系' },
+  { value: tutorialCount, label: '自学教程' },
+  { value: allPosts.length, label: '长文文章' }
+];
+
+const featuredLinks = [
+  {
+    href: '/notes/digital-signal-processing/exam-cheat-sheet/',
+    label: '考试速查',
+    title: 'DSP 期末开卷材料',
+    description: '把 2022–2025 真题题型、公式和设计流程压缩到一页。'
+  },
+  {
+    href: '/notes/electromagnetics-and-fields/smith-chart/',
+    label: '课程补丁',
+    title: 'EMF Smith Chart 速记',
+    description: '补齐近年反复出现的传输线与 Smith chart 概念题。'
+  },
+  {
+    href: '/notes/quiz/',
+    label: '练习工具',
+    title: '多学科自测题库',
+    description: '用本地进度、错题和薄弱点分析把课程笔记变成可练习内容。'
+  }
+];
 ---
 
 <BaseLayout>
   <section class="hero">
-    <p class="eyebrow">{HOME.eyebrow}</p>
-    <h1>{SITE_TITLE}</h1>
-    <p>{SITE_DESCRIPTION}</p>
-    <p>{HOME.intro}</p>
+    <div class="hero-copy">
+      <p class="eyebrow">{HOME.eyebrow}</p>
+      <h1>{SITE_TITLE}</h1>
+      <p class="hero-lede">{SITE_DESCRIPTION}</p>
+      <p>{HOME.intro}</p>
+      <div class="hero-actions" aria-label="主要入口">
+        <a class="primary-action" href="/notes">开始阅读笔记</a>
+        <a class="secondary-action" href="/notes/quiz/">做一组自测</a>
+      </div>
+    </div>
+    <div class="hero-panel" aria-label="站点统计">
+      <div class="hero-panel-grid">
+        {homeStats.map((item) => (
+          <div class="stat-card">
+            <strong>{item.value}</strong>
+            <span>{item.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
     <ul class="topic-chips" aria-label="主题">
       {TOPIC_CHIPS.map((topic) => (
         <li>{topic}</li>
       ))}
     </ul>
+  </section>
+
+  <section class="featured-section" aria-labelledby="featured-title">
+    <div class="section-heading">
+      <h2 id="featured-title">最近值得直接打开的东西</h2>
+    </div>
+    <div class="featured-grid">
+      {featuredLinks.map((item) => (
+        <a class="featured-card" href={item.href}>
+          <span>{item.label}</span>
+          <h3>{item.title}</h3>
+          <p>{item.description}</p>
+        </a>
+      ))}
+    </div>
   </section>
 
   <section class="start-here" aria-labelledby="start-here-title">

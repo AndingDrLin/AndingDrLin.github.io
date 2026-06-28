@@ -21,9 +21,38 @@ const items = headings.filter((heading) => heading.depth === 2 || heading.depth 
     <ol>
       {items.map((heading) => (
         <li class:list={{ 'toc-depth-3': heading.depth === 3 }}>
-          <a href={`#${heading.slug}`}>{heading.text}</a>
+          <a href={`#${heading.slug}`} data-toc-link={heading.slug}>{heading.text}</a>
         </li>
       ))}
     </ol>
   </aside>
 )}
+
+<script is:inline>
+  (function() {
+    const links = Array.from(document.querySelectorAll('[data-toc-link]'));
+    if (!links.length || !('IntersectionObserver' in window)) return;
+
+    const visible = new Map();
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        visible.set(entry.target.id, entry.isIntersecting);
+      });
+
+      const active = links.find((link) => visible.get(link.dataset.tocLink));
+      links.forEach((link) => {
+        if (link === active) {
+          link.setAttribute('aria-current', 'true');
+        } else {
+          link.removeAttribute('aria-current');
+        }
+      });
+    }, { rootMargin: '-15% 0px -70% 0px', threshold: 0.01 });
+
+    links.forEach((link) => {
+      const id = link.dataset.tocLink;
+      const heading = id ? document.getElementById(id) : null;
+      if (heading) observer.observe(heading);
+    });
+  })();
+</script>

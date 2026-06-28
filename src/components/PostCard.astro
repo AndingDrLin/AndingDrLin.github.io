@@ -22,6 +22,7 @@ const href = isCourseReadme
       ? getNoteUrl(entry)
       : `/${entry.collection}/${entry.id}/`;
 const kindLabel = ARTICLE_META.kindLabels[entry.collection];
+const tags = entry.data.tags?.slice(0, 3) ?? [];
 ---
 
 <article class="post-card">
@@ -40,4 +41,9 @@ const kindLabel = ARTICLE_META.kindLabels[entry.collection];
     <a href={href}>{entry.data.title}</a>
   </h2>
   <p class="post-card-description">{entry.data.description}</p>
+  {tags.length > 0 && (
+    <div class="post-card-tags" aria-label="标签">
+      {tags.map((tag) => <span>{tag}</span>)}
+    </div>
+  )}
 </article>

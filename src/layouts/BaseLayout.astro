@@ -112,6 +112,31 @@ const imageUrl = new URL(image, baseUrl).toString();
         });
       })();
 
+      // Copy buttons for code blocks
+      (function() {
+        document.querySelectorAll('pre').forEach(function(pre) {
+          if (pre.querySelector('.copy-code-button')) return;
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'copy-code-button';
+          button.textContent = '复制';
+          button.setAttribute('aria-label', '复制代码');
+          button.addEventListener('click', async function() {
+            const code = pre.querySelector('code');
+            const text = code?.textContent || pre.textContent || '';
+            try {
+              await navigator.clipboard.writeText(text.replace('复制', '').trim());
+              button.textContent = '已复制';
+              setTimeout(function() { button.textContent = '复制'; }, 1600);
+            } catch {
+              button.textContent = '复制失败';
+              setTimeout(function() { button.textContent = '复制'; }, 1600);
+            }
+          });
+          pre.appendChild(button);
+        });
+      })();
+
       // Lightbox
       (function() {
         const overlay = document.getElementById('lightbox-overlay');
