@@ -20,7 +20,7 @@ draft: false
 | Q3 | Chapter 7–8 | 无耗/有耗媒质中的平面波传播 | 第7章 + 第8章前半 |
 | Q4 | Chapter 8 | 电磁波反射与透射 | 第8章后半 |
 
-往年 2022–2025 期末和 2026 mock 里，Smith chart、传输线、矩形波导、微波网络也出现过。它们不在本轮 Q2–Q4 的大题主线里，但如果 Q1 严格按“全书除分离变量法”出概念题，仍有被问到的风险。本轮正文先把 CH2–CH8 的高频计算模板写完整；传输线、波导、Smith chart 至少应在考前另补一页概念速记。
+往年 2022–2025 期末和 2026 mock 里，Smith chart、传输线、矩形波导、微波网络也出现过。它们不在本轮 Q2–Q4 的大题主线里，但如果 Q1 严格按”全书除分离变量法”出概念题，仍有被问到的风险。本轮正文先把 CH2–CH8 的高频计算模板写完整；**传输线、波导、Smith chart 的概念速记页已补充**，考前务必扫一遍。
 
 ## 一天学习路线
 
@@ -83,6 +83,9 @@ $$
 - [第6章 静磁场：Q2 磁场、电感与磁能](/notes/electromagnetics-and-fields/chapter6/) — `B/H/M/J_M`、安培环路、同轴线电感、螺线管互感
 - [第7章 时变场与 Maxwell 方程：Q3 的源头](/notes/electromagnetics-and-fields/chapter7/) — Faraday、位移电流、Maxwell 方程、相量、波动方程
 - [第8章 平面电磁波：Q3 传播与 Q4 反射透射](/notes/electromagnetics-and-fields/chapter8/) — 无耗/有耗传播、良导体、Poynting、极化、反射透射
+- [Smith Chart 速记](/notes/electromagnetics-and-fields/smith-chart/) — 归一化阻抗/导纳、反射系数圆、VSWR、电压最小/最大点（2023–2025 必考）
+- [传输线速记](/notes/electromagnetics-and-fields/transmission-line/) — 输入阻抗推导、λ/4 变换器、VSWR 与 Γ 关系（2024–2025 必考）
+- [矩形波导速记](/notes/electromagnetics-and-fields/waveguide/) — TE/TM 模式、截止频率、β/λg/vp/vg/Z_TE、最大功率（2022–2025 必考）
 
 ## 往年题型如何使用
 
