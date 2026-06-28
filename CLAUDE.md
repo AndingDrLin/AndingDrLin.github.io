@@ -31,7 +31,7 @@ Node 版本要求为 `>=22.12.0`。TypeScript strict mode 通过 `tsconfig.json`
 | 文件 | 触发条件 | 作用 |
 |---|---|---|
 | `.github/workflows/deploy.yml` | push to `main`（内容/配置相关路径）/ 手动 | 构建 + 部署到 GitHub Pages |
-| `.github/workflows/check.yml` | PR + push to `main` | validation → type check → build check（仅 PR，push 时由 deploy.yml 负责构建） |
+| `.github/workflows/check.yml` | PR + push to `main` | validation → type check → test → build check（仅 PR，push 时由 deploy.yml 负责构建） |
 | `.github/workflows/links.yml` | 每周一 / 手动 | 构建后用 lychee 检查断链 |
 | `.github/dependabot.yml` | 自动 | npm + GitHub Actions 依赖更新 |
 
@@ -130,6 +130,10 @@ Astro v6 静态站点，部署到 GitHub Pages 用户站点。生产 URL：`http
 
 纯 CSS，`src/styles/global.css`。CSS 自定义属性用于主题化（`--bg`、`--text`、`--accent` 等）。暗色模式通过 `:root[data-theme='dark']`。无框架或工具类。
 
+### RSS 与 Sitemap
+
+`@astrojs/rss` 生成 `rss.xml`（`src/pages/rss.xml.ts`），`@astrojs/sitemap` 自动生成 sitemap。两者在 `astro.config.mjs` 中配置。
+
 ### Quiz 系统（React，client-only）
 
 项目中唯一的 React 用途。位于 `/notes/quiz/`。题库在 `src/data/question-banks/`（TypeScript 文件）。所有状态存 `localStorage`。数学公式用 `$...$` 通过 `react-katex` 渲染。
@@ -141,7 +145,7 @@ npm run test              # 运行所有测试
 npm run test:watch        # 监听模式
 ```
 
-测试文件位于：
+无 `vitest.config.*` 文件，使用 Vitest 默认配置。测试文件位于：
 - `src/utils/__tests__/readingTime.test.ts` — 阅读时间计算
 - `src/utils/__tests__/noteTree.test.ts` — 目录树工具函数
 - `scripts/__tests__/validate-content.test.mjs` — 校验脚本集成测试
@@ -162,6 +166,7 @@ npm run test:watch        # 监听模式
 12. **`sortNoteEntries()` 是 `noteTree.ts` 导出的共享排序函数。** `content.ts` 和 `noteTree.ts` 都使用它，不要在别处重复实现。
 13. **`pe-notes` 目录名 ≠ `power-electronic-notes` docGroup。** 这是已知的命名不一致。路由系统按 docGroup 匹配所以正常工作，但 `validate-content.mjs` 按目录名查找注册状态，会把 pe-notes 当作未注册目录。如果需要修改 PE 课程的 docGroup 或目录名，两者要同步改，并更新 `src/consts.ts` 和所有章节文件的 frontmatter。
 14. **`validate-content.mjs` 只对已注册目录强制要求 README 和 order。** 未注册目录（包括 pe-notes，因目录名不匹配）的 README/order 校验是可选的。新增课程时，务必保证目录名与 `NOTE_COURSES` 的 key 完全一致，否则校验脚本无法正确执行交叉校验。
+15. **`.editorconfig` 规定 Markdown 文件不裁剪尾部空格。** 通用设置为 2 空格缩进、LF 换行、裁剪尾部空格，但 `*.md` 排除尾部空格裁剪（Markdown 需要尾部双空格表示换行）。
 
 ## 部署
 
@@ -223,10 +228,9 @@ npm run test:watch        # 监听模式
 | `templates/` | 内容模板（blog、note、docs、tutorial、course-config） |
 | `scripts/validate-content.mjs` | 统一 frontmatter 校验脚本（动态读取 consts） |
 | `scripts/publish-course.mjs` | 课程发布自动化校验（validate → typecheck → build → link check） |
-| `scripts/notes-pipeline/` | 课程发布流水线（checklist、review prompt） |
+| `scripts/notes-pipeline/` | 课程发布流水线（checklist、review prompt、agent prompt 模板） |
 | `scripts/pe-notes-phase*.mjs` | PE 课程自动化改进流水线（gap analysis → improvement → fixes → polish → verify） |
-| `.claude/workflows/` | Claude Code 多 agent 工作流（review-course-notes、improve-course-notes） |
-| `.claude/commands/review-notes.md` | Claude Code slash command：课程笔记生成与审查 |
+| `.claude/commands/review-notes.md` | Claude Code slash command：课程笔记生成与审查（本地配置，不在版本控制中） |
 | `.editorconfig` | 编辑器统一配置 |
 | `.github/CODEOWNERS` | 代码所有权 |
 | `.github/dependabot.yml` | 自动依赖更新 |
