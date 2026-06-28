@@ -323,6 +323,104 @@ $$
 
 **易错提醒：** $\omega=\pi$ 对应 $F_s/2$，不是 $F_s$。
 
+### 例题 5：采样-数字滤波-恢复链路（2022 Q3 / 2025 Q1 型）
+
+**题目：** 模拟信号 $x_a(t)$ 的频谱 $X_a(j\Omega)$ 仅在 $|\Omega|\leq 2000\pi$ 非零。以采样频率 $F_s=4000$ Hz（即 $T=1/4000$）采样得到序列 $x[n]$，经过理想数字低通滤波器 $H(e^{j\omega})$（截止频率 $\omega_c=\pi/2$，通带增益 1），输出 $y[n]$ 再通过理想 D/C 转换器（同样使用 $T=1/4000$）恢复为 $y_a(t)$。
+
+(1) 最高模拟频率 $\Omega_m$ 是多少？是否发生混叠？
+(2) 画出或描述 $X(e^{j\omega})$——$x[n]$ 的 DTFT。
+(3) 画出数字滤波后的 $Y(e^{j\omega})$。
+(4) 恢复后模拟输出 $y_a(t)$ 的频谱 $Y_a(j\Omega)$ 是什么？
+
+链路总览：
+
+$$
+x_a(t)\xrightarrow{\text{C/D}}x[n]\xrightarrow{H(e^{j\omega})}y[n]\xrightarrow{\text{D/C}}y_a(t).
+$$
+
+**解答：**
+
+**(1) 混叠判断**
+
+$$
+\Omega_m=2000\pi\implies f_m=1000\text{ Hz}.
+$$
+
+$$
+F_s=4000\text{ Hz}>2f_m=2000\text{ Hz}.
+$$
+
+Nyquist 条件满足，**无混叠**。
+
+**(2) 采样后频谱 $X(e^{j\omega})$**
+
+采样把模拟频率 $\Omega$ 映射到数字频率：
+
+$$
+\omega=\Omega T=\frac{\Omega}{4000}.
+$$
+
+所以最高频率分量对应的数字频率为
+
+$$
+\omega_m=\frac{2000\pi}{4000}=\frac{\pi}{2}.
+$$
+
+采样后频谱的幅度要乘 $1/T=4000$，同时以 $2\pi$ 为周期复制：
+
+$$
+X(e^{j\omega})=\frac{1}{T}\sum_k X_a\!\left(j\frac{\omega-2\pi k}{T}\right)=4000\cdot X_a(j4000\omega),\quad|\omega|\leq\frac{\pi}{2}.
+$$
+
+基带非零范围 $|\omega|\leq\pi/2$，在 $[-\pi,\pi]$ 内不会与相邻副本重叠（因为无混叠）。
+
+**(3) 数字滤波后 $Y(e^{j\omega})$**
+
+理想低通滤波器 $H(e^{j\omega})$ 在 $|\omega|<\pi/2$ 内增益为 1，其余为 0。
+
+由于 $X(e^{j\omega})$ 仅在 $|\omega|\leq\pi/2$ 非零，恰好完全落在滤波器通带内：
+
+$$
+Y(e^{j\omega})=H(e^{j\omega})\cdot X(e^{j\omega})=X(e^{j\omega}).
+$$
+
+信号**完全通过**，没有任何损失。
+
+**(4) D/C 恢复后的频谱 $Y_a(j\Omega)$**
+
+D/C 转换先把数字频率映射回模拟频率（$\Omega=\omega/T$），再通过理想重构滤波器。重构滤波器在通带内的增益取 $T$，以抵消采样时引入的 $1/T$：
+
+$$
+Y_a(j\Omega)=T\cdot Y(e^{j\Omega T})=T\cdot\frac{1}{T}X_a(j\Omega)=X_a(j\Omega),\quad|\Omega|\leq 2000\pi.
+$$
+
+**答案：** 完美恢复 $x_a(t)$，频谱与原信号完全一致。
+
+---
+
+**变式：如果数字滤波器截止频率改为 $\omega_c=\pi/4$ 会怎样？**
+
+$\omega_c=\pi/4$ 对应模拟频率
+
+$$
+\Omega_c=\frac{\pi/4}{T}=\frac{\pi}{4}\times 4000=1000\pi\quad(f_c=500\text{ Hz}).
+$$
+
+滤波器只保留 $|\omega|<\pi/4$ 的部分，即模拟频率 $|\Omega|<1000\pi$ 的部分被保留，$1000\pi<|\Omega|\leq 2000\pi$ 的部分被滤掉。
+
+恢复后：
+
+$$
+Y_a(j\Omega)=X_a(j\Omega)\cdot\operatorname{rect}\!\left(\frac{\Omega}{2000\pi}\right).
+$$
+
+输出信号的带宽从 1000 Hz 变窄到 500 Hz，高频信息丢失。
+
+**易错提醒：**
+- **别漏 $1/T$。** 采样后频谱幅度是 $\frac{1}{T}X_a$，不是 $X_a$。漏掉这个因子，后面 D/C 恢复的幅度就全错了。
+- **重构滤波器增益是 $T$，不是 1。** 它的作用就是把采样乘的 $1/T$ 抵消回去。
+- **频率位置和幅度要同时跟踪。** 很同学只关注频率有没有混叠、通带是否覆盖，最后忘了幅度要从头乘到尾。整条链路的幅度传递是：$1/T$（采样）$\times$ 滤波器增益 $\times$ $T$（恢复）$=1$。如果某一步漏了，最终输出幅度就不对。
+
 ## 5. 易错点表
 
 | ❌ 错误做法 | ✅ 正确做法 | 来源 |
