@@ -1,4 +1,4 @@
-import type { Question } from "../../../components/quiz/types";
+import type { Question } from "../../../../components/quiz/types";
 
 export const exampleSubjectQuestions: Question[] = [
   {
