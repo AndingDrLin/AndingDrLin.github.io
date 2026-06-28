@@ -38,6 +38,10 @@ draft: false
 
 如果第 1、2 题不熟，先看 [第2章](/notes/digital-signal-processing/chapter2/)；第 3 题不熟，先看 [第5章](/notes/digital-signal-processing/chapter5/)；第 4 题不熟，先看 [第6章](/notes/digital-signal-processing/chapter6/)；第 5 题不熟，直接看 [第10章](/notes/digital-signal-processing/chapter10/)。
 
+## 考试速查入口
+
+**考场开卷首选：** [考试速查页](/notes/digital-signal-processing/exam-cheat-sheet/) 把 11 章内容按考试使用频率重新排列，包含高频公式、做题流程、易错检查和 2022–2025 题型映射。翻到那一页就够了。
+
 ## 三天 90 分路线
 
 | 时间 | 学什么 | 目标 |
@@ -79,6 +83,7 @@ draft: false
 - [第9章 IIR 数字滤波器设计](/notes/digital-signal-processing/chapter9/) — Butterworth、预畸变、双线性变换、IIR 考场答题流程。
 - [第10章 FIR 数字滤波器设计](/notes/digital-signal-processing/chapter10/) — 窗函数法、频率采样法、阶数估计、最省乘法结构。
 - [第11章 FFT 兼容入口](/notes/digital-signal-processing/chapter11/) — 旧链接保留页；FFT 主内容逐步并入 ch5，这里保留最常用速查。
+- [考试速查](/notes/digital-signal-processing/exam-cheat-sheet/) — **考场开卷首选**：高频公式、做题流程、易错检查、2022–2025 题型映射。
 
 ## 高频公式入口
 
