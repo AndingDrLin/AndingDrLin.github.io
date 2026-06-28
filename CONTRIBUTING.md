@@ -71,6 +71,7 @@ AI Tools | 3D Vision | Agents | Research Notes | Essays | Tutorials | 课程学�
 | docGroup key | URL slug | 教程名 |
 |---|---|---|
 | `agent-tutorial` | `ai-agent` | AI Agent 从零到精通 |
+| `world-model-vla-tutorial` | `world-model-vla-agent` | 世界模型 + VLA + 具身智能 |
 
 > ⚠️ `docGroup` key 和 URL slug 是两个不同的东西。`'dsp-notes'` 是 key，`'digital-signal-processing'` 是 slug。搞混了链接就全断了。
 
