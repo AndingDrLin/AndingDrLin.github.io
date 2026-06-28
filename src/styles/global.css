@@ -37,6 +37,24 @@
   color: var(--text);
 }
 
+:root[data-theme='dark'] .katex .frac-line,
+:root[data-theme='dark'] .katex .sqrt-line,
+:root[data-theme='dark'] .katex .overline-line,
+:root[data-theme='dark'] .katex .underline-line,
+:root[data-theme='dark'] .katex .vline {
+  border-color: var(--text-soft);
+}
+
+:root[data-theme='dark'] .katex .mord,
+:root[data-theme='dark'] .katex .mbin,
+:root[data-theme='dark'] .katex .mrel,
+:root[data-theme='dark'] .katex .mopen,
+:root[data-theme='dark'] .katex .mclose,
+:root[data-theme='dark'] .katex .mpunct,
+:root[data-theme='dark'] .katex .minner {
+  color: var(--text);
+}
+
 * {
   box-sizing: border-box;
 }
