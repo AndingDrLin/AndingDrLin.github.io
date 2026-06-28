@@ -1,6 +1,6 @@
 ---
 title: "第10章 FIR 数字滤波器设计"
-description: "FIR 窗函数法、频率采样法、阶数估计、线性相位类型和最省资源结构。"
+description: "FIR 窗函数法、阶数估计、线性相位类型和最省资源结构。"
 date: 2026-06-26
 tags: [dsp, signal-processing]
 category: "课程学习"
