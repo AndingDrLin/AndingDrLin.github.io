@@ -40,7 +40,47 @@ draft: false
 
 ## 考试速查入口
 
-**考场开卷首选：** [考试速查页](/notes/digital-signal-processing/exam-cheat-sheet/) 把 11 章内容按考试使用频率重新排列，包含高频公式、做题流程、易错检查和 2022–2025 题型映射。翻到那一页就够了。
+**考场开卷首选：** [考试速查页](/notes/digital-signal-processing/exam-cheat-sheet/) 把 11 章内容按考试使用频率重新排列，包含高频公式、做题流程、易错检查、2022–2025 题型映射。翻到那一页就够了。
+
+## 时间不够？保这几章
+
+如果复习时间非常紧张，**只看这 4 章 + 考试速查页**，可以覆盖 70%+ 的考试分数：
+
+| 优先级 | 章节 | 覆盖题型 | 预计用时 |
+|---|---|---|---|
+| ★★★ | [ch5 DFT/FFT](/notes/digital-signal-processing/chapter5/) | 实序列对称、DIT/FFT、DFT 长度变化 | 3 小时 |
+| ★★★ | [ch6 Z 变换](/notes/digital-signal-processing/chapter6/) | $H(z)$、零极点、ROC、差分方程、$h[n]$ | 2.5 小时 |
+| ★★ | [ch10 FIR 设计](/notes/digital-signal-processing/chapter10/) | 窗函数法完整流程 | 2 小时 |
+| ★★ | [ch3 采样恢复](/notes/digital-signal-processing/chapter3/) | 频率换算、混叠、$(-1)^n$ 频谱搬移 | 1.5 小时 |
+| 补充 | [考试速查](/notes/digital-signal-processing/exam-cheat-sheet/) | 所有高频公式和设计流程 | 1 小时 |
+
+做完这 4 章后，再按"题型地图"回查 ch7（线性相位）、ch9（IIR 设计）、ch4（系统性质）。
+
+## 两天 80 分路线
+
+| 时间 | 学什么 | 目标 |
+|---|---|---|
+| Day 1 上午 | ch2 基础 + ch3 采样恢复 | 能手算短卷积、判断混叠、处理 $(-1)^n$ 频谱搬移 |
+| Day 1 下午 | ch5 DFT/FFT（重点！） | 能补全实序列 DFT、算 FFT 复杂度、理解 DFT 长度变化 |
+| Day 2 上午 | ch6 Z 变换 + ch7 线性相位 | 能从差分方程 ↔ $H(z)$ ↔ $h[n]$ 互转；能判断线性相位类型 |
+| Day 2 下午 | ch9/ch10 滤波器设计（二选一优先学） | 能独立完成一道 FIR 或 IIR 设计大题 |
+| 考前 1 小时 | [考试速查页](/notes/digital-signal-processing/exam-cheat-sheet/) | 把 Top 10 公式和设计流程过一遍 |
+
+**关键策略：** 2022–2025 每年必考 DFT/FFT（ch5）和滤波器设计（ch9/ch10），这两块优先保分。系统性质（ch4）和滤波器结构（ch8）出题模式固定，考前看做题套路即可。
+
+## 数学前置知识（5 分钟速补）
+
+如果你不熟悉复数和欧拉公式，花 5 分钟看这里：
+
+| 需要知道的 | 公式 | 什么时候用 |
+|---|---|---|
+| 复数模长 | $\|a+jb\|=\sqrt{a^2+b^2}$ | DFT 幅度、能量计算 |
+| 复数角度 | $\angle(a+jb)=\arctan(b/a)$ | 相位计算 |
+| 欧拉公式 | $e^{j\theta}=\cos\theta+j\sin\theta$ | DFT/DTFT 的核心 |
+| $e^{-j\pi/2}=-j$ | 旋转 $90°$ | DFT 旋转因子 |
+| $e^{j\pi}=-1$ | 旋转 $180°$ | $(-1)^n=e^{j\pi n}$ |
+| $j^2=-1$ | 虚数单位 | 复数运算 |
+| $e^{jA}\cdot e^{jB}=e^{j(A+B)}$ | 指数相乘 | 频移、调制 |
 
 ## 三天 90 分路线
 
