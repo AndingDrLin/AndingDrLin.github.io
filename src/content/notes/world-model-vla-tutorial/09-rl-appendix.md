@@ -38,7 +38,7 @@ def reinforce_loss(log_probs, rewards):
 
 ## PPO：最常用的策略优化
 
-PPO（Proximal Policy Optimization）是 REINFORCE 的稳定版本，核心约束是"不要一次更新太大"：
+PPO（Proximal Policy Optimization）是 REINFORCE 的稳定版本，核心约束是“不要一次更新太大”：
 
 $$L^{CLIP}(\theta) = \mathbb{E} \left[ \min\left( r(\theta) \hat{A}, \text{clip}(r(\theta), 1-\epsilon, 1+\epsilon) \hat{A} \right) \right]$$
 

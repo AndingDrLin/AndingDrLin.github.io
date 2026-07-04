@@ -83,7 +83,7 @@ def make_env_with_domain_rand(task="Lift"):
 
 ### 核心思想
 
-在仿真中可以获取"特权信息"（完整的物体位置、速度、物理状态），但真实世界中只能用传感器。Teacher-Student 框架分两步走：
+在仿真中可以获取“特权信息”（完整的物体位置、速度、物理状态），但真实世界中只能用传感器。Teacher-Student 框架分两步走：
 
 ```
 Step 1: Teacher 训练（仿真中，用特权信息）
@@ -143,7 +143,7 @@ def train_student(teacher, student, dataloader, epochs=100):
 
 ### 为什么 Teacher-Student 有效？
 
-1. **Teacher 知道"最优动作"**：有完整信息的 Teacher 接近理论最优
+1. **Teacher 知道“最优动作”**：有完整信息的 Teacher 接近理论最优
 2. **Student 学习更简单的映射**：从图像到最优动作比从图像到自监督动作更容易
 3. **可以加视觉域随机化**：Student 训练时用随机化的图像，增强鲁棒性
 
@@ -237,7 +237,7 @@ def measure_sim2real_gap(policy, sim_env, real_env_or_high_fidelity, num_trials=
 ## 常见踩坑 FAQ
 
 **Q：没有真实机器人怎么办？**
-A：SIMPLERENV 提供了高保真渲染的仿真环境，可以模拟"视觉上接近真实"的场景。用它替代真实机器人做初步评测。
+A：SIMPLERENV 提供了高保真渲染的仿真环境，可以模拟“视觉上接近真实”的场景。用它替代真实机器人做初步评测。
 
 **Q：域随机化和数据增强有什么区别？**
 A：域随机化作用于仿真器参数（物理+视觉），数据增强只作用于图像。域随机化更全面，但需要仿真器支持。

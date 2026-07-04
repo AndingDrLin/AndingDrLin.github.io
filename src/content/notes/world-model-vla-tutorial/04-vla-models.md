@@ -23,14 +23,14 @@ draft: false
 
 ## 4.1 从一个具体问题说起
 
-假设你面前有一个桌面，上面放着一个红色杯子和一个蓝色杯子。你对机器人说："把红色杯子递给我。"
+假设你面前有一个桌面，上面放着一个红色杯子和一个蓝色杯子。你对机器人说：“把红色杯子递给我。”
 
 问题来了：**机器人如何从这句话直接输出动作序列？**
 
 传统方案是一个三步 pipeline：
 
-1. **感知（Perception）**：视觉模型检测物体——"红色杯子在 (0.3, 0.5) 米处"
-2. **规划（Planning）**：任务规划器——"先移动到 (0.3, 0.5)，然后夹取，然后抬升"
+1. **感知（Perception）**：视觉模型检测物体——“红色杯子在 (0.3, 0.5) 米处”
+2. **规划（Planning）**：任务规划器——“先移动到 (0.3, 0.5)，然后夹取，然后抬升”
 3. **控制（Control）**：低层控制器——把路径点转成关节力矩
 
 这三步各自有独立模型，中间要手动设计接口和通信协议。换一个任务、换一个机器人，往往要重新调参甚至重写。
@@ -41,7 +41,7 @@ $$
 \text{VLA}: (\text{image}, \text{instruction}) \rightarrow \text{action}
 $$
 
-这就是 Vision-Language-Action 模型的核心思想。听起来简单，但它从根本上改变了机器人的"编程方式"——从写规则变成了写数据。
+这就是 Vision-Language-Action 模型的核心思想。听起来简单，但它从根本上改变了机器人的“编程方式”——从写规则变成了写数据。
 
 ---
 
@@ -65,7 +65,7 @@ graph LR
 
 - **脆弱**：感知出错会级联传播到规划和控制
 - **不通用**：换一个任务场景就要重写规则和调参
-- **无法处理模糊指令**："把杯子放到差不多中间的位置"——"差不多"怎么写成代码？
+- **无法处理模糊指令**：“把杯子放到差不多中间的位置”——“差不多”怎么写成代码？
 
 ### VLM 是怎么变成 VLA 的
 
@@ -85,8 +85,8 @@ $$
 
 三个关键原因：
 
-1. **知识迁移（Transfer）**：VLM 已经在互联网规模的图文数据上学会了"什么是杯子"、"什么是红色"。这些知识不需要机器人数据重新学。
-2. **涌现能力（Emergence）**：因为底座是语言模型，VLA 自然获得了语义推理能力——"把杯子放到苹果左边"，即使训练数据里没有这个组合指令。
+1. **知识迁移（Transfer）**：VLM 已经在互联网规模的图文数据上学会了“什么是杯子”、“什么是红色”。这些知识不需要机器人数据重新学。
+2. **涌现能力（Emergence）**：因为底座是语言模型，VLA 自然获得了语义推理能力——“把杯子放到苹果左边”，即使训练数据里没有这个组合指令。
 3. **数据飞轮（Data Flywheel）**：VLM 可以用海量图文数据预训练，只需要相对少量的机器人数据微调。这和 LLM 的范式一致。
 
 但 VLA 不是万能的。它的输出频率（通常 2-5 Hz）比不上专用低层控制器（100-1000 Hz），精度也有上限。实际部署时，VLA 常常作为高层策略，仍然需要低层控制器执行。
@@ -137,10 +137,10 @@ RT-2 最令人兴奋的发现是**涌现能力（Emergent Capabilities）**。�
 
 | 能力类别 | 示例指令 | 训练数据中是否出现 |
 |---|---|---|
-| 新物体推理 | "把可乐放到泰勒·斯威夫特的照片旁边" | 从未在机器人数据中出现过 |
-| 语义推理 | "把垃圾扔掉"（识别出纸团是垃圾） | 机器人数据没有"垃圾"类别 |
-| 多语言指令 | "把苹果放到左边"（用中文说） | 训练数据全是英文指令 |
-| 数学推理 | "把三个物体中最小的那个给我" | 从无数学推理的机器人数据 |
+| 新物体推理 | “把可乐放到泰勒·斯威夫特的照片旁边” | 从未在机器人数据中出现过 |
+| 语义推理 | “把垃圾扔掉”（识别出纸团是垃圾） | 机器人数据没有“垃圾”类别 |
+| 多语言指令 | “把苹果放到左边”（用中文说） | 训练数据全是英文指令 |
+| 数学推理 | “把三个物体中最小的那个给我” | 从无数学推理的机器人数据 |
 
 这些能力完全来自 VLM 预训练阶段学到的通用知识。这是 VLA 架构最有说服力的证据：**大规模视觉-语言预训练的知识确实能迁移到机器人控制。**
 
@@ -229,7 +229,7 @@ $$
 \frac{d}{dt} a_t = v_\theta(a_t, t, c), \quad t \in [0, 1]
 $$
 
-从噪声 $a_0 \sim \mathcal{N}(0, I)$ 到动作 $a_1$ 的"流"。
+从噪声 $a_0 \sim \mathcal{N}(0, I)$ 到动作 $a_1$ 的“流”。
 
 **优点**：
 - 能建模**多模态动作分布**——物体可以从左边或右边绕过去，两种方案都有概率被采样
@@ -288,8 +288,8 @@ graph TB
 
 **视觉编码器**：这是 OpenVLA 最有意思的设计之一。它没有用单个视觉编码器，而是融合了两个：
 
-- **SigLIP**：Google 的 CLIP 变体，擅长高层语义理解（"这是一只杯子"）
-- **DINOv2**：Meta 的自监督视觉模型，擅长空间细节（"杯子的边缘在这个位置"）
+- **SigLIP**：Google 的 CLIP 变体，擅长高层语义理解（“这是一只杯子”）
+- **DINOv2**：Meta 的自监督视觉模型，擅长空间细节（“杯子的边缘在这个位置”）
 
 两个编码器的 patch feature 拼接后送入语言模型。这个设计来自 Prismatic VLM 的工作，直觉是：语义理解和空间精度对机器人控制都重要，单个编码器很难兼得。
 
@@ -388,7 +388,7 @@ print(f"Continuous action: {action.tolist()}")
 # 最后 1 维 = 夹爪开合 (0=闭, 1=开)
 ```
 
-**解读输出**：模型输出的 7 个 token 经过反离散化变成一个 7 维向量。这是一个**相对动作（delta action）**——相对于当前末端执行器位姿的增量，而不是绝对坐标。每次执行一步后，用新的观测重新推理，形成"感知-动作"循环。
+**解读输出**：模型输出的 7 个 token 经过反离散化变成一个 7 维向量。这是一个**相对动作（delta action）**——相对于当前末端执行器位姿的增量，而不是绝对坐标。每次执行一步后，用新的观测重新推理，形成“感知-动作”循环。
 
 **推理频率**：OpenVLA 的单次推理约 200-500ms（取决于硬件），对应 2-5 Hz。对于桌面操作够用，但快速动态任务（接球）不够。这也是为什么后面会有 π0 这样的工作——在保持 VLA 能力的同时提升推理速度。
 
@@ -465,7 +465,7 @@ $$
 | ACT | 5% | 50% | 35% | 30% |
 | **π0** | **70%** | **85%** | **75%** | **77%** |
 
-特别是"折叠衣物"这种高度非结构化的任务，π0 的优势非常大。衣物的状态空间几乎是无限的，用离散 token 很难精确表示，而 flow matching 可以建模任意连续分布。
+特别是“折叠衣物”这种高度非结构化的任务，π0 的优势非常大。衣物的状态空间几乎是无限的，用离散 token 很难精确表示，而 flow matching 可以建模任意连续分布。
 
 ### 代码片段：理解 Flow Matching 的训练目标
 
@@ -560,8 +560,8 @@ def flow_matching_sample(action_model, vlm_features, num_steps=10):
 真实世界的机器人数据有几个普遍问题：
 
 1. **演示质量不一**：远程操作的演示者水平不同，有的操作流畅，有的犹豫不决、反复调整
-2. **状态分布不均**：大部分数据集中在"正常操作"状态，恢复（recovery）数据极少——但模型部署时最需要的就是恢复能力
-3. **标注噪声**：同一任务可能有不同的"正确"方式，数据集中会互相矛盾
+2. **状态分布不均**：大部分数据集中在“正常操作”状态，恢复（recovery）数据极少——但模型部署时最需要的就是恢复能力
+3. **标注噪声**：同一任务可能有不同的“正确”方式，数据集中会互相矛盾
 4. **机器人异构**：不同机器人的动作空间、观测空间都不同，混合训练需要仔细归一化
 
 ### 数据混合策略
@@ -578,7 +578,7 @@ $$
 w_i \propto n_i^\alpha, \quad \alpha \in [0, 1]
 $$
 
-其中 $n_i$ 是数据源 $i$ 的样本数，$\alpha$ 控制混合的"平等程度"。$\alpha = 0$ 是均匀采样，$\alpha = 1$ 是按规模采样。OpenVLA 发现 $\alpha \approx 0.5$ 效果最好——在大小数据集之间取得平衡。
+其中 $n_i$ 是数据源 $i$ 的样本数，$\alpha$ 控制混合的“平等程度”。$\alpha = 0$ 是均匀采样，$\alpha = 1$ 是按规模采样。OpenVLA 发现 $\alpha \approx 0.5$ 效果最好——在大小数据集之间取得平衡。
 
 ### 单机器人微调数据
 
@@ -736,7 +736,7 @@ print(f"平均奖励:   {metrics['reward']:.2f}")
 1. **视觉编码器**：ACT 用简单的 CNN，VLA 用大规模预训练的 VLM（SigLIP + DINOv2）
 2. **语言条件**：ACT 只接收状态观测，VLA 额外接收自然语言指令
 
-把 ACT 的 CNN 换成 VLM、把输出从连续回归换成离散 token，你就得到了 VLA。这就是为什么理解 ACT 是理解 VLA 的前提——它是最简版本的 VLA，去掉了所有"大模型"的部分，只保留了核心的模仿学习逻辑。
+把 ACT 的 CNN 换成 VLM、把输出从连续回归换成离散 token，你就得到了 VLA。这就是为什么理解 ACT 是理解 VLA 的前提——它是最简版本的 VLA，去掉了所有“大模型”的部分，只保留了核心的模仿学习逻辑。
 
 ---
 
@@ -770,7 +770,7 @@ def undiscretize_action(token_ids: torch.Tensor, n_bins: int = 256,
 
 ### 练习 2：对比三种动作表示的多模态建模能力
 
-写一个实验，演示连续回归（MSE loss）在多模态动作分布上的"模式平均"问题。
+写一个实验，演示连续回归（MSE loss）在多模态动作分布上的“模式平均”问题。
 
 ```python
 """
@@ -786,7 +786,7 @@ def undiscretize_action(token_ids: torch.Tensor, n_bins: int = 256,
 """
 ```
 
-**提示**：这道题的目的是让你直观理解为什么 π0 选择 flow matching。MSE loss 输出的是条件均值（conditional mean），而多模态分布的均值往往是一个"假"的中间值。
+**提示**：这道题的目的是让你直观理解为什么 π0 选择 flow matching。MSE loss 输出的是条件均值（conditional mean），而多模态分布的均值往往是一个“假”的中间值。
 
 ### 练习 3：阅读 OpenVLA 源码并回答问题
 
@@ -862,19 +862,19 @@ while True:
 
 这取决于你的任务特性和资源：
 
-- **选 OpenVLA**：如果你的任务是粗粒度桌面操作、需要和文本有强语义关联（比如回答"为什么选择这个动作"）、或者你想用 HuggingFace 生态做快速实验。
+- **选 OpenVLA**：如果你的任务是粗粒度桌面操作、需要和文本有强语义关联（比如回答“为什么选择这个动作”）、或者你想用 HuggingFace 生态做快速实验。
 - **选 π0**：如果你的任务需要高精度操作、多模态动作分布（比如折叠衣物）、或者你需要 action chunking 来减少推理次数。
 
-两者不矛盾——它们代表了 VLA 的两条技术路线。理解两者的设计选择比记住哪个"更好"更有价值。
+两者不矛盾——它们代表了 VLA 的两条技术路线。理解两者的设计选择比记住哪个“更好”更有价值。
 
 ---
 
 ## 参考文献
 
-- Brohan et al. "RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control." *CoRL*, 2023.
-- Kim et al. "OpenVLA: An Open-Source Vision-Language-Action Model." *arXiv:2406.09246*, 2024.
-- Black et al. "π0: A Vision-Language-Action Flow Model for General Robot Control." *arXiv:2410.24164*, 2024.
-- Collaboration et al. "Open X-Embodiment: Robotic Learning Datasets and RT-X Models." *ICRA*, 2024.
-- Brohan et al. "RT-1: Robotics Transformer for Real-World Control at Scale." *RSS*, 2023.
-- Chi et al. "Diffusion Policy: Visuomotor Policy Learning via Action Diffusion." *RSS*, 2023.
-- Zhao et al. "ALOHA 2: An Improved Low-Cost Hardware for Bimanual Teleoperation." *arXiv:2408.10199*, 2024.
+- Brohan et al. “RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control.” *CoRL*, 2023.
+- Kim et al. “OpenVLA: An Open-Source Vision-Language-Action Model.” *arXiv:2406.09246*, 2024.
+- Black et al. “π0: A Vision-Language-Action Flow Model for General Robot Control.” *arXiv:2410.24164*, 2024.
+- Collaboration et al. “Open X-Embodiment: Robotic Learning Datasets and RT-X Models.” *ICRA*, 2024.
+- Brohan et al. “RT-1: Robotics Transformer for Real-World Control at Scale.” *RSS*, 2023.
+- Chi et al. “Diffusion Policy: Visuomotor Policy Learning via Action Diffusion.” *RSS*, 2023.
+- Zhao et al. “ALOHA 2: An Improved Low-Cost Hardware for Bimanual Teleoperation.” *arXiv:2408.10199*, 2024.
