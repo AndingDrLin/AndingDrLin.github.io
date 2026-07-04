@@ -6,6 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **交流语言：请始终使用中文与用户交流。**
 
+**Git 分支约定：远程和本地都只保留 `main` 分支。除非用户特别要求，否则不要新建分支，所有提交和推送都直接在 `main` 分支进行。**
+
 ## 开发命令
 
 ```bash
