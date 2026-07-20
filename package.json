@@ -24,7 +24,7 @@
     "@astrojs/rss": "^4.0.18",
     "@astrojs/sitemap": "^3.7.2",
     "astro": "^6.1.9",
-    "katex": "^0.16.45",
+    "katex": "^0.18.1",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "react-katex": "^3.1.0",
