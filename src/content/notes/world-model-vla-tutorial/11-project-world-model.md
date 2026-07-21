@@ -1,244 +1,214 @@
 ---
-title: "项目 2：世界模型训练"
-description: "训练一个视觉世界模型，然后在想象中训练策略"
+title: "项目 2：世界模型 baseline 复现与评估"
+description: "复现一个开源世界模型 baseline，并用反事实动作、rollout horizon 和任务指标拆解它的优势与瓶颈"
 date: 2026-06-27
-tags: [world-model, DreamerV3, RSSM, imagination, project, tutorial]
+updated: 2026-07-21
+tags: [world-model, DIAMOND, baseline, evaluation, robotics, project, tutorial]
 category: "Tutorials"
 docGroup: "world-model-vla-tutorial"
 order: 11
 draft: false
 ---
 
-# 项目 2：世界模型训练
+# 项目 2：世界模型 baseline 复现与评估
 
-> 本项目的成果：理解世界模型的完整训练流程，并用想象数据增强行为克隆策略。
+> 本项目的成果：不是从零手写一个玩具世界模型，而是复现一个真实开源 baseline，设计压力测试，并判断它到底适合 evaluation、planning、training gym 还是 synthetic data。
+
+这一项目默认选择 [DIAMOND](https://diamond-wm.github.io/) 作为 baseline。它用 diffusion world model 在 Atari 环境里训练 agent，足够新、开源、可视化直观，也能很好地暴露当下世界模型的核心矛盾：画面质量、动作忠实度、长程一致性和推理成本很难同时满足。
+
+如果你更想走 DreamerV3 路线，也可以用同一套项目结构替换 baseline；但本项目的重点不是“哪个仓库更强”，而是训练你读懂 world model 系统、跑通最小闭环、设计评估问题的能力。
 
 ## 项目目标
 
-1. 在 DmControl 上训练 DreamerV3 风格的世界模型
-2. 分析世界模型的重建质量和 latent space
-3. 在想象中训练策略，对比纯行为克隆
-4. 理解 world model RL 的数据效率优势
+1. 跑通一个开源世界模型 baseline 的最小复现路径。
+2. 写清楚它的输入、输出、状态表示、动作条件化方式和训练闭环。
+3. 用 counterfactual action test 判断它是否真的理解动作对未来的影响。
+4. 用 rollout horizon 分析长程漂移、速度和失败模式。
+5. 输出一页 world model evaluation report，说明它在机器人技术栈里最适合放在哪个位置。
 
 ## 方案选择
 
-**如果会 JAX**：直接用 DreamerV3 官方代码。
-**如果只用 PyTorch**：用社区复现（如 `denisinnik/dreamerv3-torch`）或自己实现简化版。
+| 方案 | 适合你在什么时候选 | 本项目建议 |
+|---|---|---|
+| DIAMOND | 想看 diffusion world model、Atari 可视化 rollout、热门开源 baseline | **默认选择** |
+| DreamerV3 | 想理解 latent dynamics + imagination RL 的完整闭环 | 作为对照阅读或第二阶段复现 |
+| V-JEPA / JEPA planning | 想理解 embedding prediction 与 goal-conditioned MPC | 适合论文导读，不一定适合作为第一复现 |
+| Cosmos / Genie 类平台 | 想理解行业基础设施和 synthetic data pipeline | 适合调研，不适合低成本完整复现 |
 
-下面以 PyTorch 简化版为主。
+我建议第一轮只做 DIAMOND 的最小复现。不要一开始就追论文分数，也不要让 vibe coding agent 同时改训练、改模型、改环境。先把 baseline 当成黑箱跑起来，再逐步拆开。
 
-## Step 1：环境和数据
+## Step 1：建立 baseline card
 
-```python
-import gymnasium as gym
-import numpy as np
-import torch
+先不运行训练。让 vibe coding agent 帮你读 README、配置文件和训练入口，然后人工整理下面这张表。
 
-# DmControl 环境
-env = gym.make("dm_control/cartpole-balance-v0")
+| 问题 | 你的记录 |
+|---|---|
+| Baseline 名称 | DIAMOND |
+| 论文 / 项目 / 代码链接 |  |
+| 输入 | 过去帧？动作？reward？done？ |
+| 输出 | 下一帧？latent？reward？policy action？ |
+| State representation | pixel、latent，还是混合？ |
+| Action conditioning | 动作如何进入 world model？ |
+| World model loss | diffusion loss？是否还有 reward/value loss？ |
+| Policy training loop | agent 在真实环境、world model，还是两者交替？ |
+| 最小可运行任务 | 哪个 Atari game / 哪个配置？ |
+| 主要指标 | Atari score、rollout quality、FPS、显存、训练时间？ |
+| 你预期的瓶颈 | 采样速度、长程一致性、动作忠实度、显存、依赖安装？ |
 
-# 随机策略采集数据
-def collect_random_data(env, num_episodes=100):
-    data = []
-    for _ in range(num_episodes):
-        obs, _ = env.reset()
-        done = False
-        while not done:
-            action = env.action_space.sample()
-            next_obs, reward, terminated, truncated, info = env.step(action)
-            data.append({
-                "obs": obs, "action": action,
-                "reward": reward, "next_obs": next_obs,
-                "done": terminated or truncated,
-            })
-            obs = next_obs
-    return data
+可以直接给 coding agent 这样的任务：
+
+```text
+请阅读 DIAMOND 仓库，不改任何代码。输出 baseline card：
+1. 训练入口和评估入口分别在哪里；
+2. 最小可运行配置是什么；
+3. world model 的输入输出是什么；
+4. action 如何进入模型；
+5. agent 是如何在 world model 中训练的；
+6. 复现时最可能卡在哪些依赖或硬件要求。
 ```
 
-## Step 2：实现简化版 RSSM 世界模型
+验收标准：你能不用看代码，用 5 分钟给别人讲清楚这个 baseline 的闭环。
 
-```python
-class SimpleRSSM(nn.Module):
-    """简化版 RSSM：deterministic (GRU) + stochastic (MLP)"""
-    def __init__(self, obs_dim, action_dim, hidden_dim=256, latent_dim=32):
-        super().__init__()
-        # 确定性路径
-        self.gru = nn.GRUCell(obs_dim + action_dim + latent_dim, hidden_dim)
-        # 随机路径
-        self.prior_net = nn.Sequential(
-            nn.Linear(hidden_dim, 128), nn.ReLU(),
-            nn.Linear(128, latent_dim * 2),  # mean + logvar
-        )
-        self.posterior_net = nn.Sequential(
-            nn.Linear(hidden_dim + obs_dim, 128), nn.ReLU(),
-            nn.Linear(128, latent_dim * 2),
-        )
-        # 解码器
-        self.decoder = nn.Sequential(
-            nn.Linear(hidden_dim + latent_dim, 256), nn.ReLU(),
-            nn.Linear(256, obs_dim),
-        )
-        # 奖励预测
-        self.reward_head = nn.Sequential(
-            nn.Linear(hidden_dim + latent_dim, 128), nn.ReLU(),
-            nn.Linear(128, 1),
-        )
+## Step 2：跑通最小复现
 
-    def observe(self, obs, action, prev_state, prev_z):
-        """用真实观测更新世界模型（训练时）"""
-        x = torch.cat([obs, action, prev_z], dim=-1)
-        h = self.gru(x, prev_state)
+这一阶段只追求“能运行、能保存结果、能复盘失败”，不追求 SOTA 分数。
 
-        # Posterior: 有真实观测
-        post_input = torch.cat([h, obs], dim=-1)
-        post_mean, post_logvar = self.posterior_net(post_input).chunk(2, dim=-1)
-        z = self.reparameterize(post_mean, post_logvar)
+建议产物：
 
-        return h, z, post_mean, post_logvar
+1. 一份环境安装记录：Python 版本、CUDA、GPU、关键依赖。
+2. 一个最小运行命令：训练或加载 checkpoint 的命令。
+3. 一段真实环境帧序列。
+4. 一段 world model imagined rollout。
+5. 一份资源成本记录：显存、单次 rollout 时间、训练/评估耗时。
 
-    def imagine(self, action, prev_state, prev_z):
-        """不看真实观测，纯想象（推理/策略训练时）"""
-        x = torch.cat([action, prev_z], dim=-1)
-        h = self.gru(x, prev_state)
+记录表格：
 
-        # Prior: 无真实观测
-        prior_mean, prior_logvar = self.prior_net(h).chunk(2, dim=-1)
-        z = self.reparameterize(prior_mean, prior_logvar)
+| 项目 | 结果 |
+|---|---|
+| 机器 / GPU |  |
+| Python / CUDA |  |
+| 选用 game / task |  |
+| 是否使用预训练 checkpoint |  |
+| 最小命令 |  |
+| 首次跑通耗时 |  |
+| 单段 rollout 耗时 |  |
+| 最大显存占用 |  |
+| 第一个失败点 |  |
+| 解决方式 |  |
 
-        return h, z, prior_mean, prior_logvar
+注意：如果依赖卡住，不要马上换 baseline。先把失败写清楚。工程复现能力的一部分，就是能准确记录“为什么没跑通”。
 
-    def decode(self, h, z):
-        """从 latent 重建观测"""
-        return self.decoder(torch.cat([h, z], dim=-1))
+## Step 3：做 counterfactual action test
 
-    def predict_reward(self, h, z):
-        return self.reward_head(torch.cat([h, z], dim=-1))
+世界模型是否有用，不能只看一条生成视频。你要固定同一个初始状态，输入不同动作序列，看预测未来是否产生合理差异。
 
-    def reparameterize(self, mean, logvar):
-        std = torch.exp(0.5 * logvar)
-        eps = torch.randn_like(std)
-        return mean + eps * std
+设计方式：
+
+```text
+同一个初始状态 s0
+├── action sequence A：连续 left / no-op / fire / accelerate
+└── action sequence B：连续 right / jump / brake / alternative action
+
+比较 A 和 B 的 imagined rollout：
+1. 差异是否出现？
+2. 差异是否符合环境规则？
+3. 差异是否随 horizon 变弱或变乱？
 ```
 
-## Step 3：训练世界模型
+记录表：
 
-```python
-def train_world_model(model, data, epochs=100, batch_size=32):
-    optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
+| 初始状态 | 动作序列 A | 动作序列 B | 预测差异 | 是否符合环境逻辑 | 备注 |
+|---|---|---|---|---|---|
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
 
-    for epoch in range(epochs):
-        total_loss = 0
-        for batch in get_sequential_batches(data, batch_size):
-            h = torch.zeros(batch_size, 256)
-            z = torch.zeros(batch_size, 32)
-            kl_loss = recon_loss = reward_loss = 0
+这一阶段的中心问题是：**模型到底是在根据 action 推演世界，还是只是在生成看起来像游戏的视频？**
 
-            for t in range(len(batch[t])):
-                obs = batch[t]["obs"]
-                action = batch[t]["action"]
-                true_reward = batch[t]["reward"]
-                next_obs = batch[t]["next_obs"]
+如果你发现不同动作生成结果差不多，这不是小问题，而是 action fidelity 失败。这样的模型可以做视频生成，但很难做 planning。
 
-                # 观测 + 更新
-                h, z, post_mean, post_logvar = model.observe(obs, action, h, z)
+## Step 4：画 rollout horizon 曲线
 
-                # 重建损失
-                pred_next_obs = model.decode(h, z)
-                recon_loss += F.mse_loss(pred_next_obs, next_obs)
+把 imagined rollout 分成不同 horizon 观察：1、5、10、20、50 step。不要只挑最好看的片段，要刻意保存失败样例。
 
-                # 奖励损失
-                pred_reward = model.predict_reward(h, z)
-                reward_loss += F.mse_loss(pred_reward, true_reward)
+| Horizon | 视觉质量 | 状态一致性 | 动作响应 | 速度 | 典型失败 |
+|---|---|---|---|---|---|
+| 1 |  |  |  |  |  |
+| 5 |  |  |  |  |  |
+| 10 |  |  |  |  |  |
+| 20 |  |  |  |  |  |
+| 50 |  |  |  |  |  |
 
-                # KL 散度（prior vs posterior）
-                with torch.no_grad():
-                    prior_mean, prior_logvar = model.imagine(action, h.detach(), z.detach())
-                kl_loss += kl_divergence(post_mean, post_logvar, prior_mean, prior_logvar)
+你最后要给一个保守判断：这个 world model 的可用 horizon 到底有多长？
 
-            loss = recon_loss + 0.5 * reward_loss + 0.1 * kl_loss
-            optimizer.zero_grad()
-            loss.backward()
-            optimizer.step()
-            total_loss += loss.item()
+- 如果 5 step 稳、20 step 崩，它可能适合 short-horizon MPC。
+- 如果 50 step 仍然稳定但速度慢，它可能适合离线 evaluation。
+- 如果画面清晰但动作响应弱，它更像视频模型，不适合 policy ranking。
 
-        if (epoch + 1) % 10 == 0:
-            print(f"Epoch {epoch+1}, Loss: {total_loss/len(data):.4f}")
-```
+## Step 5：和 DreamerV3 做概念对照
 
-## Step 4：在想象中训练策略
+这一阶段不要求完整跑 DreamerV3，但要读 DreamerV3 的架构图和训练循环，做一张对照表。
 
-```python
-def train_policy_in_imagination(world_model, policy, horizon=15, batch_size=32):
-    """在世界模型的想象中用 REINFORCE 训练策略"""
-    optimizer = torch.optim.Adam(policy.parameters(), lr=3e-4)
+| 维度 | DIAMOND | DreamerV3 |
+|---|---|---|
+| 预测空间 |  |  |
+| 状态表示 |  |  |
+| action conditioning |  |  |
+| world model loss |  |  |
+| policy 如何训练 |  |  |
+| 视觉可解释性 |  |  |
+| rollout 速度 |  |  |
+| 长程一致性 |  |  |
+| 更适合的 use case |  |  |
 
-    for iteration in range(1000):
-        # 从数据中采样起始状态
-        start_obs = sample_start_states(data, batch_size)
-        h = torch.zeros(batch_size, 256)
-        z = torch.zeros(batch_size, 32)
+不要照抄论文结论。用你在 Step 2–4 的观察改写这张表。
 
-        log_probs = []
-        rewards = []
+## Step 6：写 world model evaluation report
 
-        for t in range(horizon):
-            # 策略选动作
-            action_dist = policy(torch.cat([h, z], dim=-1))
-            action = action_dist.sample()
-            log_probs.append(action_dist.log_prob(action))
+最终报告控制在 1–2 页，结构固定：
 
-            # 世界模型想象下一步
-            h, z, _, _ = world_model.imagine(action, h, z)
+1. **我复现了什么**：baseline、任务、运行环境、是否使用 checkpoint。
+2. **最小运行路径**：关键命令、依赖、耗时。
+3. **它最明显的优势**：例如视觉细节、可视化、训练闭环、代码组织。
+4. **它最明显的瓶颈**：例如速度、长程漂移、动作不敏感、显存、依赖复杂。
+5. **它适合放在机器人 pipeline 的哪里**：evaluation、planning、training gym、synthetic data，还是只适合研究观察。
+6. **如果迁移到机器人，我第一步会改什么**：例如把 Atari action 换成 action chunk、接入真实机器人数据、加入 goal scoring、缩短 horizon、加入不确定性估计。
 
-            # 世界模型预测奖励
-            reward = world_model.predict_reward(h, z)
-            rewards.append(reward)
+报告里必须包含一个判断句，例如：
 
-        # REINFORCE
-        returns = compute_returns(rewards)
-        loss = sum(-lp * ret for lp, ret in zip(log_probs, returns))
-
-        optimizer.zero_grad()
-        loss.backward()
-        optimizer.step()
-```
-
-## Step 5：对比实验
-
-### 对比：纯 BC vs 想象增强 BC
-
-| 方法 | 100 条数据 | 500 条数据 | 1000 条数据 |
-|---|---|---|---|
-| 纯 BC（MLP） | ? | ? | ? |
-| 想象增强 BC（5步想象） | ? | ? | ? |
-| 想象增强 BC（10步想象） | ? | ? | ? |
-
-### 可视化分析
-
-1. **世界模型重建质量**：对比真实帧 vs 重建帧
-2. **Latent space 结构**：t-SNE 可视化，不同状态是否聚类
-3. **想象轨迹 vs 真实轨迹**：多步想象后误差如何累积
+> 我目前的判断：DIAMOND 证明了 diffusion world model 可以提供高质量 visual imagination，但如果要进入真实机器人闭环，第一瓶颈不是“能不能生成图像”，而是 action fidelity、rollout latency 和接触动力学是否能支撑 policy ranking。
 
 ## 简历描述
 
-```
-MiniDreamer: Training a World Model for Robot Manipulation Planning
+```text
+World Model Baseline Reproduction and Evaluation
 
-• Implemented RSSM-based world model from scratch in PyTorch for
-  robot tabletop manipulation in MuJoCo/robosuite
-• Trained policy in imagination rollouts using REINFORCE, achieving
-  comparable performance to behavior cloning with 60% less real
-  environment interaction
-• Analyzed latent space structure via t-SNE visualization, confirming
-  learned representations capture task-relevant state features
-• Key finding: World model augmented BC outperforms pure BC in
-  low-data regime (< 200 demonstrations) by 15-20% success rate
+• Reproduced a diffusion-based world model baseline (DIAMOND) and built
+  a minimal evaluation pipeline for imagined rollouts under different
+  counterfactual action sequences.
+• Designed horizon-based stress tests to analyze visual quality, action
+  fidelity, rollout drift, latency, and failure modes.
+• Compared diffusion world models with Dreamer-style latent dynamics,
+  clarifying when pixel-level generation is useful and when compact latent
+  prediction is more suitable for planning.
+• Key finding: high-quality video rollout alone is insufficient for robot
+  control; world models must be evaluated by action fidelity, policy-ranking
+  correlation, and real-task improvement.
 ```
 
 ## 验收标准
 
-- [ ] 世界模型能重建输入图像（MSE 低于阈值）
-- [ ] 想象轨迹在 5 步内视觉上合理
-- [ ] 想象增强 BC 在低数据量下优于纯 BC
-- [ ] 完成 t-SNE latent space 可视化
-- [ ] 有完整的训练曲线图
+- [ ] 完成 baseline card，能讲清楚输入、输出、状态表示、动作条件化和训练闭环。
+- [ ] 跑通最小复现路径，记录环境、命令、耗时、显存和失败点。
+- [ ] 保存至少 3 组 counterfactual action rollout，并写出动作差异分析。
+- [ ] 完成 rollout horizon 表，覆盖 1、5、10、20、50 step。
+- [ ] 写出 DIAMOND vs DreamerV3 对照表。
+- [ ] 输出 1–2 页 evaluation report，包含明确判断和下一步改进计划。
+
+## 参考入口
+
+- [DIAMOND 项目页](https://diamond-wm.github.io/)
+- [DIAMOND GitHub](https://github.com/eloialonso/diamond)
+- [DIAMOND 论文](https://arxiv.org/abs/2405.12399)
+- [DreamerV3 论文](https://arxiv.org/abs/2301.04104)
+- [DreamerV3 GitHub](https://github.com/danijar/dreamerv3)

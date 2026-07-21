@@ -19,7 +19,7 @@ draft: false
 
 - 理解 VLA（Vision-Language-Action）模型的核心原理，能读懂 RT-2、OpenVLA、π0 等关键论文
 - **微调 OpenVLA 到自定义任务**，搭建完整的训练和评测 pipeline
-- 理解世界模型（DreamerV3、DIAMOND、Cosmos）的原理，知道它为什么是具身智能的下一个关键
+- 理解世界模型不是单一架构，而是一类关于状态、动作和未来预测的问题；能区分 Dreamer、DIAMOND、JEPA、Cosmos 等路线
 - 用 LLM/VLM 构建具身 Agent，实现任务规划 + 低层执行的层次化系统
 - 掌握 Sim2Real 迁移的核心技术（域随机化、Teacher-Student）
 - **独立完成 3-4 个项目**，每一个都能写进简历
@@ -61,18 +61,18 @@ graph TD
 | 第 2 章 | VLM 基础 | 4 小时 |
 | 第 3 章 | 模仿学习与行为克隆 | 5 小时 |
 | 第 4 章 | VLA 模型 ⭐ | 6 小时 |
-| 第 5 章 | 世界模型 | 5 小时 |
+| 第 5 章 | 世界模型：分类、论文导读与机器人用法 | 7 小时 |
 | 第 6 章 | VLA + 世界模型融合 | 3 小时 |
 | 第 7 章 | 具身 Agent 架构 | 5 小时 |
 | 第 8 章 | Sim2Real 迁移 | 4 小时 |
 | 第 9 章 | 强化学习（附录） | 3 小时 |
 | 项目 1 | OpenVLA 微调实战 | 1 周 |
-| 项目 2 | 世界模型训练 | 1.5 周 |
+| 项目 2 | 世界模型 baseline 复现与评估 | 1 周 |
 | 项目 3 | VLM-Agent 系统 🎓 | 2 周 |
 | 项目 4 | Sim2Real Pipeline | 1.5 周 |
 | **合计** | | **约 60+ 小时** |
 
-建议节奏：先学完第 0-5 章 + 项目 1-2（约 4 周），再学第 6-8 章 + 项目 3-4（约 3 周）。
+建议节奏：先学完第 0-5 章 + 项目 1-2（约 4 周），再学第 6-8 章 + 项目 3（约 3 周）。
 
 ## 前置要求
 
@@ -170,5 +170,5 @@ except ImportError:
 ### 毕业项目
 
 - [项目 1: OpenVLA 微调实战](/notes/tutorial/world-model-vla-agent/10-project-openvla/)
-- [项目 2: 世界模型训练](/notes/tutorial/world-model-vla-agent/11-project-world-model/)
+- [项目 2: 世界模型 baseline 复现与评估](/notes/tutorial/world-model-vla-agent/11-project-world-model/)
 - [项目 3: VLM-Agent 系统](/notes/tutorial/world-model-vla-agent/12-project-vlm-agent/) 🎓 **简历核心**
